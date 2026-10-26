@@ -19,7 +19,6 @@
     "test": "turbo run test",
     "typecheck": "turbo run typecheck",
     "inspect": "pnpm --filter @sagas/fixtures inspect",
-    "rules": "pnpm --filter @sagas/fixtures rules",
     "acceptance": "turbo run acceptance",
     "db:up": "node -e \"console.error(`\\nEach layer has its own database now.\\n\\n  content       pnpm --filter @sagas/capture-api db:up\\n  intelligence  pnpm --filter @sagas/graph-api   db:up\\n  experience    pnpm --filter @sagas/ui-api      db:up\\n\\nSee the start guide for your layer.\\n`); process.exit(1)\""
   },

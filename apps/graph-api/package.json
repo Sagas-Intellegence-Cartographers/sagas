@@ -11,6 +11,8 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint",
     "test": "vitest run",
+    "dev": "tsx watch src/index.ts",
+    "start": "tsx src/index.ts",
     "db:up": "docker compose up -d --wait postgres",
     "db:down": "docker compose stop postgres",
     "db:verify": "bash ../../scripts/verify-db.sh sagas-intelligence-db 5434 sagas_intelligence",
@@ -19,7 +21,9 @@
   },
   "dependencies": {
     "@sagas/contracts": "workspace:*",
-    "@sagas/fixtures": "workspace:*"
+    "@sagas/fixtures": "workspace:*",
+    "express": "^5.1.0",
+    "zod": "catalog:"
   },
   "devDependencies": {
     "@sagas/eslint-config": "workspace:*",
@@ -29,7 +33,9 @@
     "eslint": "catalog:",
     "prettier": "catalog:",
     "typescript": "catalog:",
-    "vitest": "catalog:"
+    "vitest": "catalog:",
+    "@types/express": "^5.0.0",
+    "tsx": "catalog:"
   },
   "prettier": "@sagas/prettier-config"
 }

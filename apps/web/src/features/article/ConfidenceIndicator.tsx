@@ -8,20 +8,20 @@
  *
  * ---
  *
- * WHY AN AFFIRMATION COUNT IS NEVER SHOWN ON ITS OWN
+ * WHY AN AGREEMENT COUNT IS NEVER SHOWN ON ITS OWN
  *
- * An affirmation is not corroboration.
+ * Agreement is not corroboration.
  *
- * A claim can have five affirmations and zero independent support, because
- * agreeing is not bringing anything. Support comes from somebody else putting a
- * record of their own behind the claim. Five people saying "sounds right" is
- * five reactions to one source.
+ * A claim can have five "sounds right" passovers and zero independent support,
+ * because agreeing is not bringing anything. Support comes from somebody else
+ * putting a record of their own behind the claim. Five people saying "sounds
+ * right" is five reactions to one source.
  *
- * So this never shows an affirmation count on its own. "5 agree" next to
+ * So this never shows an agreement count on its own. "5 agree" next to
  * "single source" looks like a contradiction, and "5 agree" without the
  * qualifier reads as support that is not there.
  *
- * `cl-afterhours` at t3 is the case: two affirmations, zero independent
+ * `cl-afterhours` at t3 is the case: two "sounds right" passovers, zero independent
  * sources, still single_source. Open `pnpm inspect --state t3 cl-afterhours`
  * and look.
  *
@@ -78,7 +78,7 @@ export function ConfidenceIndicator({ claim }: { claim: ClaimState }) {
     );
   }
 
-  const summary = supportSummary(claim.independentRecordCount, claim.affirmations.length);
+  const summary = supportSummary(claim.independentRecordCount, claim.passover.sounds_right);
 
   return (
     <p className="flex flex-wrap items-baseline gap-x-2 text-xs">

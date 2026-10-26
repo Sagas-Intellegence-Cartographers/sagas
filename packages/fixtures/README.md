@@ -12,17 +12,12 @@ to do about it. If one arrives without that, it's a mistake on our side. Say so.
 ## The content here is invented
 
 Every contributor, family, and remembered event in this package is fictional.
-It was written to exercise the data model. It records nothing real.
-
-The building, street address, and coordinates are real. Nothing else is.
-Surnames were chosen to be plausibly Basque in form while avoiding the families
-documented in connection with this building.
+It was written to exercise the data model. It records nothing real, and no site
+stands for a real community. The comment at the top of each site's `events.ts`
+says which places, if any, use a real street or coordinates.
 
 Do not display this data publicly, cite it, or show it to community members as
 though it were testimony. It is scaffolding for your development environment.
-
-The Euskara sample text has **not** been reviewed by a speaker and is likely
-imperfect. It must be reviewed before this fixture appears in any demo.
 
 ## What this is, structurally
 
@@ -53,52 +48,51 @@ pnpm test           # invariants over the derived states
 If you need a graph state that doesn't exist yet, add a cut to `stateCuts`.
 Don't write a state file by hand.
 
-## The four states of `example-site`
+## The four states of `freight-depot`
 
 Every site has states t0 to t3. The table and notes below are for
-`example-site`, the longest log. `corner-shop` is the flagship and the one to
+`freight-depot`, the longest log. `corner-shop` is the flagship and the one to
 read first: it is the worked example in `docs/HOW-THE-LAYERS-FIT.md`, and
 `fixtures/corner-shop/events.ts` says at the top what each of its states shows.
 
 | | integrity | claims | records | contributors | disputes | untranslated |
 |---|---|---|---|---|---|---|
-| **t0** sparse, single source | 23 | 3 | 2 | 1 | 0 | 0 |
-| **t1** agreement, then a second source | 64 | 6 | 5 | 4 | 0 | 1 |
-| **t2** documentary source contests a date | 74 | 7 | 6 | 7 | 4 | 0 |
-| **t3** competing renderings, reconciliation candidate | 96 | 10 | 9 | 8 | 5 | 0 |
+| **t0** sparse, single source | 19 | 3 | 2 | 1 | 0 | 0 |
+| **t1** a photo, an unrendered recording, a dispute | 48 | 6 | 4 | 3 | 1 | 1 |
+| **t2** a rendering arrives; a window is transcribed | 61 | 7 | 5 | 5 | 1 | 0 |
+| **t3** competing renderings, reconciliation candidate | 89 | 10 | 8 | 6 | 4 | 0 |
 
 Counts come from the generated states. If you change the log, regenerate and
 update this table, because a stale table here is worse than no table.
 
 Each state deliberately exercises something:
 
-- **t0** — everything single-source and low weight. A sparse site must look
-  sparse on the map. It must never look empty.
-- **t1** — the author's cousin affirms `cl-boarding` and then extends it with a
-  record of her own. The affirmation adds no source. The record does, so the
-  claim reads `corroborated`, even though the two cousins may have heard one
-  telling. The stand-in cannot see that, and working out independence is the
-  intelligence layer's open design work. A claim submitted in Euskara also
-  arrives, kept and readable on the map, sitting outside the claim graph with
-  weight 0.
-- **t2** — an institutional source contests *one detail* of an otherwise
-  well-supported claim. The date is disputed; the location and the person are
-  not. A rendering of the Euskara claim arrives and it enters the graph. The
-  original is untouched.
-- **t3** — a second rendering of the same claim coexists with the first, each
-  attributed, with a preserved objection about what the first one loses. An
-  extension satisfies both branches of an earlier disagreement (a reconciliation
-  candidate). A 600MB recording is
-  still being processed when the log ends, and an open flag sits on a published
-  record saying part of it was never the contributor's to give.
+- **t0** — everything single-source and low weight. One written record with no
+  files produces two claims. A sparse site must look sparse on the map. It must
+  never look empty.
+- **t1** — a photograph arrives whose embedded GPS puts the camera across the
+  street. Its contributor disputes *one detail* of the office claim, the year,
+  and the person in it is left alone. A thirty-minute recording in French is
+  published on submission, and a claim from 0:18 to 1:10 of it arrives with no
+  rendering yet: kept and readable, with the part of its score that depends on
+  what it says waiting.
+- **t2** — a rendering of the French claim arrives, and somebody transcribes
+  just the window it cites. The original is untouched. A web page arrives as a
+  record of its own and backs an extension of the office claim.
+- **t3** — a second rendering coexists with the first, each attributed, with a
+  preserved objection about what the first one loses. A new claim suggests both
+  years for the office were true (a reconciliation candidate), and the dispute
+  still stands. A second photo joins the first in one collection. A 604MB video
+  is still processing when the log ends, and an open report sits on the
+  recording saying a second voice on it never agreed. One contributor writes no
+  claims except disputes and still does a lot: an objection to a rendering, a
+  report, and two "sounds right".
 
-Records run underneath all of it. Nine of them, deliberately unalike: a written
-record with no files at all that produced two separate claims, a photograph
-whose embedded GPS puts the camera in the middle of the street, an audio
-recording that took four months and four people to become readable in English, a
-scanned register page, and one upload still in the queue. Every claim points at
-its source record, the record its conversation started from, and some claims
-also carry evidence records.
+Records run underneath all of it. Eight of them, deliberately unalike: written
+records with no files, two photographs handed over as one collection, a
+recording transcribed a window at a time, a web page, and one upload still in
+the queue. Every claim points at its source record, the record its
+conversation started from, and some claims also carry evidence records.
 
 ## What your interface has to handle
 
@@ -129,7 +123,7 @@ independently bringing a record about the same building is real corroboration
 and it counts for far more.
 
 The model counts independent records. It never counts heads. Agreeing is not bringing a
-source, so an affirmation count on its own must never be presented as support.
+source, so a count of agreement on its own must never be presented as support.
 Five people saying "sounds right" is one source with five reactions to it.
 
 ### Disagreement lands on one detail
@@ -219,7 +213,7 @@ any of them is a useful pull request.
 - A claim long enough to break a reading layout
 - A place with exactly one claim and no contributors beyond its author
 - Two places close enough together to collide as map markers
-- A claim whose only affirmations come from people who joined the same day
+- A claim whose only "sounds right" passovers come from people who joined the same day
 - Two transcripts of the same recording that disagree about what was said
 - The same file uploaded by two people, so the checksums collide and it is one
   source rather than two
@@ -261,18 +255,15 @@ so a change you forgot to regenerate fails the build rather than drifting.
 
 ```bash
 pnpm inspect                                     # every claim at t3, one line each
-pnpm inspect cl-cs-shop                          # one claim on the flagship, with its inputs
+pnpm inspect cl-cs-shop                          # one claim on the flagship, with its terms
 pnpm inspect --state t1 cl-cs-shop               # the same claim earlier
-pnpm inspect --site example-site cl-boarding     # a claim on another site
+pnpm inspect --site freight-depot cl-fd-office   # a claim on another site
 ```
 
-It prints what went in next to what came out, and tells you when the recomputed
-weight disagrees with the stored one, which means the states need regenerating.
-
-The point is the inputs. A weight on its own tells you nothing about whether
-your scoring is defensible. `cl-boarding` at t3 scoring 5.50 means nothing until
-you see what went into it: its affirmations, its independent records, and three
-disputes on its date.
+It prints each claim's score as the named parts it's made of, and each detail's
+score, in the shape the intelligence layer's scorer returns. The fixtures'
+scores come from an invented stand-in (`src/stand-in-score.ts`), so the numbers
+mean nothing. The parts show what a real score is made of.
 
 ## Boundaries
 
@@ -280,10 +271,10 @@ disputes on its date.
 build against. The intelligence layer builds the synthesis engine in the spring. If you are
 writing code that fetches narrative state over the network, stop and ask.
 
-**`src/weight.ts` is not the weight propagation algorithm.** It is arithmetic
-that exists so claims have an ordering to render. Designing the real one is
-the intelligence layer's first-semester deliverable, and this one will be
-deleted.
+**`src/stand-in-score.ts` is not the scoring algorithm.** It's an invented
+stand-in, in the shape the real scorer returns, so claims and details have an
+order to render. Designing the real one is the intelligence layer's work, and
+the stand-in gets replaced when it exists.
 
 The properties in it worth preserving are constraints on the problem rather
 than solutions to it. Edges are the strong signals: an extension pushes a claim

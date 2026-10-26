@@ -48,10 +48,6 @@
             "excerpt": "the owner, Mr. Ferris"
           }
         ],
-        "topics": [
-          "the shop",
-          "the owner"
-        ],
         "sourceType": "firsthand",
         "createdAt": "2026-02-03T19:31:00Z",
         "awaitingTranslation": false
@@ -85,23 +81,23 @@
             "createdAt": "2026-01-12T17:14:00Z"
           }
         ],
+        "choices": {
+          "rightToShare": true,
+          "studentAccess": true,
+          "public": "yes",
+          "location": "keep",
+          "mentionsPeople": "not_sure"
+        },
+        "termsVersion": "fixture-terms-0.1",
         "createdAt": "2026-01-12T17:14:00Z"
       },
       "evidenceRecords": [],
       "translations": [],
       "translationDisputes": [],
-      "affirmations": [
-        {
-          "id": "aff-cs-lena",
-          "claimId": "cl-cs-shop",
-          "contributorId": "c-lena",
-          "createdAt": "2026-02-10T15:05:00Z"
-        }
-      ],
       "independentRecordCount": 0,
       "extensions": [],
       "passover": {
-        "sounds_right": 0,
+        "sounds_right": 1,
         "dont_know": 0,
         "dont_care": 0
       },
@@ -114,6 +110,7 @@
             "excerpt": "the corner of Fourth and Main"
           },
           "disputes": [],
+          "extensions": [],
           "competingValues": [
             {
               "value": "Fourth and Main",
@@ -122,7 +119,8 @@
                 "c-ray"
               ]
             }
-          ]
+          ],
+          "weight": 1
         },
         {
           "detail": {
@@ -132,6 +130,7 @@
             "excerpt": "around 1950"
           },
           "disputes": [],
+          "extensions": [],
           "competingValues": [
             {
               "value": "c. 1950",
@@ -140,7 +139,8 @@
                 "c-ray"
               ]
             }
-          ]
+          ],
+          "weight": 1
         },
         {
           "detail": {
@@ -150,6 +150,7 @@
             "excerpt": "the owner, Mr. Ferris"
           },
           "disputes": [],
+          "extensions": [],
           "competingValues": [
             {
               "value": "Ferris",
@@ -158,10 +159,112 @@
                 "c-ray"
               ]
             }
-          ]
+          ],
+          "weight": 1
         }
       ],
-      "weight": 3.25,
+      "score": {
+        "claimId": "cl-cs-shop",
+        "score": 1.05,
+        "terms": [
+          {
+            "family": "content",
+            "name": "base",
+            "value": 1
+          },
+          {
+            "family": "content",
+            "name": "evidence attached",
+            "value": 0
+          },
+          {
+            "family": "content",
+            "name": "independent support",
+            "value": 0
+          },
+          {
+            "family": "behaviour",
+            "name": "sounds right",
+            "value": 0.05
+          },
+          {
+            "family": "content",
+            "name": "extensions",
+            "value": 0
+          },
+          {
+            "family": "content",
+            "name": "disputes",
+            "value": 0
+          }
+        ],
+        "details": [
+          {
+            "detailId": "dt-cs-place",
+            "score": 1,
+            "terms": [
+              {
+                "family": "content",
+                "name": "base",
+                "value": 1
+              },
+              {
+                "family": "content",
+                "name": "extensions",
+                "value": 0
+              },
+              {
+                "family": "content",
+                "name": "disputes",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "detailId": "dt-cs-year",
+            "score": 1,
+            "terms": [
+              {
+                "family": "content",
+                "name": "base",
+                "value": 1
+              },
+              {
+                "family": "content",
+                "name": "extensions",
+                "value": 0
+              },
+              {
+                "family": "content",
+                "name": "disputes",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "detailId": "dt-cs-owner",
+            "score": 1,
+            "terms": [
+              {
+                "family": "content",
+                "name": "base",
+                "value": 1
+              },
+              {
+                "family": "content",
+                "name": "extensions",
+                "value": 0
+              },
+              {
+                "family": "content",
+                "name": "disputes",
+                "value": 0
+              }
+            ]
+          }
+        ]
+      },
+      "weight": 1.05,
       "confidence": "single_source"
     }
   ],
@@ -211,9 +314,18 @@
           "createdAt": "2026-01-12T17:14:00Z"
         }
       ],
+      "choices": {
+        "rightToShare": true,
+        "studentAccess": true,
+        "public": "yes",
+        "location": "keep",
+        "mentionsPeople": "not_sure"
+      },
+      "termsVersion": "fixture-terms-0.1",
       "createdAt": "2026-01-12T17:14:00Z"
     }
   ],
+  "collections": [],
   "standings": [
     {
       "contributorId": "c-june",
@@ -225,7 +337,7 @@
       "claimsDisputed": 0,
       "disputesRaised": 0,
       "disputesRaisedWithAlternative": 0,
-      "affirmationsGiven": 0,
+      "soundsRightGiven": 0,
       "translationsContributed": 0,
       "transcriptsContributed": 0,
       "flagsRaised": 0
@@ -240,7 +352,7 @@
       "claimsDisputed": 0,
       "disputesRaised": 0,
       "disputesRaisedWithAlternative": 0,
-      "affirmationsGiven": 0,
+      "soundsRightGiven": 0,
       "translationsContributed": 0,
       "transcriptsContributed": 0,
       "flagsRaised": 0
@@ -255,7 +367,7 @@
       "claimsDisputed": 0,
       "disputesRaised": 0,
       "disputesRaisedWithAlternative": 0,
-      "affirmationsGiven": 1,
+      "soundsRightGiven": 1,
       "translationsContributed": 0,
       "transcriptsContributed": 0,
       "flagsRaised": 0

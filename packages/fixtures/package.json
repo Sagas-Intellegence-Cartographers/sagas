@@ -6,8 +6,11 @@
   "exports": {
     ".": "./src/index.ts",
     "./states/*": "./states/*",
-    "./behaviour": "./behaviour/index.ts",
-    "./acceptance": "./acceptance/index.ts"
+    "./acceptance": "./acceptance/index.ts",
+    "./scoring": "./scoring/index.ts",
+    "./scoring/focus-reporter": "./scoring/focus-reporter.ts",
+    "./scoring/rules": "./scoring/rules.ts",
+    "./capture/rules": "./capture/rules.ts"
   },
   "scripts": {
     "build:states": "tsx scripts/build-states.ts",
@@ -15,12 +18,12 @@
     "clean": "git clean -xdf .cache .turbo node_modules",
     "typecheck": "tsc --noEmit",
     "lint": "eslint",
-    "rules": "vitest run behaviour",
     "inspect": "tsx scripts/inspect.ts",
     "acceptance": "vitest run acceptance"
   },
   "dependencies": {
-    "@sagas/contracts": "workspace:*"
+    "@sagas/contracts": "workspace:*",
+    "zod": "catalog:"
   },
   "devDependencies": {
     "@sagas/tsconfig": "workspace:*",

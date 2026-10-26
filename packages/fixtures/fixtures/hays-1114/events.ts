@@ -72,7 +72,6 @@ export const events: ContributionEvent[] = [
       { id: 'el-ha-trade', kind: 'event', value: 'shoe repair', excerpt: 'The shoe repair at 1114' },
       { id: 'el-ha-from', kind: 'date', value: 'late 1950s', excerpt: 'from the late fifties' },
     ],
-    topics: ['the shop'],
     sourceType: 'community_oral',
   },
 
@@ -89,8 +88,9 @@ export const events: ContributionEvent[] = [
 
   {
     id: 'ha-006', at: '2026-06-17T12:40:00Z', actorId: 'c-priya',
-    kind: 'claim_affirmed',
-    affirmationId: 'aff-ha-priya',
+    kind: 'passover_recorded',
+    passoverId: 'aff-ha-priya',
+    passoverKind: 'sounds_right',
     claimId: 'cl-hays-shoes',
   },
 ];

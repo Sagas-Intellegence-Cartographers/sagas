@@ -8,4 +8,4 @@
  * If you're changing the types in this package, change this number too and add
  * an entry to CHANGELOG.md.
  */
-export const CONTRACT_VERSION = '2.1.0' as const;
+export const CONTRACT_VERSION = '2.4.0' as const;

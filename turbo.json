@@ -11,7 +11,7 @@
     "dev": { "cache": false, "persistent": true },
     "format": { "outputs": [".cache/.prettiercache"], "outputLogs": "new-only" },
     "lint": { "dependsOn": ["^topo", "^build"], "outputs": [".cache/.eslintcache"] },
-    "test": { "dependsOn": ["^build"] },
+    "test": { "dependsOn": ["^build"], "env": ["CAPTURE_API_URL"] },
     "acceptance": { "dependsOn": ["^build"] },
     "typecheck": { "dependsOn": ["^topo", "^build"], "outputs": [".cache/tsbuildinfo.json"] },
     "clean": { "cache": false }

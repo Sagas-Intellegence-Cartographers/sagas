@@ -20,7 +20,11 @@
  *   - Evidence. The extension at t2 brings its own record (an audio clip),
  *     which is attached as evidence while the conversation's source stays the
  *     photograph.
- *   - Agreement that is not a source. The affirmation at t1 adds no source.
+ *   - Agreement that is not a source. The "sounds right" at t1 adds no source.
+ *   - An extension landing on one detail. "Mr. Ferris was my uncle" adds to
+ *     the owner detail (t2).
+ *   - A dispute as a claim of its own, in the same conversation as the claim
+ *     it disputes, carrying the directory page it cites as evidence (t2).
  *   - Two unrelated branches asserting the same detail (t3). A second person,
  *     with a different photograph in a different conversation, also names
  *     Mr. Ferris as the owner. Nothing links the two yet. Matching them is an
@@ -30,11 +34,6 @@
  *
  *   - The question prompts the contributor would attach to the photograph
  *     ("does anyone know the year?"). They are a proposal, not in the contract.
- *   - The extension targeting the "Mr. Ferris" detail. Extensions target a
- *     detail as of 27 September, but `extensionEdge` has no field for it yet.
- *   - The dispute carrying the directory scan as evidence. A dispute is still
- *     an edge, not a claim, so it cannot hold evidence records. The scan is
- *     submitted as a record at the site, and the dispute's reasoning cites it.
  *
  * Authored as an append-only log. States are derived, never authored. See
  * ../../src/reduce.ts.
@@ -114,7 +113,6 @@ export const events: ContributionEvent[] = [
       { id: 'dt-cs-year', kind: 'date', value: 'c. 1950', excerpt: 'around 1950' },
       { id: 'dt-cs-owner', kind: 'person', value: 'Ferris', excerpt: 'the owner, Mr. Ferris' },
     ],
-    topics: ['the shop', 'the owner'],
     sourceType: 'firsthand',
   },
 
@@ -127,8 +125,9 @@ export const events: ContributionEvent[] = [
 
   {
     id: 'cs-007', at: '2026-02-10T15:05:00Z', actorId: 'c-lena',
-    kind: 'claim_affirmed',
-    affirmationId: 'aff-cs-lena',
+    kind: 'passover_recorded',
+    passoverId: 'aff-cs-lena',
+    passoverKind: 'sounds_right',
     claimId: 'cl-cs-shop',
   },
 
@@ -167,6 +166,10 @@ export const events: ContributionEvent[] = [
     id: 'cs-010', at: '2026-04-06T18:20:00Z', actorId: 'c-owen',
     kind: 'claim_disputed',
     edgeId: 'dsp-cs-year',
+    // A dispute is a claim of its own, so it can carry evidence like any claim:
+    // here, the directory page its reasoning cites.
+    claimId: 'cl-dsp-cs-year',
+    evidenceRecordIds: ['rec-cs-directory'],
     targetClaimId: 'cl-cs-shop',
     targetDetailId: 'dt-cs-year',
     reasoning: "It can't be 1950. The awning in the photo went up in 1956. The directory page I uploaded shows the change.",
@@ -206,13 +209,14 @@ export const events: ContributionEvent[] = [
     sourceRecordId: 'rec-cs-photo',
     evidenceRecordIds: ['rec-cs-audio'],
     parentClaimId: 'cl-cs-shop',
+    // It adds to who the owner was, so it targets that detail.
+    targetDetailId: 'dt-cs-owner',
     siteId: SITE,
     text: 'Mr. Ferris was my uncle. He ran that shop until the sixties.',
     sourceLanguage: 'en',
     details: [
       { id: 'dt-cs-uncle-until', kind: 'date', value: '1960s', excerpt: 'until the sixties' },
     ],
-    topics: ['the owner'],
     sourceType: 'family_oral',
   },
 
@@ -261,7 +265,6 @@ export const events: ContributionEvent[] = [
       { id: 'dt-cs-sign-owner', kind: 'person', value: 'Ferris', excerpt: 'FERRIS GROCERY' },
       { id: 'dt-cs-sign-trade', kind: 'event', value: 'grocery', excerpt: 'GROCERY' },
     ],
-    topics: ['the owner', 'the sign'],
     sourceType: 'documentary',
   },
 

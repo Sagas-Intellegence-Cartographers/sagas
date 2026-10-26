@@ -9,12 +9,22 @@
 
 import type { ContributionEvent } from './events';
 import type {
-  Affirmation, Claim, ClaimState, Contributor, DisputeEdge, DetailStatus,
+  Claim, ClaimState, Collection, Contributor, DisputeEdge, DetailStatus,
   ContributorStanding, EventId, ExtensionEdge, Flag, GraphState, IntegrityScore,
-  MediaRef, Passover, PassoverKind, Site, SourceRecord,
+  MediaRef, Passover, PassoverKind, RecordChoices, Site, SourceRecord,
   Transcript, Translation, TranslationDispute,
 } from '@sagas/contracts';
-import { classifyConfidence, computeWeight } from './weight';
+import { classifyConfidence, standInScore } from './stand-in-score';
+
+/**
+ * Every fixture contributor and record is invented, so the fixtures default to
+ * the choices that let every screen show everything. Real records default the
+ * other way: private unless the contributor says yes.
+ */
+const FIXTURE_CHOICES: RecordChoices = {
+  rightToShare: true, studentAccess: true, public: 'yes', location: 'keep', mentionsPeople: 'not_sure',
+};
+const FIXTURE_TERMS_VERSION = 'fixture-terms-0.1';
 import type { SiteNarrative } from './narrative';
 
 interface Accumulator {
@@ -23,11 +33,11 @@ interface Accumulator {
   claims: Map<string, Claim>;
   disputes: DisputeEdge[];
   extensions: ExtensionEdge[];
-  affirmations: Affirmation[];
   passovers: Passover[];
   translations: Translation[];
   translationDisputes: TranslationDispute[];
   records: Map<string, SourceRecord>;
+  collections: Map<string, Collection>;
   transcripts: Transcript[];
   flags: Flag[];
   applied: EventId[];
@@ -36,8 +46,8 @@ interface Accumulator {
 function empty(): Accumulator {
   return {
     contributors: new Map(), claims: new Map(), disputes: [], extensions: [],
-    affirmations: [], passovers: [], translations: [],
-    translationDisputes: [], records: new Map(), transcripts: [], flags: [],
+    passovers: [], translations: [],
+    translationDisputes: [], records: new Map(), collections: new Map(), transcripts: [], flags: [],
     applied: [],
   };
 }
@@ -68,8 +78,8 @@ function apply(acc: Accumulator, ev: ContributionEvent): void {
         id: ev.claimId, siteId: ev.siteId, contributorId: ev.actorId,
         sourceRecordId: ev.sourceRecordId, evidenceRecordIds: ev.evidenceRecordIds ?? [],
         text: ev.text, sourceLanguage: ev.sourceLanguage,
-        sourceLanguageText: ev.sourceLanguageText, details: ev.details,
-        topics: ev.topics, sourceType: ev.sourceType,
+        sourceLanguageText: ev.sourceLanguageText, sourceWindow: ev.sourceWindow,
+        details: ev.details, sourceType: ev.sourceType,
         createdAt: ev.at, awaitingTranslation: ev.awaitingTranslation ?? false,
       });
       return;
@@ -79,32 +89,43 @@ function apply(acc: Accumulator, ev: ContributionEvent): void {
         id: ev.claimId, siteId: ev.siteId, contributorId: ev.actorId,
         sourceRecordId: ev.sourceRecordId, evidenceRecordIds: ev.evidenceRecordIds ?? [],
         text: ev.text, sourceLanguage: ev.sourceLanguage,
-        sourceLanguageText: ev.sourceLanguageText, details: ev.details,
-        topics: ev.topics, sourceType: ev.sourceType,
+        sourceLanguageText: ev.sourceLanguageText, sourceWindow: ev.sourceWindow,
+        details: ev.details, sourceType: ev.sourceType,
         createdAt: ev.at, parentClaimId: ev.parentClaimId,
         awaitingTranslation: false,
       });
       acc.extensions.push({
         id: `ext-${ev.id}`, type: 'extension', parentClaimId: ev.parentClaimId,
-        childClaimId: ev.claimId, contributorId: ev.actorId, createdAt: ev.at,
+        childClaimId: ev.claimId, targetDetailId: ev.targetDetailId,
+        contributorId: ev.actorId, createdAt: ev.at,
       });
       return;
 
-    case 'claim_disputed':
+    case 'claim_disputed': {
+      const target = acc.claims.get(ev.targetClaimId);
+      if (!target) throw new Error(`Dispute ${ev.edgeId} targets ${ev.targetClaimId}, which does not exist.`);
+      const targetDetail = target.details.find((d) => d.id === ev.targetDetailId);
+      if (!targetDetail) throw new Error(`Dispute ${ev.edgeId} targets detail ${ev.targetDetailId}, which ${ev.targetClaimId} does not have.`);
+      acc.claims.set(ev.claimId, {
+        id: ev.claimId, siteId: target.siteId, contributorId: ev.actorId,
+        sourceRecordId: ev.sourceRecordId ?? target.sourceRecordId,
+        evidenceRecordIds: ev.evidenceRecordIds ?? [],
+        text: ev.text ?? ev.reasoning, sourceLanguage: 'en',
+        details: ev.details ?? (ev.proposedValue
+          ? [{ id: `${ev.claimId}-value`, kind: targetDetail.kind, value: ev.proposedValue, excerpt: ev.proposedValue }]
+          : []),
+        sourceType: ev.sourceType ?? target.sourceType,
+        createdAt: ev.at, disputedClaimId: ev.targetClaimId,
+        awaitingTranslation: false,
+      });
       acc.disputes.push({
-        id: ev.edgeId, type: 'dispute', targetClaimId: ev.targetClaimId,
+        id: ev.edgeId, type: 'dispute', fromClaimId: ev.claimId, targetClaimId: ev.targetClaimId,
         targetDetailId: ev.targetDetailId, reasoning: ev.reasoning,
         proposedValue: ev.proposedValue, contributorId: ev.actorId,
         createdAt: ev.at,
       });
       return;
-
-    case 'claim_affirmed':
-      acc.affirmations.push({
-        id: ev.affirmationId, claimId: ev.claimId,
-        contributorId: ev.actorId, createdAt: ev.at,
-      });
-      return;
+    }
 
     case 'passover_recorded':
       acc.passovers.push({
@@ -150,8 +171,24 @@ function apply(acc: Accumulator, ev: ContributionEvent): void {
         id: ev.recordId, siteId: ev.siteId, contributorId: ev.actorId,
         note: ev.note, text: ev.text, language: ev.language,
         capturedAt: ev.capturedAt, capturedLocation: ev.capturedLocation,
-        submission: ev.submission ?? 'submitted', media, createdAt: ev.at,
+        submission: ev.submission ?? 'submitted', media, link: ev.link,
+        collectionId: ev.collectionId,
+        choices: ev.choices ?? FIXTURE_CHOICES,
+        termsVersion: ev.termsVersion ?? FIXTURE_TERMS_VERSION,
+        createdAt: ev.at,
       });
+      if (ev.collectionId) {
+        const existing = acc.collections.get(ev.collectionId);
+        if (existing) {
+          existing.recordIds.push(ev.recordId);
+          if (ev.collectionNote && !existing.note) existing.note = ev.collectionNote;
+        } else {
+          acc.collections.set(ev.collectionId, {
+            id: ev.collectionId, contributorId: ev.actorId, recordIds: [ev.recordId],
+            note: ev.collectionNote, createdAt: ev.at,
+          });
+        }
+      }
       return;
     }
 
@@ -173,7 +210,8 @@ function apply(acc: Accumulator, ev: ContributionEvent): void {
     case 'transcript_submitted': {
       acc.transcripts.push({
         id: ev.transcriptId, recordId: ev.recordId, contributorId: ev.actorId,
-        language: ev.language, text: ev.text, method: ev.method, createdAt: ev.at,
+        language: ev.language, text: ev.text, method: ev.method,
+        window: ev.window, createdAt: ev.at,
       });
       const rec = acc.records.get(ev.recordId);
       if (rec && ev.submission) rec.submission = ev.submission;
@@ -216,9 +254,9 @@ function buildClaimState(
       `Claim ${claim.id} is attributed to ${claim.contributorId}, who was never registered.`,
     );
   }
-  const affirmations = acc.affirmations.filter((a) => a.claimId === claim.id);
   const disputes = acc.disputes.filter((d) => d.targetClaimId === claim.id);
-  const extensions = acc.extensions.filter((e) => e.parentClaimId === claim.id).map((e) => e.childClaimId);
+  const extensionEdges = acc.extensions.filter((e) => e.parentClaimId === claim.id);
+  const extensions = extensionEdges.map((e) => e.childClaimId);
   const translations = acc.translations.filter((t) => t.claimId === claim.id);
   const translationIds = new Set(translations.map((t) => t.id));
   const translationDisputes = acc.translationDisputes.filter((d) => translationIds.has(d.translationId));
@@ -261,33 +299,23 @@ function buildClaimState(
       // dispute, and ordering by headcount would turn readings into a vote.
       // Nothing is marked accepted and nothing is hidden.
       ;
-    return { detail, disputes: detailDisputes, competingValues };
+    const detailExtensions = extensionEdges.filter((e) => e.targetDetailId === detail.id);
+    return { detail, disputes: detailDisputes, extensions: detailExtensions, competingValues, weight: 0 };
   });
 
-  const extensionClaims = extensions
-    .map((id) => acc.claims.get(id))
-    .filter((c): c is Claim => c !== undefined);
-  const sourceTypeDiversity = new Set([claim.sourceType, ...extensionClaims.map((c) => c.sourceType)]).size;
-
-  const weight = computeWeight({
-    sourceType: claim.sourceType,
-    independentRecordCount,
-    affirmationCount: affirmations.length,
-    extensionCount: extensions.length,
-    disputeCount: disputes.length,
-    sourceTypeDiversity,
-    awaitingTranslation: claim.awaitingTranslation,
+  const score = standInScore({
+    claim, sourceRecord, transcripts: acc.transcripts, disputes,
+    extensions: extensionEdges, independentRecordCount, soundsRight: passover.sounds_right,
   });
+  for (const ds of detailStatuses) {
+    ds.weight = score.details.find((d) => d.detailId === ds.detail.id)?.score ?? 0;
+  }
 
   return {
-    claim, contributor, sourceRecord, evidenceRecords, translations, translationDisputes, affirmations,
+    claim, contributor, sourceRecord, evidenceRecords, translations, translationDisputes,
     independentRecordCount, extensions, passover, detailStatuses,
-    weight,
-    confidence: classifyConfidence({
-      independentRecordCount,
-      disputeCount: disputes.length,
-      awaitingTranslation: claim.awaitingTranslation,
-    }),
+    score, weight: score.score,
+    confidence: classifyConfidence({ independentRecordCount, disputeCount: disputes.length }),
   };
 }
 
@@ -300,7 +328,11 @@ function buildClaimState(
  */
 function buildStandings(claimStates: ClaimState[], acc: Accumulator): ContributorStanding[] {
   return [...acc.contributors.values()].map((c) => {
-    const theirClaims = claimStates.filter((cs) => cs.claim.contributorId === c.id);
+    // Dispute claims are counted under disputesRaised, so they're left out here
+    // to avoid counting the same act twice.
+    const theirClaims = claimStates.filter(
+      (cs) => cs.claim.contributorId === c.id && !cs.claim.disputedClaimId,
+    );
     const theirDisputes = acc.disputes.filter((d) => d.contributorId === c.id);
 
     // Every timestamped thing this person did, so tenure is measured from
@@ -309,7 +341,7 @@ function buildStandings(claimStates: ClaimState[], acc: Accumulator): Contributo
       ...theirClaims.map((cs) => cs.claim.createdAt),
       ...[...acc.records.values()].filter((r) => r.contributorId === c.id).map((r) => r.createdAt),
       ...theirDisputes.map((d) => d.createdAt),
-      ...acc.affirmations.filter((a) => a.contributorId === c.id).map((a) => a.createdAt),
+      ...acc.passovers.filter((p) => p.contributorId === c.id).map((p) => p.createdAt),
       ...acc.translations.filter((t) => t.contributorId === c.id).map((t) => t.createdAt),
       ...acc.transcripts.filter((t) => t.contributorId === c.id).map((t) => t.createdAt),
       ...acc.flags.filter((f) => f.contributorId === c.id).map((f) => f.createdAt),
@@ -327,7 +359,7 @@ function buildStandings(claimStates: ClaimState[], acc: Accumulator): Contributo
       ).length,
       disputesRaised: theirDisputes.length,
       disputesRaisedWithAlternative: theirDisputes.filter((d) => d.proposedValue).length,
-      affirmationsGiven: acc.affirmations.filter((a) => a.contributorId === c.id).length,
+      soundsRightGiven: acc.passovers.filter((p) => p.contributorId === c.id && p.kind === 'sounds_right').length,
       translationsContributed: acc.translations.filter((t) => t.contributorId === c.id).length,
       transcriptsContributed: acc.transcripts.filter((t) => t.contributorId === c.id).length,
       flagsRaised: acc.flags.filter((f) => f.contributorId === c.id).length,
@@ -356,7 +388,7 @@ function buildIntegrity(claimStates: ClaimState[], acc: Accumulator): IntegrityS
     overall: 0,
   };
 
-  // Placeholder rollup for map marker encoding only. The intelligence layer replaces this.
+  // Placeholder rollup for map marker styling only, never shown as a number.
   score.overall = Math.min(100, Math.round(
     Math.min(score.totalClaims, 12) * 3 +
     Math.min(score.independentContributors, 6) * 6 +
@@ -395,6 +427,7 @@ export function reduceToState(
     claims: claimStates,
     contributors: [...acc.contributors.values()],
     records: [...acc.records.values()],
+    collections: [...acc.collections.values()],
     standings: buildStandings(claimStates, acc),
     transcripts: acc.transcripts,
     flags: acc.flags,

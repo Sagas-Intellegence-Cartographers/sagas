@@ -70,12 +70,13 @@ change the shape of that graph:
 - **Dispute.** "I disagree with this specific detail, because." Disputes
   target a *detail* of a claim (a date, a place, a person). The rest of the
   claim stands, so a record can say "three disputes target the date; the location is
-  undisputed." Disputes without reasoning are rejected.
-- **Extension.** "I have more context." A new claim that adds to another without contradicting it. If it brings a new record, that record is attached as evidence. Extensions are meant to target a detail the way disputes do, and that is decided but not built yet (see `docs/CLOSED-QUESTIONS.md`).
+  undisputed." A dispute is a claim of its own, so it can carry evidence too.
+  Disputes without reasoning are rejected.
+- **Extension.** "I have more context." A new claim that adds to another without contradicting it. If it brings a new record, that record is attached as evidence. Like a dispute, an extension targets a detail, or the whole claim when it is about all of it.
 
 A third response costs the reader nothing and creates no claim. A **passover**
 is what somebody does on the way past: it says this sounds right, or that they
-cannot judge it, or that it is not what they came for. Agreeing is one of those three, and it adds a little weight. The other two add no weight and only affect what gets suggested to whom. None of the three is a vote. Folding agreement into passovers is decided and not built yet: today the contract still has a separate `affirmation`, and only that reaches the scorer.
+cannot judge it, or that it is not what they came for. Agreeing is one of those three, and it adds a little weight. The other two add no weight and only affect what gets suggested to whom. None of the three is a vote.
 
 Weight moves with the edges. An extension pushes a claim up, a dispute pushes it
 down, and a resolution would lift both branches it reconciles, so a claim's
@@ -95,9 +96,9 @@ correct one.
 
 | Layer | Scope |
 |---|---|
-| **Experience** | Claim rendering and composition: narrative page, component library, map, suggestion interface, and references (how a page shows what each claim rests on). Heritage trails come later. Milestones and score dashboards are cut this semester. |
-| **Intelligence** | Claim graph model and intelligence on claims: weight propagation, trust framework, synthesis engine, exploration |
-| **Content** | Media pipeline, record submission, claim intake, translation workflow, moderation, and the contributing interface |
+| **Experience** | The map and the reading experience: narrative page, component library, map, suggestion interface, and references (how a page shows what each claim rests on). Builds against the fixtures now, and later on the other layers' APIs, replacing their plain screens where polish matters. Heritage trails come later. Milestones and score dashboards are cut this semester. |
+| **Intelligence** | Claims and the graph they form: scoring (weight and independence), exploration, and later a plain screen for writing claims and the sections and passages a page shows |
+| **Content** | Records: media pipeline, record submission and the contributor's choices, transcription and translation by time window, moderation of records, and a plain screen for handing things over |
 | **Contracts & fixtures** | `packages/contracts`, `packages/fixtures`, maintained by the sponsor |
 
 Each layer has its own app or apps, so no two teams edit the same files:
@@ -208,9 +209,10 @@ require a key you don't have, that's a bug in the scaffold. Tell us.
   and how they get persisted is the work.
 - **An upload pipeline.** Object storage is running and empty. Presigned
   uploads, transcoding, and metadata extraction are the content layer's build.
-- **A weight propagation algorithm.** `packages/fixtures/src/weight.ts` is
-  arithmetic that exists so claims have an ordering to render. Do not treat it
-  as a baseline to beat. It gets deleted.
+- **A scoring algorithm.** `packages/fixtures/src/stand-in-score.ts` is an
+  invented stand-in, in the shape the real scorer returns, so claims have an
+  order to render. Do not treat it as a baseline to beat. The intelligence
+  layer's scorer replaces it.
 
 If it feels like something is missing, check whether it's on this list before
 assuming it's an oversight.
@@ -230,8 +232,7 @@ Every contributor, family, and event in the fixture data is **invented**. Some s
 exercise the data model.
 
 Do not display it publicly, cite it, or show it to community members as though
-it were testimony. The Euskara sample text has not been reviewed by a speaker
-and is likely imperfect.
+it were testimony. No fixture site stands for a real community.
 
 The point of the project is that what a person says about their own family stays theirs and stays attributed. Synthetic data
 that reads as real testimony cuts against that, so we label it at every level:

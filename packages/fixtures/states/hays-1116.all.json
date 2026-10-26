@@ -43,10 +43,6 @@
               "excerpt": "a doorway through to the shop next door"
             }
           ],
-          "topics": [
-            "the shop",
-            "the doorway"
-          ],
           "sourceType": "community_oral",
           "createdAt": "2026-04-09T10:36:00Z",
           "awaitingTranslation": false
@@ -66,12 +62,19 @@
           "language": "en",
           "submission": "submitted",
           "media": [],
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
           "createdAt": "2026-04-09T10:31:00Z"
         },
         "evidenceRecords": [],
         "translations": [],
         "translationDisputes": [],
-        "affirmations": [],
         "independentRecordCount": 0,
         "extensions": [],
         "passover": {
@@ -88,6 +91,7 @@
               "excerpt": "There was a bakery at 1116"
             },
             "disputes": [],
+            "extensions": [],
             "competingValues": [
               {
                 "value": "bakery",
@@ -96,7 +100,8 @@
                   "c-esther"
                 ]
               }
-            ]
+            ],
+            "weight": 1
           },
           {
             "detail": {
@@ -106,6 +111,7 @@
               "excerpt": "a doorway through to the shop next door"
             },
             "disputes": [],
+            "extensions": [],
             "competingValues": [
               {
                 "value": "doorway through the party wall",
@@ -114,10 +120,91 @@
                   "c-esther"
                 ]
               }
-            ]
+            ],
+            "weight": 1
           }
         ],
-        "weight": 2,
+        "score": {
+          "claimId": "cl-hays-bakery",
+          "score": 1,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 0
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": 0
+            }
+          ],
+          "details": [
+            {
+              "detailId": "el-hy-trade",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "detailId": "el-hy-door",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        "weight": 1,
         "confidence": "single_source"
       }
     ],
@@ -139,9 +226,18 @@
         "language": "en",
         "submission": "submitted",
         "media": [],
+        "choices": {
+          "rightToShare": true,
+          "studentAccess": true,
+          "public": "yes",
+          "location": "keep",
+          "mentionsPeople": "not_sure"
+        },
+        "termsVersion": "fixture-terms-0.1",
         "createdAt": "2026-04-09T10:31:00Z"
       }
     ],
+    "collections": [],
     "standings": [
       {
         "contributorId": "c-esther",
@@ -153,7 +249,7 @@
         "claimsDisputed": 0,
         "disputesRaised": 0,
         "disputesRaisedWithAlternative": 0,
-        "affirmationsGiven": 0,
+        "soundsRightGiven": 0,
         "translationsContributed": 0,
         "transcriptsContributed": 0,
         "flagsRaised": 0
@@ -229,10 +325,6 @@
               "excerpt": "a doorway through to the shop next door"
             }
           ],
-          "topics": [
-            "the shop",
-            "the doorway"
-          ],
           "sourceType": "community_oral",
           "createdAt": "2026-04-09T10:36:00Z",
           "awaitingTranslation": false
@@ -252,12 +344,19 @@
           "language": "en",
           "submission": "submitted",
           "media": [],
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
           "createdAt": "2026-04-09T10:31:00Z"
         },
         "evidenceRecords": [],
         "translations": [],
         "translationDisputes": [],
-        "affirmations": [],
         "independentRecordCount": 0,
         "extensions": [],
         "passover": {
@@ -274,6 +373,7 @@
               "excerpt": "There was a bakery at 1116"
             },
             "disputes": [],
+            "extensions": [],
             "competingValues": [
               {
                 "value": "bakery",
@@ -282,7 +382,8 @@
                   "c-esther"
                 ]
               }
-            ]
+            ],
+            "weight": 1
           },
           {
             "detail": {
@@ -292,6 +393,7 @@
               "excerpt": "a doorway through to the shop next door"
             },
             "disputes": [],
+            "extensions": [],
             "competingValues": [
               {
                 "value": "doorway through the party wall",
@@ -300,10 +402,91 @@
                   "c-esther"
                 ]
               }
-            ]
+            ],
+            "weight": 1
           }
         ],
-        "weight": 2,
+        "score": {
+          "claimId": "cl-hays-bakery",
+          "score": 1,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 0
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": 0
+            }
+          ],
+          "details": [
+            {
+              "detailId": "el-hy-trade",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "detailId": "el-hy-door",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        "weight": 1,
         "confidence": "single_source"
       }
     ],
@@ -325,9 +508,18 @@
         "language": "en",
         "submission": "submitted",
         "media": [],
+        "choices": {
+          "rightToShare": true,
+          "studentAccess": true,
+          "public": "yes",
+          "location": "keep",
+          "mentionsPeople": "not_sure"
+        },
+        "termsVersion": "fixture-terms-0.1",
         "createdAt": "2026-04-09T10:31:00Z"
       }
     ],
+    "collections": [],
     "standings": [
       {
         "contributorId": "c-esther",
@@ -339,7 +531,7 @@
         "claimsDisputed": 0,
         "disputesRaised": 0,
         "disputesRaisedWithAlternative": 0,
-        "affirmationsGiven": 0,
+        "soundsRightGiven": 0,
         "translationsContributed": 0,
         "transcriptsContributed": 0,
         "flagsRaised": 0
@@ -410,10 +602,6 @@
               "excerpt": "a doorway through to the shop next door"
             }
           ],
-          "topics": [
-            "the shop",
-            "the doorway"
-          ],
           "sourceType": "community_oral",
           "createdAt": "2026-04-09T10:36:00Z",
           "awaitingTranslation": false
@@ -433,12 +621,19 @@
           "language": "en",
           "submission": "submitted",
           "media": [],
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
           "createdAt": "2026-04-09T10:31:00Z"
         },
         "evidenceRecords": [],
         "translations": [],
         "translationDisputes": [],
-        "affirmations": [],
         "independentRecordCount": 0,
         "extensions": [],
         "passover": {
@@ -455,6 +650,7 @@
               "excerpt": "There was a bakery at 1116"
             },
             "disputes": [],
+            "extensions": [],
             "competingValues": [
               {
                 "value": "bakery",
@@ -463,7 +659,8 @@
                   "c-esther"
                 ]
               }
-            ]
+            ],
+            "weight": 1
           },
           {
             "detail": {
@@ -473,6 +670,7 @@
               "excerpt": "a doorway through to the shop next door"
             },
             "disputes": [],
+            "extensions": [],
             "competingValues": [
               {
                 "value": "doorway through the party wall",
@@ -481,10 +679,91 @@
                   "c-esther"
                 ]
               }
-            ]
+            ],
+            "weight": 1
           }
         ],
-        "weight": 2,
+        "score": {
+          "claimId": "cl-hays-bakery",
+          "score": 1,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 0
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": 0
+            }
+          ],
+          "details": [
+            {
+              "detailId": "el-hy-trade",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "detailId": "el-hy-door",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        "weight": 1,
         "confidence": "single_source"
       }
     ],
@@ -506,9 +785,18 @@
         "language": "en",
         "submission": "submitted",
         "media": [],
+        "choices": {
+          "rightToShare": true,
+          "studentAccess": true,
+          "public": "yes",
+          "location": "keep",
+          "mentionsPeople": "not_sure"
+        },
+        "termsVersion": "fixture-terms-0.1",
         "createdAt": "2026-04-09T10:31:00Z"
       }
     ],
+    "collections": [],
     "standings": [
       {
         "contributorId": "c-esther",
@@ -520,7 +808,7 @@
         "claimsDisputed": 0,
         "disputesRaised": 0,
         "disputesRaisedWithAlternative": 0,
-        "affirmationsGiven": 0,
+        "soundsRightGiven": 0,
         "translationsContributed": 0,
         "transcriptsContributed": 0,
         "flagsRaised": 0
@@ -591,10 +879,6 @@
               "excerpt": "a doorway through to the shop next door"
             }
           ],
-          "topics": [
-            "the shop",
-            "the doorway"
-          ],
           "sourceType": "community_oral",
           "createdAt": "2026-04-09T10:36:00Z",
           "awaitingTranslation": false
@@ -614,12 +898,19 @@
           "language": "en",
           "submission": "submitted",
           "media": [],
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
           "createdAt": "2026-04-09T10:31:00Z"
         },
         "evidenceRecords": [],
         "translations": [],
         "translationDisputes": [],
-        "affirmations": [],
         "independentRecordCount": 0,
         "extensions": [],
         "passover": {
@@ -636,6 +927,7 @@
               "excerpt": "There was a bakery at 1116"
             },
             "disputes": [],
+            "extensions": [],
             "competingValues": [
               {
                 "value": "bakery",
@@ -644,7 +936,8 @@
                   "c-esther"
                 ]
               }
-            ]
+            ],
+            "weight": 1
           },
           {
             "detail": {
@@ -654,6 +947,7 @@
               "excerpt": "a doorway through to the shop next door"
             },
             "disputes": [],
+            "extensions": [],
             "competingValues": [
               {
                 "value": "doorway through the party wall",
@@ -662,10 +956,91 @@
                   "c-esther"
                 ]
               }
-            ]
+            ],
+            "weight": 1
           }
         ],
-        "weight": 2,
+        "score": {
+          "claimId": "cl-hays-bakery",
+          "score": 1,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 0
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": 0
+            }
+          ],
+          "details": [
+            {
+              "detailId": "el-hy-trade",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "detailId": "el-hy-door",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        "weight": 1,
         "confidence": "single_source"
       }
     ],
@@ -694,9 +1069,18 @@
         "language": "en",
         "submission": "submitted",
         "media": [],
+        "choices": {
+          "rightToShare": true,
+          "studentAccess": true,
+          "public": "yes",
+          "location": "keep",
+          "mentionsPeople": "not_sure"
+        },
+        "termsVersion": "fixture-terms-0.1",
         "createdAt": "2026-04-09T10:31:00Z"
       }
     ],
+    "collections": [],
     "standings": [
       {
         "contributorId": "c-esther",
@@ -708,20 +1092,22 @@
         "claimsDisputed": 0,
         "disputesRaised": 0,
         "disputesRaisedWithAlternative": 0,
-        "affirmationsGiven": 0,
+        "soundsRightGiven": 0,
         "translationsContributed": 0,
         "transcriptsContributed": 0,
         "flagsRaised": 0
       },
       {
         "contributorId": "c-tomas",
+        "firstContributionAt": "2026-07-08T18:22:00Z",
+        "lastContributionAt": "2026-07-08T18:22:00Z",
         "recordsSubmitted": 0,
         "claimsAuthored": 0,
         "claimsCorroborated": 0,
         "claimsDisputed": 0,
         "disputesRaised": 0,
         "disputesRaisedWithAlternative": 0,
-        "affirmationsGiven": 0,
+        "soundsRightGiven": 0,
         "translationsContributed": 0,
         "transcriptsContributed": 0,
         "flagsRaised": 0

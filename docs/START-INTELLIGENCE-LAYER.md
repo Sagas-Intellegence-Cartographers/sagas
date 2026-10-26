@@ -6,15 +6,20 @@ yours and you can ignore it. This page is the short version.
 **Treat this as the syllabus for the semester.** Read it through once, then come
 back to it. You are not expected to hold it in your head.
 
+**Phase 1, design, is over.** For phase 2, foundation, start with
+`docs/PHASE-2-INTELLIGENCE-LAYER.md`: how to run your layer, how to add to it,
+and the model as it stands and where it's going, in one place.
+
 ## What you're building
 
 People contribute claims about places. Somebody says their great-grandmother
 cooked in a boarding house from 1922, somebody else says the register shows
 1914, and a third person adds that the building had a different name before the
-war. Your layer is what decides how much any of that is worth, and it has to do
-it without ever being told who is speaking.
+war. Your layer is what decides how much any of that is worth, from what
+people have done and never from who they are.
 
-You own one app, which is empty apart from a scorer stub whose tests fail:
+You own one app, which has a scorer stub, the rules it answers to, and one
+working endpoint:
 
 - `apps/graph-api`, the server, and later the schema and migrations behind it
 
@@ -132,13 +137,13 @@ When your own design moves, that stays with you.
 
 ```bash
 pnpm install
-pnpm rules
-pnpm inspect --site example-site cl-boarding
+pnpm --filter @sagas/graph-api test
+pnpm inspect --site freight-depot cl-fd-office
 ```
 
-That is the whole setup for now. `pnpm rules` runs ten rules against a
-deliberately bad placeholder scorer. `pnpm inspect` prints one claim with its
-inputs beside its outputs, so you can see what a score is actually made of.
+That is the whole setup for now. The test command runs the scoring rules
+against your scorer and prints a focus summary at the end. `pnpm inspect`
+prints one claim from the fixtures with the named parts of its score.
 
 ## The database, when you need it
 
@@ -180,7 +185,7 @@ TypeScript rather than the bundled one when it prompts.
 
 ## Read these four, in this order
 
-1. `packages/fixtures/behaviour/scoring-contract.ts`. Ten rules any scorer
+1. `packages/fixtures/scoring/rules.ts`. The rules any scorer
    has to obey, written as executable tests. It is the closest thing to a
    specification this project has.
 2. `packages/contracts/src/model.ts`. Read all of it rather than only your
@@ -201,11 +206,15 @@ TypeScript rather than the bundled one when it prompts.
 **September, the model and then the rules.** Get the stack running, read the
 model, and bring your own entity relationship diagram and the reasoning behind
 it to a check-in. The week after that, write a scorer that
-satisfies the seven required rules. No database work yet.
+answers to the rules in `packages/fixtures/scoring`. No database work yet.
 
-**October, the schema.** Design the tables for claims, details, edges and
-contributors, write the migrations, and move the graph out of memory and into
-Postgres. Spatial indexing lives here too.
+**Mid October to roughly late November, foundation.** The first working scorer and the
+problems under it, against the rules in `packages/fixtures/scoring`.
+`docs/PHASE-2-INTELLIGENCE-LAYER.md` is the guide.
+
+**When the foundation needs it, the schema.** Design the tables for claims, details, edges
+and contributors, write the migrations, and move the graph out of memory and
+into Postgres. Spatial indexing lives here too.
 
 **November onward, propagation.** How weight actually moves through the graph,
 and whichever of the open questions you decide to take on.
@@ -271,98 +280,39 @@ you diverge from what is in the repository, say why.
 
 **Bring the revised diagram to your next check-in.**
 
-## Your second task: the scorer
+## Your next task: the scorer
 
-This is due the week after the diagram.
-
-`apps/graph-api/src/scorer.test.ts` is already there. It holds an empty scorer
-whose two methods throw `not implemented`, with the ten rules running against
-it, so every rule fails until you write something.
+`apps/graph-api/src/scorer.ts` holds an empty scorer, and
+`apps/graph-api/src/scorer.test.ts` runs the rules in
+`packages/fixtures/scoring/rules.ts` against it. The rules are skipped until
+you delete the `.skip` in the test file.
 
 ```bash
 pnpm --filter @sagas/graph-api test
 ```
 
-Seven of them are marked **required**, which means I will not merge a scorer
-that fails one. Most are closer to definitions of a working function than
-positions on anything. The same input has to give the same answer, the output
-has to be a real number, and more disagreement must not raise a score.
+The scorer reads the graph for one place and returns a score for every claim
+and every detail, each with the terms it's made of. A claim's score is a
+composite: its details, its place in the graph, the evidence it carries,
+independent support from other branches, and behaviour. How those combine is
+yours.
 
-The other three are marked **open to argument**. Those are things I currently
-think, written down so they are checkable instead of assumed. Whether a claim
-people argue about should outrank one nobody has touched is a position rather
-than a law. A failure there might be a bug in your scorer, and it might be you
-disagreeing with me.
+Every rule compares one graph with another, and none pins a number. Some are
+placeholders with their context written above them. The focus summary at the
+end of each run shows which areas are thin. Start with `similarity`, then
+independence, which is the area I've named as the focus.
 
-So for the week, satisfy the seven, then come to the check-in with which of the
-three you would change and why. That second half is the part I most want to see.
+`apps/graph-api/src/index.ts` already serves `POST /score`, so you can run your
+scorer over HTTP from the start. `docs/PHASE-2-INTELLIGENCE-LAYER.md` has the
+commands and the model.
 
-There is a worked example in the repository.
-`packages/fixtures/behaviour/placeholder.test.ts` is nineteen lines and does the
-same thing for the throwaway arithmetic the fixtures ship with. That scorer is
-bad on purpose and it still passes, which tells you something about what the
-rules do and do not pin down.
+## What the scorer reads about people
 
-Then make the failures go away. The rules tell you what is wrong and
-they are specific: one of them will tell you that you are treating disagreement
-as damage, another that you are burying a claim nobody has translated yet.
-
-Do not aim for a good scorer. Aim for one that satisfies the seven, then read
-your own implementation and work out why it is not good enough.
-
-I wrote those rules before any of this had been tried against a real claim, and
-I have not solved the problem they are circling. Treat them as a starting point
-rather than a description of how scoring ought to work.
-
-**And read the "what these rules do not cover" block at the top of that file.**
-Every rule is a property of one claim's own numbers. None of them know what an
-edge is. Whether support travels along extensions, what happens when a chain of
-them feeds back on itself, and whether two people who heard the same story from
-the same person are really independent, are all untested and all yours. They are
-missing on purpose rather than by neglect, because testing them would mean
-deciding them, and deciding them is the deliverable.
-
-When you do build a traversal, test that it does not silently skip a path. That
-is the kind of test only you can write, because it asserts against a model that
-does not exist yet.
-
-## Why the author is missing from `ScoringInput`
-
-`ScoringInput` is never given an author. No name, no identifier, no standing, no
-institution. What it gets instead are facts about what was contributed, such as
-how many independent records back a claim. The rest of the system knows who is
-speaking. The scorer does not, so it cannot use that as a credential.
-
-Weight comes from what somebody has done. Who they are plays no part. That is
-enforced by the missing field rather than by a test.
-
-An affirmation is what a reader clicks to agree with a claim. It is currently
-stored as its own object, separate from a passover, even though a passover with
-the kind `sounds_right` means the same thing. That duplicate is going to be
-removed and `affirmationCount` will become a count of passovers. That change
-moves the fixture counts the rules check, so it waits until you have a working
-scorer, and `CHANGELOG.md` will say what to update.
-
-**What is permanent.** A claim must never be worth more because of who is taken
-to have made it, whether that is their name, their reputation or an institution
-they mention. The missing field is how this project makes that promise checkable
-instead of merely stated. Anybody can open the file and see it.
-
-**What is not permanent.** Weighing what a person has actually done is a
-different thing, and that is where this is going. `contributorStanding` holds
-it: records submitted, claims written, claims backed by other people's records,
-and disputes raised, including how many proposed an alternative rather than only
-objecting. None of it reaches `ScoringInput` today, and the reason is that
-nobody has worked out how to use it without the first thing sneaking in through
-it.
-
-Working that out is the deliverable. It is not something the project has ruled
-out, and if you read the absent field as a closed door you will skip the most
-interesting problem you have been handed.
-
-When you get there, it is a conversation at a check-in rather than a widened
-interface in a pull request. Read "How do you tell a good source from a bad
-one?" first.
+The scorer reads what a profile has done, never who they are. A profile's
+track record and the groups it has joined are behaviour, and behaviour can be
+scored. A name, a credential or a family can't. Which behaviour shows that
+someone knows a subject is one of your design questions, and the `profiles`
+block in the rules has ideas to test.
 
 ## What to check every Monday
 
@@ -372,10 +322,10 @@ never updates itself, so nothing changes underneath you.
 
 ## Choosing a server framework
 
-`apps/graph-api` has no server framework yet and that is not a September
-question, because your first month has no HTTP in it. Decide it at a check-in in
-October. Express 5 is what the rest of this repository uses, so it is the
-simplest choice.
+I chose Express 5 for `apps/graph-api` so you could all get started easily.
+It's what the rest of this repository uses, and it has one working endpoint
+already. You can change it down the line if you'd rather; write down why if
+you do.
 
 ## How we work
 

@@ -50,7 +50,7 @@ export function MapUnavailable({ sites }: { sites: Site[] }) {
               </span>
               {/*
                 What people actually call it. Search has to find a place by its
-                nickname, and a reader recognises "the fronton" faster than the
+                nickname, and a reader recognises "the depot" faster than the
                 formal name.
               */}
               {site.aka.length > 0 && (

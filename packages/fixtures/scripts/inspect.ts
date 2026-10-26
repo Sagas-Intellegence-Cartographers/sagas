@@ -1,19 +1,18 @@
 /**
- * Why does a claim score what it scores?
+ * What is a claim's score made of?
  *
  *   pnpm inspect                          every claim at t3, one line each
- *   pnpm inspect cl-cs-shop               one claim, with its inputs
+ *   pnpm inspect cl-cs-shop               one claim, with its terms
  *   pnpm inspect --state t1               a different snapshot
  *   pnpm inspect --state t1 cl-cs-shop
- *   pnpm inspect --site example-site      a different site (directory name)
+ *   pnpm inspect --site hays-1114         a different site (directory name)
  *
- * This prints what went into a score rather than just the score. A number on
- * its own tells you nothing about whether your scoring is right; the inputs
- * next to it tell you whether the number is defensible.
+ * The fixtures' scores come from an invented stand-in (`src/stand-in-score.ts`)
+ * in the shape the intelligence layer's scorer returns. The numbers mean
+ * nothing. This prints the terms so you can see the shape a real score has.
  */
 
 import { FLAGSHIP, loadSiteState } from '../acceptance';
-import { computeWeight, classifyConfidence } from '../src/weight';
 import type { ClaimState, GraphState } from '@sagas/contracts';
 
 const argv = process.argv.slice(2);
@@ -26,30 +25,7 @@ const claimId = argv.find((a, i) => !a.startsWith('--') && !flagValues.has(i));
 
 const state: GraphState = loadSiteState(siteKey, stateId);
 
-function inputsFor(c: ClaimState) {
-  // Source-type diversity counts this claim plus everything added onto it, the
-  // same way the reducer does. Getting this wrong makes the recomputed weight
-  // disagree with the stored one, which makes the whole tool a liar.
-  const extensionTypes = c.extensions
-    .map((id) => state.claims.find((x) => x.claim.id === id)?.claim.sourceType)
-    .filter((t): t is NonNullable<typeof t> => t !== undefined);
-
-  return {
-    sourceType: c.claim.sourceType,
-    independentRecordCount: c.independentRecordCount,
-    affirmationCount: c.affirmations.length,
-    extensionCount: c.extensions.length,
-    disputeCount: c.detailStatuses.reduce((n, e) => n + e.disputes.length, 0),
-    sourceTypeDiversity: new Set([c.claim.sourceType, ...extensionTypes]).size,
-    awaitingTranslation: c.claim.awaitingTranslation,
-  };
-}
-
 function one(c: ClaimState) {
-  const i = inputsFor(c);
-  const line = (k: string, v: string | number | boolean, note = '') =>
-    console.log(`  ${k.padEnd(26)} ${String(v).padEnd(20)} ${note}`);
-
   console.log('\n' + '='.repeat(72));
   console.log(`${c.claim.id}   ${state.stateId}`);
   console.log('='.repeat(72));
@@ -57,30 +33,15 @@ function one(c: ClaimState) {
   const text = c.claim.awaitingTranslation ? c.claim.sourceLanguageText : c.claim.text;
   console.log(`  "${(text ?? '').slice(0, 120)}${(text ?? '').length > 120 ? '...' : ''}"`);
 
-  console.log('\n  WHAT WENT IN');
-  line('sourceType', i.sourceType);
-  line('independent records', i.independentRecordCount,
-    i.independentRecordCount === 0 ? 'no independent record yet' : '');
-  line('affirmations', i.affirmationCount,
-    i.affirmationCount > 0 && i.independentRecordCount === 0
-      ? 'people agreed, none independently' : '');
-  line('extensions', i.extensionCount);
-  line('disputes', i.disputeCount);
-  line('awaiting translation', i.awaitingTranslation);
-  line('source type diversity', i.sourceTypeDiversity,
-    i.sourceTypeDiversity > 1 ? 'different kinds of source agree' : '');
-
-  console.log('\n  WHAT CAME OUT');
-  const recomputed = computeWeight(i);
-  line('weight', recomputed.toFixed(2),
-    Math.abs(recomputed - c.weight) > 0.001
-      ? `MISMATCH. Stored is ${c.weight.toFixed(2)}. Regenerate the states.`
-      : 'matches the stored value');
-  line('confidence', classifyConfidence({
-    independentRecordCount: i.independentRecordCount,
-    disputeCount: i.disputeCount,
-    awaitingTranslation: i.awaitingTranslation,
-  }), `stored: ${c.confidence}`);
+  console.log(`\n  SCORE ${c.score.score.toFixed(2)}   (stand-in; confidence ${c.confidence})`);
+  for (const t of c.score.terms) {
+    console.log(`    ${t.family.padEnd(10)} ${t.name.padEnd(22)} ${t.value.toFixed(2)}`);
+  }
+  console.log('\n  DETAILS');
+  for (const d of c.score.details) {
+    const status = c.detailStatuses.find((s) => s.detail.id === d.detailId);
+    console.log(`    ${(status?.detail.kind ?? '').padEnd(10)} ${(status?.detail.value ?? d.detailId).padEnd(28)} ${d.score.toFixed(2)}`);
+  }
 
   const contested = c.detailStatuses.filter((e) => e.disputes.length > 0);
   if (contested.length) {
@@ -104,14 +65,13 @@ if (claimId) {
   one(c);
 } else {
   console.log(`\n${state.stateId}  ${state.label}\n`);
-  console.log('  weight  lines  affirm  disputes  confidence          claim');
+  console.log('  score  independent  disputes  confidence          claim');
   for (const c of state.claims) {
-    const i = inputsFor(c);
+    const disputes = c.detailStatuses.reduce((n, e) => n + e.disputes.length, 0);
     console.log(
-      `  ${c.weight.toFixed(2).padStart(6)}` +
-      `  ${String(i.independentRecordCount).padStart(5)}` +
-      `  ${String(i.affirmationCount).padStart(6)}` +
-      `  ${String(i.disputeCount).padStart(8)}` +
+      `  ${c.score.score.toFixed(2).padStart(5)}` +
+      `  ${String(c.independentRecordCount).padStart(11)}` +
+      `  ${String(disputes).padStart(8)}` +
       `  ${c.confidence.padEnd(18)}  ${c.claim.id}`,
     );
   }

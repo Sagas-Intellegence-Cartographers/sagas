@@ -76,7 +76,8 @@ export default function Page() {
           marked "accepted" and without the others being hidden.
         */}
         <ol className="space-y-6 border-t border-neutral-200 pt-5">
-          {state.claims.map((claim) => (
+          {/* Dispute claims show under the claim they dispute, not as entries of their own. */}
+          {state.claims.filter((c) => !c.claim.disputedClaimId).map((claim) => (
             <li key={claim.claim.id} className="space-y-1.5">
               <p className="text-sm leading-relaxed">
                 {claim.claim.awaitingTranslation

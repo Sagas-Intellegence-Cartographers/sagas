@@ -46,7 +46,7 @@ the config.** A test file nobody runs is worse than no test file, because it
 looks like coverage.
 
 The same thing happened with Vitest: `vitest.config.ts` has an `include` list,
-and a new `behaviour/` folder full of tests silently never ran until it was
+and a new folder full of tests silently never ran until it was
 added there.
 
 ### When Turbo is behaving strangely
@@ -159,6 +159,15 @@ that is not in that list will fail at runtime in a way that looks like a module
 resolution bug.
 
 ---
+
+### `connect ECONNREFUSED ::1` when the database is running
+
+On an older Node, `localhost` can resolve to the IPv6 address `::1` first while
+the database in Docker answers on IPv4, so the connection is refused even
+though the container is up. It happened on Node 18 in this project and went
+away on Node 22. Check `node --version`. This project needs Node 22.10 or
+later, and switching fixes it. If you can't switch yet, using `127.0.0.1` in
+place of `localhost` in your connection string gets you going.
 
 ## What all of these have in common
 

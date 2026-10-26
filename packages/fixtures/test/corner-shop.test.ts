@@ -35,7 +35,7 @@ test('the person who claims is not the person who handed the record over', () =>
 
 test('agreement adds no independent record', () => {
   const shop = claim('t1', 'cl-cs-shop');
-  expect(shop.affirmations).toHaveLength(1);
+  expect(shop.passover.sounds_right).toBe(1);
   expect(shop.independentRecordCount).toBe(0);
   expect(shop.confidence).toBe('single_source');
 });
@@ -54,6 +54,27 @@ test('an extension keeps the conversation source and brings its own record as ev
   expect(uncle.evidenceRecords.map((r) => r.id)).toEqual(['rec-cs-audio']);
   // That evidence is an independent record for the claim it extends.
   expect(claim('t2', 'cl-cs-shop').independentRecordCount).toBe(1);
+});
+
+test('a dispute is a claim of its own, pointed at one detail', () => {
+  const shop = claim('t2', 'cl-cs-shop');
+  const year = shop.detailStatuses.find((d) => d.detail.id === 'dt-cs-year');
+  const edge = year?.disputes[0];
+  expect(edge?.fromClaimId).toBe('cl-dsp-cs-year');
+  const dispute = claim('t2', 'cl-dsp-cs-year');
+  expect(dispute.claim.disputedClaimId).toBe('cl-cs-shop');
+  // Same conversation as the claim it disputes, so the same source record.
+  expect(dispute.sourceRecord.id).toBe(shop.sourceRecord.id);
+  // What it asserts instead is a detail, so it can be disputed or backed in turn.
+  expect(dispute.claim.details.map((d) => d.value)).toEqual(['1956 or later']);
+});
+
+test('an extension lands on the detail it adds to', () => {
+  const shop = claim('t2', 'cl-cs-shop');
+  const owner = shop.detailStatuses.find((d) => d.detail.id === 'dt-cs-owner');
+  expect(owner?.extensions.map((e) => e.childClaimId)).toEqual(['cl-cs-uncle']);
+  const year = shop.detailStatuses.find((d) => d.detail.id === 'dt-cs-year');
+  expect(year?.extensions).toEqual([]);
 });
 
 test('two unrelated conversations assert the same detail, and nothing links them yet', () => {

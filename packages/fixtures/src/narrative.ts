@@ -5,7 +5,7 @@
  * what its heading says, or how the passage is written and kept coherent. That
  * is the intelligence layer's design work. The experience layer still has to
  * build the page now, so each site can carry invented sections here, the same
- * way `weight.ts` stands in for scoring. They are written by hand, per state,
+ * way `stand-in-score.ts` stands in for scoring. They are written by hand, per state,
  * and merged into the derived states by the reducer.
  *
  * Write a span by the phrase it covers, not by offsets. `span()` finds the

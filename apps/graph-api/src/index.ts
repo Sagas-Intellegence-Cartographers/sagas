@@ -1,15 +1,59 @@
 /**
- * The intelligence layer's server. Nothing here yet.
+ * The intelligence layer's server: one endpoint, end to end.
  *
- * Given everything the archive holds about a place: how much support does each
- * claim have, what is contested, what is missing, and what should the narrative
- * look like right now.
+ *   pnpm --filter @sagas/graph-api dev
  *
- * Before you write a line of scoring code, run the rules in
- * `@sagas/fixtures/behaviour` against whatever you build. They say nothing
- * about how to score a claim and everything about what a correct scorer may not
- * do, and they are the part of this that outlives the placeholder in
- * `packages/fixtures/src/weight.ts`.
+ * Then, from another terminal, score the graph in `example-graph.json`:
+ *
+ *   curl -X POST http://localhost:3002/score \
+ *     -H 'content-type: application/json' \
+ *     -d @apps/graph-api/example-graph.json
+ *
+ * Until `src/scorer.ts` is written, this answers 501. That is expected.
  */
+import express from "express";
 
-export {};
+import { scoringGraph } from "@sagas/fixtures/scoring";
+
+import { scorer } from "./scorer";
+
+const app = express();
+
+// Graphs for a busy place get large, so the body limit is raised.
+app.use(express.json({ limit: "5mb" }));
+
+app.get("/health", (_req, res) => {
+  res.json({ ok: true });
+});
+
+/**
+ * Score everything the archive holds about one place.
+ *
+ * Validate, score, return. Where the graph comes from (the content layer's
+ * API, your own database, the fixtures) is yours to decide. For now it
+ * arrives in the request, so you can work on scoring without waiting for
+ * anyone.
+ */
+app.post("/score", (req, res) => {
+  const parsed = scoringGraph.safeParse(req.body);
+  if (!parsed.success) {
+    res.status(400).json({ error: parsed.error.flatten() });
+    return;
+  }
+  try {
+    res.json(scorer.score(parsed.data));
+  } catch (err) {
+    if (err instanceof Error && err.message === "not implemented") {
+      res.status(501).json({
+        error: "The scorer is not written yet. Start in src/scorer.ts.",
+      });
+      return;
+    }
+    throw err;
+  }
+});
+
+const port = Number(process.env.PORT ?? 3002);
+app.listen(port, () => {
+  console.log(`graph-api listening on http://localhost:${port}`);
+});

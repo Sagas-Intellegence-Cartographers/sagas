@@ -52,9 +52,18 @@
             "createdAt": "2026-01-12T17:14:00Z"
           }
         ],
+        "choices": {
+          "rightToShare": true,
+          "studentAccess": true,
+          "public": "yes",
+          "location": "keep",
+          "mentionsPeople": "not_sure"
+        },
+        "termsVersion": "fixture-terms-0.1",
         "createdAt": "2026-01-12T17:14:00Z"
       }
     ],
+    "collections": [],
     "standings": [
       {
         "contributorId": "c-june",
@@ -66,7 +75,7 @@
         "claimsDisputed": 0,
         "disputesRaised": 0,
         "disputesRaisedWithAlternative": 0,
-        "affirmationsGiven": 0,
+        "soundsRightGiven": 0,
         "translationsContributed": 0,
         "transcriptsContributed": 0,
         "flagsRaised": 0
@@ -146,10 +155,6 @@
               "excerpt": "the owner, Mr. Ferris"
             }
           ],
-          "topics": [
-            "the shop",
-            "the owner"
-          ],
           "sourceType": "firsthand",
           "createdAt": "2026-02-03T19:31:00Z",
           "awaitingTranslation": false
@@ -183,23 +188,23 @@
               "createdAt": "2026-01-12T17:14:00Z"
             }
           ],
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
           "createdAt": "2026-01-12T17:14:00Z"
         },
         "evidenceRecords": [],
         "translations": [],
         "translationDisputes": [],
-        "affirmations": [
-          {
-            "id": "aff-cs-lena",
-            "claimId": "cl-cs-shop",
-            "contributorId": "c-lena",
-            "createdAt": "2026-02-10T15:05:00Z"
-          }
-        ],
         "independentRecordCount": 0,
         "extensions": [],
         "passover": {
-          "sounds_right": 0,
+          "sounds_right": 1,
           "dont_know": 0,
           "dont_care": 0
         },
@@ -212,6 +217,7 @@
               "excerpt": "the corner of Fourth and Main"
             },
             "disputes": [],
+            "extensions": [],
             "competingValues": [
               {
                 "value": "Fourth and Main",
@@ -220,7 +226,8 @@
                   "c-ray"
                 ]
               }
-            ]
+            ],
+            "weight": 1
           },
           {
             "detail": {
@@ -230,6 +237,7 @@
               "excerpt": "around 1950"
             },
             "disputes": [],
+            "extensions": [],
             "competingValues": [
               {
                 "value": "c. 1950",
@@ -238,7 +246,8 @@
                   "c-ray"
                 ]
               }
-            ]
+            ],
+            "weight": 1
           },
           {
             "detail": {
@@ -248,6 +257,7 @@
               "excerpt": "the owner, Mr. Ferris"
             },
             "disputes": [],
+            "extensions": [],
             "competingValues": [
               {
                 "value": "Ferris",
@@ -256,10 +266,112 @@
                   "c-ray"
                 ]
               }
-            ]
+            ],
+            "weight": 1
           }
         ],
-        "weight": 3.25,
+        "score": {
+          "claimId": "cl-cs-shop",
+          "score": 1.05,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 0
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0.05
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": 0
+            }
+          ],
+          "details": [
+            {
+              "detailId": "dt-cs-place",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "detailId": "dt-cs-year",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "detailId": "dt-cs-owner",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        "weight": 1.05,
         "confidence": "single_source"
       }
     ],
@@ -309,9 +421,18 @@
             "createdAt": "2026-01-12T17:14:00Z"
           }
         ],
+        "choices": {
+          "rightToShare": true,
+          "studentAccess": true,
+          "public": "yes",
+          "location": "keep",
+          "mentionsPeople": "not_sure"
+        },
+        "termsVersion": "fixture-terms-0.1",
         "createdAt": "2026-01-12T17:14:00Z"
       }
     ],
+    "collections": [],
     "standings": [
       {
         "contributorId": "c-june",
@@ -323,7 +444,7 @@
         "claimsDisputed": 0,
         "disputesRaised": 0,
         "disputesRaisedWithAlternative": 0,
-        "affirmationsGiven": 0,
+        "soundsRightGiven": 0,
         "translationsContributed": 0,
         "transcriptsContributed": 0,
         "flagsRaised": 0
@@ -338,7 +459,7 @@
         "claimsDisputed": 0,
         "disputesRaised": 0,
         "disputesRaisedWithAlternative": 0,
-        "affirmationsGiven": 0,
+        "soundsRightGiven": 0,
         "translationsContributed": 0,
         "transcriptsContributed": 0,
         "flagsRaised": 0
@@ -353,7 +474,7 @@
         "claimsDisputed": 0,
         "disputesRaised": 0,
         "disputesRaisedWithAlternative": 0,
-        "affirmationsGiven": 1,
+        "soundsRightGiven": 1,
         "translationsContributed": 0,
         "transcriptsContributed": 0,
         "flagsRaised": 0
@@ -482,10 +603,6 @@
               "excerpt": "the owner, Mr. Ferris"
             }
           ],
-          "topics": [
-            "the shop",
-            "the owner"
-          ],
           "sourceType": "firsthand",
           "createdAt": "2026-02-03T19:31:00Z",
           "awaitingTranslation": false
@@ -519,25 +636,25 @@
               "createdAt": "2026-01-12T17:14:00Z"
             }
           ],
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
           "createdAt": "2026-01-12T17:14:00Z"
         },
         "evidenceRecords": [],
         "translations": [],
         "translationDisputes": [],
-        "affirmations": [
-          {
-            "id": "aff-cs-lena",
-            "claimId": "cl-cs-shop",
-            "contributorId": "c-lena",
-            "createdAt": "2026-02-10T15:05:00Z"
-          }
-        ],
         "independentRecordCount": 1,
         "extensions": [
           "cl-cs-uncle"
         ],
         "passover": {
-          "sounds_right": 0,
+          "sounds_right": 1,
           "dont_know": 0,
           "dont_care": 0
         },
@@ -550,6 +667,7 @@
               "excerpt": "the corner of Fourth and Main"
             },
             "disputes": [],
+            "extensions": [],
             "competingValues": [
               {
                 "value": "Fourth and Main",
@@ -558,7 +676,8 @@
                   "c-ray"
                 ]
               }
-            ]
+            ],
+            "weight": 1
           },
           {
             "detail": {
@@ -571,6 +690,7 @@
               {
                 "id": "dsp-cs-year",
                 "type": "dispute",
+                "fromClaimId": "cl-dsp-cs-year",
                 "targetClaimId": "cl-cs-shop",
                 "targetDetailId": "dt-cs-year",
                 "reasoning": "It can't be 1950. The awning in the photo went up in 1956. The directory page I uploaded shows the change.",
@@ -579,6 +699,7 @@
                 "createdAt": "2026-04-06T18:20:00Z"
               }
             ],
+            "extensions": [],
             "competingValues": [
               {
                 "value": "c. 1950",
@@ -594,7 +715,8 @@
                   "c-owen"
                 ]
               }
-            ]
+            ],
+            "weight": 0.5
           },
           {
             "detail": {
@@ -604,6 +726,17 @@
               "excerpt": "the owner, Mr. Ferris"
             },
             "disputes": [],
+            "extensions": [
+              {
+                "id": "ext-cs-013",
+                "type": "extension",
+                "parentClaimId": "cl-cs-shop",
+                "childClaimId": "cl-cs-uncle",
+                "targetDetailId": "dt-cs-owner",
+                "contributorId": "c-mae",
+                "createdAt": "2026-04-19T20:51:00Z"
+              }
+            ],
             "competingValues": [
               {
                 "value": "Ferris",
@@ -612,11 +745,301 @@
                   "c-ray"
                 ]
               }
-            ]
+            ],
+            "weight": 1.75
           }
         ],
-        "weight": 6.25,
+        "score": {
+          "claimId": "cl-cs-shop",
+          "score": 3.3,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 2
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0.05
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0.75
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": -0.5
+            }
+          ],
+          "details": [
+            {
+              "detailId": "dt-cs-place",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "detailId": "dt-cs-year",
+              "score": 0.5,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": -0.5
+                }
+              ]
+            },
+            {
+              "detailId": "dt-cs-owner",
+              "score": 1.75,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0.75
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        "weight": 3.3,
         "confidence": "contested"
+      },
+      {
+        "claim": {
+          "id": "cl-dsp-cs-year",
+          "siteId": "site-corner-shop",
+          "contributorId": "c-owen",
+          "sourceRecordId": "rec-cs-photo",
+          "evidenceRecordIds": [
+            "rec-cs-directory"
+          ],
+          "text": "It can't be 1950. The awning in the photo went up in 1956. The directory page I uploaded shows the change.",
+          "sourceLanguage": "en",
+          "details": [
+            {
+              "id": "cl-dsp-cs-year-value",
+              "kind": "date",
+              "value": "1956 or later",
+              "excerpt": "1956 or later"
+            }
+          ],
+          "sourceType": "firsthand",
+          "createdAt": "2026-04-06T18:20:00Z",
+          "disputedClaimId": "cl-cs-shop",
+          "awaitingTranslation": false
+        },
+        "contributor": {
+          "id": "c-owen",
+          "displayName": "Owen Pike",
+          "joinedAt": "2026-04-06T18:00:00Z",
+          "fictional": true,
+          "verification": "guest"
+        },
+        "sourceRecord": {
+          "id": "rec-cs-photo",
+          "siteId": "site-corner-shop",
+          "contributorId": "c-june",
+          "note": "My grandmother's shop, I think. I don't know when this was taken.",
+          "submission": "submitted",
+          "media": [
+            {
+              "id": "med-cs-photo",
+              "recordId": "rec-cs-photo",
+              "kind": "image",
+              "storageKey": "records/rec-cs-photo/shopfront.jpg",
+              "contentType": "image/jpeg",
+              "byteSize": 1912004,
+              "originalFilename": "shopfront.jpg",
+              "processing": "ready",
+              "width": 2400,
+              "height": 1600,
+              "derivatives": [],
+              "createdAt": "2026-01-12T17:14:00Z"
+            }
+          ],
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
+          "createdAt": "2026-01-12T17:14:00Z"
+        },
+        "evidenceRecords": [
+          {
+            "id": "rec-cs-directory",
+            "siteId": "site-corner-shop",
+            "contributorId": "c-owen",
+            "note": "City directory page, 1956 edition. The listing for the corner changes that year, the same year the awning went up.",
+            "submission": "submitted",
+            "media": [
+              {
+                "id": "med-cs-directory",
+                "recordId": "rec-cs-directory",
+                "kind": "document",
+                "storageKey": "records/rec-cs-directory/directory-1956.pdf",
+                "contentType": "application/pdf",
+                "byteSize": 412880,
+                "originalFilename": "directory-1956.pdf",
+                "processing": "ready",
+                "derivatives": [],
+                "createdAt": "2026-04-06T18:12:00Z"
+              }
+            ],
+            "choices": {
+              "rightToShare": true,
+              "studentAccess": true,
+              "public": "yes",
+              "location": "keep",
+              "mentionsPeople": "not_sure"
+            },
+            "termsVersion": "fixture-terms-0.1",
+            "createdAt": "2026-04-06T18:12:00Z"
+          }
+        ],
+        "translations": [],
+        "translationDisputes": [],
+        "independentRecordCount": 0,
+        "extensions": [],
+        "passover": {
+          "sounds_right": 0,
+          "dont_know": 0,
+          "dont_care": 0
+        },
+        "detailStatuses": [
+          {
+            "detail": {
+              "id": "cl-dsp-cs-year-value",
+              "kind": "date",
+              "value": "1956 or later",
+              "excerpt": "1956 or later"
+            },
+            "disputes": [],
+            "extensions": [],
+            "competingValues": [
+              {
+                "value": "1956 or later",
+                "count": 1,
+                "contributorIds": [
+                  "c-owen"
+                ]
+              }
+            ],
+            "weight": 1
+          }
+        ],
+        "score": {
+          "claimId": "cl-dsp-cs-year",
+          "score": 1.5,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0.5
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 0
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": 0
+            }
+          ],
+          "details": [
+            {
+              "detailId": "cl-dsp-cs-year-value",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        "weight": 1.5,
+        "confidence": "single_source"
       },
       {
         "claim": {
@@ -636,9 +1059,6 @@
               "value": "1960s",
               "excerpt": "until the sixties"
             }
-          ],
-          "topics": [
-            "the owner"
           ],
           "sourceType": "family_oral",
           "createdAt": "2026-04-19T20:51:00Z",
@@ -674,6 +1094,14 @@
               "createdAt": "2026-01-12T17:14:00Z"
             }
           ],
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
           "createdAt": "2026-01-12T17:14:00Z"
         },
         "evidenceRecords": [
@@ -697,12 +1125,19 @@
                 "createdAt": "2026-04-19T20:44:00Z"
               }
             ],
+            "choices": {
+              "rightToShare": true,
+              "studentAccess": true,
+              "public": "yes",
+              "location": "keep",
+              "mentionsPeople": "not_sure"
+            },
+            "termsVersion": "fixture-terms-0.1",
             "createdAt": "2026-04-19T20:44:00Z"
           }
         ],
         "translations": [],
         "translationDisputes": [],
-        "affirmations": [],
         "independentRecordCount": 0,
         "extensions": [],
         "passover": {
@@ -719,6 +1154,7 @@
               "excerpt": "until the sixties"
             },
             "disputes": [],
+            "extensions": [],
             "competingValues": [
               {
                 "value": "1960s",
@@ -727,10 +1163,70 @@
                   "c-mae"
                 ]
               }
-            ]
+            ],
+            "weight": 1
           }
         ],
-        "weight": 2,
+        "score": {
+          "claimId": "cl-cs-uncle",
+          "score": 1.5,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0.5
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 0
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": 0
+            }
+          ],
+          "details": [
+            {
+              "detailId": "dt-cs-uncle-until",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        "weight": 1.5,
         "confidence": "single_source"
       }
     ],
@@ -794,6 +1290,14 @@
             "createdAt": "2026-01-12T17:14:00Z"
           }
         ],
+        "choices": {
+          "rightToShare": true,
+          "studentAccess": true,
+          "public": "yes",
+          "location": "keep",
+          "mentionsPeople": "not_sure"
+        },
+        "termsVersion": "fixture-terms-0.1",
         "createdAt": "2026-01-12T17:14:00Z"
       },
       {
@@ -816,6 +1320,14 @@
             "createdAt": "2026-04-06T18:12:00Z"
           }
         ],
+        "choices": {
+          "rightToShare": true,
+          "studentAccess": true,
+          "public": "yes",
+          "location": "keep",
+          "mentionsPeople": "not_sure"
+        },
+        "termsVersion": "fixture-terms-0.1",
         "createdAt": "2026-04-06T18:12:00Z"
       },
       {
@@ -838,9 +1350,18 @@
             "createdAt": "2026-04-19T20:44:00Z"
           }
         ],
+        "choices": {
+          "rightToShare": true,
+          "studentAccess": true,
+          "public": "yes",
+          "location": "keep",
+          "mentionsPeople": "not_sure"
+        },
+        "termsVersion": "fixture-terms-0.1",
         "createdAt": "2026-04-19T20:44:00Z"
       }
     ],
+    "collections": [],
     "standings": [
       {
         "contributorId": "c-june",
@@ -852,7 +1373,7 @@
         "claimsDisputed": 0,
         "disputesRaised": 0,
         "disputesRaisedWithAlternative": 0,
-        "affirmationsGiven": 0,
+        "soundsRightGiven": 0,
         "translationsContributed": 0,
         "transcriptsContributed": 0,
         "flagsRaised": 0
@@ -867,7 +1388,7 @@
         "claimsDisputed": 1,
         "disputesRaised": 0,
         "disputesRaisedWithAlternative": 0,
-        "affirmationsGiven": 0,
+        "soundsRightGiven": 0,
         "translationsContributed": 0,
         "transcriptsContributed": 0,
         "flagsRaised": 0
@@ -882,7 +1403,7 @@
         "claimsDisputed": 0,
         "disputesRaised": 0,
         "disputesRaisedWithAlternative": 0,
-        "affirmationsGiven": 1,
+        "soundsRightGiven": 1,
         "translationsContributed": 0,
         "transcriptsContributed": 0,
         "flagsRaised": 0
@@ -897,7 +1418,7 @@
         "claimsDisputed": 0,
         "disputesRaised": 1,
         "disputesRaisedWithAlternative": 1,
-        "affirmationsGiven": 0,
+        "soundsRightGiven": 0,
         "translationsContributed": 0,
         "transcriptsContributed": 0,
         "flagsRaised": 0
@@ -912,7 +1433,7 @@
         "claimsDisputed": 0,
         "disputesRaised": 0,
         "disputesRaisedWithAlternative": 0,
-        "affirmationsGiven": 0,
+        "soundsRightGiven": 0,
         "translationsContributed": 0,
         "transcriptsContributed": 0,
         "flagsRaised": 0
@@ -921,13 +1442,13 @@
     "transcripts": [],
     "flags": [],
     "integrity": {
-      "totalClaims": 2,
-      "independentContributors": 2,
-      "corroborationDepth": 0.5,
+      "totalClaims": 3,
+      "independentContributors": 3,
+      "corroborationDepth": 0.3333333333333333,
       "activeDisputes": 1,
-      "datedClaims": 2,
+      "datedClaims": 3,
       "awaitingTranslation": 0,
-      "overall": 39
+      "overall": 47
     },
     "sections": [
       {
@@ -1060,10 +1581,6 @@
               "excerpt": "the owner, Mr. Ferris"
             }
           ],
-          "topics": [
-            "the shop",
-            "the owner"
-          ],
           "sourceType": "firsthand",
           "createdAt": "2026-02-03T19:31:00Z",
           "awaitingTranslation": false
@@ -1097,25 +1614,25 @@
               "createdAt": "2026-01-12T17:14:00Z"
             }
           ],
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
           "createdAt": "2026-01-12T17:14:00Z"
         },
         "evidenceRecords": [],
         "translations": [],
         "translationDisputes": [],
-        "affirmations": [
-          {
-            "id": "aff-cs-lena",
-            "claimId": "cl-cs-shop",
-            "contributorId": "c-lena",
-            "createdAt": "2026-02-10T15:05:00Z"
-          }
-        ],
         "independentRecordCount": 1,
         "extensions": [
           "cl-cs-uncle"
         ],
         "passover": {
-          "sounds_right": 0,
+          "sounds_right": 1,
           "dont_know": 0,
           "dont_care": 0
         },
@@ -1128,6 +1645,7 @@
               "excerpt": "the corner of Fourth and Main"
             },
             "disputes": [],
+            "extensions": [],
             "competingValues": [
               {
                 "value": "Fourth and Main",
@@ -1136,7 +1654,8 @@
                   "c-ray"
                 ]
               }
-            ]
+            ],
+            "weight": 1
           },
           {
             "detail": {
@@ -1149,6 +1668,7 @@
               {
                 "id": "dsp-cs-year",
                 "type": "dispute",
+                "fromClaimId": "cl-dsp-cs-year",
                 "targetClaimId": "cl-cs-shop",
                 "targetDetailId": "dt-cs-year",
                 "reasoning": "It can't be 1950. The awning in the photo went up in 1956. The directory page I uploaded shows the change.",
@@ -1157,6 +1677,7 @@
                 "createdAt": "2026-04-06T18:20:00Z"
               }
             ],
+            "extensions": [],
             "competingValues": [
               {
                 "value": "c. 1950",
@@ -1172,7 +1693,8 @@
                   "c-owen"
                 ]
               }
-            ]
+            ],
+            "weight": 0.5
           },
           {
             "detail": {
@@ -1182,6 +1704,17 @@
               "excerpt": "the owner, Mr. Ferris"
             },
             "disputes": [],
+            "extensions": [
+              {
+                "id": "ext-cs-013",
+                "type": "extension",
+                "parentClaimId": "cl-cs-shop",
+                "childClaimId": "cl-cs-uncle",
+                "targetDetailId": "dt-cs-owner",
+                "contributorId": "c-mae",
+                "createdAt": "2026-04-19T20:51:00Z"
+              }
+            ],
             "competingValues": [
               {
                 "value": "Ferris",
@@ -1190,125 +1723,113 @@
                   "c-ray"
                 ]
               }
-            ]
+            ],
+            "weight": 1.75
           }
         ],
-        "weight": 6.25,
-        "confidence": "contested"
-      },
-      {
-        "claim": {
-          "id": "cl-cs-sign",
-          "siteId": "site-corner-shop",
-          "contributorId": "c-dev",
-          "sourceRecordId": "rec-cs-sign",
-          "evidenceRecordIds": [],
-          "text": "The sign reads FERRIS GROCERY. The previous owner of my house said it came down when the shop closed.",
-          "sourceLanguage": "en",
+        "score": {
+          "claimId": "cl-cs-shop",
+          "score": 3.3,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 2
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0.05
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0.75
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": -0.5
+            }
+          ],
           "details": [
             {
-              "id": "dt-cs-sign-owner",
-              "kind": "person",
-              "value": "Ferris",
-              "excerpt": "FERRIS GROCERY"
+              "detailId": "dt-cs-place",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
             },
             {
-              "id": "dt-cs-sign-trade",
-              "kind": "event",
-              "value": "grocery",
-              "excerpt": "GROCERY"
-            }
-          ],
-          "topics": [
-            "the owner",
-            "the sign"
-          ],
-          "sourceType": "documentary",
-          "createdAt": "2026-06-08T16:26:00Z",
-          "awaitingTranslation": false
-        },
-        "contributor": {
-          "id": "c-dev",
-          "displayName": "Dev Castellanos",
-          "joinedAt": "2026-06-08T16:10:00Z",
-          "fictional": true,
-          "verification": "guest"
-        },
-        "sourceRecord": {
-          "id": "rec-cs-sign",
-          "siteId": "site-corner-shop",
-          "contributorId": "c-dev",
-          "note": "The hand-painted sign from above the door, photographed in my garage. It came with the house.",
-          "submission": "submitted",
-          "media": [
+              "detailId": "dt-cs-year",
+              "score": 0.5,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": -0.5
+                }
+              ]
+            },
             {
-              "id": "med-cs-sign",
-              "recordId": "rec-cs-sign",
-              "kind": "image",
-              "storageKey": "records/rec-cs-sign/sign.jpg",
-              "contentType": "image/jpeg",
-              "byteSize": 2310775,
-              "originalFilename": "sign.jpg",
-              "processing": "ready",
-              "width": 4032,
-              "height": 1512,
-              "derivatives": [],
-              "createdAt": "2026-06-08T16:18:00Z"
+              "detailId": "dt-cs-owner",
+              "score": 1.75,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0.75
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
             }
-          ],
-          "createdAt": "2026-06-08T16:18:00Z"
+          ]
         },
-        "evidenceRecords": [],
-        "translations": [],
-        "translationDisputes": [],
-        "affirmations": [],
-        "independentRecordCount": 0,
-        "extensions": [],
-        "passover": {
-          "sounds_right": 0,
-          "dont_know": 1,
-          "dont_care": 0
-        },
-        "detailStatuses": [
-          {
-            "detail": {
-              "id": "dt-cs-sign-owner",
-              "kind": "person",
-              "value": "Ferris",
-              "excerpt": "FERRIS GROCERY"
-            },
-            "disputes": [],
-            "competingValues": [
-              {
-                "value": "Ferris",
-                "count": 1,
-                "contributorIds": [
-                  "c-dev"
-                ]
-              }
-            ]
-          },
-          {
-            "detail": {
-              "id": "dt-cs-sign-trade",
-              "kind": "event",
-              "value": "grocery",
-              "excerpt": "GROCERY"
-            },
-            "disputes": [],
-            "competingValues": [
-              {
-                "value": "grocery",
-                "count": 1,
-                "contributorIds": [
-                  "c-dev"
-                ]
-              }
-            ]
-          }
-        ],
-        "weight": 3,
-        "confidence": "single_source"
+        "weight": 3.3,
+        "confidence": "contested"
       },
       {
         "claim": {
@@ -1328,9 +1849,6 @@
               "value": "1960s",
               "excerpt": "until the sixties"
             }
-          ],
-          "topics": [
-            "the owner"
           ],
           "sourceType": "family_oral",
           "createdAt": "2026-04-19T20:51:00Z",
@@ -1366,6 +1884,14 @@
               "createdAt": "2026-01-12T17:14:00Z"
             }
           ],
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
           "createdAt": "2026-01-12T17:14:00Z"
         },
         "evidenceRecords": [
@@ -1389,12 +1915,19 @@
                 "createdAt": "2026-04-19T20:44:00Z"
               }
             ],
+            "choices": {
+              "rightToShare": true,
+              "studentAccess": true,
+              "public": "yes",
+              "location": "keep",
+              "mentionsPeople": "not_sure"
+            },
+            "termsVersion": "fixture-terms-0.1",
             "createdAt": "2026-04-19T20:44:00Z"
           }
         ],
         "translations": [],
         "translationDisputes": [],
-        "affirmations": [],
         "independentRecordCount": 0,
         "extensions": [],
         "passover": {
@@ -1411,6 +1944,7 @@
               "excerpt": "until the sixties"
             },
             "disputes": [],
+            "extensions": [],
             "competingValues": [
               {
                 "value": "1960s",
@@ -1419,10 +1953,459 @@
                   "c-mae"
                 ]
               }
-            ]
+            ],
+            "weight": 1
           }
         ],
-        "weight": 2,
+        "score": {
+          "claimId": "cl-cs-uncle",
+          "score": 1.55,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0.5
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 0
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0.05
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": 0
+            }
+          ],
+          "details": [
+            {
+              "detailId": "dt-cs-uncle-until",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        "weight": 1.55,
+        "confidence": "single_source"
+      },
+      {
+        "claim": {
+          "id": "cl-dsp-cs-year",
+          "siteId": "site-corner-shop",
+          "contributorId": "c-owen",
+          "sourceRecordId": "rec-cs-photo",
+          "evidenceRecordIds": [
+            "rec-cs-directory"
+          ],
+          "text": "It can't be 1950. The awning in the photo went up in 1956. The directory page I uploaded shows the change.",
+          "sourceLanguage": "en",
+          "details": [
+            {
+              "id": "cl-dsp-cs-year-value",
+              "kind": "date",
+              "value": "1956 or later",
+              "excerpt": "1956 or later"
+            }
+          ],
+          "sourceType": "firsthand",
+          "createdAt": "2026-04-06T18:20:00Z",
+          "disputedClaimId": "cl-cs-shop",
+          "awaitingTranslation": false
+        },
+        "contributor": {
+          "id": "c-owen",
+          "displayName": "Owen Pike",
+          "joinedAt": "2026-04-06T18:00:00Z",
+          "fictional": true,
+          "verification": "guest"
+        },
+        "sourceRecord": {
+          "id": "rec-cs-photo",
+          "siteId": "site-corner-shop",
+          "contributorId": "c-june",
+          "note": "My grandmother's shop, I think. I don't know when this was taken.",
+          "submission": "submitted",
+          "media": [
+            {
+              "id": "med-cs-photo",
+              "recordId": "rec-cs-photo",
+              "kind": "image",
+              "storageKey": "records/rec-cs-photo/shopfront.jpg",
+              "contentType": "image/jpeg",
+              "byteSize": 1912004,
+              "originalFilename": "shopfront.jpg",
+              "processing": "ready",
+              "width": 2400,
+              "height": 1600,
+              "derivatives": [],
+              "createdAt": "2026-01-12T17:14:00Z"
+            }
+          ],
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
+          "createdAt": "2026-01-12T17:14:00Z"
+        },
+        "evidenceRecords": [
+          {
+            "id": "rec-cs-directory",
+            "siteId": "site-corner-shop",
+            "contributorId": "c-owen",
+            "note": "City directory page, 1956 edition. The listing for the corner changes that year, the same year the awning went up.",
+            "submission": "submitted",
+            "media": [
+              {
+                "id": "med-cs-directory",
+                "recordId": "rec-cs-directory",
+                "kind": "document",
+                "storageKey": "records/rec-cs-directory/directory-1956.pdf",
+                "contentType": "application/pdf",
+                "byteSize": 412880,
+                "originalFilename": "directory-1956.pdf",
+                "processing": "ready",
+                "derivatives": [],
+                "createdAt": "2026-04-06T18:12:00Z"
+              }
+            ],
+            "choices": {
+              "rightToShare": true,
+              "studentAccess": true,
+              "public": "yes",
+              "location": "keep",
+              "mentionsPeople": "not_sure"
+            },
+            "termsVersion": "fixture-terms-0.1",
+            "createdAt": "2026-04-06T18:12:00Z"
+          }
+        ],
+        "translations": [],
+        "translationDisputes": [],
+        "independentRecordCount": 0,
+        "extensions": [],
+        "passover": {
+          "sounds_right": 0,
+          "dont_know": 0,
+          "dont_care": 0
+        },
+        "detailStatuses": [
+          {
+            "detail": {
+              "id": "cl-dsp-cs-year-value",
+              "kind": "date",
+              "value": "1956 or later",
+              "excerpt": "1956 or later"
+            },
+            "disputes": [],
+            "extensions": [],
+            "competingValues": [
+              {
+                "value": "1956 or later",
+                "count": 1,
+                "contributorIds": [
+                  "c-owen"
+                ]
+              }
+            ],
+            "weight": 1
+          }
+        ],
+        "score": {
+          "claimId": "cl-dsp-cs-year",
+          "score": 1.5,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0.5
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 0
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": 0
+            }
+          ],
+          "details": [
+            {
+              "detailId": "cl-dsp-cs-year-value",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        "weight": 1.5,
+        "confidence": "single_source"
+      },
+      {
+        "claim": {
+          "id": "cl-cs-sign",
+          "siteId": "site-corner-shop",
+          "contributorId": "c-dev",
+          "sourceRecordId": "rec-cs-sign",
+          "evidenceRecordIds": [],
+          "text": "The sign reads FERRIS GROCERY. The previous owner of my house said it came down when the shop closed.",
+          "sourceLanguage": "en",
+          "details": [
+            {
+              "id": "dt-cs-sign-owner",
+              "kind": "person",
+              "value": "Ferris",
+              "excerpt": "FERRIS GROCERY"
+            },
+            {
+              "id": "dt-cs-sign-trade",
+              "kind": "event",
+              "value": "grocery",
+              "excerpt": "GROCERY"
+            }
+          ],
+          "sourceType": "documentary",
+          "createdAt": "2026-06-08T16:26:00Z",
+          "awaitingTranslation": false
+        },
+        "contributor": {
+          "id": "c-dev",
+          "displayName": "Dev Castellanos",
+          "joinedAt": "2026-06-08T16:10:00Z",
+          "fictional": true,
+          "verification": "guest"
+        },
+        "sourceRecord": {
+          "id": "rec-cs-sign",
+          "siteId": "site-corner-shop",
+          "contributorId": "c-dev",
+          "note": "The hand-painted sign from above the door, photographed in my garage. It came with the house.",
+          "submission": "submitted",
+          "media": [
+            {
+              "id": "med-cs-sign",
+              "recordId": "rec-cs-sign",
+              "kind": "image",
+              "storageKey": "records/rec-cs-sign/sign.jpg",
+              "contentType": "image/jpeg",
+              "byteSize": 2310775,
+              "originalFilename": "sign.jpg",
+              "processing": "ready",
+              "width": 4032,
+              "height": 1512,
+              "derivatives": [],
+              "createdAt": "2026-06-08T16:18:00Z"
+            }
+          ],
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
+          "createdAt": "2026-06-08T16:18:00Z"
+        },
+        "evidenceRecords": [],
+        "translations": [],
+        "translationDisputes": [],
+        "independentRecordCount": 0,
+        "extensions": [],
+        "passover": {
+          "sounds_right": 0,
+          "dont_know": 1,
+          "dont_care": 0
+        },
+        "detailStatuses": [
+          {
+            "detail": {
+              "id": "dt-cs-sign-owner",
+              "kind": "person",
+              "value": "Ferris",
+              "excerpt": "FERRIS GROCERY"
+            },
+            "disputes": [],
+            "extensions": [],
+            "competingValues": [
+              {
+                "value": "Ferris",
+                "count": 1,
+                "contributorIds": [
+                  "c-dev"
+                ]
+              }
+            ],
+            "weight": 1
+          },
+          {
+            "detail": {
+              "id": "dt-cs-sign-trade",
+              "kind": "event",
+              "value": "grocery",
+              "excerpt": "GROCERY"
+            },
+            "disputes": [],
+            "extensions": [],
+            "competingValues": [
+              {
+                "value": "grocery",
+                "count": 1,
+                "contributorIds": [
+                  "c-dev"
+                ]
+              }
+            ],
+            "weight": 1
+          }
+        ],
+        "score": {
+          "claimId": "cl-cs-sign",
+          "score": 1,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 0
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": 0
+            }
+          ],
+          "details": [
+            {
+              "detailId": "dt-cs-sign-owner",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "detailId": "dt-cs-sign-trade",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        "weight": 1,
         "confidence": "single_source"
       }
     ],
@@ -1493,6 +2476,14 @@
             "createdAt": "2026-01-12T17:14:00Z"
           }
         ],
+        "choices": {
+          "rightToShare": true,
+          "studentAccess": true,
+          "public": "yes",
+          "location": "keep",
+          "mentionsPeople": "not_sure"
+        },
+        "termsVersion": "fixture-terms-0.1",
         "createdAt": "2026-01-12T17:14:00Z"
       },
       {
@@ -1515,6 +2506,14 @@
             "createdAt": "2026-04-06T18:12:00Z"
           }
         ],
+        "choices": {
+          "rightToShare": true,
+          "studentAccess": true,
+          "public": "yes",
+          "location": "keep",
+          "mentionsPeople": "not_sure"
+        },
+        "termsVersion": "fixture-terms-0.1",
         "createdAt": "2026-04-06T18:12:00Z"
       },
       {
@@ -1537,6 +2536,14 @@
             "createdAt": "2026-04-19T20:44:00Z"
           }
         ],
+        "choices": {
+          "rightToShare": true,
+          "studentAccess": true,
+          "public": "yes",
+          "location": "keep",
+          "mentionsPeople": "not_sure"
+        },
+        "termsVersion": "fixture-terms-0.1",
         "createdAt": "2026-04-19T20:44:00Z"
       },
       {
@@ -1561,9 +2568,18 @@
             "createdAt": "2026-06-08T16:18:00Z"
           }
         ],
+        "choices": {
+          "rightToShare": true,
+          "studentAccess": true,
+          "public": "yes",
+          "location": "keep",
+          "mentionsPeople": "not_sure"
+        },
+        "termsVersion": "fixture-terms-0.1",
         "createdAt": "2026-06-08T16:18:00Z"
       }
     ],
+    "collections": [],
     "standings": [
       {
         "contributorId": "c-june",
@@ -1575,7 +2591,7 @@
         "claimsDisputed": 0,
         "disputesRaised": 0,
         "disputesRaisedWithAlternative": 0,
-        "affirmationsGiven": 0,
+        "soundsRightGiven": 0,
         "translationsContributed": 0,
         "transcriptsContributed": 0,
         "flagsRaised": 0
@@ -1583,14 +2599,14 @@
       {
         "contributorId": "c-ray",
         "firstContributionAt": "2026-02-03T19:31:00Z",
-        "lastContributionAt": "2026-02-03T19:31:00Z",
+        "lastContributionAt": "2026-06-15T13:05:00Z",
         "recordsSubmitted": 0,
         "claimsAuthored": 1,
         "claimsCorroborated": 1,
         "claimsDisputed": 1,
         "disputesRaised": 0,
         "disputesRaisedWithAlternative": 0,
-        "affirmationsGiven": 0,
+        "soundsRightGiven": 1,
         "translationsContributed": 0,
         "transcriptsContributed": 0,
         "flagsRaised": 0
@@ -1598,14 +2614,14 @@
       {
         "contributorId": "c-lena",
         "firstContributionAt": "2026-02-10T15:05:00Z",
-        "lastContributionAt": "2026-02-10T15:05:00Z",
+        "lastContributionAt": "2026-06-15T13:02:00Z",
         "recordsSubmitted": 0,
         "claimsAuthored": 0,
         "claimsCorroborated": 0,
         "claimsDisputed": 0,
         "disputesRaised": 0,
         "disputesRaisedWithAlternative": 0,
-        "affirmationsGiven": 1,
+        "soundsRightGiven": 1,
         "translationsContributed": 0,
         "transcriptsContributed": 0,
         "flagsRaised": 0
@@ -1620,7 +2636,7 @@
         "claimsDisputed": 0,
         "disputesRaised": 1,
         "disputesRaisedWithAlternative": 1,
-        "affirmationsGiven": 0,
+        "soundsRightGiven": 0,
         "translationsContributed": 0,
         "transcriptsContributed": 0,
         "flagsRaised": 0
@@ -1635,7 +2651,7 @@
         "claimsDisputed": 0,
         "disputesRaised": 0,
         "disputesRaisedWithAlternative": 0,
-        "affirmationsGiven": 0,
+        "soundsRightGiven": 0,
         "translationsContributed": 0,
         "transcriptsContributed": 0,
         "flagsRaised": 0
@@ -1650,7 +2666,7 @@
         "claimsDisputed": 0,
         "disputesRaised": 0,
         "disputesRaisedWithAlternative": 0,
-        "affirmationsGiven": 0,
+        "soundsRightGiven": 0,
         "translationsContributed": 0,
         "transcriptsContributed": 0,
         "flagsRaised": 0
@@ -1659,13 +2675,13 @@
     "transcripts": [],
     "flags": [],
     "integrity": {
-      "totalClaims": 3,
-      "independentContributors": 3,
-      "corroborationDepth": 0.3333333333333333,
+      "totalClaims": 4,
+      "independentContributors": 4,
+      "corroborationDepth": 0.25,
       "activeDisputes": 1,
-      "datedClaims": 2,
+      "datedClaims": 3,
       "awaitingTranslation": 0,
-      "overall": 43
+      "overall": 54
     },
     "sections": [
       {

@@ -42,9 +42,6 @@
             "excerpt": "this stretch"
           }
         ],
-        "topics": [
-          "the bench"
-        ],
         "sourceType": "family_oral",
         "createdAt": "2026-05-19T15:34:00Z",
         "awaitingTranslation": false
@@ -78,12 +75,19 @@
             "createdAt": "2026-05-19T15:28:00Z"
           }
         ],
+        "choices": {
+          "rightToShare": true,
+          "studentAccess": true,
+          "public": "yes",
+          "location": "keep",
+          "mentionsPeople": "not_sure"
+        },
+        "termsVersion": "fixture-terms-0.1",
         "createdAt": "2026-05-19T15:28:00Z"
       },
       "evidenceRecords": [],
       "translations": [],
       "translationDisputes": [],
-      "affirmations": [],
       "independentRecordCount": 0,
       "extensions": [],
       "passover": {
@@ -100,6 +104,7 @@
             "excerpt": "My grandmother"
           },
           "disputes": [],
+          "extensions": [],
           "competingValues": [
             {
               "value": "Margarethe Hoefer",
@@ -108,7 +113,8 @@
                 "c-nadia"
               ]
             }
-          ]
+          ],
+          "weight": 1
         },
         {
           "detail": {
@@ -118,6 +124,7 @@
             "excerpt": "this stretch"
           },
           "disputes": [],
+          "extensions": [],
           "competingValues": [
             {
               "value": "Greenbelt near the Americana bridge",
@@ -126,10 +133,91 @@
                 "c-nadia"
               ]
             }
-          ]
+          ],
+          "weight": 1
         }
       ],
-      "weight": 2,
+      "score": {
+        "claimId": "cl-bench-grandmother",
+        "score": 1,
+        "terms": [
+          {
+            "family": "content",
+            "name": "base",
+            "value": 1
+          },
+          {
+            "family": "content",
+            "name": "evidence attached",
+            "value": 0
+          },
+          {
+            "family": "content",
+            "name": "independent support",
+            "value": 0
+          },
+          {
+            "family": "behaviour",
+            "name": "sounds right",
+            "value": 0
+          },
+          {
+            "family": "content",
+            "name": "extensions",
+            "value": 0
+          },
+          {
+            "family": "content",
+            "name": "disputes",
+            "value": 0
+          }
+        ],
+        "details": [
+          {
+            "detailId": "el-hb-person",
+            "score": 1,
+            "terms": [
+              {
+                "family": "content",
+                "name": "base",
+                "value": 1
+              },
+              {
+                "family": "content",
+                "name": "extensions",
+                "value": 0
+              },
+              {
+                "family": "content",
+                "name": "disputes",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "detailId": "el-hb-place",
+            "score": 1,
+            "terms": [
+              {
+                "family": "content",
+                "name": "base",
+                "value": 1
+              },
+              {
+                "family": "content",
+                "name": "extensions",
+                "value": 0
+              },
+              {
+                "family": "content",
+                "name": "disputes",
+                "value": 0
+              }
+            ]
+          }
+        ]
+      },
+      "weight": 1,
       "confidence": "single_source"
     }
   ],
@@ -165,9 +253,18 @@
           "createdAt": "2026-05-19T15:28:00Z"
         }
       ],
+      "choices": {
+        "rightToShare": true,
+        "studentAccess": true,
+        "public": "yes",
+        "location": "keep",
+        "mentionsPeople": "not_sure"
+      },
+      "termsVersion": "fixture-terms-0.1",
       "createdAt": "2026-05-19T15:28:00Z"
     }
   ],
+  "collections": [],
   "standings": [
     {
       "contributorId": "c-nadia",
@@ -179,7 +276,7 @@
       "claimsDisputed": 0,
       "disputesRaised": 0,
       "disputesRaisedWithAlternative": 0,
-      "affirmationsGiven": 0,
+      "soundsRightGiven": 0,
       "translationsContributed": 0,
       "transcriptsContributed": 0,
       "flagsRaised": 0

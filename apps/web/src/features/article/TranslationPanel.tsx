@@ -13,7 +13,7 @@ import type { ClaimState } from '@sagas/contracts';
  *   objected that a rendering loses something, that objection stays attached to
  *   both versions.
  *
- * A reader who speaks no Euskara should still be able to see that two people
+ * A reader who doesn't speak the original language should still be able to see that two people
  * disagree about what a sentence means.
  *
  * Acceptance criteria: claim-outside-the-graph, rendering-arrives,

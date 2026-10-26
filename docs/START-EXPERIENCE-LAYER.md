@@ -69,9 +69,8 @@ Beyond the code, the pipeline, hosting and the landing page are yours too. See
 - **Claim.** Somebody's reading of a record. This is where disagreement lands.
   One record can produce several claims.
 - **Detail.** One piece of what a claim asserts, such as a year, a name or a
-  street. A dispute points at a detail, and the rest of the claim stands. An extension is
-  meant to point at a detail too, or at the whole claim when it is about all of
-  it. That is decided and not yet in the contract.
+  street. A dispute points at a detail, and the rest of the claim stands. An extension
+  points at a detail too, or at the whole claim when it is about all of it.
 - **Rendering.** A transcript or a translation. One person's version of a record
   or a claim, credited to them, with more than one allowed to exist.
 - **Profile.** Who a contributor is to the software. This semester a profile is
@@ -103,7 +102,7 @@ depends on it.
 
 - `apps/capture-api`, `apps/capture-web`, which is how contributions arrive
 - `apps/graph-api`, the scoring and claim graph work
-- `packages/fixtures/behaviour/`, scoring rules for a different layer
+- `packages/fixtures/scoring/`, scoring rules for a different layer
 - The object storage and ffmpeg sections of `SETUP.md`
 
 ## What to install first
@@ -326,9 +325,9 @@ contributions built on those counts is fine. Ranking people by them, sorting
 them into tiers, or putting one number beside what somebody said about their own
 family is not.
 
-The most important idea in the finished `ConfidenceIndicator` is that an
-affirmation is not corroboration. Five people saying "sounds right" is not five
-independent records. This project treats presenting an affirmation count as
+The most important idea in the finished `ConfidenceIndicator` is that
+agreement is not corroboration. Five people saying "sounds right" is not five
+independent records. This project treats presenting a count of agreement as
 support as wrong, and it is an easy mistake to make by accident.
 
 ## The database

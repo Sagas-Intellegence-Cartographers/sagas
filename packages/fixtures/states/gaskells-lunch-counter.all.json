@@ -44,10 +44,6 @@
               "excerpt": "on the corner of 9th and Bannock"
             }
           ],
-          "topics": [
-            "closing",
-            "the menu"
-          ],
           "sourceType": "family_oral",
           "createdAt": "2026-02-03T18:44:00Z",
           "awaitingTranslation": false
@@ -81,12 +77,19 @@
               "createdAt": "2026-02-03T18:41:00Z"
             }
           ],
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
           "createdAt": "2026-02-03T18:41:00Z"
         },
         "evidenceRecords": [],
         "translations": [],
         "translationDisputes": [],
-        "affirmations": [],
         "independentRecordCount": 0,
         "extensions": [],
         "passover": {
@@ -103,6 +106,7 @@
               "excerpt": "it closed in 1979"
             },
             "disputes": [],
+            "extensions": [],
             "competingValues": [
               {
                 "value": "1979",
@@ -111,7 +115,8 @@
                   "c-dolores"
                 ]
               }
-            ]
+            ],
+            "weight": 1
           },
           {
             "detail": {
@@ -121,6 +126,7 @@
               "excerpt": "on the corner of 9th and Bannock"
             },
             "disputes": [],
+            "extensions": [],
             "competingValues": [
               {
                 "value": "9th and Bannock",
@@ -129,10 +135,91 @@
                   "c-dolores"
                 ]
               }
-            ]
+            ],
+            "weight": 1
           }
         ],
-        "weight": 2,
+        "score": {
+          "claimId": "cl-closed-1979",
+          "score": 1,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 0
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": 0
+            }
+          ],
+          "details": [
+            {
+              "detailId": "el-gk-year",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "detailId": "el-gk-place",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        "weight": 1,
         "confidence": "single_source"
       }
     ],
@@ -168,9 +255,18 @@
             "createdAt": "2026-02-03T18:41:00Z"
           }
         ],
+        "choices": {
+          "rightToShare": true,
+          "studentAccess": true,
+          "public": "yes",
+          "location": "keep",
+          "mentionsPeople": "not_sure"
+        },
+        "termsVersion": "fixture-terms-0.1",
         "createdAt": "2026-02-03T18:41:00Z"
       }
     ],
+    "collections": [],
     "standings": [
       {
         "contributorId": "c-dolores",
@@ -182,7 +278,7 @@
         "claimsDisputed": 0,
         "disputesRaised": 0,
         "disputesRaisedWithAlternative": 0,
-        "affirmationsGiven": 0,
+        "soundsRightGiven": 0,
         "translationsContributed": 0,
         "transcriptsContributed": 0,
         "flagsRaised": 0
@@ -253,10 +349,6 @@
               "excerpt": "five in the morning until two in the afternoon"
             }
           ],
-          "topics": [
-            "the menu",
-            "who ate there"
-          ],
           "sourceType": "documentary",
           "createdAt": "2026-03-18T20:47:00Z",
           "awaitingTranslation": false
@@ -290,12 +382,19 @@
               "createdAt": "2026-02-03T18:41:00Z"
             }
           ],
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
           "createdAt": "2026-02-03T18:41:00Z"
         },
         "evidenceRecords": [],
         "translations": [],
         "translationDisputes": [],
-        "affirmations": [],
         "independentRecordCount": 0,
         "extensions": [
           "cl-mother-worked"
@@ -314,6 +413,7 @@
               "excerpt": "five in the morning until two in the afternoon"
             },
             "disputes": [],
+            "extensions": [],
             "competingValues": [
               {
                 "value": "05:00 to 14:00",
@@ -322,10 +422,70 @@
                   "c-priya"
                 ]
               }
-            ]
+            ],
+            "weight": 1
           }
         ],
-        "weight": 5.25,
+        "score": {
+          "claimId": "cl-shift-workers",
+          "score": 1.75,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 0
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0.75
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": 0
+            }
+          ],
+          "details": [
+            {
+              "detailId": "el-gk-hours",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        "weight": 1.75,
         "confidence": "single_source"
       },
       {
@@ -350,10 +510,6 @@
               "value": "9th and Bannock",
               "excerpt": "on the corner of 9th and Bannock"
             }
-          ],
-          "topics": [
-            "closing",
-            "the menu"
           ],
           "sourceType": "family_oral",
           "createdAt": "2026-02-03T18:44:00Z",
@@ -388,23 +544,23 @@
               "createdAt": "2026-02-03T18:41:00Z"
             }
           ],
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
           "createdAt": "2026-02-03T18:41:00Z"
         },
         "evidenceRecords": [],
         "translations": [],
         "translationDisputes": [],
-        "affirmations": [
-          {
-            "id": "aff-gk-ray",
-            "claimId": "cl-closed-1979",
-            "contributorId": "c-raymond",
-            "createdAt": "2026-03-11T14:09:00Z"
-          }
-        ],
         "independentRecordCount": 0,
         "extensions": [],
         "passover": {
-          "sounds_right": 0,
+          "sounds_right": 1,
           "dont_know": 0,
           "dont_care": 0
         },
@@ -417,6 +573,7 @@
               "excerpt": "it closed in 1979"
             },
             "disputes": [],
+            "extensions": [],
             "competingValues": [
               {
                 "value": "1979",
@@ -425,7 +582,8 @@
                   "c-dolores"
                 ]
               }
-            ]
+            ],
+            "weight": 1
           },
           {
             "detail": {
@@ -435,6 +593,7 @@
               "excerpt": "on the corner of 9th and Bannock"
             },
             "disputes": [],
+            "extensions": [],
             "competingValues": [
               {
                 "value": "9th and Bannock",
@@ -443,10 +602,91 @@
                   "c-dolores"
                 ]
               }
-            ]
+            ],
+            "weight": 1
           }
         ],
-        "weight": 2.25,
+        "score": {
+          "claimId": "cl-closed-1979",
+          "score": 1.05,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 0
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0.05
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": 0
+            }
+          ],
+          "details": [
+            {
+              "detailId": "el-gk-year",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "detailId": "el-gk-place",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        "weight": 1.05,
         "confidence": "single_source"
       },
       {
@@ -465,9 +705,6 @@
               "value": "Dolores Whitcomb's mother",
               "excerpt": "my mother was one of them"
             }
-          ],
-          "topics": [
-            "who ate there"
           ],
           "sourceType": "family_oral",
           "createdAt": "2026-03-22T11:15:00Z",
@@ -503,12 +740,19 @@
               "createdAt": "2026-02-03T18:41:00Z"
             }
           ],
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
           "createdAt": "2026-02-03T18:41:00Z"
         },
         "evidenceRecords": [],
         "translations": [],
         "translationDisputes": [],
-        "affirmations": [],
         "independentRecordCount": 0,
         "extensions": [],
         "passover": {
@@ -525,6 +769,7 @@
               "excerpt": "my mother was one of them"
             },
             "disputes": [],
+            "extensions": [],
             "competingValues": [
               {
                 "value": "Dolores Whitcomb's mother",
@@ -533,10 +778,70 @@
                   "c-dolores"
                 ]
               }
-            ]
+            ],
+            "weight": 1
           }
         ],
-        "weight": 2,
+        "score": {
+          "claimId": "cl-mother-worked",
+          "score": 1,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 0
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": 0
+            }
+          ],
+          "details": [
+            {
+              "detailId": "el-gk-person",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        "weight": 1,
         "confidence": "single_source"
       }
     ],
@@ -586,9 +891,18 @@
             "createdAt": "2026-02-03T18:41:00Z"
           }
         ],
+        "choices": {
+          "rightToShare": true,
+          "studentAccess": true,
+          "public": "yes",
+          "location": "keep",
+          "mentionsPeople": "not_sure"
+        },
+        "termsVersion": "fixture-terms-0.1",
         "createdAt": "2026-02-03T18:41:00Z"
       }
     ],
+    "collections": [],
     "standings": [
       {
         "contributorId": "c-dolores",
@@ -600,7 +914,7 @@
         "claimsDisputed": 0,
         "disputesRaised": 0,
         "disputesRaisedWithAlternative": 0,
-        "affirmationsGiven": 0,
+        "soundsRightGiven": 0,
         "translationsContributed": 0,
         "transcriptsContributed": 0,
         "flagsRaised": 0
@@ -615,7 +929,7 @@
         "claimsDisputed": 0,
         "disputesRaised": 0,
         "disputesRaisedWithAlternative": 0,
-        "affirmationsGiven": 1,
+        "soundsRightGiven": 1,
         "translationsContributed": 0,
         "transcriptsContributed": 0,
         "flagsRaised": 0
@@ -630,7 +944,7 @@
         "claimsDisputed": 0,
         "disputesRaised": 0,
         "disputesRaisedWithAlternative": 0,
-        "affirmationsGiven": 0,
+        "soundsRightGiven": 0,
         "translationsContributed": 0,
         "transcriptsContributed": 0,
         "flagsRaised": 0
@@ -707,10 +1021,6 @@
               "excerpt": "five in the morning until two in the afternoon"
             }
           ],
-          "topics": [
-            "the menu",
-            "who ate there"
-          ],
           "sourceType": "documentary",
           "createdAt": "2026-03-18T20:47:00Z",
           "awaitingTranslation": false
@@ -744,12 +1054,19 @@
               "createdAt": "2026-02-03T18:41:00Z"
             }
           ],
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
           "createdAt": "2026-02-03T18:41:00Z"
         },
         "evidenceRecords": [],
         "translations": [],
         "translationDisputes": [],
-        "affirmations": [],
         "independentRecordCount": 0,
         "extensions": [
           "cl-mother-worked"
@@ -768,6 +1085,7 @@
               "excerpt": "five in the morning until two in the afternoon"
             },
             "disputes": [],
+            "extensions": [],
             "competingValues": [
               {
                 "value": "05:00 to 14:00",
@@ -776,10 +1094,70 @@
                   "c-priya"
                 ]
               }
-            ]
+            ],
+            "weight": 1
           }
         ],
-        "weight": 5.25,
+        "score": {
+          "claimId": "cl-shift-workers",
+          "score": 1.8,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 0
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0.05
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0.75
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": 0
+            }
+          ],
+          "details": [
+            {
+              "detailId": "el-gk-hours",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        "weight": 1.8,
         "confidence": "single_source"
       },
       {
@@ -804,10 +1182,6 @@
               "value": "9th and Bannock",
               "excerpt": "on the corner of 9th and Bannock"
             }
-          ],
-          "topics": [
-            "closing",
-            "the menu"
           ],
           "sourceType": "family_oral",
           "createdAt": "2026-02-03T18:44:00Z",
@@ -842,29 +1216,23 @@
               "createdAt": "2026-02-03T18:41:00Z"
             }
           ],
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
           "createdAt": "2026-02-03T18:41:00Z"
         },
         "evidenceRecords": [],
         "translations": [],
         "translationDisputes": [],
-        "affirmations": [
-          {
-            "id": "aff-gk-ray",
-            "claimId": "cl-closed-1979",
-            "contributorId": "c-raymond",
-            "createdAt": "2026-03-11T14:09:00Z"
-          },
-          {
-            "id": "aff-gk-priya",
-            "claimId": "cl-closed-1979",
-            "contributorId": "c-priya",
-            "createdAt": "2026-04-14T16:52:00Z"
-          }
-        ],
         "independentRecordCount": 0,
         "extensions": [],
         "passover": {
-          "sounds_right": 0,
+          "sounds_right": 2,
           "dont_know": 0,
           "dont_care": 0
         },
@@ -877,6 +1245,7 @@
               "excerpt": "it closed in 1979"
             },
             "disputes": [],
+            "extensions": [],
             "competingValues": [
               {
                 "value": "1979",
@@ -885,7 +1254,8 @@
                   "c-dolores"
                 ]
               }
-            ]
+            ],
+            "weight": 1
           },
           {
             "detail": {
@@ -895,6 +1265,7 @@
               "excerpt": "on the corner of 9th and Bannock"
             },
             "disputes": [],
+            "extensions": [],
             "competingValues": [
               {
                 "value": "9th and Bannock",
@@ -903,10 +1274,91 @@
                   "c-dolores"
                 ]
               }
-            ]
+            ],
+            "weight": 1
           }
         ],
-        "weight": 2.5,
+        "score": {
+          "claimId": "cl-closed-1979",
+          "score": 1.1,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 0
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0.1
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": 0
+            }
+          ],
+          "details": [
+            {
+              "detailId": "el-gk-year",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "detailId": "el-gk-place",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        "weight": 1.1,
         "confidence": "single_source"
       },
       {
@@ -925,9 +1377,6 @@
               "value": "Dolores Whitcomb's mother",
               "excerpt": "my mother was one of them"
             }
-          ],
-          "topics": [
-            "who ate there"
           ],
           "sourceType": "family_oral",
           "createdAt": "2026-03-22T11:15:00Z",
@@ -963,12 +1412,19 @@
               "createdAt": "2026-02-03T18:41:00Z"
             }
           ],
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
           "createdAt": "2026-02-03T18:41:00Z"
         },
         "evidenceRecords": [],
         "translations": [],
         "translationDisputes": [],
-        "affirmations": [],
         "independentRecordCount": 0,
         "extensions": [],
         "passover": {
@@ -985,6 +1441,7 @@
               "excerpt": "my mother was one of them"
             },
             "disputes": [],
+            "extensions": [],
             "competingValues": [
               {
                 "value": "Dolores Whitcomb's mother",
@@ -993,10 +1450,70 @@
                   "c-dolores"
                 ]
               }
-            ]
+            ],
+            "weight": 1
           }
         ],
-        "weight": 2,
+        "score": {
+          "claimId": "cl-mother-worked",
+          "score": 1,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 0
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": 0
+            }
+          ],
+          "details": [
+            {
+              "detailId": "el-gk-person",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        "weight": 1,
         "confidence": "single_source"
       }
     ],
@@ -1046,6 +1563,14 @@
             "createdAt": "2026-02-03T18:41:00Z"
           }
         ],
+        "choices": {
+          "rightToShare": true,
+          "studentAccess": true,
+          "public": "yes",
+          "location": "keep",
+          "mentionsPeople": "not_sure"
+        },
+        "termsVersion": "fixture-terms-0.1",
         "createdAt": "2026-02-03T18:41:00Z"
       },
       {
@@ -1070,9 +1595,18 @@
             "createdAt": "2026-04-14T16:40:00Z"
           }
         ],
+        "choices": {
+          "rightToShare": true,
+          "studentAccess": true,
+          "public": "yes",
+          "location": "keep",
+          "mentionsPeople": "not_sure"
+        },
+        "termsVersion": "fixture-terms-0.1",
         "createdAt": "2026-04-14T16:40:00Z"
       }
     ],
+    "collections": [],
     "standings": [
       {
         "contributorId": "c-dolores",
@@ -1084,7 +1618,7 @@
         "claimsDisputed": 0,
         "disputesRaised": 0,
         "disputesRaisedWithAlternative": 0,
-        "affirmationsGiven": 0,
+        "soundsRightGiven": 0,
         "translationsContributed": 0,
         "transcriptsContributed": 0,
         "flagsRaised": 0
@@ -1092,14 +1626,14 @@
       {
         "contributorId": "c-raymond",
         "firstContributionAt": "2026-03-11T14:09:00Z",
-        "lastContributionAt": "2026-03-11T14:09:00Z",
+        "lastContributionAt": "2026-04-21T09:05:00Z",
         "recordsSubmitted": 0,
         "claimsAuthored": 0,
         "claimsCorroborated": 0,
         "claimsDisputed": 0,
         "disputesRaised": 0,
         "disputesRaisedWithAlternative": 0,
-        "affirmationsGiven": 1,
+        "soundsRightGiven": 2,
         "translationsContributed": 0,
         "transcriptsContributed": 0,
         "flagsRaised": 0
@@ -1114,7 +1648,7 @@
         "claimsDisputed": 0,
         "disputesRaised": 0,
         "disputesRaisedWithAlternative": 0,
-        "affirmationsGiven": 1,
+        "soundsRightGiven": 1,
         "translationsContributed": 0,
         "transcriptsContributed": 0,
         "flagsRaised": 0
@@ -1192,10 +1726,6 @@
               "excerpt": "five in the morning until two in the afternoon"
             }
           ],
-          "topics": [
-            "the menu",
-            "who ate there"
-          ],
           "sourceType": "documentary",
           "createdAt": "2026-03-18T20:47:00Z",
           "awaitingTranslation": false
@@ -1229,12 +1759,19 @@
               "createdAt": "2026-02-03T18:41:00Z"
             }
           ],
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
           "createdAt": "2026-02-03T18:41:00Z"
         },
         "evidenceRecords": [],
         "translations": [],
         "translationDisputes": [],
-        "affirmations": [],
         "independentRecordCount": 0,
         "extensions": [
           "cl-mother-worked"
@@ -1253,6 +1790,7 @@
               "excerpt": "five in the morning until two in the afternoon"
             },
             "disputes": [],
+            "extensions": [],
             "competingValues": [
               {
                 "value": "05:00 to 14:00",
@@ -1261,10 +1799,70 @@
                   "c-priya"
                 ]
               }
-            ]
+            ],
+            "weight": 1
           }
         ],
-        "weight": 5.25,
+        "score": {
+          "claimId": "cl-shift-workers",
+          "score": 1.8,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 0
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0.05
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0.75
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": 0
+            }
+          ],
+          "details": [
+            {
+              "detailId": "el-gk-hours",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        "weight": 1.8,
         "confidence": "single_source"
       },
       {
@@ -1283,9 +1881,6 @@
               "value": "Dolores Whitcomb's mother",
               "excerpt": "my mother was one of them"
             }
-          ],
-          "topics": [
-            "who ate there"
           ],
           "sourceType": "family_oral",
           "createdAt": "2026-03-22T11:15:00Z",
@@ -1321,12 +1916,19 @@
               "createdAt": "2026-02-03T18:41:00Z"
             }
           ],
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
           "createdAt": "2026-02-03T18:41:00Z"
         },
         "evidenceRecords": [],
         "translations": [],
         "translationDisputes": [],
-        "affirmations": [],
         "independentRecordCount": 0,
         "extensions": [],
         "passover": {
@@ -1343,6 +1945,7 @@
               "excerpt": "my mother was one of them"
             },
             "disputes": [],
+            "extensions": [],
             "competingValues": [
               {
                 "value": "Dolores Whitcomb's mother",
@@ -1351,10 +1954,226 @@
                   "c-dolores"
                 ]
               }
-            ]
+            ],
+            "weight": 1
           }
         ],
-        "weight": 2,
+        "score": {
+          "claimId": "cl-mother-worked",
+          "score": 1,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 0
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": 0
+            }
+          ],
+          "details": [
+            {
+              "detailId": "el-gk-person",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        "weight": 1,
+        "confidence": "single_source"
+      },
+      {
+        "claim": {
+          "id": "cl-de-gk-year",
+          "siteId": "site-gaskells",
+          "contributorId": "c-arlen",
+          "sourceRecordId": "rec-menu-photo",
+          "evidenceRecordIds": [],
+          "text": "The 1981 city directory still lists the business at this address. A directory is compiled the year before it is printed, so the business was trading in 1980 at the latest. It did not close in 1979.",
+          "sourceLanguage": "en",
+          "details": [
+            {
+              "id": "cl-de-gk-year-value",
+              "kind": "date",
+              "value": "1981",
+              "excerpt": "1981"
+            }
+          ],
+          "sourceType": "family_oral",
+          "createdAt": "2026-06-02T13:51:00Z",
+          "disputedClaimId": "cl-closed-1979",
+          "awaitingTranslation": false
+        },
+        "contributor": {
+          "id": "c-arlen",
+          "displayName": "Arlen Mbeki",
+          "institution": "Boise City Directory project",
+          "joinedAt": "2026-06-02T13:20:00Z",
+          "fictional": true,
+          "verification": "guest"
+        },
+        "sourceRecord": {
+          "id": "rec-menu-photo",
+          "siteId": "site-gaskells",
+          "contributorId": "c-dolores",
+          "note": "A photograph of the paper menu, taken on the counter. The prices and the hours are legible. The date is not printed anywhere on it.",
+          "submission": "submitted",
+          "media": [
+            {
+              "id": "med-menu-photo",
+              "recordId": "rec-menu-photo",
+              "kind": "image",
+              "storageKey": "records/rec-menu-photo/menu.jpg",
+              "contentType": "image/jpeg",
+              "byteSize": 2180400,
+              "originalFilename": "menu.jpg",
+              "processing": "ready",
+              "width": 3024,
+              "height": 4032,
+              "derivatives": [],
+              "createdAt": "2026-02-03T18:41:00Z"
+            }
+          ],
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
+          "createdAt": "2026-02-03T18:41:00Z"
+        },
+        "evidenceRecords": [],
+        "translations": [],
+        "translationDisputes": [],
+        "independentRecordCount": 0,
+        "extensions": [],
+        "passover": {
+          "sounds_right": 0,
+          "dont_know": 0,
+          "dont_care": 0
+        },
+        "detailStatuses": [
+          {
+            "detail": {
+              "id": "cl-de-gk-year-value",
+              "kind": "date",
+              "value": "1981",
+              "excerpt": "1981"
+            },
+            "disputes": [],
+            "extensions": [],
+            "competingValues": [
+              {
+                "value": "1981",
+                "count": 1,
+                "contributorIds": [
+                  "c-arlen"
+                ]
+              }
+            ],
+            "weight": 1
+          }
+        ],
+        "score": {
+          "claimId": "cl-de-gk-year",
+          "score": 1,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 0
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": 0
+            }
+          ],
+          "details": [
+            {
+              "detailId": "cl-de-gk-year-value",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        "weight": 1,
         "confidence": "single_source"
       },
       {
@@ -1379,10 +2198,6 @@
               "value": "9th and Bannock",
               "excerpt": "on the corner of 9th and Bannock"
             }
-          ],
-          "topics": [
-            "closing",
-            "the menu"
           ],
           "sourceType": "family_oral",
           "createdAt": "2026-02-03T18:44:00Z",
@@ -1417,29 +2232,23 @@
               "createdAt": "2026-02-03T18:41:00Z"
             }
           ],
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
           "createdAt": "2026-02-03T18:41:00Z"
         },
         "evidenceRecords": [],
         "translations": [],
         "translationDisputes": [],
-        "affirmations": [
-          {
-            "id": "aff-gk-ray",
-            "claimId": "cl-closed-1979",
-            "contributorId": "c-raymond",
-            "createdAt": "2026-03-11T14:09:00Z"
-          },
-          {
-            "id": "aff-gk-priya",
-            "claimId": "cl-closed-1979",
-            "contributorId": "c-priya",
-            "createdAt": "2026-04-14T16:52:00Z"
-          }
-        ],
         "independentRecordCount": 0,
         "extensions": [],
         "passover": {
-          "sounds_right": 0,
+          "sounds_right": 2,
           "dont_know": 1,
           "dont_care": 0
         },
@@ -1455,6 +2264,7 @@
               {
                 "id": "de-gk-year",
                 "type": "dispute",
+                "fromClaimId": "cl-de-gk-year",
                 "targetClaimId": "cl-closed-1979",
                 "targetDetailId": "el-gk-year",
                 "reasoning": "The 1981 city directory still lists the business at this address. A directory is compiled the year before it is printed, so the business was trading in 1980 at the latest. It did not close in 1979.",
@@ -1463,6 +2273,7 @@
                 "createdAt": "2026-06-02T13:51:00Z"
               }
             ],
+            "extensions": [],
             "competingValues": [
               {
                 "value": "1979",
@@ -1478,7 +2289,8 @@
                   "c-arlen"
                 ]
               }
-            ]
+            ],
+            "weight": 0.5
           },
           {
             "detail": {
@@ -1488,6 +2300,7 @@
               "excerpt": "on the corner of 9th and Bannock"
             },
             "disputes": [],
+            "extensions": [],
             "competingValues": [
               {
                 "value": "9th and Bannock",
@@ -1496,10 +2309,91 @@
                   "c-dolores"
                 ]
               }
-            ]
+            ],
+            "weight": 1
           }
         ],
-        "weight": 1.25,
+        "score": {
+          "claimId": "cl-closed-1979",
+          "score": 0.6000000000000001,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 0
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0.1
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": -0.5
+            }
+          ],
+          "details": [
+            {
+              "detailId": "el-gk-year",
+              "score": 0.5,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": -0.5
+                }
+              ]
+            },
+            {
+              "detailId": "el-gk-place",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        "weight": 0.6000000000000001,
         "confidence": "contested"
       }
     ],
@@ -1557,6 +2451,14 @@
             "createdAt": "2026-02-03T18:41:00Z"
           }
         ],
+        "choices": {
+          "rightToShare": true,
+          "studentAccess": true,
+          "public": "yes",
+          "location": "keep",
+          "mentionsPeople": "not_sure"
+        },
+        "termsVersion": "fixture-terms-0.1",
         "createdAt": "2026-02-03T18:41:00Z"
       },
       {
@@ -1581,6 +2483,14 @@
             "createdAt": "2026-04-14T16:40:00Z"
           }
         ],
+        "choices": {
+          "rightToShare": true,
+          "studentAccess": true,
+          "public": "yes",
+          "location": "keep",
+          "mentionsPeople": "not_sure"
+        },
+        "termsVersion": "fixture-terms-0.1",
         "createdAt": "2026-04-14T16:40:00Z"
       },
       {
@@ -1603,21 +2513,30 @@
             "createdAt": "2026-06-02T13:44:00Z"
           }
         ],
+        "choices": {
+          "rightToShare": true,
+          "studentAccess": true,
+          "public": "yes",
+          "location": "keep",
+          "mentionsPeople": "not_sure"
+        },
+        "termsVersion": "fixture-terms-0.1",
         "createdAt": "2026-06-02T13:44:00Z"
       }
     ],
+    "collections": [],
     "standings": [
       {
         "contributorId": "c-dolores",
         "firstContributionAt": "2026-02-03T18:41:00Z",
-        "lastContributionAt": "2026-03-22T11:15:00Z",
+        "lastContributionAt": "2026-06-09T19:30:00Z",
         "recordsSubmitted": 1,
         "claimsAuthored": 2,
         "claimsCorroborated": 0,
         "claimsDisputed": 1,
         "disputesRaised": 0,
         "disputesRaisedWithAlternative": 0,
-        "affirmationsGiven": 0,
+        "soundsRightGiven": 0,
         "translationsContributed": 0,
         "transcriptsContributed": 0,
         "flagsRaised": 0
@@ -1625,14 +2544,14 @@
       {
         "contributorId": "c-raymond",
         "firstContributionAt": "2026-03-11T14:09:00Z",
-        "lastContributionAt": "2026-03-11T14:09:00Z",
+        "lastContributionAt": "2026-04-21T09:05:00Z",
         "recordsSubmitted": 0,
         "claimsAuthored": 0,
         "claimsCorroborated": 0,
         "claimsDisputed": 0,
         "disputesRaised": 0,
         "disputesRaisedWithAlternative": 0,
-        "affirmationsGiven": 1,
+        "soundsRightGiven": 2,
         "translationsContributed": 0,
         "transcriptsContributed": 0,
         "flagsRaised": 0
@@ -1647,7 +2566,7 @@
         "claimsDisputed": 0,
         "disputesRaised": 0,
         "disputesRaisedWithAlternative": 0,
-        "affirmationsGiven": 1,
+        "soundsRightGiven": 1,
         "translationsContributed": 0,
         "transcriptsContributed": 0,
         "flagsRaised": 0
@@ -1662,7 +2581,7 @@
         "claimsDisputed": 0,
         "disputesRaised": 1,
         "disputesRaisedWithAlternative": 1,
-        "affirmationsGiven": 0,
+        "soundsRightGiven": 0,
         "translationsContributed": 0,
         "transcriptsContributed": 0,
         "flagsRaised": 0
@@ -1671,13 +2590,13 @@
     "transcripts": [],
     "flags": [],
     "integrity": {
-      "totalClaims": 3,
-      "independentContributors": 2,
+      "totalClaims": 4,
+      "independentContributors": 3,
       "corroborationDepth": 0,
       "activeDisputes": 1,
-      "datedClaims": 1,
+      "datedClaims": 2,
       "awaitingTranslation": 0,
-      "overall": 25
+      "overall": 38
     },
     "sections": [],
     "compositions": [],

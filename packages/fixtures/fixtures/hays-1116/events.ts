@@ -57,7 +57,6 @@ export const events: ContributionEvent[] = [
       { id: 'el-hy-trade', kind: 'event', value: 'bakery', excerpt: 'There was a bakery at 1116' },
       { id: 'el-hy-door', kind: 'place', value: 'doorway through the party wall', excerpt: 'a doorway through to the shop next door' },
     ],
-    topics: ['the shop', 'the doorway'],
     sourceType: 'community_oral',
   },
 

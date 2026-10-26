@@ -73,8 +73,8 @@ function dump(s: GraphState) {
       console.log(`  "${text}"`);
     }
 
-    if (c.affirmations.length) {
-      console.log(`  affirmed by ${c.affirmations.length} (${c.independentRecordCount} independent record(s))`);
+    if (c.passover.sounds_right) {
+      console.log(`  "sounds right" from ${c.passover.sounds_right} (${c.independentRecordCount} independent record(s))`);
     }
     if (c.translations.length > 1) {
       console.log(`  ${c.translations.length} coexisting renderings, each attributed`);

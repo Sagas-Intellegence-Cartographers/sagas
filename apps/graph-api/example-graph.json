@@ -1,0 +1,192 @@
+{
+  "siteId": "site-mill-road",
+  "asOf": "2026-01-01T01:11:00.000Z",
+  "records": [
+    {
+      "id": "r1",
+      "contributorId": "p1",
+      "kind": "audio",
+      "createdAt": "2026-01-01T00:01:00.000Z",
+      "transcribed": true
+    },
+    {
+      "id": "r2",
+      "contributorId": "p2",
+      "kind": "text",
+      "createdAt": "2026-01-01T00:03:00.000Z"
+    },
+    {
+      "id": "r3",
+      "contributorId": "p3",
+      "kind": "text",
+      "createdAt": "2026-01-01T00:05:00.000Z"
+    },
+    {
+      "id": "r4",
+      "contributorId": "p4",
+      "kind": "text",
+      "createdAt": "2026-01-01T00:07:00.000Z"
+    },
+    {
+      "id": "photo",
+      "contributorId": "p4",
+      "kind": "image",
+      "createdAt": "2026-01-01T00:08:00.000Z"
+    }
+  ],
+  "claims": [
+    {
+      "id": "c1",
+      "contributorId": "p1",
+      "createdAt": "2026-01-01T00:02:00.000Z",
+      "text": "The Hendersons' cat crossed Mill Road in 1950.",
+      "sourceRecordId": "r1",
+      "details": [
+        {
+          "id": "who",
+          "kind": "person",
+          "value": "the Hendersons' cat",
+          "excerpt": "the Hendersons' cat"
+        },
+        {
+          "id": "road",
+          "kind": "place",
+          "value": "Mill Road",
+          "excerpt": "Mill Road"
+        },
+        {
+          "id": "year",
+          "kind": "date",
+          "value": "1950",
+          "excerpt": "1950"
+        }
+      ],
+      "evidence": []
+    },
+    {
+      "id": "c2",
+      "contributorId": "p2",
+      "createdAt": "2026-01-01T00:04:00.000Z",
+      "text": "The Hendersons' cat crossed Mill Road in 1950.",
+      "sourceRecordId": "r2",
+      "details": [
+        {
+          "id": "who",
+          "kind": "person",
+          "value": "the Hendersons' cat",
+          "excerpt": "the Hendersons' cat"
+        },
+        {
+          "id": "road",
+          "kind": "place",
+          "value": "Mill Road",
+          "excerpt": "Mill Road"
+        },
+        {
+          "id": "year",
+          "kind": "date",
+          "value": "1950",
+          "excerpt": "1950"
+        }
+      ],
+      "evidence": []
+    },
+    {
+      "id": "c3",
+      "contributorId": "p3",
+      "createdAt": "2026-01-01T00:06:00.000Z",
+      "text": "It was 1960. Mill Road wasn't built until 1958.",
+      "sourceRecordId": "r3",
+      "details": [
+        {
+          "id": "year",
+          "kind": "date",
+          "value": "1960",
+          "excerpt": "1960"
+        }
+      ],
+      "evidence": []
+    },
+    {
+      "id": "c4",
+      "contributorId": "p4",
+      "createdAt": "2026-01-01T00:09:00.000Z",
+      "text": "Her name was Whiskers, and she crossed every morning to the dairy.",
+      "sourceRecordId": "r4",
+      "details": [
+        {
+          "id": "name",
+          "kind": "person",
+          "value": "Whiskers",
+          "excerpt": "Whiskers"
+        },
+        {
+          "id": "road",
+          "kind": "place",
+          "value": "Mill Road",
+          "excerpt": "Mill Road"
+        }
+      ],
+      "evidence": [
+        {
+          "recordId": "photo"
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "type": "dispute",
+      "fromClaimId": "c3",
+      "toClaimId": "c1",
+      "toDetailId": "year",
+      "reason": "Mill Road wasn't built until 1958"
+    },
+    {
+      "type": "extension",
+      "fromClaimId": "c4",
+      "toClaimId": "c1",
+      "toDetailId": "road"
+    }
+  ],
+  "passovers": [
+    {
+      "claimId": "c1",
+      "contributorId": "reader-c1-0",
+      "kind": "sounds_right",
+      "createdAt": "2026-01-01T00:10:00.000Z"
+    },
+    {
+      "claimId": "c1",
+      "contributorId": "reader-c1-1",
+      "kind": "sounds_right",
+      "createdAt": "2026-01-01T00:11:00.000Z"
+    }
+  ],
+  "profiles": [
+    {
+      "id": "p1",
+      "guest": true
+    },
+    {
+      "id": "p2",
+      "guest": true
+    },
+    {
+      "id": "p3",
+      "guest": true
+    },
+    {
+      "id": "p4",
+      "guest": true
+    },
+    {
+      "id": "reader-c1-0",
+      "guest": true
+    },
+    {
+      "id": "reader-c1-1",
+      "guest": true
+    }
+  ]
+}

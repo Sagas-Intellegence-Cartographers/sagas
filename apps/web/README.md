@@ -126,8 +126,8 @@ the same components render against four fixture states on `/dev`.
 **Do not copy the styling.** Grey text and system fonts are a placeholder. The
 design system is your deliverable, and nothing in there is a suggestion.
 
-The idea this project cares most about is in `ConfidenceIndicator`: an
-affirmation is not corroboration. A claim can have five people agreeing and no
+The idea this project cares most about is in `ConfidenceIndicator`: agreement
+is not corroboration. A claim can have five people agreeing and no
 independent support, because agreeing does not bring a record.
 
 ## When something is behaving strangely

@@ -9,8 +9,9 @@
 import type {
   CapturedLocation, ClaimDetail, ContributorId, ClaimId, DetailId, EventId,
   FlagId, FlagReason, LanguageCode, MediaDerivative, MediaId, MediaKind,
-  PassoverKind, ProcessingState, RecordId, SiteId, SourceType, SubmissionState,
-  TranscriptId, TranscriptMethod, TranslationId,
+  LinkSource, PassoverKind, ProcessingState, RecordChoices, RecordId, SiteId,
+  SourceType, SubmissionState, TimeWindow, TranscriptId, TranscriptMethod,
+  TranslationId,
 } from '@sagas/contracts';
 
 /** Every contribution has an id, a time, and someone who made it. */
@@ -57,8 +58,9 @@ export interface ClaimSubmitted extends BaseEvent {
   sourceLanguageText?: string;
   /** True when submitted in a language other than English with no rendering yet. */
   awaitingTranslation?: boolean;
+  /** The part of a recording the claim comes from. */
+  sourceWindow?: TimeWindow;
   details: ClaimDetail[];
-  topics: string[];
   sourceType: SourceType;
 }
 
@@ -69,28 +71,41 @@ export interface ClaimExtended extends BaseEvent {
   sourceRecordId: RecordId;
   evidenceRecordIds?: RecordId[];
   parentClaimId: ClaimId;
+  /** The detail of the parent it adds to. Omitted when it's about the whole claim. */
+  targetDetailId?: DetailId;
   siteId: SiteId;
   text: string;
   sourceLanguage: LanguageCode;
   sourceLanguageText?: string;
+  sourceWindow?: TimeWindow;
   details: ClaimDetail[];
-  topics: string[];
   sourceType: SourceType;
 }
 
+/**
+ * Somebody disputes one detail of a claim. A dispute is a claim of its own, so
+ * this makes a claim and the edge that points it at the detail. What the claim
+ * says, its details and its source record default from the dispute itself and
+ * the claim it targets, so a fixture only spells them out when they differ.
+ */
 export interface ClaimDisputed extends BaseEvent {
   kind: 'claim_disputed';
   edgeId: string;
+  /** The dispute's own claim. */
+  claimId: ClaimId;
+  /** Defaults to the disputed claim's source record: the same conversation. */
+  sourceRecordId?: RecordId;
+  evidenceRecordIds?: RecordId[];
+  /** Defaults to the reasoning. */
+  text?: string;
+  /** Defaults to one detail holding the proposed value, when there is one. */
+  details?: ClaimDetail[];
+  /** Defaults to the disputed claim's. */
+  sourceType?: SourceType;
   targetClaimId: ClaimId;
   targetDetailId: DetailId;
   reasoning: string;
   proposedValue?: string;
-}
-
-export interface ClaimAffirmed extends BaseEvent {
-  kind: 'claim_affirmed';
-  affirmationId: string;
-  claimId: ClaimId;
 }
 
 export interface PassoverRecorded extends BaseEvent {
@@ -149,6 +164,15 @@ export interface RecordSubmitted extends BaseEvent {
   capturedAt?: string;
   capturedLocation?: CapturedLocation;
   media?: MediaDescriptor[];
+  /** Set when the record is a web page. */
+  link?: LinkSource;
+  /** The collection it was handed over in, and the contributor's note on it. */
+  collectionId?: string;
+  collectionNote?: string;
+  /** Defaults to the fixtures' invented choices: everything shared. */
+  choices?: RecordChoices;
+  /** Defaults to the fixtures' invented terms version. */
+  termsVersion?: string;
   /** Defaults to 'submitted'. */
   submission?: SubmissionState;
 }
@@ -181,6 +205,8 @@ export interface TranscriptSubmitted extends BaseEvent {
   language: LanguageCode;
   text: string;
   method: TranscriptMethod;
+  /** The part of the recording it covers. Omitted means all of it. */
+  window?: TimeWindow;
   submission?: SubmissionState;
 }
 
@@ -199,7 +225,6 @@ export type ContributionEvent =
   | ClaimSubmitted
   | ClaimExtended
   | ClaimDisputed
-  | ClaimAffirmed
   | PassoverRecorded
   | TranslationSubmitted
   | TranslationDisputed

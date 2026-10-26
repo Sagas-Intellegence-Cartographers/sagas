@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import { events, stateCuts } from '../fixtures/example-site/events';
+import { events, stateCuts } from '../fixtures/freight-depot/events';
 import { reduceToStates } from '../src/reduce';
 
 const states = reduceToStates(events, stateCuts);
@@ -10,99 +10,131 @@ const [t0, t1, t2, t3] = states as [
   (typeof states)[number],
 ];
 
-const expect2eq = (a: unknown, b: unknown, _m?: string) => expect(a).toEqual(b);
-const expect2deep = (a: unknown, b: unknown, _m?: string) => expect(a).toEqual(b);
-const expect2ok = (a: unknown, _m?: string) => expect(Boolean(a)).toBe(true);
-
 const find = (s: typeof t0, id: string) => s.claims.find((c) => c.claim.id === id)!;
+const termNames = (s: typeof t0, id: string) => find(s, id).score.terms.map((t) => t.name);
 
 test('nothing is ever removed: claim counts are monotonic', () => {
   const counts = [t0, t1, t2, t3].map((s) => s.claims.length);
-  for (let i = 1; i < counts.length; i++) expect2ok(counts[i]! >= counts[i - 1]!);
+  for (let i = 1; i < counts.length; i++) expect(counts[i]!).toBeGreaterThanOrEqual(counts[i - 1]!);
   const ids = [t0, t1, t2, t3].map((s) => new Set(s.claims.map((c) => c.claim.id)));
   for (let i = 1; i < ids.length; i++) {
-    for (const id of ids[i - 1]!) expect2ok(ids[i]!.has(id), `${id} disappeared`);
+    for (const id of ids[i - 1]!) expect(ids[i]!.has(id), `${id} disappeared`).toBe(true);
   }
 });
 
 test('agreement is never independent support', () => {
-  // Two people said "sounds right" and nobody brought a record of their own.
-  const afterhours = find(t3, 'cl-afterhours');
-  expect2eq(afterhours.affirmations.length, 2, 'the affirmations are recorded');
-  expect2eq(afterhours.independentRecordCount, 0, 'but they add no source');
-  expect2eq(afterhours.confidence, 'single_source');
+  const dock = find(t3, 'cl-fd-dock');
+  expect(dock.passover.sounds_right).toBe(1);
+  expect(dock.independentRecordCount).toBe(0);
+  expect(dock.confidence).toBe('single_source');
 });
 
 test('a record somebody else brings is an independent record', () => {
-  // Ana extends the boarding claim with a record of her own. The stand-in
-  // counts it. Ana and the author are cousins who may have heard one telling,
-  // which the stand-in cannot see: that is the open "cousin case", and working
-  // it out from the graph is the intelligence layer's job.
-  const boarding = find(t1, 'cl-boarding');
-  expect2eq(boarding.independentRecordCount, 1);
-  expect2eq(boarding.confidence, 'corroborated');
+  // Pau backs the office claim with a web page of their own.
+  expect(find(t1, 'cl-fd-office').independentRecordCount).toBe(0);
+  expect(find(t2, 'cl-fd-office').independentRecordCount).toBe(1);
 });
 
-test('an untranslated claim is present, pinned, and outside the graph', () => {
-  const d1 = find(t1, 'cl-domingo');
-  expect2eq(d1.claim.awaitingTranslation, true);
-  expect2eq(d1.weight, 0, 'carries no weight until rendered');
-  expect2ok(d1.claim.sourceLanguageText, 'the original is preserved and readable');
-  expect2eq(d1.claim.sourceLanguage, 'eu');
+test('an untranslated claim is present and readable, and its content terms wait', () => {
+  const before = find(t1, 'cl-fd-ines');
+  expect(before.claim.awaitingTranslation).toBe(true);
+  expect(before.claim.sourceLanguageText).toBeTruthy();
+  expect(before.claim.sourceLanguage).toBe('fr');
+  expect(termNames(t1, 'cl-fd-ines')).not.toContain('extensions');
 
-  const d2 = find(t2, 'cl-domingo');
-  expect2eq(d2.claim.awaitingTranslation, false, 'a rendering brings it into the graph');
-  expect2ok(d2.weight > 0);
-  expect2eq(d2.claim.sourceLanguageText, d1.claim.sourceLanguageText, 'original untouched');
+  const after = find(t2, 'cl-fd-ines');
+  expect(after.claim.awaitingTranslation).toBe(false);
+  expect(after.claim.sourceLanguageText).toBe(before.claim.sourceLanguageText);
+  expect(termNames(t2, 'cl-fd-ines')).toContain('extensions');
+});
+
+test('a claim citing a window of a recording waits for that window to be transcribed', () => {
+  const ines = find(t2, 'cl-fd-ines');
+  expect(ines.claim.sourceWindow).toEqual({ start: 18, end: 70 });
+  const transcript = t2.transcripts.find((t) => t.recordId === 'rec-fd-04');
+  expect(transcript?.window).toEqual({ start: 18, end: 70 });
+});
+
+test('a recording is published without waiting for a transcript', () => {
+  const recording = t1.records.find((r) => r.id === 'rec-fd-04');
+  expect(recording?.submission).toBe('published');
+  expect(t1.transcripts).toHaveLength(0);
+});
+
+test('a translated claim never scores lower for being translated', () => {
+  const ines = find(t3, 'cl-fd-ines');
+  const termsFromTranslation = ines.score.terms.filter((t) => /translat|language/i.test(t.name));
+  expect(termsFromTranslation).toHaveLength(0);
 });
 
 test('competing renderings coexist; neither replaces the other', () => {
-  const d3 = find(t3, 'cl-domingo');
-  expect2eq(d3.translations.length, 2);
-  const authors = new Set(d3.translations.map((t) => t.contributorId));
-  expect2eq(authors.size, 2, 'each independently attributed');
-  expect2eq(d3.translationDisputes.length, 1, 'the objection is preserved, not resolved');
+  const ines = find(t3, 'cl-fd-ines');
+  expect(ines.translations).toHaveLength(2);
+  expect(new Set(ines.translations.map((t) => t.contributorId)).size).toBe(2);
+  expect(ines.translationDisputes).toHaveLength(1);
 });
 
 test('a dispute targets one detail and leaves the rest of the claim alone', () => {
-  const boarding = find(t3, 'cl-boarding');
-  const contested = boarding.detailStatuses.filter((e) => e.disputes.length > 0);
-  expect2eq(contested.length, 1);
-  expect2eq(contested[0]!.detail.kind, 'date');
-
-  const untouched = boarding.detailStatuses.filter((e) => e.disputes.length === 0);
-  expect2ok(untouched.some((e) => e.detail.kind === 'place'), 'location stays undisputed');
-  expect2ok(untouched.some((e) => e.detail.kind === 'person'));
+  const office = find(t3, 'cl-fd-office');
+  const contested = office.detailStatuses.filter((e) => e.disputes.length > 0);
+  expect(contested).toHaveLength(1);
+  expect(contested[0]!.detail.kind).toBe('date');
+  expect(office.detailStatuses.some((e) => e.disputes.length === 0 && e.detail.kind === 'person')).toBe(true);
 });
 
-test('competing readings are all kept, in the order they arrived, not by headcount', () => {
-  const dateEl = find(t3, 'cl-boarding').detailStatuses.find((e) => e.detail.kind === 'date')!;
-  const values = dateEl.competingValues.map((v) => v.value);
-  expect2eq(values[0], dateEl.detail.value, 'the claim\'s own reading comes first');
-  expect2ok(values.includes('1914') && values.includes('1922'), 'both readings stay visible');
+test('competing readings are all kept, in the order they arrived', () => {
+  const year = find(t3, 'cl-fd-office').detailStatuses.find((e) => e.detail.kind === 'date')!;
+  const values = year.competingValues.map((v) => v.value);
+  expect(values[0]).toBe(year.detail.value);
+  expect(values).toEqual(expect.arrayContaining(['1931', '1934']));
+});
+
+test('scores come in the scorer\'s shape, with a score for every detail', () => {
+  for (const c of t3.claims) {
+    expect(c.weight).toBe(c.score.score);
+    expect(c.score.details.map((d) => d.detailId)).toEqual(c.claim.details.map((d) => d.id));
+    for (const ds of c.detailStatuses) {
+      expect(ds.weight).toBe(c.score.details.find((d) => d.detailId === ds.detail.id)?.score);
+    }
+  }
+});
+
+test('the stand-in has no source-type tiers', () => {
+  for (const c of t3.claims) {
+    expect(c.score.terms.some((t) => /source type|tier/i.test(t.name))).toBe(false);
+  }
 });
 
 test('claims are ordered by weight, and disputed claims are not hidden', () => {
   for (const s of [t0, t1, t2, t3]) {
-    const weights = s!.claims.map((c) => c.weight);
-    expect2deep(weights, [...weights].sort((a, b) => b - a));
+    const weights = s.claims.map((c) => c.weight);
+    expect(weights).toEqual([...weights].sort((a, b) => b - a));
   }
-  expect2ok(t3.claims.some((c) => c.confidence === 'contested'), 'contested claims still render');
+  expect(t3.claims.some((c) => c.confidence === 'contested')).toBe(true);
+});
+
+test('a link is a record with no files', () => {
+  const link = t2.records.find((r) => r.id === 'rec-fd-07');
+  expect(link?.link?.url).toMatch(/^https:\/\//);
+  expect(link?.media).toHaveLength(0);
+});
+
+test('a collection keeps the records handed over together', () => {
+  const col = t3.collections.find((c) => c.id === 'col-fd-luis');
+  expect(col?.recordIds).toEqual(['rec-fd-03', 'rec-fd-08']);
+  expect(col?.contributorId).toBe('c-luis');
+  expect(col?.note).toBeTruthy();
 });
 
 test('every state knows which contributions produced it', () => {
   const prior = new Set(t2.eventIdsApplied);
-  for (const id of t3.eventIdsSincePrevious) expect2ok(!prior.has(id));
-  expect2eq(
-    t3.eventIdsApplied.length,
-    t2.eventIdsApplied.length + t3.eventIdsSincePrevious.length,
-  );
+  for (const id of t3.eventIdsSincePrevious) expect(prior.has(id)).toBe(false);
+  expect(t3.eventIdsApplied).toHaveLength(t2.eventIdsApplied.length + t3.eventIdsSincePrevious.length);
 });
 
 test('integrity rises as the record fills in', () => {
   const scores = [t0, t1, t2, t3].map((s) => s.integrity.overall);
-  for (let i = 1; i < scores.length; i++) expect2ok(scores[i]! > scores[i - 1]!);
-  expect2ok(t0.integrity.overall < 30, 'sparse site reads as sparse');
-  expect2ok(t3.integrity.overall > 70, 'rich site reads as rich');
+  for (let i = 1; i < scores.length; i++) expect(scores[i]!).toBeGreaterThan(scores[i - 1]!);
+  expect(t0.integrity.overall).toBeLessThan(30);
+  expect(t3.integrity.overall).toBeGreaterThan(70);
 });
-

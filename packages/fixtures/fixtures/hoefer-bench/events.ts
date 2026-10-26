@@ -84,7 +84,6 @@ export const events: ContributionEvent[] = [
       { id: 'el-hb-person', kind: 'person', value: 'Margarethe Hoefer', excerpt: 'My grandmother' },
       { id: 'el-hb-place', kind: 'place', value: 'Greenbelt near the Americana bridge', excerpt: 'this stretch' },
     ],
-    topics: ['the bench'],
     sourceType: 'family_oral',
   },
 ];

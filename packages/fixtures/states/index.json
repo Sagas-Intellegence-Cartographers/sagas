@@ -1,9 +1,9 @@
 {
   "sites": [
     {
-      "key": "example-site",
-      "slug": "anduiza-hotel-fronton",
-      "name": "Anduiza Hotel and Fronton",
+      "key": "freight-depot",
+      "slug": "freight-depot",
+      "name": "The Freight Depot",
       "stateIds": [
         "t0",
         "t1",

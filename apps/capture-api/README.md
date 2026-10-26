@@ -60,8 +60,8 @@ decide which languages matter.
 - The queue of records waiting for somebody to add context or write a transcript
 - Submitting translations and transcripts, with more than one allowed to coexist
 - Reporting content, with reasoning attached, and a queue for reviewing reports
-- Claim intake: the endpoints where somebody writes a claim, a dispute or an
-  extension about a record
+
+Writing claims, disputes and extensions has moved to the intelligence layer.
 
 ## Where to start
 
@@ -76,13 +76,15 @@ ffprobe -version
 
 Then read, in order:
 
-1. `packages/contracts/src/model.ts`, the records and media section. A record is
-   a bundle rather than a file type, and that decision shapes everything here.
-2. `packages/fixtures/fixtures/example-site/events.ts`. Nine records, deliberately
-   unalike: a written record with no files at all, a photograph whose embedded
-   GPS lands in the middle of the street, an audio recording that took four
-   months and four people to become readable, a scanned register page, and a
-   600MB upload still being processed when the log ends.
+1. `packages/contracts/src/model.ts`, the records and media section. One record
+   is one artifact, which may arrive in several files of the same kind, and that
+   decision shapes everything here. A record arriving at your API has no id yet
+   (`newSourceRecord`); whoever stores it decides the id.
+2. `packages/fixtures/fixtures/freight-depot/events.ts`. Eight records,
+   deliberately unalike: written records with no files, two photographs handed
+   over as one collection (one with embedded GPS across the street), a
+   recording transcribed a time window at a time, a web page, and a 604MB
+   upload still being processed when the log ends.
 3. The acceptance criteria for records in `packages/fixtures/acceptance/`.
 
 The fixture data has no actual files behind it. The storage keys point at

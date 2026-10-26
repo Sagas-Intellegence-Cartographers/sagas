@@ -6,18 +6,20 @@ produces. The place and the people are invented.
 
 The three layers:
 
-- **The content layer** takes things in: records and their files, renderings,
-  and claims as somebody writes them (claim intake).
-- **The intelligence layer** models claims and the graph they form, and works
-  out weight, independence and what needs attention.
-- **The experience layer** renders claims and composes them into what a reader
-  sees: the map, the page, and what they are pointed at next.
+- **The content layer** takes records in: what people hand over, their files,
+  the transcripts and translations of them, and the contributor's choices for
+  each one. It has a plain screen for handing things over.
+- **The intelligence layer** owns claims: the graph they form, and the scoring
+  that works out weight, independence and what needs attention. Later it adds a
+  plain screen for writing claims, and composes the sections and passages a page
+  shows.
+- **The experience layer** builds the map and the reading experience: what a
+  reader sees, and what they are pointed at next. Later it replaces the plain
+  screens where polish matters.
 
-So all three layers work with claims, each on a different part.
-
-None of them calls another directly this semester. They share the contract in
-`packages/contracts` and the fixture data in `packages/fixtures`, and each one
-builds against those.
+Each layer is a small system that runs on its own. None of them calls another
+directly this semester. They share the contract in `packages/contracts` and the
+fixture data in `packages/fixtures`, and each one builds against those.
 
 ---
 
@@ -43,7 +45,7 @@ checked and resized.
 
 ## 2. Somebody else reads it and makes a claim
 
-**Content layer**, for the intake. The intelligence layer takes it from there.
+**Intelligence layer**, which takes claims in and models them.
 
 A second contributor recognises the shop and writes: "That's the shop on the
 corner of Fourth and Main, around 1950. The man in the doorway is the owner,
@@ -69,32 +71,34 @@ Event: `claim_submitted`.
 
 ## 3. A third person disputes one detail
 
-**Content layer**, for the intake.
+**Intelligence layer.**
 
 A third contributor writes: "It can't be 1950. The awning in the photo went up in
 1956, and I have the city directory page showing the change." They attach a scan
 of the directory page.
 
-That is a **dispute**. It targets one detail, the date, and not the whole claim,
-so the place and the owner's name stay undisputed. It carries reasoning, which a
+That is a **dispute**. It targets one detail, the date, so the place and the
+owner's name stay undisputed. A dispute is a claim of its own, so it can carry
+evidence like any other claim. It carries reasoning, which a
 dispute always has to. The directory scan is an **evidence record**, attached to
 the dispute to back it up.
 
-Event: `claim_disputed`. A dispute is going to become a claim with a dispute
-edge. That is decided and not built yet, so today a dispute is an edge only and
-cannot hold an evidence record. In the fixture, the scan is submitted as a
-record at the site and the dispute's reasoning cites it.
+Event: `claim_disputed`. A dispute is a claim of its own, with a dispute edge
+pointing from it to the detail it disagrees with, so it can hold an evidence
+record. The fixture doesn't attach the scan that way yet. There, the scan is
+submitted as a record at the site and the dispute's reasoning cites it.
 
 ## 4. A fourth person adds to another detail
 
-**Content layer**, for the intake.
+**Intelligence layer**, for the claim. The audio clip itself is a record, which
+the content layer takes in.
 
 A fourth contributor records a short audio clip: "Mr. Ferris was my uncle. He ran
 that shop until the sixties."
 
 That is an **extension**. It adds to the "Mr. Ferris" detail without contradicting
-anything. Extensions pointing at a detail is decided and not built yet: today an
-extension points at the whole claim. The new information lives in the extension's own record, the audio
+anything. An extension names the detail it adds to, and leaves that empty when
+it's about the whole claim. The new information lives in the extension's own record, the audio
 clip, which is its evidence. The conversation's source record is still the
 photograph.
 
@@ -121,15 +125,19 @@ The intelligence layer's main focus is claims. From the graph it can see:
 - The owner detail has an extension from a different contributor.
 - The two `sounds_right` passovers are agreement. Agreement is never
   independent evidence.
+- If the audio clip's claim cited a window of a longer recording, the part of
+  its score that comes from the claim itself would wait until that window had a
+  transcript.
 - The photograph is the source record of the conversation, so both claims in it
   rely on it. The audio clip is evidence for one claim. A record's only score is
   its citation count, how many claims rely on it.
 - If question prompts are adopted, one of them, "Who is standing in the
   doorway?", has an answer, and the other, the year, is in dispute.
 
-From that it works out a **weight** for each claim, which decides the order on
-the page, and what needs attention, which decides what gets suggested. Neither
-is ever shown to a person as a number.
+From that it works out a **score** for each claim and each detail, made of
+named parts, which decides the order on the page, and what needs attention,
+which decides what gets suggested. Neither is ever shown to a person as a
+number.
 
 How independence is worked out, and the exact weighting, is the intelligence
 layer's design work and is open.
@@ -164,7 +172,6 @@ that the data keeps the shape described here. At `t3` a second, unrelated
 conversation (a photograph of the shop's sign) names the same owner, which is
 what two separate branches asserting the same detail looks like.
 
-Three steps above cannot be shown in the data yet: the question prompts, the
-extension pointing at the "Mr. Ferris" detail, and the dispute carrying the
-directory scan as evidence. The top of `fixtures/corner-shop/events.ts` says
-why.
+One step above can't be shown in the data yet: the question prompts, which are
+an open design question ("Is every ask in the system one kind of object?").
+The top of `fixtures/corner-shop/events.ts` lists what each state shows.

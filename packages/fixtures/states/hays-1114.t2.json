@@ -42,9 +42,6 @@
             "excerpt": "from the late fifties"
           }
         ],
-        "topics": [
-          "the shop"
-        ],
         "sourceType": "community_oral",
         "createdAt": "2026-04-02T17:22:00Z",
         "awaitingTranslation": false
@@ -64,23 +61,23 @@
         "language": "en",
         "submission": "submitted",
         "media": [],
+        "choices": {
+          "rightToShare": true,
+          "studentAccess": true,
+          "public": "yes",
+          "location": "keep",
+          "mentionsPeople": "not_sure"
+        },
+        "termsVersion": "fixture-terms-0.1",
         "createdAt": "2026-04-02T17:19:00Z"
       },
       "evidenceRecords": [],
       "translations": [],
       "translationDisputes": [],
-      "affirmations": [
-        {
-          "id": "aff-ha-priya",
-          "claimId": "cl-hays-shoes",
-          "contributorId": "c-priya",
-          "createdAt": "2026-06-17T12:40:00Z"
-        }
-      ],
       "independentRecordCount": 0,
       "extensions": [],
       "passover": {
-        "sounds_right": 0,
+        "sounds_right": 1,
         "dont_know": 0,
         "dont_care": 0
       },
@@ -93,6 +90,7 @@
             "excerpt": "The shoe repair at 1114"
           },
           "disputes": [],
+          "extensions": [],
           "competingValues": [
             {
               "value": "shoe repair",
@@ -101,7 +99,8 @@
                 "c-tomas"
               ]
             }
-          ]
+          ],
+          "weight": 1
         },
         {
           "detail": {
@@ -111,6 +110,7 @@
             "excerpt": "from the late fifties"
           },
           "disputes": [],
+          "extensions": [],
           "competingValues": [
             {
               "value": "late 1950s",
@@ -119,10 +119,91 @@
                 "c-tomas"
               ]
             }
-          ]
+          ],
+          "weight": 1
         }
       ],
-      "weight": 2.25,
+      "score": {
+        "claimId": "cl-hays-shoes",
+        "score": 1.05,
+        "terms": [
+          {
+            "family": "content",
+            "name": "base",
+            "value": 1
+          },
+          {
+            "family": "content",
+            "name": "evidence attached",
+            "value": 0
+          },
+          {
+            "family": "content",
+            "name": "independent support",
+            "value": 0
+          },
+          {
+            "family": "behaviour",
+            "name": "sounds right",
+            "value": 0.05
+          },
+          {
+            "family": "content",
+            "name": "extensions",
+            "value": 0
+          },
+          {
+            "family": "content",
+            "name": "disputes",
+            "value": 0
+          }
+        ],
+        "details": [
+          {
+            "detailId": "el-ha-trade",
+            "score": 1,
+            "terms": [
+              {
+                "family": "content",
+                "name": "base",
+                "value": 1
+              },
+              {
+                "family": "content",
+                "name": "extensions",
+                "value": 0
+              },
+              {
+                "family": "content",
+                "name": "disputes",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "detailId": "el-ha-from",
+            "score": 1,
+            "terms": [
+              {
+                "family": "content",
+                "name": "base",
+                "value": 1
+              },
+              {
+                "family": "content",
+                "name": "extensions",
+                "value": 0
+              },
+              {
+                "family": "content",
+                "name": "disputes",
+                "value": 0
+              }
+            ]
+          }
+        ]
+      },
+      "weight": 1.05,
       "confidence": "single_source"
     }
   ],
@@ -151,9 +232,18 @@
       "language": "en",
       "submission": "submitted",
       "media": [],
+      "choices": {
+        "rightToShare": true,
+        "studentAccess": true,
+        "public": "yes",
+        "location": "keep",
+        "mentionsPeople": "not_sure"
+      },
+      "termsVersion": "fixture-terms-0.1",
       "createdAt": "2026-04-02T17:19:00Z"
     }
   ],
+  "collections": [],
   "standings": [
     {
       "contributorId": "c-tomas",
@@ -165,7 +255,7 @@
       "claimsDisputed": 0,
       "disputesRaised": 0,
       "disputesRaisedWithAlternative": 0,
-      "affirmationsGiven": 0,
+      "soundsRightGiven": 0,
       "translationsContributed": 0,
       "transcriptsContributed": 0,
       "flagsRaised": 0
@@ -180,7 +270,7 @@
       "claimsDisputed": 0,
       "disputesRaised": 0,
       "disputesRaisedWithAlternative": 0,
-      "affirmationsGiven": 1,
+      "soundsRightGiven": 1,
       "translationsContributed": 0,
       "transcriptsContributed": 0,
       "flagsRaised": 0

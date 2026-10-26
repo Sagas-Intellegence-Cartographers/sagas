@@ -6,6 +6,10 @@ and you can ignore it. This page is the short version.
 **Treat this as the syllabus for the semester.** Read it through once, then come
 back to it. You are not expected to hold it in your head.
 
+**You're now in phase 2, foundation.** For this phase, start with
+`docs/PHASE-2-CONTENT-LAYER.md`: running your layer, migrations, the record as
+it stands, the guidelines for your API, and what's expected next.
+
 ## What you're building
 
 People contribute records of places. A record might be a recording, a
@@ -45,17 +49,14 @@ These belong to other teams and nothing you build depends on them.
 
 - `apps/web`, `apps/ui-api`, `packages/read-model`, the reading experience
 - `apps/graph-api`, the scoring and claim-graph work
-- `packages/fixtures/behaviour/`, scoring rules for a different team
+- `packages/fixtures/scoring/`, scoring rules for a different team
 - Anything about corroboration, weights, or trust scores
 
 If a document starts talking about claim graphs, you're in the wrong section.
 
-Records and media are yours, and so is claim intake: the screens and endpoints
-where somebody writes a claim about a record, or disputes or extends part of
-somebody else's claim. What
-happens to a claim after that is shared. The intelligence layer models and
-scores claims, and the experience layer renders them and composes them into a
-page.
+Records and media are yours, and later the transcripts and translations
+attached to them. Writing claims, disputes and extensions has moved to the
+intelligence layer, and the experience layer shows them on a page.
 
 ## What to install first
 
@@ -209,10 +210,10 @@ different TypeScript from the one the build uses.
 1. `apps/capture-api/README.md`. Start with "This semester", which has the scope.
 2. `apps/capture-web/README.md`, shorter, covering the browser side.
 3. `packages/contracts/src/model.ts`. Read the **records and media** section
-   first. The **claims** and **edges** sections matter once you build claim
-   intake, and you can skip the rest.
-4. `packages/fixtures/fixtures/example-site/events.ts`, nine example records.
-   This project treats them as the spec: code that handles all nine handles every case the fixtures know about.
+   first, and you can skip the rest. Claims and edges are written by the
+   intelligence layer.
+4. `packages/fixtures/fixtures/freight-depot/events.ts`, eight example records.
+   This project treats them as the spec: code that handles all eight handles every case the fixtures know about.
 
 That's about an hour of reading. Everything else can wait until you need it.
 

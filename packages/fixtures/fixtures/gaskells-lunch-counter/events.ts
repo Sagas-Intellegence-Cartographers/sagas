@@ -96,7 +96,6 @@ export const events: ContributionEvent[] = [
       { id: 'el-gk-year', kind: 'date', value: '1979', excerpt: 'it closed in 1979' },
       { id: 'el-gk-place', kind: 'place', value: '9th and Bannock', excerpt: 'on the corner of 9th and Bannock' },
     ],
-    topics: ['closing', 'the menu'],
     sourceType: 'family_oral',
   },
 
@@ -114,8 +113,9 @@ export const events: ContributionEvent[] = [
 
   {
     id: 'gk-006', at: '2026-03-11T14:09:00Z', actorId: 'c-raymond',
-    kind: 'claim_affirmed',
-    affirmationId: 'aff-gk-ray',
+    kind: 'passover_recorded',
+    passoverId: 'aff-gk-ray',
+    passoverKind: 'sounds_right',
     claimId: 'cl-closed-1979',
   },
 
@@ -137,7 +137,6 @@ export const events: ContributionEvent[] = [
     details: [
       { id: 'el-gk-hours', kind: 'quantity', value: '05:00 to 14:00', excerpt: 'five in the morning until two in the afternoon' },
     ],
-    topics: ['the menu', 'who ate there'],
     sourceType: 'documentary',
   },
 
@@ -153,7 +152,6 @@ export const events: ContributionEvent[] = [
     details: [
       { id: 'el-gk-person', kind: 'person', value: 'Dolores Whitcomb\'s mother', excerpt: 'my mother was one of them' },
     ],
-    topics: ['who ate there'],
     sourceType: 'family_oral',
   },
 
@@ -186,8 +184,9 @@ export const events: ContributionEvent[] = [
 
   {
     id: 'gk-011', at: '2026-04-14T16:52:00Z', actorId: 'c-priya',
-    kind: 'claim_affirmed',
-    affirmationId: 'aff-gk-priya',
+    kind: 'passover_recorded',
+    passoverId: 'aff-gk-priya',
+    passoverKind: 'sounds_right',
     claimId: 'cl-closed-1979',
   },
 
@@ -236,6 +235,8 @@ export const events: ContributionEvent[] = [
     id: 'gk-015', at: '2026-06-02T13:51:00Z', actorId: 'c-arlen',
     kind: 'claim_disputed',
     edgeId: 'de-gk-year',
+    // A dispute is a claim of its own (contract 2.3.0).
+    claimId: 'cl-de-gk-year',
     targetClaimId: 'cl-closed-1979',
     targetDetailId: 'el-gk-year',
     reasoning: 'The 1981 city directory still lists the business at this address. A directory is compiled the year before it is printed, so the business was trading in 1980 at the latest. It did not close in 1979.',

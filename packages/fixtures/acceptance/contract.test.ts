@@ -60,12 +60,14 @@ describe('fixtures satisfy the contract', () => {
     }
   });
 
-  it('claims awaiting translation keep their original and carry no weight', () => {
+  it('claims awaiting translation keep their original, and their content terms wait', () => {
     for (const state of states) {
       for (const c of state.claims.filter((c) => c.claim.awaitingTranslation)) {
         expect(c.claim.sourceLanguageText).toBeTruthy();
         expect(c.claim.sourceLanguage).not.toBe('en');
-        expect(c.weight).toBe(0);
+        // What depends on the claim's own content isn't counted until it's
+        // rendered. What it gets from evidence and behaviour still counts.
+        expect(c.score.terms.some((t) => t.name === 'extensions')).toBe(false);
       }
     }
   });
@@ -80,6 +82,7 @@ describe('acceptance criteria point at data that exhibits them', () => {
       const subject =
         state.claims.find((cl) => cl.claim.id === c.subject) ??
         state.records.find((r) => r.id === c.subject) ??
+        state.collections.find((col) => col.id === c.subject) ??
         state.contributors.find((p) => p.id === c.subject);
       expect(subject, `${c.subject} not present in ${c.site} ${c.stateId}`).toBeTruthy();
     }
@@ -87,7 +90,7 @@ describe('acceptance criteria point at data that exhibits them', () => {
 
   it('the affirmation-without-independence case really has that shape', () => {
     const shop = loadSiteState('corner-shop', 't1').claims.find((c) => c.claim.id === 'cl-cs-shop');
-    expect(shop?.affirmations.length).toBeGreaterThan(0);
+    expect(shop?.passover.sounds_right).toBeGreaterThan(0);
     expect(shop?.independentRecordCount).toBe(0);
     expect(shop?.confidence).toBe('single_source');
   });
@@ -109,10 +112,10 @@ describe('acceptance criteria point at data that exhibits them', () => {
     }
   });
 
-  it('a record carries media or text, never a note on its own', () => {
+  it('a record carries media, text or a link, never a note on its own', () => {
     for (const state of states) {
       for (const r of state.records) {
-        expect(r.media.length > 0 || Boolean(r.text?.trim()), `${r.id} has neither`).toBe(true);
+        expect(r.media.length > 0 || Boolean(r.text?.trim()) || r.link !== undefined, `${r.id} has none`).toBe(true);
       }
     }
   });
@@ -124,7 +127,7 @@ describe('acceptance criteria point at data that exhibits them', () => {
       'contributorId', 'firstContributionAt', 'lastContributionAt',
       'recordsSubmitted', 'claimsAuthored', 'claimsCorroborated',
       'claimsDisputed', 'disputesRaised', 'disputesRaisedWithAlternative',
-      'affirmationsGiven', 'translationsContributed', 'transcriptsContributed',
+      'soundsRightGiven', 'translationsContributed', 'transcriptsContributed',
       'flagsRaised',
     ]);
     for (const state of states) {

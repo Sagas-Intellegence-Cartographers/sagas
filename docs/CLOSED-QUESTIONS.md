@@ -13,24 +13,21 @@ without raising it causes trouble.
 
 ## `affirmation` duplicates a passover tier
 
-This is resolved and not yet implemented. It has to be made in the same change
-as "A dispute should be a claim", because both move the fixture counts that
-`packages/fixtures/behaviour/scoring-contract.ts` asserts, and that file is what
-the intelligence layer's first task runs against. So neither change happens
-until a scorer passes against that file.
+Done in contract 2.3.0. The `affirmation` object is gone, and agreement is a
+`sounds_right` passover. A profile's count of them is `soundsRightGiven`.
 
-An affirmation and a passover are the same thing. An affirmation has an id, a
+An affirmation and a passover were the same thing. An affirmation had an id, a
 claim id, a contributor id and a timestamp. A passover has all of that plus a
-`kind`, and one of the kinds is `sounds_right`. So an affirmation is a passover
+`kind`, and one of the kinds is `sounds_right`. So an affirmation was a passover
 with that kind set, stored in a table of its own.
 
-The trouble is that only one of them counts. `affirmationCount` reaches the
-scorer and passovers reach nothing, so whether a reader nodding at a claim
-counts for anything depends on which button the interface happened to show them.
+The trouble was that only one of them counted. Affirmations reached the scorer
+and passovers reached nothing, so whether a reader nodding at a claim counted
+for anything depended on which button the interface happened to show them.
 
-The fix is to drop `affirmation` and keep one reaction object with a kind on it.
-`affirmationCount` becomes a count of the passovers where the kind is
-`sounds_right`. All three kinds feed the same thing, which is how much a claim
+The fix was to drop `affirmation` and keep one reaction object with a kind on it.
+`affirmationCount` in `ScoringInput` is now a count of the passovers where
+the kind is `sounds_right`. All three kinds feed the same thing, which is how much a claim
 gets surfaced rather than how true it is. Sounds right adds a little weight.
 Don't care adds none, though it still records that somebody saw the claim, which
 tells you something about reach. Don't know adds none either, and it says the
@@ -42,36 +39,35 @@ downvote, and disputes carry reasoning on purpose. What is missing is a way to
 say that somebody who knows should look at this, carrying no weight at all, and
 `flag` may already be that mechanism sitting in the wrong place.
 
-This is not a Part 1 change, the kind you can settle in a pull request on your
-own. Deleting the object moves the fixture counts and therefore the derived
-states, and `affirmationCount` and `affirmations` appear throughout
-that scoring contract.
+This was not a Part 1 change, the kind you can settle in a pull request on your
+own, because deleting the object moved the fixture counts and therefore the
+derived states.
 
 ## A dispute should be a claim
 
-This is resolved and not yet implemented. It is made in the same change as the
-`affirmation` and `passover` merge, once a scorer passes against the scoring
-contract.
+Done in contract 2.3.0. A dispute has its own claim, in the same conversation
+as the claim it disputes, and the dispute edge points from that claim
+(`fromClaimId`) to the detail it targets. The claim carries `disputedClaimId`.
 
-Right now the two ways of responding to a claim are shaped differently.
-`claim_disputed` produces an edge that carries reasoning and an optional
-proposed value, and the reducer writes it into `disputes`. An extension produces
-a claim with a `parentClaimId`. So one of them creates a node and the other does
+Before 2.3.0 the two ways of responding to a claim were shaped differently.
+`claim_disputed` produced an edge that carried reasoning and an optional
+proposed value, and the reducer wrote it into `disputes`. An extension produced
+a claim with a `parentClaimId`. So one of them created a node and the other did
 not.
 
-Part of a dispute already works. `competingValues` lists each proposed value
+Part of a dispute already worked. `competingValues` lists each proposed value
 with the distinct contributors who asserted it, so two people independently
 saying 1914 both appear under 1914.
 
-The reasoning is the part that does not work. Somebody citing a hotel register
-and somebody citing what their aunt said both appear under the same value, and
-there is no way to back one and not the other. So the reasoning is an assertion
-that cannot be corroborated, extended or disputed. This archive should be able
-to record an independent confirmation of a dispute's reasoning, and today it
-cannot.
+The reasoning was the part that did not work. Somebody citing a hotel register
+and somebody citing what their aunt said both appeared under the same value, and
+there was no way to back one and not the other. So the reasoning was an
+assertion that could not be corroborated, extended or disputed. This archive
+should be able to record an independent confirmation of a dispute's reasoning,
+and with an edge alone it could not.
 
-The fix is to make a dispute a claim carrying a dispute edge, with the assertion
-in the claim and what it targets in the edge. `disputeCount` does not
+The fix was to make a dispute a claim carrying a dispute edge, with the
+assertion in the claim and what it targets in the edge. `disputeCount` did not
 change in value, because a dispute still produces one edge against its target,
 so the ten scoring rules keep reading the same number. Later, it allows
 a dispute with its own weight, which would be a new field in
@@ -93,14 +89,15 @@ same time. It is the same idea applied to a different target, and Part 1 of
 
 ## Extensions target a detail
 
-Decided on 27 September, and not built yet. An extension points at a detail of the claim
+Decided on 27 September and done in contract 2.3.0 (`extensionEdge.targetDetailId`,
+and each detail lists its extensions). An extension points at a detail of the claim
 it adds to, the same way a dispute does, with a fallback to the whole claim for
 an extension that is about all of it ("my family ran it until the war"). The new
 information an extension brings lives in its own record, which is attached as
 evidence.
 
-Still open: whether an extension needs reasoning the way a dispute does, and
-exactly how the whole-claim fallback is expressed in the contract.
+The whole-claim fallback is an empty `targetDetailId`. Whether an extension
+needs reasoning the way a dispute does is still open.
 
 ## `reference` is not an edge type
 
@@ -160,14 +157,16 @@ from it.
 
 ## Agreement and corroboration are counted separately
 
-Done in contract 2.0.0. `affirmationCount` counts readers agreeing.
+Done in contract 2.0.0. `affirmationCount` in `ScoringInput` counts readers
+agreeing, which since 2.3.0 means "sounds right" passovers.
 `independentRecordCount` counts distinct records other contributors have brought
 to back a claim, and agreement never counts toward it. The `corner-shop` fixture
 has a claim with one independent record.
 
 ## A record's score is a citation count
 
-Decided on 27 September. A record's only score is how many claims rely on it.
+Decided on 27 September, with no contract change: it's a scoring rule. A
+record's only score is how many claims rely on it.
 It never feeds back into claim weight, because a loop where a record's score
 lifts the claims that cite it would reward itself.
 

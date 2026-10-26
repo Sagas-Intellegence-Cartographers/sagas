@@ -1,0 +1,5582 @@
+[
+  {
+    "stateId": "t0",
+    "label": "One contributor, nothing corroborated",
+    "asOf": "2026-01-31T23:59:59Z",
+    "site": {
+      "id": "site-freight-depot",
+      "slug": "freight-depot",
+      "name": "The Freight Depot",
+      "aka": [
+        "the depot",
+        "the old warehouse"
+      ],
+      "coordinates": [
+        -116.2089,
+        43.6141
+      ],
+      "address": "1 Depot Row (invented)",
+      "city": "Boise, Idaho",
+      "coordinatePrecision": "approximate"
+    },
+    "claims": [
+      {
+        "claim": {
+          "id": "cl-fd-office",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-ana",
+          "sourceRecordId": "rec-fd-01",
+          "evidenceRecordIds": [],
+          "text": "The depot office opened in 1931, and my grandfather was a clerk there from the start.",
+          "sourceLanguage": "en",
+          "details": [
+            {
+              "id": "cl-fd-office-year",
+              "kind": "date",
+              "value": "1931",
+              "excerpt": "opened in 1931"
+            },
+            {
+              "id": "cl-fd-office-person",
+              "kind": "person",
+              "value": "grandfather, clerk",
+              "excerpt": "my grandfather was a clerk"
+            }
+          ],
+          "sourceType": "family_oral",
+          "createdAt": "2026-01-06T15:22:00Z",
+          "awaitingTranslation": false
+        },
+        "contributor": {
+          "id": "c-ana",
+          "displayName": "Ana (invented)",
+          "joinedAt": "2026-01-06T15:02:00Z",
+          "fictional": true,
+          "verification": "guest"
+        },
+        "sourceRecord": {
+          "id": "rec-fd-01",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-ana",
+          "text": "Two things I know about the depot from my grandfather, who worked there: the office at the front, and the loading dock along the tracks.",
+          "language": "en",
+          "submission": "published",
+          "media": [],
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
+          "createdAt": "2026-01-06T15:20:00Z"
+        },
+        "evidenceRecords": [],
+        "translations": [],
+        "translationDisputes": [],
+        "independentRecordCount": 0,
+        "extensions": [],
+        "passover": {
+          "sounds_right": 0,
+          "dont_know": 0,
+          "dont_care": 0
+        },
+        "detailStatuses": [
+          {
+            "detail": {
+              "id": "cl-fd-office-year",
+              "kind": "date",
+              "value": "1931",
+              "excerpt": "opened in 1931"
+            },
+            "disputes": [],
+            "extensions": [],
+            "competingValues": [
+              {
+                "value": "1931",
+                "count": 1,
+                "contributorIds": [
+                  "c-ana"
+                ]
+              }
+            ],
+            "weight": 1
+          },
+          {
+            "detail": {
+              "id": "cl-fd-office-person",
+              "kind": "person",
+              "value": "grandfather, clerk",
+              "excerpt": "my grandfather was a clerk"
+            },
+            "disputes": [],
+            "extensions": [],
+            "competingValues": [
+              {
+                "value": "grandfather, clerk",
+                "count": 1,
+                "contributorIds": [
+                  "c-ana"
+                ]
+              }
+            ],
+            "weight": 1
+          }
+        ],
+        "score": {
+          "claimId": "cl-fd-office",
+          "score": 1,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 0
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": 0
+            }
+          ],
+          "details": [
+            {
+              "detailId": "cl-fd-office-year",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "detailId": "cl-fd-office-person",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        "weight": 1,
+        "confidence": "single_source"
+      },
+      {
+        "claim": {
+          "id": "cl-fd-dock",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-ana",
+          "sourceRecordId": "rec-fd-01",
+          "evidenceRecordIds": [],
+          "text": "The loading dock ran the length of the tracks, and in winter they kept a stove going on it.",
+          "sourceLanguage": "en",
+          "details": [
+            {
+              "id": "cl-fd-dock-place",
+              "kind": "place",
+              "value": "along the tracks",
+              "excerpt": "ran the length of the tracks"
+            },
+            {
+              "id": "cl-fd-dock-season",
+              "kind": "event",
+              "value": "stove in winter",
+              "excerpt": "in winter they kept a stove going"
+            }
+          ],
+          "sourceType": "family_oral",
+          "createdAt": "2026-01-06T15:30:00Z",
+          "awaitingTranslation": false
+        },
+        "contributor": {
+          "id": "c-ana",
+          "displayName": "Ana (invented)",
+          "joinedAt": "2026-01-06T15:02:00Z",
+          "fictional": true,
+          "verification": "guest"
+        },
+        "sourceRecord": {
+          "id": "rec-fd-01",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-ana",
+          "text": "Two things I know about the depot from my grandfather, who worked there: the office at the front, and the loading dock along the tracks.",
+          "language": "en",
+          "submission": "published",
+          "media": [],
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
+          "createdAt": "2026-01-06T15:20:00Z"
+        },
+        "evidenceRecords": [],
+        "translations": [],
+        "translationDisputes": [],
+        "independentRecordCount": 0,
+        "extensions": [],
+        "passover": {
+          "sounds_right": 0,
+          "dont_know": 0,
+          "dont_care": 0
+        },
+        "detailStatuses": [
+          {
+            "detail": {
+              "id": "cl-fd-dock-place",
+              "kind": "place",
+              "value": "along the tracks",
+              "excerpt": "ran the length of the tracks"
+            },
+            "disputes": [],
+            "extensions": [],
+            "competingValues": [
+              {
+                "value": "along the tracks",
+                "count": 1,
+                "contributorIds": [
+                  "c-ana"
+                ]
+              }
+            ],
+            "weight": 1
+          },
+          {
+            "detail": {
+              "id": "cl-fd-dock-season",
+              "kind": "event",
+              "value": "stove in winter",
+              "excerpt": "in winter they kept a stove going"
+            },
+            "disputes": [],
+            "extensions": [],
+            "competingValues": [
+              {
+                "value": "stove in winter",
+                "count": 1,
+                "contributorIds": [
+                  "c-ana"
+                ]
+              }
+            ],
+            "weight": 1
+          }
+        ],
+        "score": {
+          "claimId": "cl-fd-dock",
+          "score": 1,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 0
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": 0
+            }
+          ],
+          "details": [
+            {
+              "detailId": "cl-fd-dock-place",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "detailId": "cl-fd-dock-season",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        "weight": 1,
+        "confidence": "single_source"
+      },
+      {
+        "claim": {
+          "id": "cl-fd-prelot",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-ana",
+          "sourceRecordId": "rec-fd-02",
+          "evidenceRecordIds": [],
+          "text": "Before the depot there was a lumber yard on that lot, or so I was told.",
+          "sourceLanguage": "en",
+          "details": [
+            {
+              "id": "cl-fd-prelot-use",
+              "kind": "event",
+              "value": "lumber yard",
+              "excerpt": "a lumber yard on that lot"
+            }
+          ],
+          "sourceType": "family_oral",
+          "createdAt": "2026-01-07T02:05:00Z",
+          "awaitingTranslation": false
+        },
+        "contributor": {
+          "id": "c-ana",
+          "displayName": "Ana (invented)",
+          "joinedAt": "2026-01-06T15:02:00Z",
+          "fictional": true,
+          "verification": "guest"
+        },
+        "sourceRecord": {
+          "id": "rec-fd-02",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-ana",
+          "text": "One more thing, about what was on the lot before the depot.",
+          "language": "en",
+          "submission": "published",
+          "media": [],
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
+          "createdAt": "2026-01-07T02:00:00Z"
+        },
+        "evidenceRecords": [],
+        "translations": [],
+        "translationDisputes": [],
+        "independentRecordCount": 0,
+        "extensions": [],
+        "passover": {
+          "sounds_right": 0,
+          "dont_know": 0,
+          "dont_care": 0
+        },
+        "detailStatuses": [
+          {
+            "detail": {
+              "id": "cl-fd-prelot-use",
+              "kind": "event",
+              "value": "lumber yard",
+              "excerpt": "a lumber yard on that lot"
+            },
+            "disputes": [],
+            "extensions": [],
+            "competingValues": [
+              {
+                "value": "lumber yard",
+                "count": 1,
+                "contributorIds": [
+                  "c-ana"
+                ]
+              }
+            ],
+            "weight": 1
+          }
+        ],
+        "score": {
+          "claimId": "cl-fd-prelot",
+          "score": 1,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 0
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": 0
+            }
+          ],
+          "details": [
+            {
+              "detailId": "cl-fd-prelot-use",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        "weight": 1,
+        "confidence": "single_source"
+      }
+    ],
+    "contributors": [
+      {
+        "id": "c-ana",
+        "displayName": "Ana (invented)",
+        "joinedAt": "2026-01-06T15:02:00Z",
+        "fictional": true,
+        "verification": "guest"
+      }
+    ],
+    "records": [
+      {
+        "id": "rec-fd-01",
+        "siteId": "site-freight-depot",
+        "contributorId": "c-ana",
+        "text": "Two things I know about the depot from my grandfather, who worked there: the office at the front, and the loading dock along the tracks.",
+        "language": "en",
+        "submission": "published",
+        "media": [],
+        "choices": {
+          "rightToShare": true,
+          "studentAccess": true,
+          "public": "yes",
+          "location": "keep",
+          "mentionsPeople": "not_sure"
+        },
+        "termsVersion": "fixture-terms-0.1",
+        "createdAt": "2026-01-06T15:20:00Z"
+      },
+      {
+        "id": "rec-fd-02",
+        "siteId": "site-freight-depot",
+        "contributorId": "c-ana",
+        "text": "One more thing, about what was on the lot before the depot.",
+        "language": "en",
+        "submission": "published",
+        "media": [],
+        "choices": {
+          "rightToShare": true,
+          "studentAccess": true,
+          "public": "yes",
+          "location": "keep",
+          "mentionsPeople": "not_sure"
+        },
+        "termsVersion": "fixture-terms-0.1",
+        "createdAt": "2026-01-07T02:00:00Z"
+      }
+    ],
+    "collections": [],
+    "standings": [
+      {
+        "contributorId": "c-ana",
+        "firstContributionAt": "2026-01-06T15:20:00Z",
+        "lastContributionAt": "2026-01-07T02:05:00Z",
+        "recordsSubmitted": 2,
+        "claimsAuthored": 3,
+        "claimsCorroborated": 0,
+        "claimsDisputed": 0,
+        "disputesRaised": 0,
+        "disputesRaisedWithAlternative": 0,
+        "soundsRightGiven": 0,
+        "translationsContributed": 0,
+        "transcriptsContributed": 0,
+        "flagsRaised": 0
+      }
+    ],
+    "transcripts": [],
+    "flags": [],
+    "integrity": {
+      "totalClaims": 3,
+      "independentContributors": 1,
+      "corroborationDepth": 0,
+      "activeDisputes": 0,
+      "datedClaims": 1,
+      "awaitingTranslation": 0,
+      "overall": 19
+    },
+    "sections": [],
+    "compositions": [],
+    "eventIdsApplied": [
+      "fd-001",
+      "fd-002",
+      "fd-003",
+      "fd-004",
+      "fd-005",
+      "fd-006",
+      "fd-007"
+    ],
+    "eventIdsSincePrevious": [
+      "fd-001",
+      "fd-002",
+      "fd-003",
+      "fd-004",
+      "fd-005",
+      "fd-006",
+      "fd-007"
+    ]
+  },
+  {
+    "stateId": "t1",
+    "label": "A photo, an unrendered recording, a dispute",
+    "asOf": "2026-02-28T23:59:59Z",
+    "site": {
+      "id": "site-freight-depot",
+      "slug": "freight-depot",
+      "name": "The Freight Depot",
+      "aka": [
+        "the depot",
+        "the old warehouse"
+      ],
+      "coordinates": [
+        -116.2089,
+        43.6141
+      ],
+      "address": "1 Depot Row (invented)",
+      "city": "Boise, Idaho",
+      "coordinatePrecision": "approximate"
+    },
+    "claims": [
+      {
+        "claim": {
+          "id": "cl-fd-photo",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-luis",
+          "sourceRecordId": "rec-fd-03",
+          "evidenceRecordIds": [],
+          "text": "This photo shows the depot office in 1935, with my uncle standing by the door.",
+          "sourceLanguage": "en",
+          "details": [
+            {
+              "id": "cl-fd-photo-year",
+              "kind": "date",
+              "value": "1935",
+              "excerpt": "in 1935"
+            },
+            {
+              "id": "cl-fd-photo-person",
+              "kind": "person",
+              "value": "uncle by the door",
+              "excerpt": "my uncle standing by the door"
+            }
+          ],
+          "sourceType": "firsthand",
+          "createdAt": "2026-02-03T17:20:00Z",
+          "awaitingTranslation": false
+        },
+        "contributor": {
+          "id": "c-luis",
+          "displayName": "Luis (invented)",
+          "joinedAt": "2026-02-03T17:00:00Z",
+          "fictional": true,
+          "verification": "guest"
+        },
+        "sourceRecord": {
+          "id": "rec-fd-03",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-luis",
+          "note": "The depot office, about 1935. My uncle is the one by the door.",
+          "capturedLocation": {
+            "coordinates": [
+              -116.2094,
+              43.6145
+            ],
+            "method": "embedded",
+            "accuracyMetres": 65
+          },
+          "submission": "published",
+          "media": [
+            {
+              "id": "med-fd-03",
+              "recordId": "rec-fd-03",
+              "kind": "image",
+              "storageKey": "records/rec-fd-03/med-fd-03/office.jpg",
+              "contentType": "image/jpeg",
+              "byteSize": 2310000,
+              "processing": "ready",
+              "width": 3024,
+              "height": 2016,
+              "derivatives": [],
+              "createdAt": "2026-02-03T17:10:00Z"
+            }
+          ],
+          "collectionId": "col-fd-luis",
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
+          "createdAt": "2026-02-03T17:10:00Z"
+        },
+        "evidenceRecords": [],
+        "translations": [],
+        "translationDisputes": [],
+        "independentRecordCount": 0,
+        "extensions": [],
+        "passover": {
+          "sounds_right": 1,
+          "dont_know": 0,
+          "dont_care": 0
+        },
+        "detailStatuses": [
+          {
+            "detail": {
+              "id": "cl-fd-photo-year",
+              "kind": "date",
+              "value": "1935",
+              "excerpt": "in 1935"
+            },
+            "disputes": [],
+            "extensions": [],
+            "competingValues": [
+              {
+                "value": "1935",
+                "count": 1,
+                "contributorIds": [
+                  "c-luis"
+                ]
+              }
+            ],
+            "weight": 1
+          },
+          {
+            "detail": {
+              "id": "cl-fd-photo-person",
+              "kind": "person",
+              "value": "uncle by the door",
+              "excerpt": "my uncle standing by the door"
+            },
+            "disputes": [],
+            "extensions": [],
+            "competingValues": [
+              {
+                "value": "uncle by the door",
+                "count": 1,
+                "contributorIds": [
+                  "c-luis"
+                ]
+              }
+            ],
+            "weight": 1
+          }
+        ],
+        "score": {
+          "claimId": "cl-fd-photo",
+          "score": 1.05,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 0
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0.05
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": 0
+            }
+          ],
+          "details": [
+            {
+              "detailId": "cl-fd-photo-year",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "detailId": "cl-fd-photo-person",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        "weight": 1.05,
+        "confidence": "single_source"
+      },
+      {
+        "claim": {
+          "id": "cl-fd-dock",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-ana",
+          "sourceRecordId": "rec-fd-01",
+          "evidenceRecordIds": [],
+          "text": "The loading dock ran the length of the tracks, and in winter they kept a stove going on it.",
+          "sourceLanguage": "en",
+          "details": [
+            {
+              "id": "cl-fd-dock-place",
+              "kind": "place",
+              "value": "along the tracks",
+              "excerpt": "ran the length of the tracks"
+            },
+            {
+              "id": "cl-fd-dock-season",
+              "kind": "event",
+              "value": "stove in winter",
+              "excerpt": "in winter they kept a stove going"
+            }
+          ],
+          "sourceType": "family_oral",
+          "createdAt": "2026-01-06T15:30:00Z",
+          "awaitingTranslation": false
+        },
+        "contributor": {
+          "id": "c-ana",
+          "displayName": "Ana (invented)",
+          "joinedAt": "2026-01-06T15:02:00Z",
+          "fictional": true,
+          "verification": "guest"
+        },
+        "sourceRecord": {
+          "id": "rec-fd-01",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-ana",
+          "text": "Two things I know about the depot from my grandfather, who worked there: the office at the front, and the loading dock along the tracks.",
+          "language": "en",
+          "submission": "published",
+          "media": [],
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
+          "createdAt": "2026-01-06T15:20:00Z"
+        },
+        "evidenceRecords": [],
+        "translations": [],
+        "translationDisputes": [],
+        "independentRecordCount": 0,
+        "extensions": [],
+        "passover": {
+          "sounds_right": 0,
+          "dont_know": 0,
+          "dont_care": 0
+        },
+        "detailStatuses": [
+          {
+            "detail": {
+              "id": "cl-fd-dock-place",
+              "kind": "place",
+              "value": "along the tracks",
+              "excerpt": "ran the length of the tracks"
+            },
+            "disputes": [],
+            "extensions": [],
+            "competingValues": [
+              {
+                "value": "along the tracks",
+                "count": 1,
+                "contributorIds": [
+                  "c-ana"
+                ]
+              }
+            ],
+            "weight": 1
+          },
+          {
+            "detail": {
+              "id": "cl-fd-dock-season",
+              "kind": "event",
+              "value": "stove in winter",
+              "excerpt": "in winter they kept a stove going"
+            },
+            "disputes": [],
+            "extensions": [],
+            "competingValues": [
+              {
+                "value": "stove in winter",
+                "count": 1,
+                "contributorIds": [
+                  "c-ana"
+                ]
+              }
+            ],
+            "weight": 1
+          }
+        ],
+        "score": {
+          "claimId": "cl-fd-dock",
+          "score": 1,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 0
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": 0
+            }
+          ],
+          "details": [
+            {
+              "detailId": "cl-fd-dock-place",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "detailId": "cl-fd-dock-season",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        "weight": 1,
+        "confidence": "single_source"
+      },
+      {
+        "claim": {
+          "id": "cl-fd-prelot",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-ana",
+          "sourceRecordId": "rec-fd-02",
+          "evidenceRecordIds": [],
+          "text": "Before the depot there was a lumber yard on that lot, or so I was told.",
+          "sourceLanguage": "en",
+          "details": [
+            {
+              "id": "cl-fd-prelot-use",
+              "kind": "event",
+              "value": "lumber yard",
+              "excerpt": "a lumber yard on that lot"
+            }
+          ],
+          "sourceType": "family_oral",
+          "createdAt": "2026-01-07T02:05:00Z",
+          "awaitingTranslation": false
+        },
+        "contributor": {
+          "id": "c-ana",
+          "displayName": "Ana (invented)",
+          "joinedAt": "2026-01-06T15:02:00Z",
+          "fictional": true,
+          "verification": "guest"
+        },
+        "sourceRecord": {
+          "id": "rec-fd-02",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-ana",
+          "text": "One more thing, about what was on the lot before the depot.",
+          "language": "en",
+          "submission": "published",
+          "media": [],
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
+          "createdAt": "2026-01-07T02:00:00Z"
+        },
+        "evidenceRecords": [],
+        "translations": [],
+        "translationDisputes": [],
+        "independentRecordCount": 0,
+        "extensions": [],
+        "passover": {
+          "sounds_right": 0,
+          "dont_know": 0,
+          "dont_care": 0
+        },
+        "detailStatuses": [
+          {
+            "detail": {
+              "id": "cl-fd-prelot-use",
+              "kind": "event",
+              "value": "lumber yard",
+              "excerpt": "a lumber yard on that lot"
+            },
+            "disputes": [],
+            "extensions": [],
+            "competingValues": [
+              {
+                "value": "lumber yard",
+                "count": 1,
+                "contributorIds": [
+                  "c-ana"
+                ]
+              }
+            ],
+            "weight": 1
+          }
+        ],
+        "score": {
+          "claimId": "cl-fd-prelot",
+          "score": 1,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 0
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": 0
+            }
+          ],
+          "details": [
+            {
+              "detailId": "cl-fd-prelot-use",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        "weight": 1,
+        "confidence": "single_source"
+      },
+      {
+        "claim": {
+          "id": "cl-dsp-fd-office-year",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-luis",
+          "sourceRecordId": "rec-fd-01",
+          "evidenceRecordIds": [],
+          "text": "My uncle always said the office opened in 1934, the year he started, and he was one of the first.",
+          "sourceLanguage": "en",
+          "details": [
+            {
+              "id": "cl-dsp-fd-office-year-value",
+              "kind": "date",
+              "value": "1934",
+              "excerpt": "1934"
+            }
+          ],
+          "sourceType": "family_oral",
+          "createdAt": "2026-02-05T18:00:00Z",
+          "disputedClaimId": "cl-fd-office",
+          "awaitingTranslation": false
+        },
+        "contributor": {
+          "id": "c-luis",
+          "displayName": "Luis (invented)",
+          "joinedAt": "2026-02-03T17:00:00Z",
+          "fictional": true,
+          "verification": "guest"
+        },
+        "sourceRecord": {
+          "id": "rec-fd-01",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-ana",
+          "text": "Two things I know about the depot from my grandfather, who worked there: the office at the front, and the loading dock along the tracks.",
+          "language": "en",
+          "submission": "published",
+          "media": [],
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
+          "createdAt": "2026-01-06T15:20:00Z"
+        },
+        "evidenceRecords": [],
+        "translations": [],
+        "translationDisputes": [],
+        "independentRecordCount": 0,
+        "extensions": [],
+        "passover": {
+          "sounds_right": 0,
+          "dont_know": 0,
+          "dont_care": 0
+        },
+        "detailStatuses": [
+          {
+            "detail": {
+              "id": "cl-dsp-fd-office-year-value",
+              "kind": "date",
+              "value": "1934",
+              "excerpt": "1934"
+            },
+            "disputes": [],
+            "extensions": [],
+            "competingValues": [
+              {
+                "value": "1934",
+                "count": 1,
+                "contributorIds": [
+                  "c-luis"
+                ]
+              }
+            ],
+            "weight": 1
+          }
+        ],
+        "score": {
+          "claimId": "cl-dsp-fd-office-year",
+          "score": 1,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 0
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": 0
+            }
+          ],
+          "details": [
+            {
+              "detailId": "cl-dsp-fd-office-year-value",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        "weight": 1,
+        "confidence": "single_source"
+      },
+      {
+        "claim": {
+          "id": "cl-fd-ines",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-ines",
+          "sourceRecordId": "rec-fd-04",
+          "evidenceRecordIds": [],
+          "text": "",
+          "sourceLanguage": "fr",
+          "sourceLanguageText": "Mon grand-père travaillait au quai. Pour nous, le dépôt était un lieu de travail, pas une gare.",
+          "sourceWindow": {
+            "start": 18,
+            "end": 70
+          },
+          "details": [],
+          "sourceType": "family_oral",
+          "createdAt": "2026-02-10T19:20:00Z",
+          "awaitingTranslation": true
+        },
+        "contributor": {
+          "id": "c-ines",
+          "displayName": "Inès (invented)",
+          "joinedAt": "2026-02-10T19:00:00Z",
+          "fictional": true,
+          "verification": "guest"
+        },
+        "sourceRecord": {
+          "id": "rec-fd-04",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-ines",
+          "note": "Mon grand-père parle du dépôt.",
+          "language": "fr",
+          "submission": "published",
+          "media": [
+            {
+              "id": "med-fd-04",
+              "recordId": "rec-fd-04",
+              "kind": "audio",
+              "storageKey": "records/rec-fd-04/med-fd-04/grand-pere.m4a",
+              "contentType": "audio/mp4",
+              "byteSize": 28400000,
+              "processing": "ready",
+              "durationSeconds": 1800,
+              "derivatives": [],
+              "createdAt": "2026-02-10T19:10:00Z"
+            }
+          ],
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
+          "createdAt": "2026-02-10T19:10:00Z"
+        },
+        "evidenceRecords": [],
+        "translations": [],
+        "translationDisputes": [],
+        "independentRecordCount": 0,
+        "extensions": [],
+        "passover": {
+          "sounds_right": 0,
+          "dont_know": 1,
+          "dont_care": 0
+        },
+        "detailStatuses": [],
+        "score": {
+          "claimId": "cl-fd-ines",
+          "score": 1,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 0
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0
+            }
+          ],
+          "details": []
+        },
+        "weight": 1,
+        "confidence": "single_source"
+      },
+      {
+        "claim": {
+          "id": "cl-fd-office",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-ana",
+          "sourceRecordId": "rec-fd-01",
+          "evidenceRecordIds": [],
+          "text": "The depot office opened in 1931, and my grandfather was a clerk there from the start.",
+          "sourceLanguage": "en",
+          "details": [
+            {
+              "id": "cl-fd-office-year",
+              "kind": "date",
+              "value": "1931",
+              "excerpt": "opened in 1931"
+            },
+            {
+              "id": "cl-fd-office-person",
+              "kind": "person",
+              "value": "grandfather, clerk",
+              "excerpt": "my grandfather was a clerk"
+            }
+          ],
+          "sourceType": "family_oral",
+          "createdAt": "2026-01-06T15:22:00Z",
+          "awaitingTranslation": false
+        },
+        "contributor": {
+          "id": "c-ana",
+          "displayName": "Ana (invented)",
+          "joinedAt": "2026-01-06T15:02:00Z",
+          "fictional": true,
+          "verification": "guest"
+        },
+        "sourceRecord": {
+          "id": "rec-fd-01",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-ana",
+          "text": "Two things I know about the depot from my grandfather, who worked there: the office at the front, and the loading dock along the tracks.",
+          "language": "en",
+          "submission": "published",
+          "media": [],
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
+          "createdAt": "2026-01-06T15:20:00Z"
+        },
+        "evidenceRecords": [],
+        "translations": [],
+        "translationDisputes": [],
+        "independentRecordCount": 0,
+        "extensions": [],
+        "passover": {
+          "sounds_right": 0,
+          "dont_know": 0,
+          "dont_care": 0
+        },
+        "detailStatuses": [
+          {
+            "detail": {
+              "id": "cl-fd-office-year",
+              "kind": "date",
+              "value": "1931",
+              "excerpt": "opened in 1931"
+            },
+            "disputes": [
+              {
+                "id": "dsp-fd-office-year",
+                "type": "dispute",
+                "fromClaimId": "cl-dsp-fd-office-year",
+                "targetClaimId": "cl-fd-office",
+                "targetDetailId": "cl-fd-office-year",
+                "reasoning": "My uncle always said the office opened in 1934, the year he started, and he was one of the first.",
+                "proposedValue": "1934",
+                "contributorId": "c-luis",
+                "createdAt": "2026-02-05T18:00:00Z"
+              }
+            ],
+            "extensions": [],
+            "competingValues": [
+              {
+                "value": "1931",
+                "count": 1,
+                "contributorIds": [
+                  "c-ana"
+                ]
+              },
+              {
+                "value": "1934",
+                "count": 1,
+                "contributorIds": [
+                  "c-luis"
+                ]
+              }
+            ],
+            "weight": 0.5
+          },
+          {
+            "detail": {
+              "id": "cl-fd-office-person",
+              "kind": "person",
+              "value": "grandfather, clerk",
+              "excerpt": "my grandfather was a clerk"
+            },
+            "disputes": [],
+            "extensions": [],
+            "competingValues": [
+              {
+                "value": "grandfather, clerk",
+                "count": 1,
+                "contributorIds": [
+                  "c-ana"
+                ]
+              }
+            ],
+            "weight": 1
+          }
+        ],
+        "score": {
+          "claimId": "cl-fd-office",
+          "score": 0.5,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 0
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": -0.5
+            }
+          ],
+          "details": [
+            {
+              "detailId": "cl-fd-office-year",
+              "score": 0.5,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": -0.5
+                }
+              ]
+            },
+            {
+              "detailId": "cl-fd-office-person",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        "weight": 0.5,
+        "confidence": "contested"
+      }
+    ],
+    "contributors": [
+      {
+        "id": "c-ana",
+        "displayName": "Ana (invented)",
+        "joinedAt": "2026-01-06T15:02:00Z",
+        "fictional": true,
+        "verification": "guest"
+      },
+      {
+        "id": "c-luis",
+        "displayName": "Luis (invented)",
+        "joinedAt": "2026-02-03T17:00:00Z",
+        "fictional": true,
+        "verification": "guest"
+      },
+      {
+        "id": "c-ines",
+        "displayName": "Inès (invented)",
+        "joinedAt": "2026-02-10T19:00:00Z",
+        "fictional": true,
+        "verification": "guest"
+      }
+    ],
+    "records": [
+      {
+        "id": "rec-fd-01",
+        "siteId": "site-freight-depot",
+        "contributorId": "c-ana",
+        "text": "Two things I know about the depot from my grandfather, who worked there: the office at the front, and the loading dock along the tracks.",
+        "language": "en",
+        "submission": "published",
+        "media": [],
+        "choices": {
+          "rightToShare": true,
+          "studentAccess": true,
+          "public": "yes",
+          "location": "keep",
+          "mentionsPeople": "not_sure"
+        },
+        "termsVersion": "fixture-terms-0.1",
+        "createdAt": "2026-01-06T15:20:00Z"
+      },
+      {
+        "id": "rec-fd-02",
+        "siteId": "site-freight-depot",
+        "contributorId": "c-ana",
+        "text": "One more thing, about what was on the lot before the depot.",
+        "language": "en",
+        "submission": "published",
+        "media": [],
+        "choices": {
+          "rightToShare": true,
+          "studentAccess": true,
+          "public": "yes",
+          "location": "keep",
+          "mentionsPeople": "not_sure"
+        },
+        "termsVersion": "fixture-terms-0.1",
+        "createdAt": "2026-01-07T02:00:00Z"
+      },
+      {
+        "id": "rec-fd-03",
+        "siteId": "site-freight-depot",
+        "contributorId": "c-luis",
+        "note": "The depot office, about 1935. My uncle is the one by the door.",
+        "capturedLocation": {
+          "coordinates": [
+            -116.2094,
+            43.6145
+          ],
+          "method": "embedded",
+          "accuracyMetres": 65
+        },
+        "submission": "published",
+        "media": [
+          {
+            "id": "med-fd-03",
+            "recordId": "rec-fd-03",
+            "kind": "image",
+            "storageKey": "records/rec-fd-03/med-fd-03/office.jpg",
+            "contentType": "image/jpeg",
+            "byteSize": 2310000,
+            "processing": "ready",
+            "width": 3024,
+            "height": 2016,
+            "derivatives": [],
+            "createdAt": "2026-02-03T17:10:00Z"
+          }
+        ],
+        "collectionId": "col-fd-luis",
+        "choices": {
+          "rightToShare": true,
+          "studentAccess": true,
+          "public": "yes",
+          "location": "keep",
+          "mentionsPeople": "not_sure"
+        },
+        "termsVersion": "fixture-terms-0.1",
+        "createdAt": "2026-02-03T17:10:00Z"
+      },
+      {
+        "id": "rec-fd-04",
+        "siteId": "site-freight-depot",
+        "contributorId": "c-ines",
+        "note": "Mon grand-père parle du dépôt.",
+        "language": "fr",
+        "submission": "published",
+        "media": [
+          {
+            "id": "med-fd-04",
+            "recordId": "rec-fd-04",
+            "kind": "audio",
+            "storageKey": "records/rec-fd-04/med-fd-04/grand-pere.m4a",
+            "contentType": "audio/mp4",
+            "byteSize": 28400000,
+            "processing": "ready",
+            "durationSeconds": 1800,
+            "derivatives": [],
+            "createdAt": "2026-02-10T19:10:00Z"
+          }
+        ],
+        "choices": {
+          "rightToShare": true,
+          "studentAccess": true,
+          "public": "yes",
+          "location": "keep",
+          "mentionsPeople": "not_sure"
+        },
+        "termsVersion": "fixture-terms-0.1",
+        "createdAt": "2026-02-10T19:10:00Z"
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-fd-luis",
+        "contributorId": "c-luis",
+        "recordIds": [
+          "rec-fd-03"
+        ],
+        "note": "Two photos from my uncle's album, kept because he worked there.",
+        "createdAt": "2026-02-03T17:10:00Z"
+      }
+    ],
+    "standings": [
+      {
+        "contributorId": "c-ana",
+        "firstContributionAt": "2026-01-06T15:20:00Z",
+        "lastContributionAt": "2026-02-12T16:02:00Z",
+        "recordsSubmitted": 2,
+        "claimsAuthored": 3,
+        "claimsCorroborated": 0,
+        "claimsDisputed": 1,
+        "disputesRaised": 0,
+        "disputesRaisedWithAlternative": 0,
+        "soundsRightGiven": 1,
+        "translationsContributed": 0,
+        "transcriptsContributed": 0,
+        "flagsRaised": 0
+      },
+      {
+        "contributorId": "c-luis",
+        "firstContributionAt": "2026-02-03T17:10:00Z",
+        "lastContributionAt": "2026-02-05T18:00:00Z",
+        "recordsSubmitted": 1,
+        "claimsAuthored": 1,
+        "claimsCorroborated": 0,
+        "claimsDisputed": 0,
+        "disputesRaised": 1,
+        "disputesRaisedWithAlternative": 1,
+        "soundsRightGiven": 0,
+        "translationsContributed": 0,
+        "transcriptsContributed": 0,
+        "flagsRaised": 0
+      },
+      {
+        "contributorId": "c-ines",
+        "firstContributionAt": "2026-02-10T19:10:00Z",
+        "lastContributionAt": "2026-02-10T19:20:00Z",
+        "recordsSubmitted": 1,
+        "claimsAuthored": 1,
+        "claimsCorroborated": 0,
+        "claimsDisputed": 0,
+        "disputesRaised": 0,
+        "disputesRaisedWithAlternative": 0,
+        "soundsRightGiven": 0,
+        "translationsContributed": 0,
+        "transcriptsContributed": 0,
+        "flagsRaised": 0
+      }
+    ],
+    "transcripts": [],
+    "flags": [],
+    "integrity": {
+      "totalClaims": 6,
+      "independentContributors": 3,
+      "corroborationDepth": 0,
+      "activeDisputes": 1,
+      "datedClaims": 3,
+      "awaitingTranslation": 1,
+      "overall": 48
+    },
+    "sections": [],
+    "compositions": [],
+    "eventIdsApplied": [
+      "fd-001",
+      "fd-002",
+      "fd-003",
+      "fd-004",
+      "fd-005",
+      "fd-006",
+      "fd-007",
+      "fd-010",
+      "fd-011",
+      "fd-012",
+      "fd-013",
+      "fd-014",
+      "fd-015",
+      "fd-016",
+      "fd-017",
+      "fd-018"
+    ],
+    "eventIdsSincePrevious": [
+      "fd-010",
+      "fd-011",
+      "fd-012",
+      "fd-013",
+      "fd-014",
+      "fd-015",
+      "fd-016",
+      "fd-017",
+      "fd-018"
+    ]
+  },
+  {
+    "stateId": "t2",
+    "label": "A rendering arrives; part of a recording is transcribed",
+    "asOf": "2026-03-31T23:59:59Z",
+    "site": {
+      "id": "site-freight-depot",
+      "slug": "freight-depot",
+      "name": "The Freight Depot",
+      "aka": [
+        "the depot",
+        "the old warehouse"
+      ],
+      "coordinates": [
+        -116.2089,
+        43.6141
+      ],
+      "address": "1 Depot Row (invented)",
+      "city": "Boise, Idaho",
+      "coordinatePrecision": "approximate"
+    },
+    "claims": [
+      {
+        "claim": {
+          "id": "cl-fd-office",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-ana",
+          "sourceRecordId": "rec-fd-01",
+          "evidenceRecordIds": [],
+          "text": "The depot office opened in 1931, and my grandfather was a clerk there from the start.",
+          "sourceLanguage": "en",
+          "details": [
+            {
+              "id": "cl-fd-office-year",
+              "kind": "date",
+              "value": "1931",
+              "excerpt": "opened in 1931"
+            },
+            {
+              "id": "cl-fd-office-person",
+              "kind": "person",
+              "value": "grandfather, clerk",
+              "excerpt": "my grandfather was a clerk"
+            }
+          ],
+          "sourceType": "family_oral",
+          "createdAt": "2026-01-06T15:22:00Z",
+          "awaitingTranslation": false
+        },
+        "contributor": {
+          "id": "c-ana",
+          "displayName": "Ana (invented)",
+          "joinedAt": "2026-01-06T15:02:00Z",
+          "fictional": true,
+          "verification": "guest"
+        },
+        "sourceRecord": {
+          "id": "rec-fd-01",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-ana",
+          "text": "Two things I know about the depot from my grandfather, who worked there: the office at the front, and the loading dock along the tracks.",
+          "language": "en",
+          "submission": "published",
+          "media": [],
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
+          "createdAt": "2026-01-06T15:20:00Z"
+        },
+        "evidenceRecords": [],
+        "translations": [],
+        "translationDisputes": [],
+        "independentRecordCount": 1,
+        "extensions": [
+          "cl-fd-office-notice"
+        ],
+        "passover": {
+          "sounds_right": 0,
+          "dont_know": 0,
+          "dont_care": 0
+        },
+        "detailStatuses": [
+          {
+            "detail": {
+              "id": "cl-fd-office-year",
+              "kind": "date",
+              "value": "1931",
+              "excerpt": "opened in 1931"
+            },
+            "disputes": [
+              {
+                "id": "dsp-fd-office-year",
+                "type": "dispute",
+                "fromClaimId": "cl-dsp-fd-office-year",
+                "targetClaimId": "cl-fd-office",
+                "targetDetailId": "cl-fd-office-year",
+                "reasoning": "My uncle always said the office opened in 1934, the year he started, and he was one of the first.",
+                "proposedValue": "1934",
+                "contributorId": "c-luis",
+                "createdAt": "2026-02-05T18:00:00Z"
+              }
+            ],
+            "extensions": [],
+            "competingValues": [
+              {
+                "value": "1931",
+                "count": 1,
+                "contributorIds": [
+                  "c-ana"
+                ]
+              },
+              {
+                "value": "1934",
+                "count": 1,
+                "contributorIds": [
+                  "c-luis"
+                ]
+              }
+            ],
+            "weight": 0.5
+          },
+          {
+            "detail": {
+              "id": "cl-fd-office-person",
+              "kind": "person",
+              "value": "grandfather, clerk",
+              "excerpt": "my grandfather was a clerk"
+            },
+            "disputes": [],
+            "extensions": [
+              {
+                "id": "ext-fd-025",
+                "type": "extension",
+                "parentClaimId": "cl-fd-office",
+                "childClaimId": "cl-fd-office-notice",
+                "targetDetailId": "cl-fd-office-person",
+                "contributorId": "c-pau",
+                "createdAt": "2026-03-08T20:20:00Z"
+              }
+            ],
+            "competingValues": [
+              {
+                "value": "grandfather, clerk",
+                "count": 1,
+                "contributorIds": [
+                  "c-ana"
+                ]
+              }
+            ],
+            "weight": 1.75
+          }
+        ],
+        "score": {
+          "claimId": "cl-fd-office",
+          "score": 3.25,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 2
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0.75
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": -0.5
+            }
+          ],
+          "details": [
+            {
+              "detailId": "cl-fd-office-year",
+              "score": 0.5,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": -0.5
+                }
+              ]
+            },
+            {
+              "detailId": "cl-fd-office-person",
+              "score": 1.75,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0.75
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        "weight": 3.25,
+        "confidence": "contested"
+      },
+      {
+        "claim": {
+          "id": "cl-fd-office-notice",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-pau",
+          "sourceRecordId": "rec-fd-01",
+          "evidenceRecordIds": [
+            "rec-fd-07"
+          ],
+          "text": "The notice lists the first clerks hired for the office.",
+          "sourceLanguage": "en",
+          "details": [
+            {
+              "id": "cl-fd-office-notice-list",
+              "kind": "person",
+              "value": "first clerks listed",
+              "excerpt": "lists the first clerks"
+            }
+          ],
+          "sourceType": "documentary",
+          "createdAt": "2026-03-08T20:20:00Z",
+          "parentClaimId": "cl-fd-office",
+          "awaitingTranslation": false
+        },
+        "contributor": {
+          "id": "c-pau",
+          "displayName": "Pau (invented)",
+          "joinedAt": "2026-03-08T20:00:00Z",
+          "fictional": true,
+          "verification": "guest"
+        },
+        "sourceRecord": {
+          "id": "rec-fd-01",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-ana",
+          "text": "Two things I know about the depot from my grandfather, who worked there: the office at the front, and the loading dock along the tracks.",
+          "language": "en",
+          "submission": "published",
+          "media": [],
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
+          "createdAt": "2026-01-06T15:20:00Z"
+        },
+        "evidenceRecords": [
+          {
+            "id": "rec-fd-07",
+            "siteId": "site-freight-depot",
+            "contributorId": "c-pau",
+            "note": "A newspaper notice about the depot office opening.",
+            "submission": "published",
+            "media": [],
+            "link": {
+              "url": "https://example.org/archive/depot-office-notice",
+              "title": "Depot office opens (invented)",
+              "seenAt": "2026-03-08T20:05:00Z"
+            },
+            "choices": {
+              "rightToShare": true,
+              "studentAccess": true,
+              "public": "yes",
+              "location": "keep",
+              "mentionsPeople": "not_sure"
+            },
+            "termsVersion": "fixture-terms-0.1",
+            "createdAt": "2026-03-08T20:10:00Z"
+          }
+        ],
+        "translations": [],
+        "translationDisputes": [],
+        "independentRecordCount": 0,
+        "extensions": [],
+        "passover": {
+          "sounds_right": 0,
+          "dont_know": 0,
+          "dont_care": 0
+        },
+        "detailStatuses": [
+          {
+            "detail": {
+              "id": "cl-fd-office-notice-list",
+              "kind": "person",
+              "value": "first clerks listed",
+              "excerpt": "lists the first clerks"
+            },
+            "disputes": [],
+            "extensions": [],
+            "competingValues": [
+              {
+                "value": "first clerks listed",
+                "count": 1,
+                "contributorIds": [
+                  "c-pau"
+                ]
+              }
+            ],
+            "weight": 1
+          }
+        ],
+        "score": {
+          "claimId": "cl-fd-office-notice",
+          "score": 1.5,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0.5
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 0
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": 0
+            }
+          ],
+          "details": [
+            {
+              "detailId": "cl-fd-office-notice-list",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        "weight": 1.5,
+        "confidence": "single_source"
+      },
+      {
+        "claim": {
+          "id": "cl-fd-photo",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-luis",
+          "sourceRecordId": "rec-fd-03",
+          "evidenceRecordIds": [],
+          "text": "This photo shows the depot office in 1935, with my uncle standing by the door.",
+          "sourceLanguage": "en",
+          "details": [
+            {
+              "id": "cl-fd-photo-year",
+              "kind": "date",
+              "value": "1935",
+              "excerpt": "in 1935"
+            },
+            {
+              "id": "cl-fd-photo-person",
+              "kind": "person",
+              "value": "uncle by the door",
+              "excerpt": "my uncle standing by the door"
+            }
+          ],
+          "sourceType": "firsthand",
+          "createdAt": "2026-02-03T17:20:00Z",
+          "awaitingTranslation": false
+        },
+        "contributor": {
+          "id": "c-luis",
+          "displayName": "Luis (invented)",
+          "joinedAt": "2026-02-03T17:00:00Z",
+          "fictional": true,
+          "verification": "guest"
+        },
+        "sourceRecord": {
+          "id": "rec-fd-03",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-luis",
+          "note": "The depot office, about 1935. My uncle is the one by the door.",
+          "capturedLocation": {
+            "coordinates": [
+              -116.2094,
+              43.6145
+            ],
+            "method": "embedded",
+            "accuracyMetres": 65
+          },
+          "submission": "published",
+          "media": [
+            {
+              "id": "med-fd-03",
+              "recordId": "rec-fd-03",
+              "kind": "image",
+              "storageKey": "records/rec-fd-03/med-fd-03/office.jpg",
+              "contentType": "image/jpeg",
+              "byteSize": 2310000,
+              "processing": "ready",
+              "width": 3024,
+              "height": 2016,
+              "derivatives": [],
+              "createdAt": "2026-02-03T17:10:00Z"
+            }
+          ],
+          "collectionId": "col-fd-luis",
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
+          "createdAt": "2026-02-03T17:10:00Z"
+        },
+        "evidenceRecords": [],
+        "translations": [],
+        "translationDisputes": [],
+        "independentRecordCount": 0,
+        "extensions": [],
+        "passover": {
+          "sounds_right": 1,
+          "dont_know": 0,
+          "dont_care": 0
+        },
+        "detailStatuses": [
+          {
+            "detail": {
+              "id": "cl-fd-photo-year",
+              "kind": "date",
+              "value": "1935",
+              "excerpt": "in 1935"
+            },
+            "disputes": [],
+            "extensions": [],
+            "competingValues": [
+              {
+                "value": "1935",
+                "count": 1,
+                "contributorIds": [
+                  "c-luis"
+                ]
+              }
+            ],
+            "weight": 1
+          },
+          {
+            "detail": {
+              "id": "cl-fd-photo-person",
+              "kind": "person",
+              "value": "uncle by the door",
+              "excerpt": "my uncle standing by the door"
+            },
+            "disputes": [],
+            "extensions": [],
+            "competingValues": [
+              {
+                "value": "uncle by the door",
+                "count": 1,
+                "contributorIds": [
+                  "c-luis"
+                ]
+              }
+            ],
+            "weight": 1
+          }
+        ],
+        "score": {
+          "claimId": "cl-fd-photo",
+          "score": 1.05,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 0
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0.05
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": 0
+            }
+          ],
+          "details": [
+            {
+              "detailId": "cl-fd-photo-year",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "detailId": "cl-fd-photo-person",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        "weight": 1.05,
+        "confidence": "single_source"
+      },
+      {
+        "claim": {
+          "id": "cl-fd-dock",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-ana",
+          "sourceRecordId": "rec-fd-01",
+          "evidenceRecordIds": [],
+          "text": "The loading dock ran the length of the tracks, and in winter they kept a stove going on it.",
+          "sourceLanguage": "en",
+          "details": [
+            {
+              "id": "cl-fd-dock-place",
+              "kind": "place",
+              "value": "along the tracks",
+              "excerpt": "ran the length of the tracks"
+            },
+            {
+              "id": "cl-fd-dock-season",
+              "kind": "event",
+              "value": "stove in winter",
+              "excerpt": "in winter they kept a stove going"
+            }
+          ],
+          "sourceType": "family_oral",
+          "createdAt": "2026-01-06T15:30:00Z",
+          "awaitingTranslation": false
+        },
+        "contributor": {
+          "id": "c-ana",
+          "displayName": "Ana (invented)",
+          "joinedAt": "2026-01-06T15:02:00Z",
+          "fictional": true,
+          "verification": "guest"
+        },
+        "sourceRecord": {
+          "id": "rec-fd-01",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-ana",
+          "text": "Two things I know about the depot from my grandfather, who worked there: the office at the front, and the loading dock along the tracks.",
+          "language": "en",
+          "submission": "published",
+          "media": [],
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
+          "createdAt": "2026-01-06T15:20:00Z"
+        },
+        "evidenceRecords": [],
+        "translations": [],
+        "translationDisputes": [],
+        "independentRecordCount": 0,
+        "extensions": [],
+        "passover": {
+          "sounds_right": 0,
+          "dont_know": 0,
+          "dont_care": 0
+        },
+        "detailStatuses": [
+          {
+            "detail": {
+              "id": "cl-fd-dock-place",
+              "kind": "place",
+              "value": "along the tracks",
+              "excerpt": "ran the length of the tracks"
+            },
+            "disputes": [],
+            "extensions": [],
+            "competingValues": [
+              {
+                "value": "along the tracks",
+                "count": 1,
+                "contributorIds": [
+                  "c-ana"
+                ]
+              }
+            ],
+            "weight": 1
+          },
+          {
+            "detail": {
+              "id": "cl-fd-dock-season",
+              "kind": "event",
+              "value": "stove in winter",
+              "excerpt": "in winter they kept a stove going"
+            },
+            "disputes": [],
+            "extensions": [],
+            "competingValues": [
+              {
+                "value": "stove in winter",
+                "count": 1,
+                "contributorIds": [
+                  "c-ana"
+                ]
+              }
+            ],
+            "weight": 1
+          }
+        ],
+        "score": {
+          "claimId": "cl-fd-dock",
+          "score": 1,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 0
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": 0
+            }
+          ],
+          "details": [
+            {
+              "detailId": "cl-fd-dock-place",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "detailId": "cl-fd-dock-season",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        "weight": 1,
+        "confidence": "single_source"
+      },
+      {
+        "claim": {
+          "id": "cl-fd-prelot",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-ana",
+          "sourceRecordId": "rec-fd-02",
+          "evidenceRecordIds": [],
+          "text": "Before the depot there was a lumber yard on that lot, or so I was told.",
+          "sourceLanguage": "en",
+          "details": [
+            {
+              "id": "cl-fd-prelot-use",
+              "kind": "event",
+              "value": "lumber yard",
+              "excerpt": "a lumber yard on that lot"
+            }
+          ],
+          "sourceType": "family_oral",
+          "createdAt": "2026-01-07T02:05:00Z",
+          "awaitingTranslation": false
+        },
+        "contributor": {
+          "id": "c-ana",
+          "displayName": "Ana (invented)",
+          "joinedAt": "2026-01-06T15:02:00Z",
+          "fictional": true,
+          "verification": "guest"
+        },
+        "sourceRecord": {
+          "id": "rec-fd-02",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-ana",
+          "text": "One more thing, about what was on the lot before the depot.",
+          "language": "en",
+          "submission": "published",
+          "media": [],
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
+          "createdAt": "2026-01-07T02:00:00Z"
+        },
+        "evidenceRecords": [],
+        "translations": [],
+        "translationDisputes": [],
+        "independentRecordCount": 0,
+        "extensions": [],
+        "passover": {
+          "sounds_right": 0,
+          "dont_know": 0,
+          "dont_care": 0
+        },
+        "detailStatuses": [
+          {
+            "detail": {
+              "id": "cl-fd-prelot-use",
+              "kind": "event",
+              "value": "lumber yard",
+              "excerpt": "a lumber yard on that lot"
+            },
+            "disputes": [],
+            "extensions": [],
+            "competingValues": [
+              {
+                "value": "lumber yard",
+                "count": 1,
+                "contributorIds": [
+                  "c-ana"
+                ]
+              }
+            ],
+            "weight": 1
+          }
+        ],
+        "score": {
+          "claimId": "cl-fd-prelot",
+          "score": 1,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 0
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": 0
+            }
+          ],
+          "details": [
+            {
+              "detailId": "cl-fd-prelot-use",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        "weight": 1,
+        "confidence": "single_source"
+      },
+      {
+        "claim": {
+          "id": "cl-dsp-fd-office-year",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-luis",
+          "sourceRecordId": "rec-fd-01",
+          "evidenceRecordIds": [],
+          "text": "My uncle always said the office opened in 1934, the year he started, and he was one of the first.",
+          "sourceLanguage": "en",
+          "details": [
+            {
+              "id": "cl-dsp-fd-office-year-value",
+              "kind": "date",
+              "value": "1934",
+              "excerpt": "1934"
+            }
+          ],
+          "sourceType": "family_oral",
+          "createdAt": "2026-02-05T18:00:00Z",
+          "disputedClaimId": "cl-fd-office",
+          "awaitingTranslation": false
+        },
+        "contributor": {
+          "id": "c-luis",
+          "displayName": "Luis (invented)",
+          "joinedAt": "2026-02-03T17:00:00Z",
+          "fictional": true,
+          "verification": "guest"
+        },
+        "sourceRecord": {
+          "id": "rec-fd-01",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-ana",
+          "text": "Two things I know about the depot from my grandfather, who worked there: the office at the front, and the loading dock along the tracks.",
+          "language": "en",
+          "submission": "published",
+          "media": [],
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
+          "createdAt": "2026-01-06T15:20:00Z"
+        },
+        "evidenceRecords": [],
+        "translations": [],
+        "translationDisputes": [],
+        "independentRecordCount": 0,
+        "extensions": [],
+        "passover": {
+          "sounds_right": 0,
+          "dont_know": 0,
+          "dont_care": 0
+        },
+        "detailStatuses": [
+          {
+            "detail": {
+              "id": "cl-dsp-fd-office-year-value",
+              "kind": "date",
+              "value": "1934",
+              "excerpt": "1934"
+            },
+            "disputes": [],
+            "extensions": [],
+            "competingValues": [
+              {
+                "value": "1934",
+                "count": 1,
+                "contributorIds": [
+                  "c-luis"
+                ]
+              }
+            ],
+            "weight": 1
+          }
+        ],
+        "score": {
+          "claimId": "cl-dsp-fd-office-year",
+          "score": 1,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 0
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": 0
+            }
+          ],
+          "details": [
+            {
+              "detailId": "cl-dsp-fd-office-year-value",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        "weight": 1,
+        "confidence": "single_source"
+      },
+      {
+        "claim": {
+          "id": "cl-fd-ines",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-ines",
+          "sourceRecordId": "rec-fd-04",
+          "evidenceRecordIds": [],
+          "text": "My grandfather worked on the dock. For us the depot was a workplace, not a station.",
+          "sourceLanguage": "fr",
+          "sourceLanguageText": "Mon grand-père travaillait au quai. Pour nous, le dépôt était un lieu de travail, pas une gare.",
+          "sourceWindow": {
+            "start": 18,
+            "end": 70
+          },
+          "details": [],
+          "sourceType": "family_oral",
+          "createdAt": "2026-02-10T19:20:00Z",
+          "awaitingTranslation": false
+        },
+        "contributor": {
+          "id": "c-ines",
+          "displayName": "Inès (invented)",
+          "joinedAt": "2026-02-10T19:00:00Z",
+          "fictional": true,
+          "verification": "guest"
+        },
+        "sourceRecord": {
+          "id": "rec-fd-04",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-ines",
+          "note": "Mon grand-père parle du dépôt.",
+          "language": "fr",
+          "submission": "published",
+          "media": [
+            {
+              "id": "med-fd-04",
+              "recordId": "rec-fd-04",
+              "kind": "audio",
+              "storageKey": "records/rec-fd-04/med-fd-04/grand-pere.m4a",
+              "contentType": "audio/mp4",
+              "byteSize": 28400000,
+              "processing": "ready",
+              "durationSeconds": 1800,
+              "derivatives": [],
+              "createdAt": "2026-02-10T19:10:00Z"
+            }
+          ],
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
+          "createdAt": "2026-02-10T19:10:00Z"
+        },
+        "evidenceRecords": [],
+        "translations": [
+          {
+            "id": "tl-fd-01",
+            "claimId": "cl-fd-ines",
+            "contributorId": "c-mara",
+            "targetLanguage": "en",
+            "text": "My grandfather worked on the dock. For us the depot was a workplace, not a station.",
+            "createdAt": "2026-03-02T17:15:00Z"
+          }
+        ],
+        "translationDisputes": [],
+        "independentRecordCount": 0,
+        "extensions": [],
+        "passover": {
+          "sounds_right": 0,
+          "dont_know": 1,
+          "dont_care": 0
+        },
+        "detailStatuses": [],
+        "score": {
+          "claimId": "cl-fd-ines",
+          "score": 1,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 0
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": 0
+            }
+          ],
+          "details": []
+        },
+        "weight": 1,
+        "confidence": "single_source"
+      }
+    ],
+    "contributors": [
+      {
+        "id": "c-ana",
+        "displayName": "Ana (invented)",
+        "joinedAt": "2026-01-06T15:02:00Z",
+        "fictional": true,
+        "verification": "guest"
+      },
+      {
+        "id": "c-luis",
+        "displayName": "Luis (invented)",
+        "joinedAt": "2026-02-03T17:00:00Z",
+        "fictional": true,
+        "verification": "guest"
+      },
+      {
+        "id": "c-ines",
+        "displayName": "Inès (invented)",
+        "joinedAt": "2026-02-10T19:00:00Z",
+        "fictional": true,
+        "verification": "guest"
+      },
+      {
+        "id": "c-mara",
+        "displayName": "Mara (invented)",
+        "joinedAt": "2026-03-02T17:00:00Z",
+        "fictional": true,
+        "verification": "guest"
+      },
+      {
+        "id": "c-pau",
+        "displayName": "Pau (invented)",
+        "joinedAt": "2026-03-08T20:00:00Z",
+        "fictional": true,
+        "verification": "guest"
+      }
+    ],
+    "records": [
+      {
+        "id": "rec-fd-01",
+        "siteId": "site-freight-depot",
+        "contributorId": "c-ana",
+        "text": "Two things I know about the depot from my grandfather, who worked there: the office at the front, and the loading dock along the tracks.",
+        "language": "en",
+        "submission": "published",
+        "media": [],
+        "choices": {
+          "rightToShare": true,
+          "studentAccess": true,
+          "public": "yes",
+          "location": "keep",
+          "mentionsPeople": "not_sure"
+        },
+        "termsVersion": "fixture-terms-0.1",
+        "createdAt": "2026-01-06T15:20:00Z"
+      },
+      {
+        "id": "rec-fd-02",
+        "siteId": "site-freight-depot",
+        "contributorId": "c-ana",
+        "text": "One more thing, about what was on the lot before the depot.",
+        "language": "en",
+        "submission": "published",
+        "media": [],
+        "choices": {
+          "rightToShare": true,
+          "studentAccess": true,
+          "public": "yes",
+          "location": "keep",
+          "mentionsPeople": "not_sure"
+        },
+        "termsVersion": "fixture-terms-0.1",
+        "createdAt": "2026-01-07T02:00:00Z"
+      },
+      {
+        "id": "rec-fd-03",
+        "siteId": "site-freight-depot",
+        "contributorId": "c-luis",
+        "note": "The depot office, about 1935. My uncle is the one by the door.",
+        "capturedLocation": {
+          "coordinates": [
+            -116.2094,
+            43.6145
+          ],
+          "method": "embedded",
+          "accuracyMetres": 65
+        },
+        "submission": "published",
+        "media": [
+          {
+            "id": "med-fd-03",
+            "recordId": "rec-fd-03",
+            "kind": "image",
+            "storageKey": "records/rec-fd-03/med-fd-03/office.jpg",
+            "contentType": "image/jpeg",
+            "byteSize": 2310000,
+            "processing": "ready",
+            "width": 3024,
+            "height": 2016,
+            "derivatives": [],
+            "createdAt": "2026-02-03T17:10:00Z"
+          }
+        ],
+        "collectionId": "col-fd-luis",
+        "choices": {
+          "rightToShare": true,
+          "studentAccess": true,
+          "public": "yes",
+          "location": "keep",
+          "mentionsPeople": "not_sure"
+        },
+        "termsVersion": "fixture-terms-0.1",
+        "createdAt": "2026-02-03T17:10:00Z"
+      },
+      {
+        "id": "rec-fd-04",
+        "siteId": "site-freight-depot",
+        "contributorId": "c-ines",
+        "note": "Mon grand-père parle du dépôt.",
+        "language": "fr",
+        "submission": "published",
+        "media": [
+          {
+            "id": "med-fd-04",
+            "recordId": "rec-fd-04",
+            "kind": "audio",
+            "storageKey": "records/rec-fd-04/med-fd-04/grand-pere.m4a",
+            "contentType": "audio/mp4",
+            "byteSize": 28400000,
+            "processing": "ready",
+            "durationSeconds": 1800,
+            "derivatives": [],
+            "createdAt": "2026-02-10T19:10:00Z"
+          }
+        ],
+        "choices": {
+          "rightToShare": true,
+          "studentAccess": true,
+          "public": "yes",
+          "location": "keep",
+          "mentionsPeople": "not_sure"
+        },
+        "termsVersion": "fixture-terms-0.1",
+        "createdAt": "2026-02-10T19:10:00Z"
+      },
+      {
+        "id": "rec-fd-07",
+        "siteId": "site-freight-depot",
+        "contributorId": "c-pau",
+        "note": "A newspaper notice about the depot office opening.",
+        "submission": "published",
+        "media": [],
+        "link": {
+          "url": "https://example.org/archive/depot-office-notice",
+          "title": "Depot office opens (invented)",
+          "seenAt": "2026-03-08T20:05:00Z"
+        },
+        "choices": {
+          "rightToShare": true,
+          "studentAccess": true,
+          "public": "yes",
+          "location": "keep",
+          "mentionsPeople": "not_sure"
+        },
+        "termsVersion": "fixture-terms-0.1",
+        "createdAt": "2026-03-08T20:10:00Z"
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-fd-luis",
+        "contributorId": "c-luis",
+        "recordIds": [
+          "rec-fd-03"
+        ],
+        "note": "Two photos from my uncle's album, kept because he worked there.",
+        "createdAt": "2026-02-03T17:10:00Z"
+      }
+    ],
+    "standings": [
+      {
+        "contributorId": "c-ana",
+        "firstContributionAt": "2026-01-06T15:20:00Z",
+        "lastContributionAt": "2026-02-12T16:02:00Z",
+        "recordsSubmitted": 2,
+        "claimsAuthored": 3,
+        "claimsCorroborated": 1,
+        "claimsDisputed": 1,
+        "disputesRaised": 0,
+        "disputesRaisedWithAlternative": 0,
+        "soundsRightGiven": 1,
+        "translationsContributed": 0,
+        "transcriptsContributed": 0,
+        "flagsRaised": 0
+      },
+      {
+        "contributorId": "c-luis",
+        "firstContributionAt": "2026-02-03T17:10:00Z",
+        "lastContributionAt": "2026-02-05T18:00:00Z",
+        "recordsSubmitted": 1,
+        "claimsAuthored": 1,
+        "claimsCorroborated": 0,
+        "claimsDisputed": 0,
+        "disputesRaised": 1,
+        "disputesRaisedWithAlternative": 1,
+        "soundsRightGiven": 0,
+        "translationsContributed": 0,
+        "transcriptsContributed": 0,
+        "flagsRaised": 0
+      },
+      {
+        "contributorId": "c-ines",
+        "firstContributionAt": "2026-02-10T19:10:00Z",
+        "lastContributionAt": "2026-03-04T18:00:00Z",
+        "recordsSubmitted": 1,
+        "claimsAuthored": 1,
+        "claimsCorroborated": 0,
+        "claimsDisputed": 0,
+        "disputesRaised": 0,
+        "disputesRaisedWithAlternative": 0,
+        "soundsRightGiven": 0,
+        "translationsContributed": 0,
+        "transcriptsContributed": 1,
+        "flagsRaised": 0
+      },
+      {
+        "contributorId": "c-mara",
+        "firstContributionAt": "2026-03-02T17:15:00Z",
+        "lastContributionAt": "2026-03-02T17:15:00Z",
+        "recordsSubmitted": 0,
+        "claimsAuthored": 0,
+        "claimsCorroborated": 0,
+        "claimsDisputed": 0,
+        "disputesRaised": 0,
+        "disputesRaisedWithAlternative": 0,
+        "soundsRightGiven": 0,
+        "translationsContributed": 1,
+        "transcriptsContributed": 0,
+        "flagsRaised": 0
+      },
+      {
+        "contributorId": "c-pau",
+        "firstContributionAt": "2026-03-08T20:10:00Z",
+        "lastContributionAt": "2026-03-08T20:20:00Z",
+        "recordsSubmitted": 1,
+        "claimsAuthored": 1,
+        "claimsCorroborated": 0,
+        "claimsDisputed": 0,
+        "disputesRaised": 0,
+        "disputesRaisedWithAlternative": 0,
+        "soundsRightGiven": 0,
+        "translationsContributed": 0,
+        "transcriptsContributed": 0,
+        "flagsRaised": 0
+      }
+    ],
+    "transcripts": [
+      {
+        "id": "ts-fd-01",
+        "recordId": "rec-fd-04",
+        "contributorId": "c-ines",
+        "language": "fr",
+        "text": "Mon grand-père travaillait au quai. Pour nous, le dépôt était un lieu de travail, pas une gare.",
+        "method": "human",
+        "window": {
+          "start": 18,
+          "end": 70
+        },
+        "createdAt": "2026-03-04T18:00:00Z"
+      }
+    ],
+    "flags": [],
+    "integrity": {
+      "totalClaims": 7,
+      "independentContributors": 4,
+      "corroborationDepth": 0.14285714285714285,
+      "activeDisputes": 1,
+      "datedClaims": 3,
+      "awaitingTranslation": 0,
+      "overall": 61
+    },
+    "sections": [],
+    "compositions": [],
+    "eventIdsApplied": [
+      "fd-001",
+      "fd-002",
+      "fd-003",
+      "fd-004",
+      "fd-005",
+      "fd-006",
+      "fd-007",
+      "fd-010",
+      "fd-011",
+      "fd-012",
+      "fd-013",
+      "fd-014",
+      "fd-015",
+      "fd-016",
+      "fd-017",
+      "fd-018",
+      "fd-020",
+      "fd-021",
+      "fd-022",
+      "fd-023",
+      "fd-024",
+      "fd-025"
+    ],
+    "eventIdsSincePrevious": [
+      "fd-020",
+      "fd-021",
+      "fd-022",
+      "fd-023",
+      "fd-024",
+      "fd-025"
+    ]
+  },
+  {
+    "stateId": "t3",
+    "label": "Competing renderings, a reconciliation candidate, an open report",
+    "asOf": "2026-04-30T23:59:59Z",
+    "site": {
+      "id": "site-freight-depot",
+      "slug": "freight-depot",
+      "name": "The Freight Depot",
+      "aka": [
+        "the depot",
+        "the old warehouse"
+      ],
+      "coordinates": [
+        -116.2089,
+        43.6141
+      ],
+      "address": "1 Depot Row (invented)",
+      "city": "Boise, Idaho",
+      "coordinatePrecision": "approximate"
+    },
+    "claims": [
+      {
+        "claim": {
+          "id": "cl-fd-office",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-ana",
+          "sourceRecordId": "rec-fd-01",
+          "evidenceRecordIds": [],
+          "text": "The depot office opened in 1931, and my grandfather was a clerk there from the start.",
+          "sourceLanguage": "en",
+          "details": [
+            {
+              "id": "cl-fd-office-year",
+              "kind": "date",
+              "value": "1931",
+              "excerpt": "opened in 1931"
+            },
+            {
+              "id": "cl-fd-office-person",
+              "kind": "person",
+              "value": "grandfather, clerk",
+              "excerpt": "my grandfather was a clerk"
+            }
+          ],
+          "sourceType": "family_oral",
+          "createdAt": "2026-01-06T15:22:00Z",
+          "awaitingTranslation": false
+        },
+        "contributor": {
+          "id": "c-ana",
+          "displayName": "Ana (invented)",
+          "joinedAt": "2026-01-06T15:02:00Z",
+          "fictional": true,
+          "verification": "guest"
+        },
+        "sourceRecord": {
+          "id": "rec-fd-01",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-ana",
+          "text": "Two things I know about the depot from my grandfather, who worked there: the office at the front, and the loading dock along the tracks.",
+          "language": "en",
+          "submission": "published",
+          "media": [],
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
+          "createdAt": "2026-01-06T15:20:00Z"
+        },
+        "evidenceRecords": [],
+        "translations": [],
+        "translationDisputes": [],
+        "independentRecordCount": 1,
+        "extensions": [
+          "cl-fd-office-notice"
+        ],
+        "passover": {
+          "sounds_right": 0,
+          "dont_know": 0,
+          "dont_care": 1
+        },
+        "detailStatuses": [
+          {
+            "detail": {
+              "id": "cl-fd-office-year",
+              "kind": "date",
+              "value": "1931",
+              "excerpt": "opened in 1931"
+            },
+            "disputes": [
+              {
+                "id": "dsp-fd-office-year",
+                "type": "dispute",
+                "fromClaimId": "cl-dsp-fd-office-year",
+                "targetClaimId": "cl-fd-office",
+                "targetDetailId": "cl-fd-office-year",
+                "reasoning": "My uncle always said the office opened in 1934, the year he started, and he was one of the first.",
+                "proposedValue": "1934",
+                "contributorId": "c-luis",
+                "createdAt": "2026-02-05T18:00:00Z"
+              }
+            ],
+            "extensions": [],
+            "competingValues": [
+              {
+                "value": "1931",
+                "count": 1,
+                "contributorIds": [
+                  "c-ana"
+                ]
+              },
+              {
+                "value": "1934",
+                "count": 1,
+                "contributorIds": [
+                  "c-luis"
+                ]
+              }
+            ],
+            "weight": 0.5
+          },
+          {
+            "detail": {
+              "id": "cl-fd-office-person",
+              "kind": "person",
+              "value": "grandfather, clerk",
+              "excerpt": "my grandfather was a clerk"
+            },
+            "disputes": [],
+            "extensions": [
+              {
+                "id": "ext-fd-025",
+                "type": "extension",
+                "parentClaimId": "cl-fd-office",
+                "childClaimId": "cl-fd-office-notice",
+                "targetDetailId": "cl-fd-office-person",
+                "contributorId": "c-pau",
+                "createdAt": "2026-03-08T20:20:00Z"
+              }
+            ],
+            "competingValues": [
+              {
+                "value": "grandfather, clerk",
+                "count": 1,
+                "contributorIds": [
+                  "c-ana"
+                ]
+              }
+            ],
+            "weight": 1.75
+          }
+        ],
+        "score": {
+          "claimId": "cl-fd-office",
+          "score": 3.25,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 2
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0.75
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": -0.5
+            }
+          ],
+          "details": [
+            {
+              "detailId": "cl-fd-office-year",
+              "score": 0.5,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": -0.5
+                }
+              ]
+            },
+            {
+              "detailId": "cl-fd-office-person",
+              "score": 1.75,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0.75
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        "weight": 3.25,
+        "confidence": "contested"
+      },
+      {
+        "claim": {
+          "id": "cl-fd-office-notice",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-pau",
+          "sourceRecordId": "rec-fd-01",
+          "evidenceRecordIds": [
+            "rec-fd-07"
+          ],
+          "text": "The notice lists the first clerks hired for the office.",
+          "sourceLanguage": "en",
+          "details": [
+            {
+              "id": "cl-fd-office-notice-list",
+              "kind": "person",
+              "value": "first clerks listed",
+              "excerpt": "lists the first clerks"
+            }
+          ],
+          "sourceType": "documentary",
+          "createdAt": "2026-03-08T20:20:00Z",
+          "parentClaimId": "cl-fd-office",
+          "awaitingTranslation": false
+        },
+        "contributor": {
+          "id": "c-pau",
+          "displayName": "Pau (invented)",
+          "joinedAt": "2026-03-08T20:00:00Z",
+          "fictional": true,
+          "verification": "guest"
+        },
+        "sourceRecord": {
+          "id": "rec-fd-01",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-ana",
+          "text": "Two things I know about the depot from my grandfather, who worked there: the office at the front, and the loading dock along the tracks.",
+          "language": "en",
+          "submission": "published",
+          "media": [],
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
+          "createdAt": "2026-01-06T15:20:00Z"
+        },
+        "evidenceRecords": [
+          {
+            "id": "rec-fd-07",
+            "siteId": "site-freight-depot",
+            "contributorId": "c-pau",
+            "note": "A newspaper notice about the depot office opening.",
+            "submission": "published",
+            "media": [],
+            "link": {
+              "url": "https://example.org/archive/depot-office-notice",
+              "title": "Depot office opens (invented)",
+              "seenAt": "2026-03-08T20:05:00Z"
+            },
+            "choices": {
+              "rightToShare": true,
+              "studentAccess": true,
+              "public": "yes",
+              "location": "keep",
+              "mentionsPeople": "not_sure"
+            },
+            "termsVersion": "fixture-terms-0.1",
+            "createdAt": "2026-03-08T20:10:00Z"
+          }
+        ],
+        "translations": [],
+        "translationDisputes": [],
+        "independentRecordCount": 0,
+        "extensions": [],
+        "passover": {
+          "sounds_right": 0,
+          "dont_know": 0,
+          "dont_care": 0
+        },
+        "detailStatuses": [
+          {
+            "detail": {
+              "id": "cl-fd-office-notice-list",
+              "kind": "person",
+              "value": "first clerks listed",
+              "excerpt": "lists the first clerks"
+            },
+            "disputes": [],
+            "extensions": [],
+            "competingValues": [
+              {
+                "value": "first clerks listed",
+                "count": 1,
+                "contributorIds": [
+                  "c-pau"
+                ]
+              }
+            ],
+            "weight": 1
+          }
+        ],
+        "score": {
+          "claimId": "cl-fd-office-notice",
+          "score": 1.5,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0.5
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 0
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": 0
+            }
+          ],
+          "details": [
+            {
+              "detailId": "cl-fd-office-notice-list",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        "weight": 1.5,
+        "confidence": "single_source"
+      },
+      {
+        "claim": {
+          "id": "cl-fd-dock",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-ana",
+          "sourceRecordId": "rec-fd-01",
+          "evidenceRecordIds": [],
+          "text": "The loading dock ran the length of the tracks, and in winter they kept a stove going on it.",
+          "sourceLanguage": "en",
+          "details": [
+            {
+              "id": "cl-fd-dock-place",
+              "kind": "place",
+              "value": "along the tracks",
+              "excerpt": "ran the length of the tracks"
+            },
+            {
+              "id": "cl-fd-dock-season",
+              "kind": "event",
+              "value": "stove in winter",
+              "excerpt": "in winter they kept a stove going"
+            }
+          ],
+          "sourceType": "family_oral",
+          "createdAt": "2026-01-06T15:30:00Z",
+          "awaitingTranslation": false
+        },
+        "contributor": {
+          "id": "c-ana",
+          "displayName": "Ana (invented)",
+          "joinedAt": "2026-01-06T15:02:00Z",
+          "fictional": true,
+          "verification": "guest"
+        },
+        "sourceRecord": {
+          "id": "rec-fd-01",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-ana",
+          "text": "Two things I know about the depot from my grandfather, who worked there: the office at the front, and the loading dock along the tracks.",
+          "language": "en",
+          "submission": "published",
+          "media": [],
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
+          "createdAt": "2026-01-06T15:20:00Z"
+        },
+        "evidenceRecords": [],
+        "translations": [],
+        "translationDisputes": [],
+        "independentRecordCount": 0,
+        "extensions": [],
+        "passover": {
+          "sounds_right": 1,
+          "dont_know": 0,
+          "dont_care": 0
+        },
+        "detailStatuses": [
+          {
+            "detail": {
+              "id": "cl-fd-dock-place",
+              "kind": "place",
+              "value": "along the tracks",
+              "excerpt": "ran the length of the tracks"
+            },
+            "disputes": [],
+            "extensions": [],
+            "competingValues": [
+              {
+                "value": "along the tracks",
+                "count": 1,
+                "contributorIds": [
+                  "c-ana"
+                ]
+              }
+            ],
+            "weight": 1
+          },
+          {
+            "detail": {
+              "id": "cl-fd-dock-season",
+              "kind": "event",
+              "value": "stove in winter",
+              "excerpt": "in winter they kept a stove going"
+            },
+            "disputes": [],
+            "extensions": [],
+            "competingValues": [
+              {
+                "value": "stove in winter",
+                "count": 1,
+                "contributorIds": [
+                  "c-ana"
+                ]
+              }
+            ],
+            "weight": 1
+          }
+        ],
+        "score": {
+          "claimId": "cl-fd-dock",
+          "score": 1.05,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 0
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0.05
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": 0
+            }
+          ],
+          "details": [
+            {
+              "detailId": "cl-fd-dock-place",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "detailId": "cl-fd-dock-season",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        "weight": 1.05,
+        "confidence": "single_source"
+      },
+      {
+        "claim": {
+          "id": "cl-fd-both",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-mara",
+          "sourceRecordId": "rec-fd-05",
+          "evidenceRecordIds": [],
+          "text": "The office may have opened in 1931 in a back room and moved to the front in 1934.",
+          "sourceLanguage": "en",
+          "details": [
+            {
+              "id": "cl-fd-both-first",
+              "kind": "date",
+              "value": "1931",
+              "excerpt": "opened in 1931 in a back room"
+            },
+            {
+              "id": "cl-fd-both-second",
+              "kind": "date",
+              "value": "1934",
+              "excerpt": "moved to the front in 1934"
+            }
+          ],
+          "sourceType": "community_oral",
+          "createdAt": "2026-04-05T18:05:00Z",
+          "awaitingTranslation": false
+        },
+        "contributor": {
+          "id": "c-mara",
+          "displayName": "Mara (invented)",
+          "joinedAt": "2026-03-02T17:00:00Z",
+          "fictional": true,
+          "verification": "guest"
+        },
+        "sourceRecord": {
+          "id": "rec-fd-05",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-mara",
+          "text": "I think both dates people give for the office can be right.",
+          "language": "en",
+          "submission": "published",
+          "media": [],
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
+          "createdAt": "2026-04-05T18:00:00Z"
+        },
+        "evidenceRecords": [],
+        "translations": [],
+        "translationDisputes": [],
+        "independentRecordCount": 0,
+        "extensions": [],
+        "passover": {
+          "sounds_right": 1,
+          "dont_know": 0,
+          "dont_care": 0
+        },
+        "detailStatuses": [
+          {
+            "detail": {
+              "id": "cl-fd-both-first",
+              "kind": "date",
+              "value": "1931",
+              "excerpt": "opened in 1931 in a back room"
+            },
+            "disputes": [],
+            "extensions": [],
+            "competingValues": [
+              {
+                "value": "1931",
+                "count": 1,
+                "contributorIds": [
+                  "c-mara"
+                ]
+              }
+            ],
+            "weight": 1
+          },
+          {
+            "detail": {
+              "id": "cl-fd-both-second",
+              "kind": "date",
+              "value": "1934",
+              "excerpt": "moved to the front in 1934"
+            },
+            "disputes": [],
+            "extensions": [],
+            "competingValues": [
+              {
+                "value": "1934",
+                "count": 1,
+                "contributorIds": [
+                  "c-mara"
+                ]
+              }
+            ],
+            "weight": 1
+          }
+        ],
+        "score": {
+          "claimId": "cl-fd-both",
+          "score": 1.05,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 0
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0.05
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": 0
+            }
+          ],
+          "details": [
+            {
+              "detailId": "cl-fd-both-first",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "detailId": "cl-fd-both-second",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        "weight": 1.05,
+        "confidence": "single_source"
+      },
+      {
+        "claim": {
+          "id": "cl-dsp-fd-office-year",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-luis",
+          "sourceRecordId": "rec-fd-01",
+          "evidenceRecordIds": [],
+          "text": "My uncle always said the office opened in 1934, the year he started, and he was one of the first.",
+          "sourceLanguage": "en",
+          "details": [
+            {
+              "id": "cl-dsp-fd-office-year-value",
+              "kind": "date",
+              "value": "1934",
+              "excerpt": "1934"
+            }
+          ],
+          "sourceType": "family_oral",
+          "createdAt": "2026-02-05T18:00:00Z",
+          "disputedClaimId": "cl-fd-office",
+          "awaitingTranslation": false
+        },
+        "contributor": {
+          "id": "c-luis",
+          "displayName": "Luis (invented)",
+          "joinedAt": "2026-02-03T17:00:00Z",
+          "fictional": true,
+          "verification": "guest"
+        },
+        "sourceRecord": {
+          "id": "rec-fd-01",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-ana",
+          "text": "Two things I know about the depot from my grandfather, who worked there: the office at the front, and the loading dock along the tracks.",
+          "language": "en",
+          "submission": "published",
+          "media": [],
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
+          "createdAt": "2026-01-06T15:20:00Z"
+        },
+        "evidenceRecords": [],
+        "translations": [],
+        "translationDisputes": [],
+        "independentRecordCount": 0,
+        "extensions": [],
+        "passover": {
+          "sounds_right": 0,
+          "dont_know": 0,
+          "dont_care": 0
+        },
+        "detailStatuses": [
+          {
+            "detail": {
+              "id": "cl-dsp-fd-office-year-value",
+              "kind": "date",
+              "value": "1934",
+              "excerpt": "1934"
+            },
+            "disputes": [],
+            "extensions": [],
+            "competingValues": [
+              {
+                "value": "1934",
+                "count": 1,
+                "contributorIds": [
+                  "c-luis"
+                ]
+              }
+            ],
+            "weight": 1
+          }
+        ],
+        "score": {
+          "claimId": "cl-dsp-fd-office-year",
+          "score": 1,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 0
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": 0
+            }
+          ],
+          "details": [
+            {
+              "detailId": "cl-dsp-fd-office-year-value",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        "weight": 1,
+        "confidence": "single_source"
+      },
+      {
+        "claim": {
+          "id": "cl-fd-ines",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-ines",
+          "sourceRecordId": "rec-fd-04",
+          "evidenceRecordIds": [],
+          "text": "My grandfather worked on the dock. For us the depot was a workplace, not a station.",
+          "sourceLanguage": "fr",
+          "sourceLanguageText": "Mon grand-père travaillait au quai. Pour nous, le dépôt était un lieu de travail, pas une gare.",
+          "sourceWindow": {
+            "start": 18,
+            "end": 70
+          },
+          "details": [],
+          "sourceType": "family_oral",
+          "createdAt": "2026-02-10T19:20:00Z",
+          "awaitingTranslation": false
+        },
+        "contributor": {
+          "id": "c-ines",
+          "displayName": "Inès (invented)",
+          "joinedAt": "2026-02-10T19:00:00Z",
+          "fictional": true,
+          "verification": "guest"
+        },
+        "sourceRecord": {
+          "id": "rec-fd-04",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-ines",
+          "note": "Mon grand-père parle du dépôt.",
+          "language": "fr",
+          "submission": "published",
+          "media": [
+            {
+              "id": "med-fd-04",
+              "recordId": "rec-fd-04",
+              "kind": "audio",
+              "storageKey": "records/rec-fd-04/med-fd-04/grand-pere.m4a",
+              "contentType": "audio/mp4",
+              "byteSize": 28400000,
+              "processing": "ready",
+              "durationSeconds": 1800,
+              "derivatives": [],
+              "createdAt": "2026-02-10T19:10:00Z"
+            }
+          ],
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
+          "createdAt": "2026-02-10T19:10:00Z"
+        },
+        "evidenceRecords": [],
+        "translations": [
+          {
+            "id": "tl-fd-01",
+            "claimId": "cl-fd-ines",
+            "contributorId": "c-mara",
+            "targetLanguage": "en",
+            "text": "My grandfather worked on the dock. For us the depot was a workplace, not a station.",
+            "createdAt": "2026-03-02T17:15:00Z"
+          },
+          {
+            "id": "tl-fd-02",
+            "claimId": "cl-fd-ines",
+            "contributorId": "c-pau",
+            "targetLanguage": "en",
+            "text": "My grandfather worked at the platform. To us the depot was where people worked, not a railway station.",
+            "createdAt": "2026-04-01T16:00:00Z"
+          }
+        ],
+        "translationDisputes": [
+          {
+            "id": "tdis-fd-01",
+            "translationId": "tl-fd-01",
+            "contributorId": "c-rob",
+            "reasoning": "\"Quai\" here is the platform along the tracks, not a dock on water. The first rendering suggests a harbour.",
+            "createdAt": "2026-04-02T17:10:00Z"
+          }
+        ],
+        "independentRecordCount": 0,
+        "extensions": [],
+        "passover": {
+          "sounds_right": 0,
+          "dont_know": 1,
+          "dont_care": 0
+        },
+        "detailStatuses": [],
+        "score": {
+          "claimId": "cl-fd-ines",
+          "score": 1,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 0
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": 0
+            }
+          ],
+          "details": []
+        },
+        "weight": 1,
+        "confidence": "single_source"
+      },
+      {
+        "claim": {
+          "id": "cl-dsp-fd-photo-year",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-rob",
+          "sourceRecordId": "rec-fd-03",
+          "evidenceRecordIds": [],
+          "text": "The sign on the door in the photo is the one put up in 1938, so the photo is from 1938 or later.",
+          "sourceLanguage": "en",
+          "details": [
+            {
+              "id": "cl-dsp-fd-photo-year-value",
+              "kind": "date",
+              "value": "1938 or later",
+              "excerpt": "1938 or later"
+            }
+          ],
+          "sourceType": "firsthand",
+          "createdAt": "2026-04-14T17:00:00Z",
+          "disputedClaimId": "cl-fd-photo",
+          "awaitingTranslation": false
+        },
+        "contributor": {
+          "id": "c-rob",
+          "displayName": "Rob (invented)",
+          "joinedAt": "2026-04-02T17:00:00Z",
+          "fictional": true,
+          "verification": "guest"
+        },
+        "sourceRecord": {
+          "id": "rec-fd-03",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-luis",
+          "note": "The depot office, about 1935. My uncle is the one by the door.",
+          "capturedLocation": {
+            "coordinates": [
+              -116.2094,
+              43.6145
+            ],
+            "method": "embedded",
+            "accuracyMetres": 65
+          },
+          "submission": "published",
+          "media": [
+            {
+              "id": "med-fd-03",
+              "recordId": "rec-fd-03",
+              "kind": "image",
+              "storageKey": "records/rec-fd-03/med-fd-03/office.jpg",
+              "contentType": "image/jpeg",
+              "byteSize": 2310000,
+              "processing": "ready",
+              "width": 3024,
+              "height": 2016,
+              "derivatives": [],
+              "createdAt": "2026-02-03T17:10:00Z"
+            }
+          ],
+          "collectionId": "col-fd-luis",
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
+          "createdAt": "2026-02-03T17:10:00Z"
+        },
+        "evidenceRecords": [],
+        "translations": [],
+        "translationDisputes": [],
+        "independentRecordCount": 0,
+        "extensions": [],
+        "passover": {
+          "sounds_right": 0,
+          "dont_know": 0,
+          "dont_care": 0
+        },
+        "detailStatuses": [
+          {
+            "detail": {
+              "id": "cl-dsp-fd-photo-year-value",
+              "kind": "date",
+              "value": "1938 or later",
+              "excerpt": "1938 or later"
+            },
+            "disputes": [],
+            "extensions": [],
+            "competingValues": [
+              {
+                "value": "1938 or later",
+                "count": 1,
+                "contributorIds": [
+                  "c-rob"
+                ]
+              }
+            ],
+            "weight": 1
+          }
+        ],
+        "score": {
+          "claimId": "cl-dsp-fd-photo-year",
+          "score": 1,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 0
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": 0
+            }
+          ],
+          "details": [
+            {
+              "detailId": "cl-dsp-fd-photo-year-value",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        "weight": 1,
+        "confidence": "single_source"
+      },
+      {
+        "claim": {
+          "id": "cl-dsp-fd-prelot",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-rob",
+          "sourceRecordId": "rec-fd-02",
+          "evidenceRecordIds": [],
+          "text": "The lot was a coal yard, not a lumber yard. The coal chutes are still under the dock.",
+          "sourceLanguage": "en",
+          "details": [
+            {
+              "id": "cl-dsp-fd-prelot-value",
+              "kind": "event",
+              "value": "coal yard",
+              "excerpt": "coal yard"
+            }
+          ],
+          "sourceType": "family_oral",
+          "createdAt": "2026-04-15T17:00:00Z",
+          "disputedClaimId": "cl-fd-prelot",
+          "awaitingTranslation": false
+        },
+        "contributor": {
+          "id": "c-rob",
+          "displayName": "Rob (invented)",
+          "joinedAt": "2026-04-02T17:00:00Z",
+          "fictional": true,
+          "verification": "guest"
+        },
+        "sourceRecord": {
+          "id": "rec-fd-02",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-ana",
+          "text": "One more thing, about what was on the lot before the depot.",
+          "language": "en",
+          "submission": "published",
+          "media": [],
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
+          "createdAt": "2026-01-07T02:00:00Z"
+        },
+        "evidenceRecords": [],
+        "translations": [],
+        "translationDisputes": [],
+        "independentRecordCount": 0,
+        "extensions": [],
+        "passover": {
+          "sounds_right": 0,
+          "dont_know": 0,
+          "dont_care": 0
+        },
+        "detailStatuses": [
+          {
+            "detail": {
+              "id": "cl-dsp-fd-prelot-value",
+              "kind": "event",
+              "value": "coal yard",
+              "excerpt": "coal yard"
+            },
+            "disputes": [],
+            "extensions": [],
+            "competingValues": [
+              {
+                "value": "coal yard",
+                "count": 1,
+                "contributorIds": [
+                  "c-rob"
+                ]
+              }
+            ],
+            "weight": 1
+          }
+        ],
+        "score": {
+          "claimId": "cl-dsp-fd-prelot",
+          "score": 1,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 0
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": 0
+            }
+          ],
+          "details": [
+            {
+              "detailId": "cl-dsp-fd-prelot-value",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        "weight": 1,
+        "confidence": "single_source"
+      },
+      {
+        "claim": {
+          "id": "cl-fd-photo",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-luis",
+          "sourceRecordId": "rec-fd-03",
+          "evidenceRecordIds": [],
+          "text": "This photo shows the depot office in 1935, with my uncle standing by the door.",
+          "sourceLanguage": "en",
+          "details": [
+            {
+              "id": "cl-fd-photo-year",
+              "kind": "date",
+              "value": "1935",
+              "excerpt": "in 1935"
+            },
+            {
+              "id": "cl-fd-photo-person",
+              "kind": "person",
+              "value": "uncle by the door",
+              "excerpt": "my uncle standing by the door"
+            }
+          ],
+          "sourceType": "firsthand",
+          "createdAt": "2026-02-03T17:20:00Z",
+          "awaitingTranslation": false
+        },
+        "contributor": {
+          "id": "c-luis",
+          "displayName": "Luis (invented)",
+          "joinedAt": "2026-02-03T17:00:00Z",
+          "fictional": true,
+          "verification": "guest"
+        },
+        "sourceRecord": {
+          "id": "rec-fd-03",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-luis",
+          "note": "The depot office, about 1935. My uncle is the one by the door.",
+          "capturedLocation": {
+            "coordinates": [
+              -116.2094,
+              43.6145
+            ],
+            "method": "embedded",
+            "accuracyMetres": 65
+          },
+          "submission": "published",
+          "media": [
+            {
+              "id": "med-fd-03",
+              "recordId": "rec-fd-03",
+              "kind": "image",
+              "storageKey": "records/rec-fd-03/med-fd-03/office.jpg",
+              "contentType": "image/jpeg",
+              "byteSize": 2310000,
+              "processing": "ready",
+              "width": 3024,
+              "height": 2016,
+              "derivatives": [],
+              "createdAt": "2026-02-03T17:10:00Z"
+            }
+          ],
+          "collectionId": "col-fd-luis",
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
+          "createdAt": "2026-02-03T17:10:00Z"
+        },
+        "evidenceRecords": [],
+        "translations": [],
+        "translationDisputes": [],
+        "independentRecordCount": 0,
+        "extensions": [],
+        "passover": {
+          "sounds_right": 2,
+          "dont_know": 0,
+          "dont_care": 0
+        },
+        "detailStatuses": [
+          {
+            "detail": {
+              "id": "cl-fd-photo-year",
+              "kind": "date",
+              "value": "1935",
+              "excerpt": "in 1935"
+            },
+            "disputes": [
+              {
+                "id": "dsp-fd-photo-year",
+                "type": "dispute",
+                "fromClaimId": "cl-dsp-fd-photo-year",
+                "targetClaimId": "cl-fd-photo",
+                "targetDetailId": "cl-fd-photo-year",
+                "reasoning": "The sign on the door in the photo is the one put up in 1938, so the photo is from 1938 or later.",
+                "proposedValue": "1938 or later",
+                "contributorId": "c-rob",
+                "createdAt": "2026-04-14T17:00:00Z"
+              }
+            ],
+            "extensions": [],
+            "competingValues": [
+              {
+                "value": "1935",
+                "count": 1,
+                "contributorIds": [
+                  "c-luis"
+                ]
+              },
+              {
+                "value": "1938 or later",
+                "count": 1,
+                "contributorIds": [
+                  "c-rob"
+                ]
+              }
+            ],
+            "weight": 0.5
+          },
+          {
+            "detail": {
+              "id": "cl-fd-photo-person",
+              "kind": "person",
+              "value": "uncle by the door",
+              "excerpt": "my uncle standing by the door"
+            },
+            "disputes": [],
+            "extensions": [],
+            "competingValues": [
+              {
+                "value": "uncle by the door",
+                "count": 1,
+                "contributorIds": [
+                  "c-luis"
+                ]
+              }
+            ],
+            "weight": 1
+          }
+        ],
+        "score": {
+          "claimId": "cl-fd-photo",
+          "score": 0.6000000000000001,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 0
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0.1
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": -0.5
+            }
+          ],
+          "details": [
+            {
+              "detailId": "cl-fd-photo-year",
+              "score": 0.5,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": -0.5
+                }
+              ]
+            },
+            {
+              "detailId": "cl-fd-photo-person",
+              "score": 1,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        },
+        "weight": 0.6000000000000001,
+        "confidence": "contested"
+      },
+      {
+        "claim": {
+          "id": "cl-fd-prelot",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-ana",
+          "sourceRecordId": "rec-fd-02",
+          "evidenceRecordIds": [],
+          "text": "Before the depot there was a lumber yard on that lot, or so I was told.",
+          "sourceLanguage": "en",
+          "details": [
+            {
+              "id": "cl-fd-prelot-use",
+              "kind": "event",
+              "value": "lumber yard",
+              "excerpt": "a lumber yard on that lot"
+            }
+          ],
+          "sourceType": "family_oral",
+          "createdAt": "2026-01-07T02:05:00Z",
+          "awaitingTranslation": false
+        },
+        "contributor": {
+          "id": "c-ana",
+          "displayName": "Ana (invented)",
+          "joinedAt": "2026-01-06T15:02:00Z",
+          "fictional": true,
+          "verification": "guest"
+        },
+        "sourceRecord": {
+          "id": "rec-fd-02",
+          "siteId": "site-freight-depot",
+          "contributorId": "c-ana",
+          "text": "One more thing, about what was on the lot before the depot.",
+          "language": "en",
+          "submission": "published",
+          "media": [],
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
+          "createdAt": "2026-01-07T02:00:00Z"
+        },
+        "evidenceRecords": [],
+        "translations": [],
+        "translationDisputes": [],
+        "independentRecordCount": 0,
+        "extensions": [],
+        "passover": {
+          "sounds_right": 0,
+          "dont_know": 0,
+          "dont_care": 0
+        },
+        "detailStatuses": [
+          {
+            "detail": {
+              "id": "cl-fd-prelot-use",
+              "kind": "event",
+              "value": "lumber yard",
+              "excerpt": "a lumber yard on that lot"
+            },
+            "disputes": [
+              {
+                "id": "dsp-fd-prelot",
+                "type": "dispute",
+                "fromClaimId": "cl-dsp-fd-prelot",
+                "targetClaimId": "cl-fd-prelot",
+                "targetDetailId": "cl-fd-prelot-use",
+                "reasoning": "The lot was a coal yard, not a lumber yard. The coal chutes are still under the dock.",
+                "proposedValue": "coal yard",
+                "contributorId": "c-rob",
+                "createdAt": "2026-04-15T17:00:00Z"
+              }
+            ],
+            "extensions": [],
+            "competingValues": [
+              {
+                "value": "lumber yard",
+                "count": 1,
+                "contributorIds": [
+                  "c-ana"
+                ]
+              },
+              {
+                "value": "coal yard",
+                "count": 1,
+                "contributorIds": [
+                  "c-rob"
+                ]
+              }
+            ],
+            "weight": 0.5
+          }
+        ],
+        "score": {
+          "claimId": "cl-fd-prelot",
+          "score": 0.5,
+          "terms": [
+            {
+              "family": "content",
+              "name": "base",
+              "value": 1
+            },
+            {
+              "family": "content",
+              "name": "evidence attached",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "independent support",
+              "value": 0
+            },
+            {
+              "family": "behaviour",
+              "name": "sounds right",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "extensions",
+              "value": 0
+            },
+            {
+              "family": "content",
+              "name": "disputes",
+              "value": -0.5
+            }
+          ],
+          "details": [
+            {
+              "detailId": "cl-fd-prelot-use",
+              "score": 0.5,
+              "terms": [
+                {
+                  "family": "content",
+                  "name": "base",
+                  "value": 1
+                },
+                {
+                  "family": "content",
+                  "name": "extensions",
+                  "value": 0
+                },
+                {
+                  "family": "content",
+                  "name": "disputes",
+                  "value": -0.5
+                }
+              ]
+            }
+          ]
+        },
+        "weight": 0.5,
+        "confidence": "contested"
+      }
+    ],
+    "contributors": [
+      {
+        "id": "c-ana",
+        "displayName": "Ana (invented)",
+        "joinedAt": "2026-01-06T15:02:00Z",
+        "fictional": true,
+        "verification": "guest"
+      },
+      {
+        "id": "c-luis",
+        "displayName": "Luis (invented)",
+        "joinedAt": "2026-02-03T17:00:00Z",
+        "fictional": true,
+        "verification": "guest"
+      },
+      {
+        "id": "c-ines",
+        "displayName": "Inès (invented)",
+        "joinedAt": "2026-02-10T19:00:00Z",
+        "fictional": true,
+        "verification": "guest"
+      },
+      {
+        "id": "c-mara",
+        "displayName": "Mara (invented)",
+        "joinedAt": "2026-03-02T17:00:00Z",
+        "fictional": true,
+        "verification": "guest"
+      },
+      {
+        "id": "c-pau",
+        "displayName": "Pau (invented)",
+        "joinedAt": "2026-03-08T20:00:00Z",
+        "fictional": true,
+        "verification": "guest"
+      },
+      {
+        "id": "c-rob",
+        "displayName": "Rob (invented)",
+        "joinedAt": "2026-04-02T17:00:00Z",
+        "fictional": true,
+        "verification": "guest"
+      }
+    ],
+    "records": [
+      {
+        "id": "rec-fd-01",
+        "siteId": "site-freight-depot",
+        "contributorId": "c-ana",
+        "text": "Two things I know about the depot from my grandfather, who worked there: the office at the front, and the loading dock along the tracks.",
+        "language": "en",
+        "submission": "published",
+        "media": [],
+        "choices": {
+          "rightToShare": true,
+          "studentAccess": true,
+          "public": "yes",
+          "location": "keep",
+          "mentionsPeople": "not_sure"
+        },
+        "termsVersion": "fixture-terms-0.1",
+        "createdAt": "2026-01-06T15:20:00Z"
+      },
+      {
+        "id": "rec-fd-02",
+        "siteId": "site-freight-depot",
+        "contributorId": "c-ana",
+        "text": "One more thing, about what was on the lot before the depot.",
+        "language": "en",
+        "submission": "published",
+        "media": [],
+        "choices": {
+          "rightToShare": true,
+          "studentAccess": true,
+          "public": "yes",
+          "location": "keep",
+          "mentionsPeople": "not_sure"
+        },
+        "termsVersion": "fixture-terms-0.1",
+        "createdAt": "2026-01-07T02:00:00Z"
+      },
+      {
+        "id": "rec-fd-03",
+        "siteId": "site-freight-depot",
+        "contributorId": "c-luis",
+        "note": "The depot office, about 1935. My uncle is the one by the door.",
+        "capturedLocation": {
+          "coordinates": [
+            -116.2094,
+            43.6145
+          ],
+          "method": "embedded",
+          "accuracyMetres": 65
+        },
+        "submission": "published",
+        "media": [
+          {
+            "id": "med-fd-03",
+            "recordId": "rec-fd-03",
+            "kind": "image",
+            "storageKey": "records/rec-fd-03/med-fd-03/office.jpg",
+            "contentType": "image/jpeg",
+            "byteSize": 2310000,
+            "processing": "ready",
+            "width": 3024,
+            "height": 2016,
+            "derivatives": [],
+            "createdAt": "2026-02-03T17:10:00Z"
+          }
+        ],
+        "collectionId": "col-fd-luis",
+        "choices": {
+          "rightToShare": true,
+          "studentAccess": true,
+          "public": "yes",
+          "location": "keep",
+          "mentionsPeople": "not_sure"
+        },
+        "termsVersion": "fixture-terms-0.1",
+        "createdAt": "2026-02-03T17:10:00Z"
+      },
+      {
+        "id": "rec-fd-04",
+        "siteId": "site-freight-depot",
+        "contributorId": "c-ines",
+        "note": "Mon grand-père parle du dépôt.",
+        "language": "fr",
+        "submission": "published",
+        "media": [
+          {
+            "id": "med-fd-04",
+            "recordId": "rec-fd-04",
+            "kind": "audio",
+            "storageKey": "records/rec-fd-04/med-fd-04/grand-pere.m4a",
+            "contentType": "audio/mp4",
+            "byteSize": 28400000,
+            "processing": "ready",
+            "durationSeconds": 1800,
+            "derivatives": [],
+            "createdAt": "2026-02-10T19:10:00Z"
+          }
+        ],
+        "choices": {
+          "rightToShare": true,
+          "studentAccess": true,
+          "public": "yes",
+          "location": "keep",
+          "mentionsPeople": "not_sure"
+        },
+        "termsVersion": "fixture-terms-0.1",
+        "createdAt": "2026-02-10T19:10:00Z"
+      },
+      {
+        "id": "rec-fd-07",
+        "siteId": "site-freight-depot",
+        "contributorId": "c-pau",
+        "note": "A newspaper notice about the depot office opening.",
+        "submission": "published",
+        "media": [],
+        "link": {
+          "url": "https://example.org/archive/depot-office-notice",
+          "title": "Depot office opens (invented)",
+          "seenAt": "2026-03-08T20:05:00Z"
+        },
+        "choices": {
+          "rightToShare": true,
+          "studentAccess": true,
+          "public": "yes",
+          "location": "keep",
+          "mentionsPeople": "not_sure"
+        },
+        "termsVersion": "fixture-terms-0.1",
+        "createdAt": "2026-03-08T20:10:00Z"
+      },
+      {
+        "id": "rec-fd-05",
+        "siteId": "site-freight-depot",
+        "contributorId": "c-mara",
+        "text": "I think both dates people give for the office can be right.",
+        "language": "en",
+        "submission": "published",
+        "media": [],
+        "choices": {
+          "rightToShare": true,
+          "studentAccess": true,
+          "public": "yes",
+          "location": "keep",
+          "mentionsPeople": "not_sure"
+        },
+        "termsVersion": "fixture-terms-0.1",
+        "createdAt": "2026-04-05T18:00:00Z"
+      },
+      {
+        "id": "rec-fd-08",
+        "siteId": "site-freight-depot",
+        "contributorId": "c-luis",
+        "note": "The loading dock, from the same album.",
+        "submission": "published",
+        "media": [
+          {
+            "id": "med-fd-08",
+            "recordId": "rec-fd-08",
+            "kind": "image",
+            "storageKey": "records/rec-fd-08/med-fd-08/dock.jpg",
+            "contentType": "image/jpeg",
+            "byteSize": 1980000,
+            "processing": "ready",
+            "width": 2800,
+            "height": 1900,
+            "derivatives": [],
+            "createdAt": "2026-04-08T19:00:00Z"
+          }
+        ],
+        "collectionId": "col-fd-luis",
+        "choices": {
+          "rightToShare": true,
+          "studentAccess": true,
+          "public": "yes",
+          "location": "keep",
+          "mentionsPeople": "not_sure"
+        },
+        "termsVersion": "fixture-terms-0.1",
+        "createdAt": "2026-04-08T19:00:00Z"
+      },
+      {
+        "id": "rec-fd-06",
+        "siteId": "site-freight-depot",
+        "contributorId": "c-ana",
+        "note": "Video of the dock before they tore the roof off.",
+        "submission": "published",
+        "media": [
+          {
+            "id": "med-fd-06",
+            "recordId": "rec-fd-06",
+            "kind": "video",
+            "storageKey": "records/rec-fd-06/med-fd-06/dock.mov",
+            "contentType": "video/quicktime",
+            "byteSize": 604000000,
+            "processing": "processing",
+            "derivatives": [],
+            "createdAt": "2026-04-10T20:00:00Z"
+          }
+        ],
+        "choices": {
+          "rightToShare": true,
+          "studentAccess": true,
+          "public": "yes",
+          "location": "keep",
+          "mentionsPeople": "not_sure"
+        },
+        "termsVersion": "fixture-terms-0.1",
+        "createdAt": "2026-04-10T20:00:00Z"
+      }
+    ],
+    "collections": [
+      {
+        "id": "col-fd-luis",
+        "contributorId": "c-luis",
+        "recordIds": [
+          "rec-fd-03",
+          "rec-fd-08"
+        ],
+        "note": "Two photos from my uncle's album, kept because he worked there.",
+        "createdAt": "2026-02-03T17:10:00Z"
+      }
+    ],
+    "standings": [
+      {
+        "contributorId": "c-ana",
+        "firstContributionAt": "2026-01-06T15:20:00Z",
+        "lastContributionAt": "2026-04-10T20:00:00Z",
+        "recordsSubmitted": 3,
+        "claimsAuthored": 3,
+        "claimsCorroborated": 1,
+        "claimsDisputed": 2,
+        "disputesRaised": 0,
+        "disputesRaisedWithAlternative": 0,
+        "soundsRightGiven": 1,
+        "translationsContributed": 0,
+        "transcriptsContributed": 0,
+        "flagsRaised": 0
+      },
+      {
+        "contributorId": "c-luis",
+        "firstContributionAt": "2026-02-03T17:10:00Z",
+        "lastContributionAt": "2026-04-08T19:00:00Z",
+        "recordsSubmitted": 2,
+        "claimsAuthored": 1,
+        "claimsCorroborated": 0,
+        "claimsDisputed": 1,
+        "disputesRaised": 1,
+        "disputesRaisedWithAlternative": 1,
+        "soundsRightGiven": 0,
+        "translationsContributed": 0,
+        "transcriptsContributed": 0,
+        "flagsRaised": 0
+      },
+      {
+        "contributorId": "c-ines",
+        "firstContributionAt": "2026-02-10T19:10:00Z",
+        "lastContributionAt": "2026-03-04T18:00:00Z",
+        "recordsSubmitted": 1,
+        "claimsAuthored": 1,
+        "claimsCorroborated": 0,
+        "claimsDisputed": 0,
+        "disputesRaised": 0,
+        "disputesRaisedWithAlternative": 0,
+        "soundsRightGiven": 0,
+        "translationsContributed": 0,
+        "transcriptsContributed": 1,
+        "flagsRaised": 0
+      },
+      {
+        "contributorId": "c-mara",
+        "firstContributionAt": "2026-03-02T17:15:00Z",
+        "lastContributionAt": "2026-04-16T15:04:00Z",
+        "recordsSubmitted": 1,
+        "claimsAuthored": 1,
+        "claimsCorroborated": 0,
+        "claimsDisputed": 0,
+        "disputesRaised": 0,
+        "disputesRaisedWithAlternative": 0,
+        "soundsRightGiven": 0,
+        "translationsContributed": 1,
+        "transcriptsContributed": 0,
+        "flagsRaised": 0
+      },
+      {
+        "contributorId": "c-pau",
+        "firstContributionAt": "2026-03-08T20:10:00Z",
+        "lastContributionAt": "2026-04-16T15:06:00Z",
+        "recordsSubmitted": 1,
+        "claimsAuthored": 1,
+        "claimsCorroborated": 0,
+        "claimsDisputed": 0,
+        "disputesRaised": 0,
+        "disputesRaisedWithAlternative": 0,
+        "soundsRightGiven": 1,
+        "translationsContributed": 1,
+        "transcriptsContributed": 0,
+        "flagsRaised": 0
+      },
+      {
+        "contributorId": "c-rob",
+        "firstContributionAt": "2026-04-12T16:00:00Z",
+        "lastContributionAt": "2026-04-16T15:02:00Z",
+        "recordsSubmitted": 0,
+        "claimsAuthored": 0,
+        "claimsCorroborated": 0,
+        "claimsDisputed": 0,
+        "disputesRaised": 2,
+        "disputesRaisedWithAlternative": 2,
+        "soundsRightGiven": 2,
+        "translationsContributed": 0,
+        "transcriptsContributed": 0,
+        "flagsRaised": 1
+      }
+    ],
+    "transcripts": [
+      {
+        "id": "ts-fd-01",
+        "recordId": "rec-fd-04",
+        "contributorId": "c-ines",
+        "language": "fr",
+        "text": "Mon grand-père travaillait au quai. Pour nous, le dépôt était un lieu de travail, pas une gare.",
+        "method": "human",
+        "window": {
+          "start": 18,
+          "end": 70
+        },
+        "createdAt": "2026-03-04T18:00:00Z"
+      }
+    ],
+    "flags": [
+      {
+        "id": "fl-fd-01",
+        "recordId": "rec-fd-04",
+        "contributorId": "c-rob",
+        "reason": "not_mine_to_share",
+        "reasoning": "There is a second voice on this recording from about 3:10. She did not know it was being kept, and someone should ask her.",
+        "status": "open",
+        "createdAt": "2026-04-12T16:00:00Z"
+      }
+    ],
+    "integrity": {
+      "totalClaims": 10,
+      "independentContributors": 6,
+      "corroborationDepth": 0.1,
+      "activeDisputes": 4,
+      "datedClaims": 5,
+      "awaitingTranslation": 0,
+      "overall": 89
+    },
+    "sections": [],
+    "compositions": [],
+    "eventIdsApplied": [
+      "fd-001",
+      "fd-002",
+      "fd-003",
+      "fd-004",
+      "fd-005",
+      "fd-006",
+      "fd-007",
+      "fd-010",
+      "fd-011",
+      "fd-012",
+      "fd-013",
+      "fd-014",
+      "fd-015",
+      "fd-016",
+      "fd-017",
+      "fd-018",
+      "fd-020",
+      "fd-021",
+      "fd-022",
+      "fd-023",
+      "fd-024",
+      "fd-025",
+      "fd-030",
+      "fd-031",
+      "fd-032",
+      "fd-033",
+      "fd-034",
+      "fd-035",
+      "fd-036",
+      "fd-037",
+      "fd-038",
+      "fd-039",
+      "fd-040",
+      "fd-041",
+      "fd-042",
+      "fd-043"
+    ],
+    "eventIdsSincePrevious": [
+      "fd-030",
+      "fd-031",
+      "fd-032",
+      "fd-033",
+      "fd-034",
+      "fd-035",
+      "fd-036",
+      "fd-037",
+      "fd-038",
+      "fd-039",
+      "fd-040",
+      "fd-041",
+      "fd-042",
+      "fd-043"
+    ]
+  }
+]
