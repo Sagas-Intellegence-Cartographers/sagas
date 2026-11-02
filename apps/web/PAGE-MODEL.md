@@ -24,7 +24,7 @@ The numbers match the pins in the wireframe.
    early. It never reads as failing.
 2. **What people handed over.** `records`. Whether a record is a source or
    evidence comes from the claims that use it (`sourceRecordId`,
-   `evidenceRecordIds`). A record with nothing claimed about it is complete.
+   `evidence`). A record with nothing claimed about it is complete.
 3. **Section heading.** `sections[].heading`. Invented for now. What a heading
    is derived from is open, and it should not change every time a claim
    arrives.
@@ -33,7 +33,7 @@ The numbers match the pins in the wireframe.
    passage at t2 uses wording both date readings fit, which is one way to do it.
 5. **The claims behind a phrase.** `spans[].claimIds`, and `detailIds` when the
    phrase is about one detail. Claims are ordered by `weight`, which is never
-   shown. For now weight is on the claim, and it is moving onto details. An
+   shown. Weight is on the claim and on each detail. An
    extension sits under the claim it adds to (`parentClaimId`). The detail's
    `excerpt` is highlighted in the claim's own words.
 6. **Two readings of one detail.** `detailStatuses[].competingValues`, in the
@@ -48,8 +48,8 @@ The numbers match the pins in the wireframe.
 - **t0.** A photograph and nothing claimed. There are no sections, so the page
   shows the record on its own and invites somebody who knows the place to add
   to it.
-- **t1.** One section. Every phrase in the passage leads to the same claim, at
-  a different detail.
+- **t1.** One section. Every phrase in the passage leads to the same claim. Nothing
+  has pointed at it yet, so it has no details.
 - **t2.** The year is disputed. The passage says "sometime in the 1950s", which
   both readings fit, and selecting it shows both readings side by side.
   "Mr. Ferris" leads to the claim and to the relative's extension under it.

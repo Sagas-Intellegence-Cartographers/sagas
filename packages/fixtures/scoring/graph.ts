@@ -13,7 +13,17 @@
  * comes out.
  */
 import { z } from "zod";
-import { claimScore, detailScore, scoreTerm } from "@sagas/contracts";
+
+import type { ClaimDetail } from "@sagas/contracts";
+import {
+  claimEvidence,
+  claimReference,
+  claimScore,
+  claimTarget,
+  detailId,
+  detailScore,
+  scoreTerm,
+} from "@sagas/contracts";
 
 const timestamp = z.string().datetime();
 
@@ -48,44 +58,35 @@ export const recordNode = z.object({
 });
 export type RecordNode = z.infer<typeof recordNode>;
 
-/** One part of a claim somebody can point at. */
-export const detail = z.object({
-  id: z.string(),
-  kind: z.enum(["date", "place", "person", "event", "quantity", "attribution"]),
-  value: z.string(),
-  excerpt: z.string(),
-});
-export type Detail = z.infer<typeof detail>;
-
 export const claimNode = z.object({
   id: z.string(),
   contributorId: z.string(),
   createdAt: timestamp,
   text: z.string(),
-  /** The record this claim was read out of. */
+  /** The record this claim's thread starts from. Claims with the same one are one thread. */
   sourceRecordId: z.string(),
-  /** The part of a recording the claim comes from, in seconds. Empty means all of it. */
-  sourceWindow: z.object({ start: z.number(), end: z.number() }).optional(),
+  /** What this claim points at: part of a record, or part of another claim. */
+  target: claimTarget,
   /**
    * True when the claim was given in another language and rendered. It must
    * never lower a score; the rules check that. There's no field for where a
    * contributor lives, so distance can't lower a score either.
    */
   translated: z.boolean().optional(),
-  details: z.array(detail),
+  /** Typed links inside the claim's text. Nothing scores them yet. */
+  references: z.array(claimReference),
   /**
-   * Records attached to back the claim up. `detailId` is optional because
-   * where evidence attaches is open: to the whole claim, or to the detail it
-   * supports, the way a claim points at a passage in its source record.
+   * Records attached to back the claim up. `excerpt` is for evidence that backs
+   * particular words in this claim's own text, and naming one makes those words a
+   * detail. If a claim targets an evidence record, that starts a new thread with
+   * that record as its source.
    */
-  evidence: z.array(
-    z.object({ recordId: z.string(), detailId: z.string().optional() }),
-  ),
+  evidence: z.array(claimEvidence),
 });
 export type ClaimNode = z.infer<typeof claimNode>;
 
 /**
- * A claim pointing at a detail of another claim. The people who write claims
+ * A claim pointing at an excerpt of another claim. The people who write claims
  * choose these targets, so the scorer never has to guess them from the words.
  * Resolution is left out until what it points at is decided.
  */
@@ -94,7 +95,7 @@ export const edge = z.discriminatedUnion("type", [
     type: z.literal("dispute"),
     fromClaimId: z.string(),
     toClaimId: z.string(),
-    toDetailId: z.string(),
+    excerpt: z.string().min(1),
     reason: z.string().min(1),
   }),
   z.object({
@@ -102,7 +103,7 @@ export const edge = z.discriminatedUnion("type", [
     fromClaimId: z.string(),
     toClaimId: z.string(),
     /** Optional only for an extension about the whole claim. */
-    toDetailId: z.string().optional(),
+    excerpt: z.string().min(1).optional(),
   }),
 ]);
 export type Edge = z.infer<typeof edge>;
@@ -143,6 +144,25 @@ export const scoringGraph = z.object({
 });
 export type ScoringGraph = z.infer<typeof scoringGraph>;
 
+/**
+ * A claim's details, worked out from what points at it: the excerpts other claims
+ * target, and any excerpt its own evidence names. The same words are the same
+ * detail, and a claim nothing points at has none. Your score has one result for
+ * each of these, with this id.
+ */
+export function detailsOf(graph: ScoringGraph, claimId: string): ClaimDetail[] {
+  const fromEdges = graph.edges.flatMap((e) =>
+    e.toClaimId === claimId && e.excerpt !== undefined ? [e.excerpt] : [],
+  );
+  const fromEvidence = (
+    graph.claims.find((c) => c.id === claimId)?.evidence ?? []
+  ).flatMap((e) => (e.excerpt !== undefined ? [e.excerpt] : []));
+  return [...new Set([...fromEdges, ...fromEvidence])].map((excerpt) => ({
+    id: detailId(claimId, excerpt),
+    excerpt,
+  }));
+}
+
 /* ------------------------------------------------------------------ */
 /* What comes back                                                      */
 /* ------------------------------------------------------------------ */
@@ -150,19 +170,20 @@ export type ScoringGraph = z.infer<typeof scoringGraph>;
 /** The score shapes are the contract's, so a scorer and a page agree. */
 export const term = scoreTerm;
 export type Term = z.infer<typeof term>;
-export { detailScore, claimScore };
+export { detailScore, claimScore, detailId };
 export type DetailScore = z.infer<typeof detailScore>;
 export type ClaimScore = z.infer<typeof claimScore>;
 
 /**
- * Two details in different branches that look like the same thing. A match is
- * a proposal for a person to confirm. It never adds weight by itself.
+ * A detail of one claim that looks like what a claim in another thread says. For
+ * this semester a match counts straight away, with the weight coming from the
+ * records behind it. That's a temporary choice. Whether a person should confirm
+ * first is a question for next semester.
  */
 export const match = z.object({
   claimId: z.string(),
   detailId: z.string(),
   matchesClaimId: z.string(),
-  matchesDetailId: z.string(),
   similarity: z.number().min(0).max(1),
 });
 export type Match = z.infer<typeof match>;
@@ -176,6 +197,6 @@ export type ScoringResult = z.infer<typeof scoringResult>;
 /** What you build. */
 export interface Scorer {
   score(graph: ScoringGraph): ScoringResult;
-  /** How alike two pieces of detail text are, from 0 to 1. */
+  /** How alike two pieces of text are, from 0 to 1. */
   similarity(a: string, b: string): number;
 }

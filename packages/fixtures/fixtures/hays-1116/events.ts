@@ -53,9 +53,8 @@ export const events: ContributionEvent[] = [
     siteId: SITE,
     text: 'There was a bakery at 1116 before it became a print shop. You could smell it from the end of the block on a Saturday. There was a doorway through to the shop next door, cut through the party wall, and the two of them used it as one premises for a while.',
     sourceLanguage: 'en',
-    details: [
-      { id: 'el-hy-trade', kind: 'event', value: 'bakery', excerpt: 'There was a bakery at 1116' },
-      { id: 'el-hy-door', kind: 'place', value: 'doorway through the party wall', excerpt: 'a doorway through to the shop next door' },
+    references: [
+      { kind: 'place', excerpt: 'a doorway through to the shop next door', status: 'confirmed' },
     ],
     sourceType: 'community_oral',
   },

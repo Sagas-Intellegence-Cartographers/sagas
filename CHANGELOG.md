@@ -41,6 +41,101 @@ it. This is the most useful field in the entry.
 
 ---
 
+## v2.5.0 — 2026-11-02
+
+**Affects:** content layer · experience layer · intelligence layer
+
+**What:**
+- **A detail is now an excerpt that something points at.** `claim.details` is gone,
+  and nobody lists details in advance. The scoring graph's edges call the field
+  `excerpt`. A claim's details are the excerpts other
+  claims target, and any excerpt its own evidence names. A claim nothing points at
+  has none. `detailId(claimId, excerpt)` names one, and the same words are the same
+  detail. `claimDetail` is now just an id and an excerpt.
+- **A claim has a `target`:** the excerpt or stretch it points at, in a record or in
+  another claim (`claimTarget`). It replaces `sourceWindow`. Edges carry
+  `targetExcerpt` in place of `targetDetailId`.
+- **A claim has `references`:** typed links inside its own text, for a date, a place,
+  a person or a record (`claimReference`). Nothing scores them yet.
+- **`claim.evidence`** replaces `evidenceRecordIds`. Each entry has a `recordId`, and
+  can name an `excerpt` of the claim's own text.
+- **`detailScore`** now has `excerpt`, `contested`, `claimIds` and `evidenceRecordIds`,
+  so a result can say what's behind a detail and whether anyone disputes it.
+- **The scoring graph follows.** `detailsOf(graph, claimId)` in
+  `@sagas/fixtures/scoring` works out a claim's details. The builder's `.claim` takes
+  `text`, and `.dispute` and `.extend` take an excerpt. A match no longer names a
+  detail on the other side, because it compares a detail with what another claim says.
+- **Supporting records.** A transcript, a translation, or a record that describes
+  another one is now a record with `parent` set (`recordParent`: role, record or
+  claim, window, method). `supportingRecord` is a record with `parent` required.
+  `transcript` and `translation` are gone as separate shapes, and
+  `transcriptMethod` is now `renderingMethod`. `claimState.translations` holds
+  supporting records, and `graphState.transcripts` is gone, because transcripts
+  are in `graphState.records`.
+- **A link's preview.** `link.preview` holds a title and a short summary the
+  contributor types, and replaces `link.title`. Sagas fetches nothing from the
+  page. The freight depot's link has one.
+- **A record's `media` can arrive empty, null or missing.** A written record has no
+  files, and it comes out of validation as an empty list, so nothing that reads a
+  stored record changes.
+- **Ids are UUIDs the database generates, for every table.** `012_uuid_ids.sql`
+  changes `records.id` and shows the pattern. A media reference is its own row with
+  its own UUID, linked to its record by a foreign key. `POST /records` in the
+  scaffold no longer makes an id in code. `011_supporting_records.sql` adds `parent`.
+- **Backlogs.** `apps/capture-api/BACKLOG.md` has the content layer's first five
+  stories, three of them on transcripts and translations.
+  `apps/graph-api/BACKLOG.md` sets out the scorer's work as stories, S1 to S8, and
+  nearly every one is done when a group of rules passes. `apps/graph-api/src/walk.ts`
+  is a worked example of reading the graph by its edges, and `graph:view` writes a
+  page showing a graph and its scores. `packages/README.md` says
+  what each shared package holds and where the example places are.
+- **The scoring rules are rewritten for the new shape,** and almost every rule still
+  compares one graph with another. New ones: "words never carry weight", "worked example: the
+  cat", a detail exists only once something points at it, a result lists what's behind
+  each detail, evidence naming an excerpt backs only those words, matching on different
+  wording and in a reply deeper in another thread, and a thread leaning on the same
+  evidence gets less than one that brings its own. `packages/fixtures/capture/rules.ts`
+  has five new rules and a placeholder.
+- **Open questions.** New: "Who can make a home's location exact?", "Can a web page be
+  the record a conversation starts from?" and "Can a record be closed until a date?".
+  "How do you tell whether a reply is about what it targets?" now asks how a reply
+  selects an excerpt, how references get added, and whether overlapping excerpts are
+  one detail. "A transcript and a translation are the same kind of thing" moved to
+  `docs/CLOSED-QUESTIONS.md`, which also records the decision on details.
+
+**Why:** Asking someone to break what they said into assertions is too hard an ask, so
+a claim's details now come from what people actually point at, and a claim with no
+details has nothing for the scorer to check across threads. Transcripts and translations were separate shapes doing one
+job, and a recording describing a photograph needed the same link. A record with no
+files is normal, and one kind of key, generated in one place, keeps child tables and
+their foreign keys matching. This all lands at once so no layer builds on a shape
+that's about to change.
+
+**You need to:**
+- *content layer* — pull upstream and run `pnpm --filter @sagas/capture-api migrate`.
+  GET handlers have to accept a UUID and answer 404 for an id that isn't one, so change
+  any that read the id as a number. `012_uuid_ids.sql` fails if a row's id isn't a UUID,
+  which `db:reset` clears, or if a foreign key points at `records.id`, and its comment
+  says what to do about those. Give new tables a UUID key. A link's preview needs a
+  title and a summary, so a link with only an old title should have no preview for now. The new
+  rules in `capture/rules.ts` have no date on them. Read your backlog.
+- *experience layer* — pull upstream. `status.detail` now has only `id` and `excerpt`,
+  so `kind` and `value` are gone, and a claim nothing points at has an empty
+  `detailStatuses`. `competingValues` starts with the claim's own words.
+  Edges carry `targetExcerpt` in place of `targetDetailId`, and `spans[].detailIds` hold
+  the new ids, from `detailId(claimId, excerpt)`, only where something points at the
+  excerpt.
+  `claim.evidenceRecordIds` is now `claim.evidence`, a list with `recordId`, and
+  `claim.sourceWindow` is now `claim.target.window`. In `claimState.translations`,
+  `targetLanguage` is now `language`, and `claimId` moved to `parent.claimId`. Find
+  transcripts in `records`, where `parent.role` is `transcript`, with `recordId`,
+  `window` and `method` under `parent`. Translations are in `records` too, so filter on
+  `parent` if you list what somebody handed over. A link's title is now
+  `link.preview.title`. N7, N8 and N9 in your backlog no longer wait on this contract.
+- *intelligence layer* — pull upstream and read `apps/graph-api/BACKLOG.md`. Your
+  scorer returns one result per detail from `detailsOf`, and any test graphs of your
+  own need the builder's new shape.
+
 ## v2.4.0 — 2026-10-25
 
 **Affects:** content layer · experience layer · intelligence layer

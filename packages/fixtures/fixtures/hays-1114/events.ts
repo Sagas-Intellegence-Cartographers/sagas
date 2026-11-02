@@ -68,9 +68,8 @@ export const events: ContributionEvent[] = [
     siteId: SITE,
     text: 'The shoe repair at 1114 was there from the late fifties until it shut. The family lived above the shop.',
     sourceLanguage: 'en',
-    details: [
-      { id: 'el-ha-trade', kind: 'event', value: 'shoe repair', excerpt: 'The shoe repair at 1114' },
-      { id: 'el-ha-from', kind: 'date', value: 'late 1950s', excerpt: 'from the late fifties' },
+    references: [
+      { kind: 'date', excerpt: 'from the late fifties', status: 'confirmed' },
     ],
     sourceType: 'community_oral',
   },

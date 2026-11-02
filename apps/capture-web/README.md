@@ -33,7 +33,9 @@ what they decide not to say. None of that is visible from a test suite.
   location, and whether it mentions other people (`recordChoices` in the
   contract)
 - Handing over several records together as one collection, with a note
-- A web page as a record of its own
+- A web page as evidence for a claim, with a title and a short summary the
+  contributor types. Whether a web page can be the record a conversation starts
+  from is open (see `docs/DESIGN-QUESTIONS.md`)
 - Adding a transcript or a translation of part of somebody else's recording,
   one time window at a time
 - Reporting something, with the reason attached

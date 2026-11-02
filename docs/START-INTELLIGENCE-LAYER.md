@@ -212,7 +212,7 @@ answers to the rules in `packages/fixtures/scoring`. No database work yet.
 problems under it, against the rules in `packages/fixtures/scoring`.
 `docs/PHASE-2-INTELLIGENCE-LAYER.md` is the guide.
 
-**When the foundation needs it, the schema.** Design the tables for claims, details, edges
+**When the foundation needs it, the schema.** Design the tables for claims, edges
 and contributors, write the migrations, and move the graph out of memory and
 into Postgres. Spatial indexing lives here too.
 
@@ -243,12 +243,13 @@ and some things are missing entirely. Finding them is the assignment.
 
 Here are three gaps I know about. Where one has been decided, it says so.
 
-**Records and claims.** Your main focus is claims. How much your layer reads the
-records behind them is still being worked out. A record plays one
+**Records and claims.** Your main focus is claims. Your scorer never opens a record's
+file. It reads what the graph says about the record: who handed it over, its kind, its
+hash, and whether a recording has a transcript. A record plays one
 of two parts. As a *source record* it is where a conversation starts, and every
 claim in that conversation has it as `claim.sourceRecordId`. As an *evidence
 record* it is attached to a claim to back it up, through
-`claim.evidenceRecordIds`, which is optional. The same record can do both in
+`claim.evidence`, which is optional. The same record can do both in
 different conversations. Whether "conversation" becomes a named object is
 now in doubt. The argument against it is that the source record already groups
 the claims read from it. It is not decided, so build on the source record and
@@ -265,9 +266,9 @@ contract has a stand-in, `independentRecordCount`: the number of distinct record
 brought to back a claim. Agreement never counts.
 
 The stand-in cannot tell when two records share a source. Two cousins who heard
-one telling and each wrote it down look like two sources. Working out
-independence from the graph (the same record cited twice, the same branch,
-descent from the same root claim) is yours.
+one telling and each wrote it down look like two sources. I've built the
+counting part of independence from the graph myself. S5 in
+`apps/graph-api/BACKLOG.md` says what it covers and what's still yours.
 
 This project treats the edges as the strong signals. An extension pushes a claim up, a dispute
 pushes it down, and a resolution would lift both branches it reconciles, so a
@@ -294,13 +295,13 @@ pnpm --filter @sagas/graph-api test
 The scorer reads the graph for one place and returns a score for every claim
 and every detail, each with the terms it's made of. A claim's score is a
 composite: its details, its place in the graph, the evidence it carries,
-independent support from other branches, and behaviour. How those combine is
-yours.
+independent support from other branches, and behaviour (out of scope this
+semester, so it's a stretch goal). How those combine is yours.
 
-Every rule compares one graph with another, and none pins a number. Some are
+Almost every rule compares one graph with another, and none pins a score. Some are
 placeholders with their context written above them. The focus summary at the
-end of each run shows which areas are thin. Start with `similarity`, then
-independence, which is the area I've named as the focus.
+end of each run shows which areas are thin. Start with `similarity`. After
+that, `apps/graph-api/BACKLOG.md` puts the rest of the work in order.
 
 `apps/graph-api/src/index.ts` already serves `POST /score`, so you can run your
 scorer over HTTP from the start. `docs/PHASE-2-INTELLIGENCE-LAYER.md` has the

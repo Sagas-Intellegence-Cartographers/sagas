@@ -3,9 +3,9 @@
  *
  *   graph()
  *     .record('r1', { by: 'p1', kind: 'audio' })
- *     .claim('A', { by: 'p1', source: 'r1', details: { year: '1950', place: 'Mill Road' } })
- *     .claim('C', { by: 'p3', source: 'r3', details: { year: '1960' } })
- *     .dispute('C', 'A', 'year', "Mill Road wasn't built until 1958")
+ *     .claim('A', { by: 'p1', source: 'r1', text: '1950, Mill Road' })
+ *     .claim('C', { by: 'p3', source: 'r1', text: '1960' })
+ *     .dispute('C', 'A', '1950', "Mill Road wasn't built until 1958")
  *     .build();
  *
  * Profiles are created as guests the first time someone is named with `by`.
@@ -13,9 +13,10 @@
  * give it a time. Records named as a source or as evidence must be added with
  * `.record` first.
  */
+import type { ClaimReference } from "@sagas/contracts";
+
 import type {
   ClaimNode,
-  Detail,
   Edge,
   Passover,
   Profile,
@@ -26,21 +27,6 @@ import { scoringGraph } from "./graph";
 
 const START = Date.parse("2026-01-01T00:00:00Z");
 const MINUTE = 60_000;
-
-const KIND_BY_KEY: Record<string, Detail["kind"]> = {
-  year: "date",
-  date: "date",
-  when: "date",
-  place: "place",
-  road: "place",
-  where: "place",
-  person: "person",
-  who: "person",
-  name: "person",
-  count: "quantity",
-  quantity: "quantity",
-  said: "attribution",
-};
 
 interface RecordOptions {
   by: string;
@@ -56,16 +42,15 @@ interface RecordOptions {
 interface ClaimOptions {
   by: string;
   source: string;
-  /** Detail key to text. The key becomes the detail's id within this claim. */
-  details: Record<string, string>;
-  text?: string;
+  text: string;
   at?: string;
-  /** Record ids, or record id with the detail key it backs. */
-  evidence?: (string | { record: string; detail: string })[];
-  /** The part of a recording it comes from, in seconds. */
+  /** Record ids, or a record id with the excerpt of this claim it backs. */
+  evidence?: (string | { record: string; excerpt: string })[];
+  /** The stretch of its source record it points at, in seconds. */
   window?: { start: number; end: number };
   /** Given in another language and rendered. */
   translated?: boolean;
+  references?: ClaimReference[];
 }
 
 export class GraphBuilder {
@@ -107,53 +92,66 @@ export class GraphBuilder {
     return this;
   }
 
+  /** A first claim points at its source record. `extend` and `dispute` repoint it. */
   claim(id: string, o: ClaimOptions): this {
-    const details: Detail[] = Object.entries(o.details).map(([key, value]) => ({
-      id: key,
-      kind: KIND_BY_KEY[key] ?? "event",
-      value,
-      excerpt: value,
-    }));
     this.claims.push({
       id,
       contributorId: this.person(o.by),
       createdAt: this.tick(o.at),
-      text: o.text ?? Object.values(o.details).join(", "),
+      text: o.text,
       sourceRecordId: o.source,
-      ...(o.window !== undefined && { sourceWindow: o.window }),
+      target: {
+        sourceType: "record",
+        sourceId: o.source,
+        ...(o.window !== undefined && { window: o.window }),
+      },
+      references: o.references ?? [],
       ...(o.translated !== undefined && { translated: o.translated }),
-      details,
       evidence: (o.evidence ?? []).map((e) =>
         typeof e === "string"
           ? { recordId: e }
-          : { recordId: e.record, detailId: e.detail },
+          : { recordId: e.record, excerpt: e.excerpt },
       ),
     });
     return this;
   }
 
+  private point(fromClaimId: string, toClaimId: string, excerpt?: string) {
+    const from = this.claims.find((c) => c.id === fromClaimId);
+    if (from) {
+      from.target = {
+        sourceType: "claim",
+        sourceId: toClaimId,
+        ...(excerpt !== undefined && { excerpt }),
+      };
+    }
+  }
+
   dispute(
     fromClaimId: string,
     toClaimId: string,
-    toDetailId: string,
+    excerpt: string,
     reason: string,
   ): this {
+    this.point(fromClaimId, toClaimId, excerpt);
     this.edges.push({
       type: "dispute",
       fromClaimId,
       toClaimId,
-      toDetailId,
+      excerpt,
       reason,
     });
     return this;
   }
 
-  extend(fromClaimId: string, toClaimId: string, toDetailId?: string): this {
+  /** Leave out `excerpt` for an extension about the whole claim. */
+  extend(fromClaimId: string, toClaimId: string, excerpt?: string): this {
+    this.point(fromClaimId, toClaimId, excerpt);
     this.edges.push({
       type: "extension",
       fromClaimId,
       toClaimId,
-      ...(toDetailId !== undefined && { toDetailId }),
+      ...(excerpt !== undefined && { excerpt }),
     });
     return this;
   }
@@ -199,6 +197,12 @@ export class GraphBuilder {
       if (!claimIds.has(e.fromClaimId) || !claimIds.has(e.toClaimId)) {
         throw new Error(
           `${e.type} ${e.fromClaimId} -> ${e.toClaimId}: unknown claim`,
+        );
+      }
+      const target = this.claims.find((c) => c.id === e.toClaimId);
+      if (e.excerpt !== undefined && !target?.text.includes(e.excerpt)) {
+        throw new Error(
+          `${e.type} ${e.fromClaimId}: "${e.excerpt}" isn't in the text of ${e.toClaimId}`,
         );
       }
     }

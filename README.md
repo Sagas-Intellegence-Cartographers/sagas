@@ -1,6 +1,7 @@
 # Sagas
 
-A map-based archive of what people know about places.
+A map-based archive of what people know about places. The landing page is at
+[sagasproject.org](https://sagasproject.org/).
 
 Someone contributes what they know about a place, in whatever language they'd
 tell it in. It stays attached to that place and attributed to them. Other people
@@ -68,7 +69,7 @@ People make **claims** about records: assertions that can be compared across sou
 change the shape of that graph:
 
 - **Dispute.** "I disagree with this specific detail, because." Disputes
-  target a *detail* of a claim (a date, a place, a person). The rest of the
+  target a *detail* of a claim, the words they disagree with (a date, a place, a person). The rest of the
   claim stands, so a record can say "three disputes target the date; the location is
   undisputed." A dispute is a claim of its own, so it can carry evidence too.
   Disputes without reasoning are rejected.

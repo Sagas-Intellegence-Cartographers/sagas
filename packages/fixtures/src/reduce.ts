@@ -9,11 +9,12 @@
 
 import type { ContributionEvent } from './events';
 import type {
-  Claim, ClaimState, Collection, Contributor, DisputeEdge, DetailStatus,
+  Claim, ClaimDetail, ClaimState, Collection, Contributor, DisputeEdge, DetailStatus,
   ContributorStanding, EventId, ExtensionEdge, Flag, GraphState, IntegrityScore,
   MediaRef, Passover, PassoverKind, RecordChoices, Site, SourceRecord,
-  Transcript, Translation, TranslationDispute,
+  SupportingRecord, TranslationDispute,
 } from '@sagas/contracts';
+import { detailId } from '@sagas/contracts';
 import { classifyConfidence, standInScore } from './stand-in-score';
 
 /**
@@ -34,11 +35,11 @@ interface Accumulator {
   disputes: DisputeEdge[];
   extensions: ExtensionEdge[];
   passovers: Passover[];
-  translations: Translation[];
+  translations: SupportingRecord[];
   translationDisputes: TranslationDispute[];
   records: Map<string, SourceRecord>;
   collections: Map<string, Collection>;
-  transcripts: Transcript[];
+  transcripts: SupportingRecord[];
   flags: Flag[];
   applied: EventId[];
 }
@@ -76,10 +77,15 @@ function apply(acc: Accumulator, ev: ContributionEvent): void {
     case 'claim_submitted':
       acc.claims.set(ev.claimId, {
         id: ev.claimId, siteId: ev.siteId, contributorId: ev.actorId,
-        sourceRecordId: ev.sourceRecordId, evidenceRecordIds: ev.evidenceRecordIds ?? [],
+        sourceRecordId: ev.sourceRecordId, evidence: ev.evidence ?? [],
+        target: {
+          sourceType: 'record', sourceId: ev.sourceRecordId,
+          ...(ev.excerpt !== undefined && { excerpt: ev.excerpt }),
+          ...(ev.window !== undefined && { window: ev.window }),
+        },
         text: ev.text, sourceLanguage: ev.sourceLanguage,
-        sourceLanguageText: ev.sourceLanguageText, sourceWindow: ev.sourceWindow,
-        details: ev.details, sourceType: ev.sourceType,
+        sourceLanguageText: ev.sourceLanguageText,
+        references: ev.references ?? [], sourceType: ev.sourceType,
         createdAt: ev.at, awaitingTranslation: ev.awaitingTranslation ?? false,
       });
       return;
@@ -87,16 +93,20 @@ function apply(acc: Accumulator, ev: ContributionEvent): void {
     case 'claim_extended':
       acc.claims.set(ev.claimId, {
         id: ev.claimId, siteId: ev.siteId, contributorId: ev.actorId,
-        sourceRecordId: ev.sourceRecordId, evidenceRecordIds: ev.evidenceRecordIds ?? [],
+        sourceRecordId: ev.sourceRecordId, evidence: ev.evidence ?? [],
+        target: {
+          sourceType: 'claim', sourceId: ev.parentClaimId,
+          ...(ev.targetExcerpt !== undefined && { excerpt: ev.targetExcerpt }),
+        },
         text: ev.text, sourceLanguage: ev.sourceLanguage,
-        sourceLanguageText: ev.sourceLanguageText, sourceWindow: ev.sourceWindow,
-        details: ev.details, sourceType: ev.sourceType,
+        sourceLanguageText: ev.sourceLanguageText,
+        references: ev.references ?? [], sourceType: ev.sourceType,
         createdAt: ev.at, parentClaimId: ev.parentClaimId,
         awaitingTranslation: false,
       });
       acc.extensions.push({
         id: `ext-${ev.id}`, type: 'extension', parentClaimId: ev.parentClaimId,
-        childClaimId: ev.claimId, targetDetailId: ev.targetDetailId,
+        childClaimId: ev.claimId, targetExcerpt: ev.targetExcerpt,
         contributorId: ev.actorId, createdAt: ev.at,
       });
       return;
@@ -104,23 +114,20 @@ function apply(acc: Accumulator, ev: ContributionEvent): void {
     case 'claim_disputed': {
       const target = acc.claims.get(ev.targetClaimId);
       if (!target) throw new Error(`Dispute ${ev.edgeId} targets ${ev.targetClaimId}, which does not exist.`);
-      const targetDetail = target.details.find((d) => d.id === ev.targetDetailId);
-      if (!targetDetail) throw new Error(`Dispute ${ev.edgeId} targets detail ${ev.targetDetailId}, which ${ev.targetClaimId} does not have.`);
       acc.claims.set(ev.claimId, {
         id: ev.claimId, siteId: target.siteId, contributorId: ev.actorId,
         sourceRecordId: ev.sourceRecordId ?? target.sourceRecordId,
-        evidenceRecordIds: ev.evidenceRecordIds ?? [],
+        evidence: ev.evidence ?? [],
+        target: { sourceType: 'claim', sourceId: ev.targetClaimId, excerpt: ev.targetExcerpt },
         text: ev.text ?? ev.reasoning, sourceLanguage: 'en',
-        details: ev.details ?? (ev.proposedValue
-          ? [{ id: `${ev.claimId}-value`, kind: targetDetail.kind, value: ev.proposedValue, excerpt: ev.proposedValue }]
-          : []),
+        references: ev.references ?? [],
         sourceType: ev.sourceType ?? target.sourceType,
         createdAt: ev.at, disputedClaimId: ev.targetClaimId,
         awaitingTranslation: false,
       });
       acc.disputes.push({
         id: ev.edgeId, type: 'dispute', fromClaimId: ev.claimId, targetClaimId: ev.targetClaimId,
-        targetDetailId: ev.targetDetailId, reasoning: ev.reasoning,
+        targetExcerpt: ev.targetExcerpt, reasoning: ev.reasoning,
         proposedValue: ev.proposedValue, contributorId: ev.actorId,
         createdAt: ev.at,
       });
@@ -136,9 +143,11 @@ function apply(acc: Accumulator, ev: ContributionEvent): void {
 
     case 'translation_submitted': {
       acc.translations.push({
-        id: ev.translationId, claimId: ev.claimId,
-        contributorId: ev.actorId, targetLanguage: ev.targetLanguage,
-        text: ev.text, createdAt: ev.at,
+        id: ev.translationId, siteId: acc.site?.id ?? '', contributorId: ev.actorId,
+        text: ev.text, language: ev.targetLanguage, media: [],
+        parent: { role: 'translation', claimId: ev.claimId },
+        submission: 'published', choices: FIXTURE_CHOICES,
+        termsVersion: FIXTURE_TERMS_VERSION, createdAt: ev.at,
       });
       // A rendering exists, so the claim enters the graph. The original
       // is untouched; the first rendering supplies the reading text.
@@ -209,9 +218,11 @@ function apply(acc: Accumulator, ev: ContributionEvent): void {
 
     case 'transcript_submitted': {
       acc.transcripts.push({
-        id: ev.transcriptId, recordId: ev.recordId, contributorId: ev.actorId,
-        language: ev.language, text: ev.text, method: ev.method,
-        window: ev.window, createdAt: ev.at,
+        id: ev.transcriptId, siteId: acc.site?.id ?? '', contributorId: ev.actorId,
+        text: ev.text, language: ev.language, media: [],
+        parent: { role: 'transcript', recordId: ev.recordId, window: ev.window, method: ev.method },
+        submission: 'published', choices: FIXTURE_CHOICES,
+        termsVersion: FIXTURE_TERMS_VERSION, createdAt: ev.at,
       });
       const rec = acc.records.get(ev.recordId);
       if (rec && ev.submission) rec.submission = ev.submission;
@@ -241,9 +252,9 @@ function buildClaimState(
       `Claim ${claim.id} has source record ${claim.sourceRecordId}, which does not exist.`,
     );
   }
-  const evidenceRecords = claim.evidenceRecordIds.map((id) => {
-    const r = acc.records.get(id);
-    if (!r) throw new Error(`Claim ${claim.id} cites evidence ${id}, which does not exist.`);
+  const evidenceRecords = claim.evidence.map(({ recordId }) => {
+    const r = acc.records.get(recordId);
+    if (!r) throw new Error(`Claim ${claim.id} cites evidence ${recordId}, which does not exist.`);
     return r;
   });
   const contributor = acc.contributors.get(claim.contributorId);
@@ -257,7 +268,7 @@ function buildClaimState(
   const disputes = acc.disputes.filter((d) => d.targetClaimId === claim.id);
   const extensionEdges = acc.extensions.filter((e) => e.parentClaimId === claim.id);
   const extensions = extensionEdges.map((e) => e.childClaimId);
-  const translations = acc.translations.filter((t) => t.claimId === claim.id);
+  const translations = acc.translations.filter((t) => t.parent.claimId === claim.id);
   const translationIds = new Set(translations.map((t) => t.id));
   const translationDisputes = acc.translationDisputes.filter((d) => translationIds.has(d.translationId));
 
@@ -265,23 +276,32 @@ function buildClaimState(
   // contributors bring to it, never by agreement. Today that means the evidence
   // on extensions of this claim by somebody other than its author. A record
   // this claim already rests on does not count twice.
-  const ownRecords = new Set([claim.sourceRecordId, ...claim.evidenceRecordIds]);
+  const ownRecords = new Set([claim.sourceRecordId, ...claim.evidence.map((e) => e.recordId)]);
   const independentRecords = new Set<string>();
   for (const id of extensions) {
     const ext = acc.claims.get(id);
     if (!ext || ext.contributorId === claim.contributorId) continue;
-    for (const r of ext.evidenceRecordIds) if (!ownRecords.has(r)) independentRecords.add(r);
+    for (const { recordId } of ext.evidence) if (!ownRecords.has(recordId)) independentRecords.add(recordId);
   }
   const independentRecordCount = independentRecords.size;
 
   const passover: Record<PassoverKind, number> = { sounds_right: 0, dont_know: 0, dont_care: 0 };
   for (const p of acc.passovers) if (p.claimId === claim.id) passover[p.kind]++;
 
-  const detailStatuses: DetailStatus[] = claim.details.map((detail) => {
-    const detailDisputes = disputes.filter((d) => d.targetDetailId === detail.id);
+  // A claim's details are whatever points at it: the excerpts other claims target,
+  // and any excerpt its own evidence names. The same words are the same detail.
+  const excerpts = [...new Set([
+    ...disputes.map((d) => d.targetExcerpt),
+    ...extensionEdges.flatMap((e) => (e.targetExcerpt ? [e.targetExcerpt] : [])),
+    ...claim.evidence.flatMap((e) => (e.excerpt ? [e.excerpt] : [])),
+  ])];
+  const details: ClaimDetail[] = excerpts.map((excerpt) => ({ id: detailId(claim.id, excerpt), excerpt }));
+
+  const detailStatuses: DetailStatus[] = details.map((detail) => {
+    const detailDisputes = disputes.filter((d) => d.targetExcerpt === detail.excerpt);
     const byValue = new Map<string, string[]>();
-    // The claim's own asserted value is one of the competing readings.
-    byValue.set(detail.value, [claim.contributorId]);
+    // The claim's own words are one of the competing readings.
+    byValue.set(detail.excerpt, [claim.contributorId]);
     for (const d of detailDisputes) {
       if (!d.proposedValue) continue;
       const list = byValue.get(d.proposedValue) ?? [];
@@ -299,12 +319,14 @@ function buildClaimState(
       // dispute, and ordering by headcount would turn readings into a vote.
       // Nothing is marked accepted and nothing is hidden.
       ;
-    const detailExtensions = extensionEdges.filter((e) => e.targetDetailId === detail.id);
+    const detailExtensions = extensionEdges.filter((e) => e.targetExcerpt === detail.excerpt);
     return { detail, disputes: detailDisputes, extensions: detailExtensions, competingValues, weight: 0 };
   });
 
+  const evidenceOf = (claimId: string): string[] =>
+    (acc.claims.get(claimId)?.evidence ?? []).map((e) => e.recordId);
   const score = standInScore({
-    claim, sourceRecord, transcripts: acc.transcripts, disputes,
+    claim, details, evidenceOf, sourceRecord, transcripts: acc.transcripts, disputes,
     extensions: extensionEdges, independentRecordCount, soundsRight: passover.sounds_right,
   });
   for (const ds of detailStatuses) {
@@ -375,7 +397,7 @@ function buildIntegrity(claimStates: ClaimState[], acc: Accumulator): IntegrityS
   // How much of the record is anchored in time. Counted from claims that
   // actually name a date, not from a period somebody picked at entry time.
   const datedClaims = claimStates.filter((c) =>
-    c.claim.details.some((e) => e.kind === 'date'),
+    c.claim.references.some((r) => r.kind === 'date'),
   ).length;
 
   const score = {
@@ -426,10 +448,9 @@ export function reduceToState(
     site: acc.site,
     claims: claimStates,
     contributors: [...acc.contributors.values()],
-    records: [...acc.records.values()],
+    records: [...acc.records.values(), ...acc.transcripts, ...acc.translations],
     collections: [...acc.collections.values()],
     standings: buildStandings(claimStates, acc),
-    transcripts: acc.transcripts,
     flags: acc.flags,
     integrity: buildIntegrity(claimStates, acc),
     sections: [],

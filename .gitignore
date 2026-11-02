@@ -44,3 +44,9 @@ coverage
 pitch/
 internal/
 _to_delete/
+
+# Anything real the sponsor sends you privately. It never goes in a fork.
+**/real-data/
+
+# Written by `graph:view`.
+graph-view.html

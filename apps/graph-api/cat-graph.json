@@ -1,0 +1,167 @@
+{
+  "siteId": "the-cat",
+  "asOf": "2026-01-01T01:09:00.000Z",
+  "records": [
+    {
+      "id": "R",
+      "contributorId": "p1",
+      "kind": "audio",
+      "createdAt": "2026-01-01T00:01:00.000Z",
+      "transcribed": true
+    },
+    {
+      "id": "photo",
+      "contributorId": "p5",
+      "kind": "image",
+      "createdAt": "2026-01-01T00:06:00.000Z"
+    },
+    {
+      "id": "news",
+      "contributorId": "p6",
+      "kind": "document",
+      "createdAt": "2026-01-01T00:08:00.000Z"
+    }
+  ],
+  "claims": [
+    {
+      "id": "A",
+      "contributorId": "p1",
+      "createdAt": "2026-01-01T00:02:00.000Z",
+      "text": "The cat crossed the road.",
+      "sourceRecordId": "R",
+      "target": {
+        "sourceType": "record",
+        "sourceId": "R"
+      },
+      "references": [],
+      "evidence": []
+    },
+    {
+      "id": "B",
+      "contributorId": "p2",
+      "createdAt": "2026-01-01T00:03:00.000Z",
+      "text": "It was a calico.",
+      "sourceRecordId": "R",
+      "target": {
+        "sourceType": "claim",
+        "sourceId": "A",
+        "excerpt": "The cat"
+      },
+      "references": [],
+      "evidence": []
+    },
+    {
+      "id": "C",
+      "contributorId": "p3",
+      "createdAt": "2026-01-01T00:04:00.000Z",
+      "text": "To catch a bird.",
+      "sourceRecordId": "R",
+      "target": {
+        "sourceType": "claim",
+        "sourceId": "A",
+        "excerpt": "crossed"
+      },
+      "references": [],
+      "evidence": []
+    },
+    {
+      "id": "D",
+      "contributorId": "p4",
+      "createdAt": "2026-01-01T00:05:00.000Z",
+      "text": "It was a fence.",
+      "sourceRecordId": "R",
+      "target": {
+        "sourceType": "claim",
+        "sourceId": "A",
+        "excerpt": "the road"
+      },
+      "references": [],
+      "evidence": []
+    },
+    {
+      "id": "E",
+      "contributorId": "p5",
+      "createdAt": "2026-01-01T00:07:00.000Z",
+      "text": "A photo of the cat on the road.",
+      "sourceRecordId": "R",
+      "target": {
+        "sourceType": "claim",
+        "sourceId": "A",
+        "excerpt": "the road"
+      },
+      "references": [],
+      "evidence": [
+        {
+          "recordId": "photo"
+        }
+      ]
+    },
+    {
+      "id": "F",
+      "contributorId": "p6",
+      "createdAt": "2026-01-01T00:09:00.000Z",
+      "text": "a cat ran across the road that morning",
+      "sourceRecordId": "news",
+      "target": {
+        "sourceType": "record",
+        "sourceId": "news"
+      },
+      "references": [],
+      "evidence": []
+    }
+  ],
+  "edges": [
+    {
+      "type": "extension",
+      "fromClaimId": "B",
+      "toClaimId": "A",
+      "excerpt": "The cat"
+    },
+    {
+      "type": "extension",
+      "fromClaimId": "C",
+      "toClaimId": "A",
+      "excerpt": "crossed"
+    },
+    {
+      "type": "dispute",
+      "fromClaimId": "D",
+      "toClaimId": "A",
+      "excerpt": "the road",
+      "reason": "I lived next door"
+    },
+    {
+      "type": "extension",
+      "fromClaimId": "E",
+      "toClaimId": "A",
+      "excerpt": "the road"
+    }
+  ],
+  "passovers": [],
+  "profiles": [
+    {
+      "id": "p1",
+      "guest": true
+    },
+    {
+      "id": "p2",
+      "guest": true
+    },
+    {
+      "id": "p3",
+      "guest": true
+    },
+    {
+      "id": "p4",
+      "guest": true
+    },
+    {
+      "id": "p5",
+      "guest": true
+    },
+    {
+      "id": "p6",
+      "guest": true
+    }
+  ]
+}

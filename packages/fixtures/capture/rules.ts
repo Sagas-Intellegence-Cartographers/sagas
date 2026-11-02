@@ -69,6 +69,26 @@ export function runCaptureRules(name: string, base: string): void {
         expect(parsed.data?.id, "the stored record has no id").toBeTruthy();
       });
 
+      // Prompted by: the sponsor, 30 October. The database generates ids as
+      // UUIDs, so the id a client gets back is one.
+      it("gives a stored record a UUID", async () => {
+        const res = await post(base, arriving());
+        const { id } = (await res.json()) as { id: string };
+        expect(id).toMatch(
+          /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i,
+        );
+      });
+
+      // Prompted by: the sponsor, 30 October. A record with no files is normal,
+      // so `media` can be empty, null or missing.
+      it("takes a written record with media null or left out", async () => {
+        const { media: _media, ...withoutMedia } = arriving();
+        expect((await post(base, withoutMedia)).status).toBe(201);
+        expect(
+          (await post(base, { ...withoutMedia, media: null })).status,
+        ).toBe(201);
+      });
+
       it("gives the same record back by its id", async () => {
         const created = (await (await post(base, arriving())).json()) as {
           id: string;
@@ -80,6 +100,8 @@ export function runCaptureRules(name: string, base: string): void {
         expect(fetched.text).toBe(arriving().text);
       });
 
+      // With a UUID column, an id that isn't a UUID makes Postgres raise an
+      // error, so check the id's form first and answer 404 for that too.
       it("answers 404 for a record that does not exist", async () => {
         const res = await fetch(`${base}/records/999999999`);
         expect(res.status).toBe(404);
@@ -150,6 +172,58 @@ export function runCaptureRules(name: string, base: string): void {
           link: { url: "https://example.org/notice" },
         });
         expect(res.status).toBe(201);
+      });
+
+      // Prompted by: "How does a link become evidence?" in
+      // docs/DESIGN-QUESTIONS.md. The contributor types the preview, and your
+      // API fetches nothing from the page.
+      it("keeps a link's preview as the contributor typed it", async () => {
+        const preview = {
+          title: "A notice",
+          summary: "It says the office is opening.",
+        };
+        const res = await post(base, {
+          ...arriving(),
+          text: undefined,
+          note: "A newspaper notice about the place.",
+          link: { url: "https://example.org/notice", preview },
+        });
+        expect(res.status).toBe(201);
+        const { id } = (await res.json()) as { id: string };
+        const fetched = await fetch(`${base}/records/${id}`);
+        const body = (await fetched.json()) as {
+          link?: { preview?: typeof preview };
+        };
+        expect(body.link?.preview).toEqual(preview);
+      });
+    });
+
+    describe("supporting records", () => {
+      // Prompted by: "One record per artifact" and contract 2.5.0. A transcript
+      // is a record with a parent, so the same endpoint takes it.
+      it("keeps a record's parent", async () => {
+        const created = (await (await post(base, arriving())).json()) as {
+          id: string;
+        };
+        const parent = {
+          role: "transcript",
+          recordId: created.id,
+          window: { start: 18, end: 70 },
+        };
+        const res = await post(base, { ...arriving(), parent });
+        expect(res.status).toBe(201);
+        const { id } = (await res.json()) as { id: string };
+        const fetched = await fetch(`${base}/records/${id}`);
+        const body = (await fetched.json()) as { parent?: typeof parent };
+        expect(body.parent).toEqual(parent);
+      });
+
+      it("refuses a parent that points at nothing, with a 400", async () => {
+        const res = await post(base, {
+          ...arriving(),
+          parent: { role: "transcript" },
+        });
+        expect(res.status).toBe(400);
       });
     });
 
@@ -222,6 +296,13 @@ export function runCaptureRules(name: string, base: string): void {
       it.todo("handles photos in the format iPhones save by default");
     });
 
+    describe("archives", () => {
+      // Prompted by: "Can a record be closed until a date?" in
+      // docs/DESIGN-QUESTIONS.md. `choices.public` can be `later`, with no
+      // date. Open: whether it needs one, and who can change it.
+      it.todo("keeps a record closed until the date it was closed for");
+    });
+
     describe("collections", () => {
       // Prompted by: "What does a collection carry?" in
       // docs/DESIGN-QUESTIONS.md. Decided: records one profile hands over
@@ -246,27 +327,37 @@ export function runCaptureRules(name: string, base: string): void {
       // Prompted by: "How does a record get a location?"
       // in docs/DESIGN-QUESTIONS.md.
       // Open: precision stored or worked out, and where the contributor's location choice is applied.
-      it.todo("records how a location was arrived at, not only the coordinates");
+      it.todo(
+        "records how a location was arrived at, not only the coordinates",
+      );
 
       // Prompted by: "A profile has no way to say whether anyone can prove it is theirs"
       // in docs/DESIGN-QUESTIONS.md.
       // Open: verified profiles aren't built this semester.
-      it.todo("keeps a guest profile's history when the browser key is lost and found");
+      it.todo(
+        "keeps a guest profile's history when the browser key is lost and found",
+      );
 
       // Prompted by: "Can someone take their record back?"
       // in docs/DESIGN-QUESTIONS.md.
       // Decided: taking a record back is a privacy setting; deletion is on request. Open: what happens to claims built on it.
-      it.todo("takes a record out of public view when its contributor changes their choice");
+      it.todo(
+        "takes a record out of public view when its contributor changes their choice",
+      );
 
       // Prompted by: "What happens to a supporting record that stops holding up?"
       // in docs/DESIGN-QUESTIONS.md.
       // Open: a lock with two separate tracks, quality and the terms.
-      it.todo("keeps a locked record visible and marked, with no new references to it");
+      it.todo(
+        "keeps a locked record visible and marked, with no new references to it",
+      );
 
       // Prompted by: "How are machine-made drafts treated?"
       // in docs/DESIGN-QUESTIONS.md.
       // Open: a system profile naming the model and version.
-      it.todo("credits a machine transcript to a system profile with its model and version");
+      it.todo(
+        "credits a machine transcript to a system profile with its model and version",
+      );
     });
   });
 }

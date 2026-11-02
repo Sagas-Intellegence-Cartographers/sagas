@@ -34,46 +34,48 @@ and the shared contract.
 | 1 | The edge types are copy-pasted | Shared contract |
 | 2 | Every id is just `string` | Shared contract |
 | 3 | `translationDispute` and `disputeEdge` are the same idea | Shared contract |
-| 4 | A transcript and a translation are the same kind of thing | Shared contract |
-| 5 | What does an interface do with "sometime in the fifties, probably"? | Experience |
-| 6 | Does disputing a claim feel like disputing the person who wrote it? | Experience |
-| 7 | Should one claim hold more than one assertion? | Intelligence |
-| 8 | How does a record get a location? | Content |
+| 4 | What does an interface do with "sometime in the fifties, probably"? | Experience |
+| 5 | Does disputing a claim feel like disputing the person who wrote it? | Experience |
+| 6 | Should one claim hold more than one assertion? | Intelligence |
+| 7 | How does a record get a location? | Content |
+| 8 | Who can make a home's location exact? | Content, experience |
 | 9 | A profile has no way to say whether anyone can prove it is theirs | Content |
 | 10 | How should a resolution be recorded? | Intelligence |
 | 11 | How does a link become evidence? | Intelligence, content |
-| 12 | What does a collection carry? | Content |
-| 13 | How do you tell a good source from a bad one? | Intelligence |
-| 14 | Can someone take their record back? | Content |
-| 15 | How to tell silence from doubt | Intelligence |
-| 16 | How do claims compare across languages? | Intelligence |
-| 17 | How to record disagreement about meaning | Intelligence |
-| 18 | How to tell a productive argument from a stuck one | Intelligence |
-| 19 | Moderation without majority capture | Intelligence |
-| 20 | What groups claims together at a site? | Intelligence |
-| 21 | Should a contributor see why their claim ranks where it does? | Experience |
-| 22 | Can standing be inherited through vouching? | Intelligence |
-| 23 | Does a late dispute count for less? | Intelligence |
-| 24 | Is the unit of work a task? | Intelligence |
-| 25 | What makes a place significant? | Experience |
-| 26 | A person named in a claim versus a person with a profile | Intelligence |
-| 27 | What happens when one detail turns out to be two people? | Intelligence |
-| 28 | Can a claim be edited? | Intelligence |
-| 29 | How do you tell whether a reply is about what it targets? | Intelligence |
-| 30 | Can a passover point at one detail? | Intelligence |
-| 31 | What happens to a supporting record that stops holding up? | Content |
-| 32 | How are machine-made drafts treated? | Content |
-| 33 | Is every ask in the system one kind of object? | Experience |
-| 34 | Is there a state between visible and hidden? | Intelligence |
-| 35 | Where does a record's weight as evidence live? | Intelligence |
-| 36 | Can someone dispute that two records are independent? | Intelligence |
-| 37 | How does someone reach a contributor without knowing who they are? | Content |
-| 38 | Do all disagreements matter equally? | Intelligence |
-| 39 | Who decides what a place is called? | Not for this project |
-| 40 | Naming people who can't answer | Not for this project |
-| 41 | Is this built for the community, or for people outside it? | Not for this project |
-| 42 | Should all of it be public? | Not for this project |
-| 43 | What should a disagreement look like to the people in it? | Not for this project |
+| 12 | Can a web page be the record a conversation starts from? | Shared contract |
+| 13 | What does a collection carry? | Content |
+| 14 | How do you tell a good source from a bad one? | Intelligence |
+| 15 | Can someone take their record back? | Content |
+| 16 | How to tell silence from doubt | Intelligence |
+| 17 | How do claims compare across languages? | Intelligence |
+| 18 | How to record disagreement about meaning | Intelligence |
+| 19 | How to tell a productive argument from a stuck one | Intelligence |
+| 20 | Moderation without majority capture | Intelligence |
+| 21 | What groups claims together at a site? | Intelligence |
+| 22 | Should a contributor see why their claim ranks where it does? | Experience |
+| 23 | Can standing be inherited through vouching? | Intelligence |
+| 24 | Does a late dispute count for less? | Intelligence |
+| 25 | Is the unit of work a task? | Intelligence |
+| 26 | What makes a place significant? | Experience |
+| 27 | A person named in a claim versus a person with a profile | Intelligence |
+| 28 | What happens when one detail turns out to be two people? | Intelligence |
+| 29 | Can a claim be edited? | Intelligence |
+| 30 | How do you tell whether a reply is about what it targets? | Intelligence |
+| 31 | Can a passover point at one detail? | Intelligence |
+| 32 | What happens to a supporting record that stops holding up? | Content |
+| 33 | How are machine-made drafts treated? | Content |
+| 34 | Is every ask in the system one kind of object? | Experience |
+| 35 | Is there a state between visible and hidden? | Intelligence |
+| 36 | Where does a record's weight as evidence live? | Intelligence |
+| 37 | Can someone dispute that two records are independent? | Intelligence |
+| 38 | Can a record be closed until a date? | Content |
+| 39 | How does someone reach a contributor without knowing who they are? | Content |
+| 40 | Do all disagreements matter equally? | Intelligence |
+| 41 | Who decides what a place is called? | Not for this project |
+| 42 | Naming people who can't answer | Not for this project |
+| 43 | Is this built for the community, or for people outside it? | Not for this project |
+| 44 | Should all of it be public? | Not for this project |
+| 45 | What should a disagreement look like to the people in it? | Not for this project |
 
 ---
 
@@ -129,25 +131,6 @@ kinds of thing, which is either a discriminated union or a polymorphic
 reference. Both are more complex than what is there now. The question is whether
 that complexity is worth paying for today or once there are three.
 
-## A transcript and a translation are the same kind of thing
-
-**Now:** `transcript` and `translation` are separate shapes. One turns audio into
-text, the other turns text in one language into text in another. Both are one
-person's interpretation of a record, both are attributed, both allow more than
-one to exist, and neither has a slot for the correct one.
-
-**Why:** they were added at different times, for different layers.
-
-**The problem:** a third will show up. Text pulled out of a scanned letter is the
-same shape again, and `mediaDerivative` already has a `text_extract` kind that
-half-does it.
-
-**Why this is hard:** merging them needs a single shape with a source, a target
-language, a method, and a person, which is more abstract than either of the two
-and reads worse for the common case. The transcript that starts as machine
-output and gets corrected by a person is the hardest case I can see, so try
-that one first.
-
 ---
 
 # Part 2 — Bring it to a check-in first
@@ -161,7 +144,7 @@ to [`CLOSED-QUESTIONS.md`](./CLOSED-QUESTIONS.md).
 ## What does an interface do with "sometime in the fifties, probably"?
 
 **Now:** what somebody said about time is kept in their words, as the `excerpt`
-on a date detail. `1963-1964` sits next to "this would be 1963, 1964".
+on a date reference. `1963-1964` sits next to "this would be 1963, 1964".
 `before boarding house` sits next to "Before the boarding house". Nothing
 normalises those into a year, and there is no period field on a claim.
 
@@ -206,8 +189,9 @@ family accepts a stranger writing the claims about their record.
 
 ## Should one claim hold more than one assertion?
 
-**Now:** a claim is a paragraph with typed `details` inside it. Disagreement
-points at a detail id.
+**Now:** a claim is a paragraph, and a detail is an excerpt of it that something
+points at. Disagreement points at those words. The sponsor decided on this because
+breaking a claim into assertions is too hard an ask.
 
 **An alternative:** "my grandfather ran sheep through Bruneau Canyon in 1943"
 becomes three claims: a person, a place, a date. Each one is a single
@@ -215,7 +199,7 @@ assertion.
 
 **What that buys:** a date claim compares directly against a date claim from
 another source, with no digging into a paragraph. Disputes point at a claim and
-the detail-id indirection disappears. The two edge types become one shape.
+need no excerpt. The two edge types become one shape.
 
 **What it costs:** more work at entry time. And `1943` on its own means nothing,
 so something has to group atomic claims back into a readable statement.
@@ -263,6 +247,24 @@ and it is not obvious that location deserves a lighter answer than weight did.
 
 **Worth checking:** geocoding services may already report how precise a result
 is. If an existing vocabulary fits, use it rather than inventing one.
+
+## Who can make a home's location exact?
+
+A place where people live is shown at neighbourhood or subdivision level by
+default, and never as a point on a house. Public places, like a church, a park
+or a business, are shown exactly. The people a home affects can choose to show
+the exact spot. That much is decided, and it isn't in the contract yet.
+
+This project expects the blur to be the same every time, for example by snapping
+to the neighbourhood's boundary, because a location that moves randomly on each
+view can be averaged back to the real spot.
+
+**The open part:** who counts as the people a home affects, and how Sagas
+knows it's really them. The people living there now and a family who lived
+there for fifty years might not agree, and contributors are guest ids with no
+way to prove who they are (see "A profile has no way to say whether anyone can
+prove it is theirs"). Whether a place counts as residential, and who decides
+that, is open too.
 
 ## A profile has no way to say whether anyone can prove it is theirs
 
@@ -331,9 +333,12 @@ anything is open.
 
 ## How does a link become evidence?
 
-A link to a web page can be a source. It's one kind of evidence, like a
-photo or a document. That part is decided, and contract 2.4.0 gives a record a
-`link` for it.
+A link to a web page can be evidence for a claim, like a photo or a
+document. That part is decided, and contract 2.4.0 gives a record a `link` for
+it. A link record can also carry a preview, so a reader can see what the page
+is without leaving Sagas. The contributor types it, a title and a sentence or
+two about what the page says, and Sagas doesn't fetch the page. Contract 2.5.0
+adds that as `link.preview`.
 
 How a link is weighed is decided too. Its strength comes from what's
 recorded about it (its kind, its date, where it came from) and from how
@@ -352,6 +357,32 @@ captured, one suggestion is to treat the link like a recording nobody has
 transcribed yet: it counts for what's known about it and nothing for what it
 says. Capturing would happen where records come in. What a site's terms of use
 allow you to store is also unknown.
+
+## Can a web page be the record a conversation starts from?
+
+Links were decided as evidence: a page that backs up a claim somebody made
+from their own record. Contract 2.4.0 puts `link` on every record, though, so
+nothing in the contract stops a web page from being a source record, the
+record a conversation at a site starts from. Whether it should is open.
+
+A news article about a place is somebody else's published work. Starting a
+conversation from it raises questions a photo or a recording doesn't. Who is
+the contributor, the person who found the page or the person who wrote it?
+What does the preview show without copying the article? And if the page
+changes or disappears, what is the conversation about?
+
+A conversation also needs something to respond to. Claims are read out of a
+source record, and a link record holds a preview, which is a summary. Disputing
+or extending a detail in a summary is harder than responding to the record
+itself. That suggests a link is worth less as the start of a conversation than
+as evidence for a claim made from somebody's own record.
+
+One option is to treat the page as a closed box. Whoever responds brings the
+excerpt they're responding to, which makes them responsible for bringing the
+page's content into Sagas. It works like a recording that hasn't been
+transcribed: the link counts for nothing it says until someone brings an
+excerpt. How much of a page someone can quote is a question this project hasn't
+answered.
 
 ## What does a collection carry?
 
@@ -583,9 +614,8 @@ itself a text record.
 
 Another option is that grouping is computed rather than stored, so it is a
 clustering problem over claim text and details and it changes as the archive
-grows. Extensions are going to target a detail (decided and not yet built, see
-`docs/CLOSED-QUESTIONS.md`), which will let claims that target the same detail
-be grouped.
+grows. Extensions target a detail (see `docs/CLOSED-QUESTIONS.md`), which lets claims
+that target the same detail be grouped.
 
 Working out which claims belong together is a graph question and belongs to the
 intelligence layer. How a grouping is laid out on a page belongs to the
@@ -792,23 +822,28 @@ Open:
 
 A claim chooses what it targets, which keeps it attached to the right detail,
 but the target doesn't limit what the claim says. Someone can target a record
-and then write about their grandfather's farm. Weight already handles most of
-that: weight flows through details, so a claim that touches none of its
-target's details earns nothing, however long or charming it is.
+and then write about their grandfather's farm. Pointing at a detail doesn't show a
+reply is about it.
 
 Checking relevance by matching text doesn't work, because the most relevant
 reply often shares no words with its target. "It opened in 1924" is the best
 possible answer to a detail that says 1948, and it doesn't contain 1948. One
-way to think about it is to split a detail into what it's about (the shop's
-opening), what kind of thing it states (a date), and its value (1948).
-Relevance is checked on the first two. The value then decides whether the
-reply agrees, disagrees or adds something.
+way to think about it is to compare the references in the two: both hold a date, so
+the reply is about the same kind of thing. The values then decide whether the reply
+agrees, disagrees or adds something.
 
 **Open:**
-- How a claim's content gets marked up (a date, a place, a mention of a
-  person, a site, a source or another claim), and which layer does it. If the
-  pieces are marked, relevance becomes matching how two claims are marked,
-  rather than matching their words.
+- How a reply selects the excerpt of a claim it targets. A detail is an excerpt
+  that something points at, so nobody lists details in advance. This part is about
+  the screen a reply is written on, whichever layer builds it.
+- Whether "1948" and "opened in 1948" are one detail. For now the same words are
+  one detail, and anything else is two.
+- How references get added. A reference is a typed link inside a claim's own
+  text: a date, a place, a person, a record. The contributor adds it, possibly
+  prompted, or the system suggests it and the contributor confirms. This part
+  belongs to the intelligence layer. If claims carry references, relevance
+  becomes comparing the references in a reply and its target, rather than
+  matching their words.
 - Relevance is checked one link at a time, a reply against the detail it
   targets. Whether support should weaken as it passes through more links in a
   chain is open.
@@ -903,6 +938,15 @@ records are independent, with reasoning and evidence, like any other dispute.
 
 **Open:** the shape of that dispute (today a dispute can only target a detail
 of a claim), and what an upheld one does to the claims counting both records.
+
+## Can a record be closed until a date?
+
+An archivist told the sponsor that archives sometimes close material for a set
+number of years. A record's `choices.public` can be `yes`, `later` or `no`, and
+`later` has no date on it.
+
+**Open:** whether a record needs a date, who can change it, and what shows while
+it's closed.
 
 ## How does someone reach a contributor without knowing who they are?
 

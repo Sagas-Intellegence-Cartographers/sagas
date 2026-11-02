@@ -29,7 +29,6 @@
  *       "createdAt": "2026-09-07T12:00:00Z"
  *     }'
  */
-import { randomUUID } from 'node:crypto';
 import express from 'express';
 import { newSourceRecord } from '@sagas/contracts';
 import { pool } from './db';
@@ -57,11 +56,10 @@ app.get('/health', (_req, res) => {
  *    harmless. This is the one rule in this file that is not a preference.
  * 3. Return what was stored, with 201 because something was created.
  *
- * The server makes the id, because whoever stores a record decides its id.
- * Here it's a random UUID made in code, which fits the `text` id column in
- * 001_records.sql. Letting the database generate it instead is a fine choice
- * too. The client still sends `createdAt`; whether the server should set that
- * as well is a design question, and it's yours.
+ * The database makes the id, as a UUID (012_uuid_ids.sql), because whoever
+ * stores a record decides its id. So the insert leaves `id` out and reads it
+ * back from `returning`. The client still sends `createdAt`; whether the server
+ * should set that as well is a design question, and it's yours.
  */
 app.post('/records', async (req, res) => {
   const parsed = newSourceRecord.safeParse(req.body);
@@ -71,16 +69,15 @@ app.post('/records', async (req, res) => {
     return;
   }
 
-  const record = { ...parsed.data, id: randomUUID() };
+  const record = parsed.data;
 
   const { rows } = await pool.query<Record<string, unknown>>(
     `insert into records
-       (id, site_id, contributor_id, note, "text", language, captured_at, submission,
-        choices, terms_version, link, collection_id, created_at)
+       (site_id, contributor_id, note, "text", language, captured_at, submission,
+        choices, terms_version, link, parent, collection_id, created_at)
      values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
      returning *`,
     [
-      record.id,
       record.siteId,
       record.contributorId,
       record.note ?? null,
@@ -91,6 +88,7 @@ app.post('/records', async (req, res) => {
       record.choices,
       record.termsVersion,
       record.link ?? null,
+      record.parent ?? null,
       record.collectionId ?? null,
       record.createdAt,
     ],
@@ -121,6 +119,7 @@ function toRecord(row: Record<string, unknown>) {
     submission: row.submission as string,
     media: [],
     link: (row.link as Record<string, unknown> | null) ?? undefined,
+    parent: (row.parent as Record<string, unknown> | null) ?? undefined,
     collectionId: (row.collection_id as string | null) ?? undefined,
     choices: row.choices as Record<string, unknown>,
     termsVersion: row.terms_version as string,

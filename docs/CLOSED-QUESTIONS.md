@@ -11,6 +11,36 @@ without raising it causes trouble.
 
 ---
 
+## A detail is an excerpt that something points at
+
+Done in contract 2.5.0. Nobody lists a claim's details in advance, because asking
+someone to break what they said into assertions is too hard an ask, in the sponsor's
+view. A claim has a
+source record, which is what it's about, and a `target`: the excerpt or stretch it
+points at, in a record or in another claim. A claim's details are worked out from
+what points at it, so `claim.details`, `targetDetailId` and `sourceWindow` are gone.
+Older entries below name those fields as they were then.
+
+A date, a place or a person inside a claim's text is a different thing: a reference,
+in `claim.references`. Evidence is a record on the claim, and it can name an excerpt
+of the claim's own text. A claim nothing points at has no details, so it has nothing
+for the scorer to check across threads yet.
+
+## A transcript and a translation are the same kind of thing
+
+Done in contract 2.5.0. Evidence records, transcripts and translations are all
+records. A transcript or a translation is a record with `parent` set, which says
+what it supports and, for a recording, which window. An evidence record has no
+parent, because the claim citing it says what it supports. `transcript` and
+`translation` are gone as separate shapes.
+
+The two shapes had the same job. Each was one person's interpretation, attributed,
+with more than one allowed and no slot for the correct one. They'd been added at
+different times for different layers. A recording describing a photograph needed
+the same link, and that's a record with files, which ruled out a separate
+text-only shape. `parent.method` covers the transcript that starts as machine
+output and gets corrected by a person.
+
 ## `affirmation` duplicates a passover tier
 
 Done in contract 2.3.0. The `affirmation` object is gone, and agreement is a

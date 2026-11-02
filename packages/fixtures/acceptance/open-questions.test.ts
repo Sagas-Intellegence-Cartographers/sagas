@@ -33,6 +33,19 @@ describe('experience layer: open questions', () => {
   // Prompted by: "Is every ask in the system one kind of object?"
   // in docs/DESIGN-QUESTIONS.md. Open: requests by type and direction.
   it.todo('shows an open request on the claim or record it asks about');
+
+  // Prompted by: "Who can make a home's location exact?"
+  // in docs/DESIGN-QUESTIONS.md. Homes show at neighbourhood level by
+  // default; who may opt a home in to its exact spot is open. The content
+  // layer's side is who can ask; this side is what the map draws.
+  it.todo("shows a home at neighbourhood level until its people opt in");
+});
+
+describe('capture and page: open questions', () => {
+  // Prompted by: "How do you tell whether a reply is about what it targets?"
+  // in docs/DESIGN-QUESTIONS.md. A detail is an excerpt something points at.
+  // Open: how a reply selects that excerpt.
+  it.todo('lets a reply select the excerpt of a claim it targets');
 });
 
 describe('shared contract: open questions', () => {
@@ -48,8 +61,8 @@ describe('shared contract: open questions', () => {
   // in docs/DESIGN-QUESTIONS.md. Answerable with a pull request.
   it.todo('a translation dispute and a dispute edge share one shape');
 
-  // Prompted by: "A transcript and a translation are the same kind of thing"
-  // in docs/DESIGN-QUESTIONS.md. Decided as one class of supporting record;
-  // held for its own release.
-  it.todo('transcripts and translations are one class of supporting record');
+  // Prompted by: "Can a web page be the record a conversation starts from?"
+  // in docs/DESIGN-QUESTIONS.md. Links are decided as evidence; contract
+  // 2.4.0 allows a link on any record, so this is open, not permitted.
+  it.todo('a web page as the record a conversation starts from');
 });

@@ -80,9 +80,9 @@ export const events: ContributionEvent[] = [
     siteId: SITE,
     text: 'My grandmother walked this stretch every morning for about thirty years. After she died the family put the bench here because it is the spot where she used to stop and look at the water. The plaque was my aunt\'s idea.',
     sourceLanguage: 'en',
-    details: [
-      { id: 'el-hb-person', kind: 'person', value: 'Margarethe Hoefer', excerpt: 'My grandmother' },
-      { id: 'el-hb-place', kind: 'place', value: 'Greenbelt near the Americana bridge', excerpt: 'this stretch' },
+    references: [
+      { kind: 'person', excerpt: 'My grandmother', status: 'confirmed' },
+      { kind: 'place', excerpt: 'this stretch', status: 'confirmed' },
     ],
     sourceType: 'family_oral',
   },

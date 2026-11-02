@@ -25,27 +25,28 @@
         "siteId": "site-corner-shop",
         "contributorId": "c-ray",
         "sourceRecordId": "rec-cs-photo",
-        "evidenceRecordIds": [],
+        "evidence": [],
+        "target": {
+          "sourceType": "record",
+          "sourceId": "rec-cs-photo"
+        },
         "text": "That's the shop on the corner of Fourth and Main, around 1950. The man in the doorway is the owner, Mr. Ferris.",
         "sourceLanguage": "en",
-        "details": [
+        "references": [
           {
-            "id": "dt-cs-place",
             "kind": "place",
-            "value": "Fourth and Main",
-            "excerpt": "the corner of Fourth and Main"
+            "excerpt": "the corner of Fourth and Main",
+            "status": "confirmed"
           },
           {
-            "id": "dt-cs-year",
             "kind": "date",
-            "value": "c. 1950",
-            "excerpt": "around 1950"
+            "excerpt": "around 1950",
+            "status": "confirmed"
           },
           {
-            "id": "dt-cs-owner",
             "kind": "person",
-            "value": "Ferris",
-            "excerpt": "the owner, Mr. Ferris"
+            "excerpt": "the owner, Mr. Ferris",
+            "status": "confirmed"
           }
         ],
         "sourceType": "firsthand",
@@ -101,68 +102,7 @@
         "dont_know": 0,
         "dont_care": 0
       },
-      "detailStatuses": [
-        {
-          "detail": {
-            "id": "dt-cs-place",
-            "kind": "place",
-            "value": "Fourth and Main",
-            "excerpt": "the corner of Fourth and Main"
-          },
-          "disputes": [],
-          "extensions": [],
-          "competingValues": [
-            {
-              "value": "Fourth and Main",
-              "count": 1,
-              "contributorIds": [
-                "c-ray"
-              ]
-            }
-          ],
-          "weight": 1
-        },
-        {
-          "detail": {
-            "id": "dt-cs-year",
-            "kind": "date",
-            "value": "c. 1950",
-            "excerpt": "around 1950"
-          },
-          "disputes": [],
-          "extensions": [],
-          "competingValues": [
-            {
-              "value": "c. 1950",
-              "count": 1,
-              "contributorIds": [
-                "c-ray"
-              ]
-            }
-          ],
-          "weight": 1
-        },
-        {
-          "detail": {
-            "id": "dt-cs-owner",
-            "kind": "person",
-            "value": "Ferris",
-            "excerpt": "the owner, Mr. Ferris"
-          },
-          "disputes": [],
-          "extensions": [],
-          "competingValues": [
-            {
-              "value": "Ferris",
-              "count": 1,
-              "contributorIds": [
-                "c-ray"
-              ]
-            }
-          ],
-          "weight": 1
-        }
-      ],
+      "detailStatuses": [],
       "score": {
         "claimId": "cl-cs-shop",
         "score": 1.05,
@@ -198,71 +138,7 @@
             "value": 0
           }
         ],
-        "details": [
-          {
-            "detailId": "dt-cs-place",
-            "score": 1,
-            "terms": [
-              {
-                "family": "content",
-                "name": "base",
-                "value": 1
-              },
-              {
-                "family": "content",
-                "name": "extensions",
-                "value": 0
-              },
-              {
-                "family": "content",
-                "name": "disputes",
-                "value": 0
-              }
-            ]
-          },
-          {
-            "detailId": "dt-cs-year",
-            "score": 1,
-            "terms": [
-              {
-                "family": "content",
-                "name": "base",
-                "value": 1
-              },
-              {
-                "family": "content",
-                "name": "extensions",
-                "value": 0
-              },
-              {
-                "family": "content",
-                "name": "disputes",
-                "value": 0
-              }
-            ]
-          },
-          {
-            "detailId": "dt-cs-owner",
-            "score": 1,
-            "terms": [
-              {
-                "family": "content",
-                "name": "base",
-                "value": 1
-              },
-              {
-                "family": "content",
-                "name": "extensions",
-                "value": 0
-              },
-              {
-                "family": "content",
-                "name": "disputes",
-                "value": 0
-              }
-            ]
-          }
-        ]
+        "details": []
       },
       "weight": 1.05,
       "confidence": "single_source"
@@ -373,7 +249,6 @@
       "flagsRaised": 0
     }
   ],
-  "transcripts": [],
   "flags": [],
   "integrity": {
     "totalClaims": 1,
@@ -402,9 +277,6 @@
           "end": 47,
           "claimIds": [
             "cl-cs-shop"
-          ],
-          "detailIds": [
-            "dt-cs-place"
           ]
         },
         {
@@ -412,9 +284,6 @@
           "end": 77,
           "claimIds": [
             "cl-cs-shop"
-          ],
-          "detailIds": [
-            "dt-cs-owner"
           ]
         },
         {
@@ -422,9 +291,6 @@
           "end": 112,
           "claimIds": [
             "cl-cs-shop"
-          ],
-          "detailIds": [
-            "dt-cs-year"
           ]
         }
       ]

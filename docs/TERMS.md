@@ -9,7 +9,7 @@ opens more widely, and you will be asked to agree to the new version.
 
 ## Who runs Sagas
 
-Sagas is an open source project run by Civum, Inc. ("we"). It is a map of
+The core of Sagas is open source, and Civum, Inc. ("we") runs it. It is a map of
 community history: people share what they know about places, and others add to
 it, question it, or bring evidence.
 

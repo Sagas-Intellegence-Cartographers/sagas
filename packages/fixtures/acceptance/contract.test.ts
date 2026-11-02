@@ -46,14 +46,23 @@ describe('fixtures satisfy the contract', () => {
     }
   });
 
+  it('a detail is words that appear in the claim it belongs to', () => {
+    for (const state of states) {
+      for (const c of state.claims) {
+        for (const es of c.detailStatuses) {
+          expect(c.claim.text, `"${es.detail.excerpt}" isn't in ${c.claim.id}`).toContain(es.detail.excerpt);
+        }
+      }
+    }
+  });
+
   it('a dispute targets a detail that exists on the claim it targets', () => {
     for (const state of states) {
       for (const c of state.claims) {
-        const detailIds = new Set(c.claim.details.map((e) => e.id));
         for (const es of c.detailStatuses) {
           for (const d of es.disputes) {
             expect(d.targetClaimId).toBe(c.claim.id);
-            expect(detailIds.has(d.targetDetailId)).toBe(true);
+            expect(es.detail.excerpt).toBe(d.targetExcerpt);
           }
         }
       }

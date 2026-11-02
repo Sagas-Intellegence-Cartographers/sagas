@@ -58,9 +58,9 @@ read first: it is the worked example in `docs/HOW-THE-LAYERS-FIT.md`, and
 | | integrity | claims | records | contributors | disputes | untranslated |
 |---|---|---|---|---|---|---|
 | **t0** sparse, single source | 19 | 3 | 2 | 1 | 0 | 0 |
-| **t1** a photo, an unrendered recording, a dispute | 48 | 6 | 4 | 3 | 1 | 1 |
-| **t2** a rendering arrives; a window is transcribed | 61 | 7 | 5 | 5 | 1 | 0 |
-| **t3** competing renderings, reconciliation candidate | 89 | 10 | 8 | 6 | 4 | 0 |
+| **t1** a photo, an unrendered recording, a dispute | 44 | 6 | 4 | 3 | 1 | 1 |
+| **t2** a rendering arrives; a window is transcribed | 57 | 7 | 7 | 5 | 1 | 0 |
+| **t3** competing renderings, reconciliation candidate | 81 | 10 | 11 | 6 | 4 | 0 |
 
 Counts come from the generated states. If you change the log, regenerate and
 update this table, because a stale table here is worse than no table.
@@ -209,7 +209,6 @@ any of them is a useful pull request.
 
 - A place with only untranslated claims, so nothing is in the graph at all
 - A claim contested by a dozen people
-- A claim with no details that is not awaiting translation
 - A claim long enough to break a reading layout
 - A place with exactly one claim and no contributors beyond its author
 - Two places close enough together to collide as map markers
@@ -308,10 +307,9 @@ If you have an opinion on any of these, bring it to a check-in.
 - Whether coexisting attributed renderings is the right model for translation
   at all, or whether it encodes an engineer's assumption about how translation
   works.
-- Whether a dispute should keep targeting a typed detail (`targetDetailId`) or
-  a character span of the claim text. Typed details were chosen because they are
-  authorable by hand and give a renderer what it needs without offset math.
-  Spans remain reachable.
+- Whether a target should keep naming its excerpt in words or use a character span
+  of the claim text. Words were chosen because they are authorable by hand and give
+  a renderer what it needs without offset math. Spans remain reachable.
 - Parallel language trees with links across them, which this project leaves as
   a research question for a future cohort. The schema is built not to
   foreclose it: `language` on

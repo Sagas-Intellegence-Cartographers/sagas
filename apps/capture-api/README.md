@@ -20,7 +20,8 @@ more interesting.
 
 **You own your database.** Records, media, transcripts, translations,
 flags. The schema and the migrations are yours, they live in this app, and no
-other team touches them. The other two layers run their own databases shaped for
+other team touches them. The one shared rule is that ids are UUIDs the database
+generates (`migrations/012_uuid_ids.sql`). The other two layers run their own databases shaped for
 their own problems. The contract lines up between all three. The tables do not
 have to, which is why nobody here waits on anybody.
 
@@ -42,7 +43,7 @@ language other than English finishes, submits, and their record exists, pinned
 and attributed and on the map.
 `sourceRecord` has no language requirement. Only `claim` does, and that
 requirement never blocks the record. Machine translation proposes a draft, a
-person confirms or replaces it, and `transcriptMethod` already has
+person confirms or replaces it, and `renderingMethod` already has
 `machine_corrected` for exactly that.
 
 Which model to use is a real decision with a licence attached, and checking the

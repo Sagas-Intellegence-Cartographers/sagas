@@ -12,7 +12,7 @@
 alter table records add column if not exists choices jsonb;
 alter table records add column if not exists terms_version text;
 
--- Set when the record is a web page: { url, title, seenAt }.
+-- Set when the record is a web page: { url, preview, seenAt }.
 alter table records add column if not exists link jsonb;
 
 alter table records add column if not exists collection_id text;

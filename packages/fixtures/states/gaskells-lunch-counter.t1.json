@@ -26,17 +26,14 @@
         "siteId": "site-gaskells",
         "contributorId": "c-priya",
         "sourceRecordId": "rec-menu-photo",
-        "evidenceRecordIds": [],
+        "evidence": [],
+        "target": {
+          "sourceType": "record",
+          "sourceId": "rec-menu-photo"
+        },
         "text": "The hours on this menu are five in the morning until two in the afternoon. That is a shift pattern, not a lunch trade. Whoever ate here was going to work before dawn.",
         "sourceLanguage": "en",
-        "details": [
-          {
-            "id": "el-gk-hours",
-            "kind": "quantity",
-            "value": "05:00 to 14:00",
-            "excerpt": "five in the morning until two in the afternoon"
-          }
-        ],
+        "references": [],
         "sourceType": "documentary",
         "createdAt": "2026-03-18T20:47:00Z",
         "awaitingTranslation": false
@@ -92,28 +89,7 @@
         "dont_know": 0,
         "dont_care": 0
       },
-      "detailStatuses": [
-        {
-          "detail": {
-            "id": "el-gk-hours",
-            "kind": "quantity",
-            "value": "05:00 to 14:00",
-            "excerpt": "five in the morning until two in the afternoon"
-          },
-          "disputes": [],
-          "extensions": [],
-          "competingValues": [
-            {
-              "value": "05:00 to 14:00",
-              "count": 1,
-              "contributorIds": [
-                "c-priya"
-              ]
-            }
-          ],
-          "weight": 1
-        }
-      ],
+      "detailStatuses": [],
       "score": {
         "claimId": "cl-shift-workers",
         "score": 1.75,
@@ -149,29 +125,7 @@
             "value": 0
           }
         ],
-        "details": [
-          {
-            "detailId": "el-gk-hours",
-            "score": 1,
-            "terms": [
-              {
-                "family": "content",
-                "name": "base",
-                "value": 1
-              },
-              {
-                "family": "content",
-                "name": "extensions",
-                "value": 0
-              },
-              {
-                "family": "content",
-                "name": "disputes",
-                "value": 0
-              }
-            ]
-          }
-        ]
+        "details": []
       },
       "weight": 1.75,
       "confidence": "single_source"
@@ -182,21 +136,23 @@
         "siteId": "site-gaskells",
         "contributorId": "c-dolores",
         "sourceRecordId": "rec-menu-photo",
-        "evidenceRecordIds": [],
+        "evidence": [],
+        "target": {
+          "sourceType": "record",
+          "sourceId": "rec-menu-photo"
+        },
         "text": "Gaskell's was on the corner of 9th and Bannock and it closed in 1979. My mother took this photograph of the menu on one of the last days it was open. She kept it in the kitchen drawer for the rest of her life.",
         "sourceLanguage": "en",
-        "details": [
+        "references": [
           {
-            "id": "el-gk-year",
             "kind": "date",
-            "value": "1979",
-            "excerpt": "it closed in 1979"
+            "excerpt": "it closed in 1979",
+            "status": "confirmed"
           },
           {
-            "id": "el-gk-place",
             "kind": "place",
-            "value": "9th and Bannock",
-            "excerpt": "on the corner of 9th and Bannock"
+            "excerpt": "on the corner of 9th and Bannock",
+            "status": "confirmed"
           }
         ],
         "sourceType": "family_oral",
@@ -252,48 +208,7 @@
         "dont_know": 0,
         "dont_care": 0
       },
-      "detailStatuses": [
-        {
-          "detail": {
-            "id": "el-gk-year",
-            "kind": "date",
-            "value": "1979",
-            "excerpt": "it closed in 1979"
-          },
-          "disputes": [],
-          "extensions": [],
-          "competingValues": [
-            {
-              "value": "1979",
-              "count": 1,
-              "contributorIds": [
-                "c-dolores"
-              ]
-            }
-          ],
-          "weight": 1
-        },
-        {
-          "detail": {
-            "id": "el-gk-place",
-            "kind": "place",
-            "value": "9th and Bannock",
-            "excerpt": "on the corner of 9th and Bannock"
-          },
-          "disputes": [],
-          "extensions": [],
-          "competingValues": [
-            {
-              "value": "9th and Bannock",
-              "count": 1,
-              "contributorIds": [
-                "c-dolores"
-              ]
-            }
-          ],
-          "weight": 1
-        }
-      ],
+      "detailStatuses": [],
       "score": {
         "claimId": "cl-closed-1979",
         "score": 1.05,
@@ -329,50 +244,7 @@
             "value": 0
           }
         ],
-        "details": [
-          {
-            "detailId": "el-gk-year",
-            "score": 1,
-            "terms": [
-              {
-                "family": "content",
-                "name": "base",
-                "value": 1
-              },
-              {
-                "family": "content",
-                "name": "extensions",
-                "value": 0
-              },
-              {
-                "family": "content",
-                "name": "disputes",
-                "value": 0
-              }
-            ]
-          },
-          {
-            "detailId": "el-gk-place",
-            "score": 1,
-            "terms": [
-              {
-                "family": "content",
-                "name": "base",
-                "value": 1
-              },
-              {
-                "family": "content",
-                "name": "extensions",
-                "value": 0
-              },
-              {
-                "family": "content",
-                "name": "disputes",
-                "value": 0
-              }
-            ]
-          }
-        ]
+        "details": []
       },
       "weight": 1.05,
       "confidence": "single_source"
@@ -383,15 +255,18 @@
         "siteId": "site-gaskells",
         "contributorId": "c-dolores",
         "sourceRecordId": "rec-menu-photo",
-        "evidenceRecordIds": [],
+        "evidence": [],
+        "target": {
+          "sourceType": "claim",
+          "sourceId": "cl-shift-workers"
+        },
         "text": "That is right, and my mother was one of them. She was on the early shift at the laundry two streets over and she ate here before work most days.",
         "sourceLanguage": "en",
-        "details": [
+        "references": [
           {
-            "id": "el-gk-person",
             "kind": "person",
-            "value": "Dolores Whitcomb's mother",
-            "excerpt": "my mother was one of them"
+            "excerpt": "my mother was one of them",
+            "status": "confirmed"
           }
         ],
         "sourceType": "family_oral",
@@ -448,28 +323,7 @@
         "dont_know": 0,
         "dont_care": 0
       },
-      "detailStatuses": [
-        {
-          "detail": {
-            "id": "el-gk-person",
-            "kind": "person",
-            "value": "Dolores Whitcomb's mother",
-            "excerpt": "my mother was one of them"
-          },
-          "disputes": [],
-          "extensions": [],
-          "competingValues": [
-            {
-              "value": "Dolores Whitcomb's mother",
-              "count": 1,
-              "contributorIds": [
-                "c-dolores"
-              ]
-            }
-          ],
-          "weight": 1
-        }
-      ],
+      "detailStatuses": [],
       "score": {
         "claimId": "cl-mother-worked",
         "score": 1,
@@ -505,29 +359,7 @@
             "value": 0
           }
         ],
-        "details": [
-          {
-            "detailId": "el-gk-person",
-            "score": 1,
-            "terms": [
-              {
-                "family": "content",
-                "name": "base",
-                "value": 1
-              },
-              {
-                "family": "content",
-                "name": "extensions",
-                "value": 0
-              },
-              {
-                "family": "content",
-                "name": "disputes",
-                "value": 0
-              }
-            ]
-          }
-        ]
+        "details": []
       },
       "weight": 1,
       "confidence": "single_source"
@@ -638,7 +470,6 @@
       "flagsRaised": 0
     }
   ],
-  "transcripts": [],
   "flags": [],
   "integrity": {
     "totalClaims": 3,

@@ -50,15 +50,15 @@ test('an untranslated claim is present and readable, and its content terms wait'
 
 test('a claim citing a window of a recording waits for that window to be transcribed', () => {
   const ines = find(t2, 'cl-fd-ines');
-  expect(ines.claim.sourceWindow).toEqual({ start: 18, end: 70 });
-  const transcript = t2.transcripts.find((t) => t.recordId === 'rec-fd-04');
-  expect(transcript?.window).toEqual({ start: 18, end: 70 });
+  expect(ines.claim.target.window).toEqual({ start: 18, end: 70 });
+  const transcript = t2.records.find((r) => r.parent?.role === 'transcript' && r.parent.recordId === 'rec-fd-04');
+  expect(transcript?.parent?.window).toEqual({ start: 18, end: 70 });
 });
 
 test('a recording is published without waiting for a transcript', () => {
   const recording = t1.records.find((r) => r.id === 'rec-fd-04');
   expect(recording?.submission).toBe('published');
-  expect(t1.transcripts).toHaveLength(0);
+  expect(t1.records.filter((r) => r.parent?.role === 'transcript')).toHaveLength(0);
 });
 
 test('a translated claim never scores lower for being translated', () => {
@@ -78,21 +78,20 @@ test('a dispute targets one detail and leaves the rest of the claim alone', () =
   const office = find(t3, 'cl-fd-office');
   const contested = office.detailStatuses.filter((e) => e.disputes.length > 0);
   expect(contested).toHaveLength(1);
-  expect(contested[0]!.detail.kind).toBe('date');
-  expect(office.detailStatuses.some((e) => e.disputes.length === 0 && e.detail.kind === 'person')).toBe(true);
+  expect(office.detailStatuses.some((e) => e.disputes.length === 0)).toBe(true);
 });
 
 test('competing readings are all kept, in the order they arrived', () => {
-  const year = find(t3, 'cl-fd-office').detailStatuses.find((e) => e.detail.kind === 'date')!;
+  const year = find(t3, 'cl-fd-office').detailStatuses.find((e) => e.disputes.length > 0)!;
   const values = year.competingValues.map((v) => v.value);
-  expect(values[0]).toBe(year.detail.value);
-  expect(values).toEqual(expect.arrayContaining(['1931', '1934']));
+  expect(values[0]).toBe(year.detail.excerpt);
+  expect(values).toEqual(['opened in 1931', '1934']);
 });
 
 test('scores come in the scorer\'s shape, with a score for every detail', () => {
   for (const c of t3.claims) {
     expect(c.weight).toBe(c.score.score);
-    expect(c.score.details.map((d) => d.detailId)).toEqual(c.claim.details.map((d) => d.id));
+    expect(c.score.details.map((d) => d.detailId)).toEqual(c.detailStatuses.map((d) => d.detail.id));
     for (const ds of c.detailStatuses) {
       expect(ds.weight).toBe(c.score.details.find((d) => d.detailId === ds.detail.id)?.score);
     }

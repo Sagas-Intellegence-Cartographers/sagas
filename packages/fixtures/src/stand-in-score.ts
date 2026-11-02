@@ -20,33 +20,37 @@
  *     from evidence and behaviour.
  */
 import type {
-  Claim, ClaimScore, DetailScore, DisputeEdge, ExtensionEdge, ScoreTerm,
-  SourceRecord, TimeWindow, Transcript,
+  Claim, ClaimDetail, ClaimScore, DetailScore, DisputeEdge, ExtensionEdge, ScoreTerm,
+  SourceRecord, SupportingRecord, TimeWindow,
 } from '@sagas/contracts';
 
 export interface StandInInputs {
   claim: Claim;
+  details: ClaimDetail[];
+  /** The evidence records on another claim. */
+  evidenceOf: (claimId: string) => string[];
   sourceRecord: SourceRecord;
-  transcripts: Transcript[];
+  transcripts: SupportingRecord[];
   disputes: DisputeEdge[];
   extensions: ExtensionEdge[];
   independentRecordCount: number;
   soundsRight: number;
 }
 
-function covered(window: TimeWindow | undefined, transcripts: Transcript[]): boolean {
-  if (transcripts.some((t) => !t.window)) return true;
+function covered(window: TimeWindow | undefined, transcripts: SupportingRecord[]): boolean {
+  if (transcripts.some((t) => !t.parent.window)) return true;
   if (!window) return transcripts.length > 0;
-  return transcripts.some((t) => t.window && t.window.start <= window.start && t.window.end >= window.end);
+  return transcripts.some((t) => t.parent.window && t.parent.window.start <= window.start && t.parent.window.end >= window.end);
 }
 
 /** Whether the claim's own content can be read yet. */
 export function contentReadable(i: Pick<StandInInputs, 'claim' | 'sourceRecord' | 'transcripts'>): boolean {
   if (i.claim.awaitingTranslation) return false;
   const isRecording = i.sourceRecord.media.some((m) => m.kind === 'audio' || m.kind === 'video');
-  if (!isRecording || i.claim.sourceWindow === undefined) return true;
-  const own = i.transcripts.filter((t) => t.recordId === i.sourceRecord.id);
-  return covered(i.claim.sourceWindow, own);
+  const window = i.claim.target.sourceType === 'record' ? i.claim.target.window : undefined;
+  if (!isRecording || window === undefined) return true;
+  const own = i.transcripts.filter((t) => t.parent.recordId === i.sourceRecord.id);
+  return covered(window, own);
 }
 
 const t = (family: ScoreTerm['family'], name: string, value: number): ScoreTerm => ({ family, name, value });
@@ -56,7 +60,7 @@ export function standInScore(i: StandInInputs): ClaimScore {
 
   const terms: ScoreTerm[] = [
     t('content', 'base', 1),
-    t('content', 'evidence attached', 0.5 * i.claim.evidenceRecordIds.length),
+    t('content', 'evidence attached', 0.5 * i.claim.evidence.length),
     t('content', 'independent support', 2 * i.independentRecordCount),
     t('behaviour', 'sounds right', 0.05 * Math.min(i.soundsRight, 6)),
   ];
@@ -67,15 +71,22 @@ export function standInScore(i: StandInInputs): ClaimScore {
     );
   }
 
-  const details: DetailScore[] = i.claim.details.map((d) => {
+  const details: DetailScore[] = i.details.map((d) => {
     const dTerms: ScoreTerm[] = [t('content', 'base', 1)];
+    const extensions = i.extensions.filter((e) => e.targetExcerpt === d.excerpt);
+    const disputes = i.disputes.filter((e) => e.targetExcerpt === d.excerpt);
     if (readable) {
-      const ext = i.extensions.filter((e) => e.targetDetailId === d.id).length;
-      const dis = i.disputes.filter((e) => e.targetDetailId === d.id).length;
-      dTerms.push(t('content', 'extensions', 0.75 * ext), t('content', 'disputes', -0.5 * dis));
+      dTerms.push(t('content', 'extensions', 0.75 * extensions.length), t('content', 'disputes', -0.5 * disputes.length));
     }
     const score = Math.max(0.25, dTerms.reduce((sum, x) => sum + x.value, 0));
-    return { detailId: d.id, score, terms: dTerms };
+    const claimIds = [...disputes.map((e) => e.fromClaimId), ...extensions.map((e) => e.childClaimId)];
+    return {
+      detailId: d.id, excerpt: d.excerpt, score, terms: dTerms, contested: disputes.length > 0, claimIds,
+      evidenceRecordIds: [...new Set([
+        ...claimIds.flatMap(i.evidenceOf),
+        ...i.claim.evidence.filter((e) => e.excerpt === d.excerpt).map((e) => e.recordId),
+      ])],
+    };
   });
 
   const score = Math.max(0.25, terms.reduce((sum, x) => sum + x.value, 0));

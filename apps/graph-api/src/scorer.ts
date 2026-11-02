@@ -3,7 +3,7 @@
  *
  * `score` reads the graph for one place and returns a score for every claim
  * and every detail, each with the terms it is made of. `similarity` says how
- * alike two pieces of detail text are, from 0 to 1. The shapes are in
+ * alike two pieces of text are, from 0 to 1. The shapes are in
  * `@sagas/fixtures/scoring`, and the rules are in `rules.ts` beside them.
  *
  * Start with `similarity`: it is the smallest piece and five rules check it.

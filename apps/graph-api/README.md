@@ -34,8 +34,6 @@ algorithm can possibly be good at.
   passover signals ("sounds right" is agreement), and a placeholder weight.
 - `records` — what people actually handed over, with media, processing state,
   and where each one says it was made and how that location was determined.
-- `transcripts` — what somebody wrote down from a recording, attributed, with
-  more than one allowed per record.
 - `flags` — reports, with reasoning, open and resolved together.
 - `standings` — what every contributor has actually done, as counts.
 

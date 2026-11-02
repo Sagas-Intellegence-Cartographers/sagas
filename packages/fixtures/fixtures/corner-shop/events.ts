@@ -15,20 +15,19 @@
  *     they do not know when it was taken. Nothing is claimed.
  *   - Author separation. At t1 a different person reads the photograph and
  *     makes the claim. The person who handed it over asserted nothing.
- *   - A claim made of details, with one detail disputed and the others left
- *     alone (t2).
+ *   - A claim with one excerpt disputed and the rest left alone (t2). The
+ *     excerpt is a detail because the dispute points at it.
  *   - Evidence. The extension at t2 brings its own record (an audio clip),
  *     which is attached as evidence while the conversation's source stays the
  *     photograph.
  *   - Agreement that is not a source. The "sounds right" at t1 adds no source.
- *   - An extension landing on one detail. "Mr. Ferris was my uncle" adds to
- *     the owner detail (t2).
+ *   - An extension landing on one detail. "Mr. Ferris was my uncle" points at
+ *     "the owner, Mr. Ferris" (t2).
  *   - A dispute as a claim of its own, in the same conversation as the claim
  *     it disputes, carrying the directory page it cites as evidence (t2).
- *   - Two unrelated branches asserting the same detail (t3). A second person,
- *     with a different photograph in a different conversation, also names
- *     Mr. Ferris as the owner. Nothing links the two yet. Matching them is an
- *     open question for the intelligence layer.
+ *   - Two unrelated threads saying the same thing (t3). A second person, with a
+ *     different photograph in a different thread, also names Mr. Ferris as the
+ *     owner. Nothing links the two. Finding that is the intelligence layer's.
  *
  * WHAT IT CANNOT SHOW YET
  *
@@ -108,10 +107,10 @@ export const events: ContributionEvent[] = [
     siteId: SITE,
     text: "That's the shop on the corner of Fourth and Main, around 1950. The man in the doorway is the owner, Mr. Ferris.",
     sourceLanguage: 'en',
-    details: [
-      { id: 'dt-cs-place', kind: 'place', value: 'Fourth and Main', excerpt: 'the corner of Fourth and Main' },
-      { id: 'dt-cs-year', kind: 'date', value: 'c. 1950', excerpt: 'around 1950' },
-      { id: 'dt-cs-owner', kind: 'person', value: 'Ferris', excerpt: 'the owner, Mr. Ferris' },
+    references: [
+      { kind: 'place', excerpt: 'the corner of Fourth and Main', status: 'confirmed' },
+      { kind: 'date', excerpt: 'around 1950', status: 'confirmed' },
+      { kind: 'person', excerpt: 'the owner, Mr. Ferris', status: 'confirmed' },
     ],
     sourceType: 'firsthand',
   },
@@ -169,9 +168,9 @@ export const events: ContributionEvent[] = [
     // A dispute is a claim of its own, so it can carry evidence like any claim:
     // here, the directory page its reasoning cites.
     claimId: 'cl-dsp-cs-year',
-    evidenceRecordIds: ['rec-cs-directory'],
+    evidence: [{ recordId: 'rec-cs-directory' }],
     targetClaimId: 'cl-cs-shop',
-    targetDetailId: 'dt-cs-year',
+    targetExcerpt: 'around 1950',
     reasoning: "It can't be 1950. The awning in the photo went up in 1956. The directory page I uploaded shows the change.",
     proposedValue: '1956 or later',
   },
@@ -207,15 +206,15 @@ export const events: ContributionEvent[] = [
     kind: 'claim_extended',
     claimId: 'cl-cs-uncle',
     sourceRecordId: 'rec-cs-photo',
-    evidenceRecordIds: ['rec-cs-audio'],
+    evidence: [{ recordId: 'rec-cs-audio' }],
     parentClaimId: 'cl-cs-shop',
     // It adds to who the owner was, so it targets that detail.
-    targetDetailId: 'dt-cs-owner',
+    targetExcerpt: 'the owner, Mr. Ferris',
     siteId: SITE,
     text: 'Mr. Ferris was my uncle. He ran that shop until the sixties.',
     sourceLanguage: 'en',
-    details: [
-      { id: 'dt-cs-uncle-until', kind: 'date', value: '1960s', excerpt: 'until the sixties' },
+    references: [
+      { kind: 'date', excerpt: 'until the sixties', status: 'confirmed' },
     ],
     sourceType: 'family_oral',
   },
@@ -261,9 +260,8 @@ export const events: ContributionEvent[] = [
     siteId: SITE,
     text: "The sign reads FERRIS GROCERY. The previous owner of my house said it came down when the shop closed.",
     sourceLanguage: 'en',
-    details: [
-      { id: 'dt-cs-sign-owner', kind: 'person', value: 'Ferris', excerpt: 'FERRIS GROCERY' },
-      { id: 'dt-cs-sign-trade', kind: 'event', value: 'grocery', excerpt: 'GROCERY' },
+    references: [
+      { kind: 'person', excerpt: 'FERRIS GROCERY', status: 'confirmed' },
     ],
     sourceType: 'documentary',
   },

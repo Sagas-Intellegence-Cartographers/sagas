@@ -101,7 +101,7 @@ and nothing that calls it has to change.
 - A note on the data model: what is stored, what is worked out per request, and
   a proposal on two open questions. Should the database store events (each
   thing a person did) or snapshots (what a site looks like at one moment)? And
-  where does a claim's weight live, given that weight is moving onto details?
+  where does a claim's weight live, given that weight is on claims and details?
 
 **Not in this story.** Hosting the database.
 
@@ -374,7 +374,7 @@ good end point. If it is not, the write-up alone is a complete result.
 
 **Done when:**
 - A diagram of the entities a page needs (sites, sections, source and
-  evidence records, claims and their details, disputes, extensions, renderings,
+  evidence records, claims, the details people point at, disputes, extensions, renderings,
   contributors) and how they relate.
 - A note on what is stored ready to draw versus worked out per request. Example:
   whether a site's list of sections is stored or built on each read.

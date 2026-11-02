@@ -43,9 +43,9 @@ test('agreement adds no independent record', () => {
 test('the dispute lands on the year and leaves the place and the owner alone', () => {
   const shop = claim('t2', 'cl-cs-shop');
   const disputed = shop.detailStatuses.filter((d) => d.disputes.length > 0).map((d) => d.detail.id);
-  expect(disputed).toEqual(['dt-cs-year']);
-  const year = shop.detailStatuses.find((d) => d.detail.id === 'dt-cs-year');
-  expect(year?.competingValues.map((v) => v.value)).toEqual(['c. 1950', '1956 or later']);
+  expect(disputed).toEqual(['cl-cs-shop#around 1950']);
+  const year = shop.detailStatuses.find((d) => d.detail.excerpt === 'around 1950');
+  expect(year?.competingValues.map((v) => v.value)).toEqual(['around 1950', '1956 or later']);
 });
 
 test('an extension keeps the conversation source and brings its own record as evidence', () => {
@@ -58,22 +58,23 @@ test('an extension keeps the conversation source and brings its own record as ev
 
 test('a dispute is a claim of its own, pointed at one detail', () => {
   const shop = claim('t2', 'cl-cs-shop');
-  const year = shop.detailStatuses.find((d) => d.detail.id === 'dt-cs-year');
+  const year = shop.detailStatuses.find((d) => d.detail.excerpt === 'around 1950');
   const edge = year?.disputes[0];
   expect(edge?.fromClaimId).toBe('cl-dsp-cs-year');
   const dispute = claim('t2', 'cl-dsp-cs-year');
   expect(dispute.claim.disputedClaimId).toBe('cl-cs-shop');
   // Same conversation as the claim it disputes, so the same source record.
   expect(dispute.sourceRecord.id).toBe(shop.sourceRecord.id);
-  // What it asserts instead is a detail, so it can be disputed or backed in turn.
-  expect(dispute.claim.details.map((d) => d.value)).toEqual(['1956 or later']);
+  // It points at the words it disagrees with, and it says what it asserts instead.
+  expect(dispute.claim.target).toEqual({ sourceType: 'claim', sourceId: 'cl-cs-shop', excerpt: 'around 1950' });
+  expect(edge?.proposedValue).toBe('1956 or later');
 });
 
 test('an extension lands on the detail it adds to', () => {
   const shop = claim('t2', 'cl-cs-shop');
-  const owner = shop.detailStatuses.find((d) => d.detail.id === 'dt-cs-owner');
+  const owner = shop.detailStatuses.find((d) => d.detail.excerpt === 'the owner, Mr. Ferris');
   expect(owner?.extensions.map((e) => e.childClaimId)).toEqual(['cl-cs-uncle']);
-  const year = shop.detailStatuses.find((d) => d.detail.id === 'dt-cs-year');
+  const year = shop.detailStatuses.find((d) => d.detail.excerpt === 'around 1950');
   expect(year?.extensions).toEqual([]);
 });
 
@@ -81,8 +82,8 @@ test('two unrelated conversations assert the same detail, and nothing links them
   const shop = claim('t3', 'cl-cs-shop');
   const sign = claim('t3', 'cl-cs-sign');
   expect(sign.sourceRecord.id).not.toBe(shop.sourceRecord.id);
-  const owner = (c: typeof shop) => c.claim.details.find((d) => d.kind === 'person')?.value;
-  expect(owner(sign)).toBe(owner(shop));
+  expect(sign.claim.references.some((r) => r.kind === 'person')).toBe(true);
+  expect(shop.claim.references.some((r) => r.kind === 'person')).toBe(true);
   // Matching the two is open (intelligence layer), so neither counts the other.
   expect(sign.independentRecordCount).toBe(0);
 });
@@ -105,7 +106,7 @@ test('a photograph with nothing claimed has no passage to write', () => {
 
 test('the disputed year reads as a range both readings fit, and leads to the date detail', () => {
   const shop = page('t2').compositions.find((c) => c.sectionId === 'sec-cs-shop');
-  const year = shop?.spans.find((s) => s.detailIds?.includes('dt-cs-year'));
+  const year = shop?.spans.find((s) => s.detailIds?.includes('cl-cs-shop#around 1950'));
   expect(year && shop?.text.slice(year.start, year.end)).toBe('sometime in the 1950s');
 });
 

@@ -9,7 +9,7 @@ describe.each(siteFixtures.map((f) => [f.key, f] as const))('narrative stand-ins
   const states = reduceToStates(fixture.events, fixture.cuts, fixture.narrative);
 
   it.each(states.map((s) => [s.stateId, s] as const))('%s: every span leads to something that exists', (_id, state) => {
-    const claims = new Map(state.claims.map((c) => [c.claim.id, c.claim]));
+    const claims = new Map(state.claims.map((c) => [c.claim.id, c]));
     const sectionIds = new Set(state.sections.map((s) => s.id));
 
     for (const section of state.sections) {
@@ -25,7 +25,7 @@ describe.each(siteFixtures.map((f) => [f.key, f] as const))('narrative stand-ins
         for (const id of sp.claimIds) {
           const claim = claims.get(id);
           expect(claim, `span "${comp.text.slice(sp.start, sp.end)}" points at missing claim ${id}`).toBeDefined();
-          claim?.details.forEach((d) => detailIdsOnClaims.add(d.id));
+          claim?.detailStatuses.forEach((d) => detailIdsOnClaims.add(d.detail.id));
         }
         for (const id of sp.detailIds ?? []) {
           expect(detailIdsOnClaims.has(id), `detail ${id} is not on the span's claims`).toBe(true);

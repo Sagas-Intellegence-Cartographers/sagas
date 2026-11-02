@@ -6,7 +6,7 @@
 import { describe, expect, it } from "vitest";
 
 import { graph } from "./build";
-import { scoringGraph } from "./graph";
+import { detailsOf, scoringGraph } from "./graph";
 
 describe("graph builder", () => {
   it("builds a graph that matches the schema", () => {
@@ -16,12 +16,11 @@ describe("graph builder", () => {
       .claim("A", {
         by: "p1",
         source: "r1",
-        details: { year: "1950", place: "Mill Road" },
+        text: "1950, Mill Road",
         evidence: ["photo"],
       })
-      .record("r2", { by: "p3" })
-      .claim("C", { by: "p3", source: "r2", details: { year: "1960" } })
-      .dispute("C", "A", "year", "the road came later")
+      .claim("C", { by: "p3", source: "r1", text: "It was 1960." })
+      .dispute("C", "A", "1950", "the road came later")
       .passovers("A", 2)
       .build();
     expect(() => scoringGraph.parse(g)).not.toThrow();
@@ -33,7 +32,7 @@ describe("graph builder", () => {
   it("gives each event a later time than the one before", () => {
     const g = graph()
       .record("r1", { by: "p1" })
-      .claim("A", { by: "p1", source: "r1", details: { year: "1950" } })
+      .claim("A", { by: "p1", source: "r1", text: "1950" })
       .passover("A", "p2")
       .build();
     const times = [
@@ -47,7 +46,7 @@ describe("graph builder", () => {
 
   it("refuses a claim whose source record was never added", () => {
     expect(() =>
-      graph().claim("A", { by: "p1", source: "missing", details: {} }).build(),
+      graph().claim("A", { by: "p1", source: "missing", text: "1950" }).build(),
     ).toThrow(/no record missing/);
   });
 
@@ -55,9 +54,62 @@ describe("graph builder", () => {
     expect(() =>
       graph()
         .record("r1", { by: "p1" })
-        .claim("A", { by: "p1", source: "r1", details: {} })
-        .dispute("A", "nobody", "year", "why")
+        .claim("A", { by: "p1", source: "r1", text: "1950" })
+        .dispute("A", "nobody", "1950", "why")
         .build(),
     ).toThrow(/unknown claim/);
+  });
+
+  it("repoints a claim at what it disputes or extends", () => {
+    const g = graph()
+      .record("r1", { by: "p1" })
+      .claim("A", { by: "p1", source: "r1", text: "1950, Mill Road" })
+      .claim("B", { by: "p2", source: "r1", text: "It was gravel." })
+      .extend("B", "A", "Mill Road")
+      .build();
+    expect(g.claims[0]?.target).toEqual({
+      sourceType: "record",
+      sourceId: "r1",
+    });
+    expect(g.claims[1]?.target).toEqual({
+      sourceType: "claim",
+      sourceId: "A",
+      excerpt: "Mill Road",
+    });
+  });
+
+  it("works out a claim's details from what points at it", () => {
+    const g = graph()
+      .record("r1", { by: "p1" })
+      .record("photo", { by: "p3", kind: "image" })
+      .claim("A", {
+        by: "p1",
+        source: "r1",
+        text: "1950, Mill Road",
+        evidence: [{ record: "photo", excerpt: "1950" }],
+      })
+      .claim("B", { by: "p2", source: "r1", text: "It was gravel." })
+      .extend("B", "A", "Mill Road")
+      .claim("C", { by: "p4", source: "r1", text: "Also gravel." })
+      .extend("C", "A", "Mill Road")
+      .claim("D", { by: "p5", source: "r1", text: "My family ran it." })
+      .extend("D", "A")
+      .build();
+    expect(detailsOf(g, "A").map((d) => d.excerpt)).toEqual([
+      "Mill Road",
+      "1950",
+    ]);
+    expect(detailsOf(g, "B")).toEqual([]);
+  });
+
+  it("refuses a target whose words aren't in the claim it points at", () => {
+    expect(() =>
+      graph()
+        .record("r1", { by: "p1" })
+        .claim("A", { by: "p1", source: "r1", text: "1950, Mill Road" })
+        .claim("B", { by: "p2", source: "r1", text: "It was gravel." })
+        .extend("B", "A", "Fourth and Main")
+        .build(),
+    ).toThrow(/isn't in the text of A/);
   });
 });

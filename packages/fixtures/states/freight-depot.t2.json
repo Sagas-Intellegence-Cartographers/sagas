@@ -25,21 +25,23 @@
         "siteId": "site-freight-depot",
         "contributorId": "c-ana",
         "sourceRecordId": "rec-fd-01",
-        "evidenceRecordIds": [],
+        "evidence": [],
+        "target": {
+          "sourceType": "record",
+          "sourceId": "rec-fd-01"
+        },
         "text": "The depot office opened in 1931, and my grandfather was a clerk there from the start.",
         "sourceLanguage": "en",
-        "details": [
+        "references": [
           {
-            "id": "cl-fd-office-year",
             "kind": "date",
-            "value": "1931",
-            "excerpt": "opened in 1931"
+            "excerpt": "opened in 1931",
+            "status": "confirmed"
           },
           {
-            "id": "cl-fd-office-person",
             "kind": "person",
-            "value": "grandfather, clerk",
-            "excerpt": "my grandfather was a clerk"
+            "excerpt": "my grandfather was a clerk",
+            "status": "confirmed"
           }
         ],
         "sourceType": "family_oral",
@@ -86,9 +88,7 @@
       "detailStatuses": [
         {
           "detail": {
-            "id": "cl-fd-office-year",
-            "kind": "date",
-            "value": "1931",
+            "id": "cl-fd-office#opened in 1931",
             "excerpt": "opened in 1931"
           },
           "disputes": [
@@ -97,7 +97,7 @@
               "type": "dispute",
               "fromClaimId": "cl-dsp-fd-office-year",
               "targetClaimId": "cl-fd-office",
-              "targetDetailId": "cl-fd-office-year",
+              "targetExcerpt": "opened in 1931",
               "reasoning": "My uncle always said the office opened in 1934, the year he started, and he was one of the first.",
               "proposedValue": "1934",
               "contributorId": "c-luis",
@@ -107,7 +107,7 @@
           "extensions": [],
           "competingValues": [
             {
-              "value": "1931",
+              "value": "opened in 1931",
               "count": 1,
               "contributorIds": [
                 "c-ana"
@@ -125,9 +125,7 @@
         },
         {
           "detail": {
-            "id": "cl-fd-office-person",
-            "kind": "person",
-            "value": "grandfather, clerk",
+            "id": "cl-fd-office#my grandfather was a clerk",
             "excerpt": "my grandfather was a clerk"
           },
           "disputes": [],
@@ -137,14 +135,14 @@
               "type": "extension",
               "parentClaimId": "cl-fd-office",
               "childClaimId": "cl-fd-office-notice",
-              "targetDetailId": "cl-fd-office-person",
+              "targetExcerpt": "my grandfather was a clerk",
               "contributorId": "c-pau",
               "createdAt": "2026-03-08T20:20:00Z"
             }
           ],
           "competingValues": [
             {
-              "value": "grandfather, clerk",
+              "value": "my grandfather was a clerk",
               "count": 1,
               "contributorIds": [
                 "c-ana"
@@ -191,7 +189,8 @@
         ],
         "details": [
           {
-            "detailId": "cl-fd-office-year",
+            "detailId": "cl-fd-office#opened in 1931",
+            "excerpt": "opened in 1931",
             "score": 0.5,
             "terms": [
               {
@@ -209,10 +208,16 @@
                 "name": "disputes",
                 "value": -0.5
               }
-            ]
+            ],
+            "contested": true,
+            "claimIds": [
+              "cl-dsp-fd-office-year"
+            ],
+            "evidenceRecordIds": []
           },
           {
-            "detailId": "cl-fd-office-person",
+            "detailId": "cl-fd-office#my grandfather was a clerk",
+            "excerpt": "my grandfather was a clerk",
             "score": 1.75,
             "terms": [
               {
@@ -230,6 +235,13 @@
                 "name": "disputes",
                 "value": 0
               }
+            ],
+            "contested": false,
+            "claimIds": [
+              "cl-fd-office-notice"
+            ],
+            "evidenceRecordIds": [
+              "rec-fd-07"
             ]
           }
         ]
@@ -243,17 +255,23 @@
         "siteId": "site-freight-depot",
         "contributorId": "c-pau",
         "sourceRecordId": "rec-fd-01",
-        "evidenceRecordIds": [
-          "rec-fd-07"
+        "evidence": [
+          {
+            "recordId": "rec-fd-07"
+          }
         ],
+        "target": {
+          "sourceType": "claim",
+          "sourceId": "cl-fd-office",
+          "excerpt": "my grandfather was a clerk"
+        },
         "text": "The notice lists the first clerks hired for the office.",
         "sourceLanguage": "en",
-        "details": [
+        "references": [
           {
-            "id": "cl-fd-office-notice-list",
             "kind": "person",
-            "value": "first clerks listed",
-            "excerpt": "lists the first clerks"
+            "excerpt": "lists the first clerks",
+            "status": "confirmed"
           }
         ],
         "sourceType": "documentary",
@@ -296,7 +314,10 @@
           "media": [],
           "link": {
             "url": "https://example.org/archive/depot-office-notice",
-            "title": "Depot office opens (invented)",
+            "preview": {
+              "title": "Depot office opens (invented)",
+              "summary": "A short notice that the depot office is opening, naming the first clerks hired."
+            },
             "seenAt": "2026-03-08T20:05:00Z"
           },
           "choices": {
@@ -319,28 +340,7 @@
         "dont_know": 0,
         "dont_care": 0
       },
-      "detailStatuses": [
-        {
-          "detail": {
-            "id": "cl-fd-office-notice-list",
-            "kind": "person",
-            "value": "first clerks listed",
-            "excerpt": "lists the first clerks"
-          },
-          "disputes": [],
-          "extensions": [],
-          "competingValues": [
-            {
-              "value": "first clerks listed",
-              "count": 1,
-              "contributorIds": [
-                "c-pau"
-              ]
-            }
-          ],
-          "weight": 1
-        }
-      ],
+      "detailStatuses": [],
       "score": {
         "claimId": "cl-fd-office-notice",
         "score": 1.5,
@@ -376,29 +376,7 @@
             "value": 0
           }
         ],
-        "details": [
-          {
-            "detailId": "cl-fd-office-notice-list",
-            "score": 1,
-            "terms": [
-              {
-                "family": "content",
-                "name": "base",
-                "value": 1
-              },
-              {
-                "family": "content",
-                "name": "extensions",
-                "value": 0
-              },
-              {
-                "family": "content",
-                "name": "disputes",
-                "value": 0
-              }
-            ]
-          }
-        ]
+        "details": []
       },
       "weight": 1.5,
       "confidence": "single_source"
@@ -409,21 +387,23 @@
         "siteId": "site-freight-depot",
         "contributorId": "c-luis",
         "sourceRecordId": "rec-fd-03",
-        "evidenceRecordIds": [],
+        "evidence": [],
+        "target": {
+          "sourceType": "record",
+          "sourceId": "rec-fd-03"
+        },
         "text": "This photo shows the depot office in 1935, with my uncle standing by the door.",
         "sourceLanguage": "en",
-        "details": [
+        "references": [
           {
-            "id": "cl-fd-photo-year",
             "kind": "date",
-            "value": "1935",
-            "excerpt": "in 1935"
+            "excerpt": "in 1935",
+            "status": "confirmed"
           },
           {
-            "id": "cl-fd-photo-person",
             "kind": "person",
-            "value": "uncle by the door",
-            "excerpt": "my uncle standing by the door"
+            "excerpt": "my uncle standing by the door",
+            "status": "confirmed"
           }
         ],
         "sourceType": "firsthand",
@@ -487,48 +467,7 @@
         "dont_know": 0,
         "dont_care": 0
       },
-      "detailStatuses": [
-        {
-          "detail": {
-            "id": "cl-fd-photo-year",
-            "kind": "date",
-            "value": "1935",
-            "excerpt": "in 1935"
-          },
-          "disputes": [],
-          "extensions": [],
-          "competingValues": [
-            {
-              "value": "1935",
-              "count": 1,
-              "contributorIds": [
-                "c-luis"
-              ]
-            }
-          ],
-          "weight": 1
-        },
-        {
-          "detail": {
-            "id": "cl-fd-photo-person",
-            "kind": "person",
-            "value": "uncle by the door",
-            "excerpt": "my uncle standing by the door"
-          },
-          "disputes": [],
-          "extensions": [],
-          "competingValues": [
-            {
-              "value": "uncle by the door",
-              "count": 1,
-              "contributorIds": [
-                "c-luis"
-              ]
-            }
-          ],
-          "weight": 1
-        }
-      ],
+      "detailStatuses": [],
       "score": {
         "claimId": "cl-fd-photo",
         "score": 1.05,
@@ -564,50 +503,7 @@
             "value": 0
           }
         ],
-        "details": [
-          {
-            "detailId": "cl-fd-photo-year",
-            "score": 1,
-            "terms": [
-              {
-                "family": "content",
-                "name": "base",
-                "value": 1
-              },
-              {
-                "family": "content",
-                "name": "extensions",
-                "value": 0
-              },
-              {
-                "family": "content",
-                "name": "disputes",
-                "value": 0
-              }
-            ]
-          },
-          {
-            "detailId": "cl-fd-photo-person",
-            "score": 1,
-            "terms": [
-              {
-                "family": "content",
-                "name": "base",
-                "value": 1
-              },
-              {
-                "family": "content",
-                "name": "extensions",
-                "value": 0
-              },
-              {
-                "family": "content",
-                "name": "disputes",
-                "value": 0
-              }
-            ]
-          }
-        ]
+        "details": []
       },
       "weight": 1.05,
       "confidence": "single_source"
@@ -618,21 +514,18 @@
         "siteId": "site-freight-depot",
         "contributorId": "c-ana",
         "sourceRecordId": "rec-fd-01",
-        "evidenceRecordIds": [],
+        "evidence": [],
+        "target": {
+          "sourceType": "record",
+          "sourceId": "rec-fd-01"
+        },
         "text": "The loading dock ran the length of the tracks, and in winter they kept a stove going on it.",
         "sourceLanguage": "en",
-        "details": [
+        "references": [
           {
-            "id": "cl-fd-dock-place",
             "kind": "place",
-            "value": "along the tracks",
-            "excerpt": "ran the length of the tracks"
-          },
-          {
-            "id": "cl-fd-dock-season",
-            "kind": "event",
-            "value": "stove in winter",
-            "excerpt": "in winter they kept a stove going"
+            "excerpt": "ran the length of the tracks",
+            "status": "confirmed"
           }
         ],
         "sourceType": "family_oral",
@@ -674,48 +567,7 @@
         "dont_know": 0,
         "dont_care": 0
       },
-      "detailStatuses": [
-        {
-          "detail": {
-            "id": "cl-fd-dock-place",
-            "kind": "place",
-            "value": "along the tracks",
-            "excerpt": "ran the length of the tracks"
-          },
-          "disputes": [],
-          "extensions": [],
-          "competingValues": [
-            {
-              "value": "along the tracks",
-              "count": 1,
-              "contributorIds": [
-                "c-ana"
-              ]
-            }
-          ],
-          "weight": 1
-        },
-        {
-          "detail": {
-            "id": "cl-fd-dock-season",
-            "kind": "event",
-            "value": "stove in winter",
-            "excerpt": "in winter they kept a stove going"
-          },
-          "disputes": [],
-          "extensions": [],
-          "competingValues": [
-            {
-              "value": "stove in winter",
-              "count": 1,
-              "contributorIds": [
-                "c-ana"
-              ]
-            }
-          ],
-          "weight": 1
-        }
-      ],
+      "detailStatuses": [],
       "score": {
         "claimId": "cl-fd-dock",
         "score": 1,
@@ -751,50 +603,7 @@
             "value": 0
           }
         ],
-        "details": [
-          {
-            "detailId": "cl-fd-dock-place",
-            "score": 1,
-            "terms": [
-              {
-                "family": "content",
-                "name": "base",
-                "value": 1
-              },
-              {
-                "family": "content",
-                "name": "extensions",
-                "value": 0
-              },
-              {
-                "family": "content",
-                "name": "disputes",
-                "value": 0
-              }
-            ]
-          },
-          {
-            "detailId": "cl-fd-dock-season",
-            "score": 1,
-            "terms": [
-              {
-                "family": "content",
-                "name": "base",
-                "value": 1
-              },
-              {
-                "family": "content",
-                "name": "extensions",
-                "value": 0
-              },
-              {
-                "family": "content",
-                "name": "disputes",
-                "value": 0
-              }
-            ]
-          }
-        ]
+        "details": []
       },
       "weight": 1,
       "confidence": "single_source"
@@ -805,17 +614,14 @@
         "siteId": "site-freight-depot",
         "contributorId": "c-ana",
         "sourceRecordId": "rec-fd-02",
-        "evidenceRecordIds": [],
+        "evidence": [],
+        "target": {
+          "sourceType": "record",
+          "sourceId": "rec-fd-02"
+        },
         "text": "Before the depot there was a lumber yard on that lot, or so I was told.",
         "sourceLanguage": "en",
-        "details": [
-          {
-            "id": "cl-fd-prelot-use",
-            "kind": "event",
-            "value": "lumber yard",
-            "excerpt": "a lumber yard on that lot"
-          }
-        ],
+        "references": [],
         "sourceType": "family_oral",
         "createdAt": "2026-01-07T02:05:00Z",
         "awaitingTranslation": false
@@ -855,28 +661,7 @@
         "dont_know": 0,
         "dont_care": 0
       },
-      "detailStatuses": [
-        {
-          "detail": {
-            "id": "cl-fd-prelot-use",
-            "kind": "event",
-            "value": "lumber yard",
-            "excerpt": "a lumber yard on that lot"
-          },
-          "disputes": [],
-          "extensions": [],
-          "competingValues": [
-            {
-              "value": "lumber yard",
-              "count": 1,
-              "contributorIds": [
-                "c-ana"
-              ]
-            }
-          ],
-          "weight": 1
-        }
-      ],
+      "detailStatuses": [],
       "score": {
         "claimId": "cl-fd-prelot",
         "score": 1,
@@ -912,29 +697,7 @@
             "value": 0
           }
         ],
-        "details": [
-          {
-            "detailId": "cl-fd-prelot-use",
-            "score": 1,
-            "terms": [
-              {
-                "family": "content",
-                "name": "base",
-                "value": 1
-              },
-              {
-                "family": "content",
-                "name": "extensions",
-                "value": 0
-              },
-              {
-                "family": "content",
-                "name": "disputes",
-                "value": 0
-              }
-            ]
-          }
-        ]
+        "details": []
       },
       "weight": 1,
       "confidence": "single_source"
@@ -945,17 +708,15 @@
         "siteId": "site-freight-depot",
         "contributorId": "c-luis",
         "sourceRecordId": "rec-fd-01",
-        "evidenceRecordIds": [],
+        "evidence": [],
+        "target": {
+          "sourceType": "claim",
+          "sourceId": "cl-fd-office",
+          "excerpt": "opened in 1931"
+        },
         "text": "My uncle always said the office opened in 1934, the year he started, and he was one of the first.",
         "sourceLanguage": "en",
-        "details": [
-          {
-            "id": "cl-dsp-fd-office-year-value",
-            "kind": "date",
-            "value": "1934",
-            "excerpt": "1934"
-          }
-        ],
+        "references": [],
         "sourceType": "family_oral",
         "createdAt": "2026-02-05T18:00:00Z",
         "disputedClaimId": "cl-fd-office",
@@ -996,28 +757,7 @@
         "dont_know": 0,
         "dont_care": 0
       },
-      "detailStatuses": [
-        {
-          "detail": {
-            "id": "cl-dsp-fd-office-year-value",
-            "kind": "date",
-            "value": "1934",
-            "excerpt": "1934"
-          },
-          "disputes": [],
-          "extensions": [],
-          "competingValues": [
-            {
-              "value": "1934",
-              "count": 1,
-              "contributorIds": [
-                "c-luis"
-              ]
-            }
-          ],
-          "weight": 1
-        }
-      ],
+      "detailStatuses": [],
       "score": {
         "claimId": "cl-dsp-fd-office-year",
         "score": 1,
@@ -1053,29 +793,7 @@
             "value": 0
           }
         ],
-        "details": [
-          {
-            "detailId": "cl-dsp-fd-office-year-value",
-            "score": 1,
-            "terms": [
-              {
-                "family": "content",
-                "name": "base",
-                "value": 1
-              },
-              {
-                "family": "content",
-                "name": "extensions",
-                "value": 0
-              },
-              {
-                "family": "content",
-                "name": "disputes",
-                "value": 0
-              }
-            ]
-          }
-        ]
+        "details": []
       },
       "weight": 1,
       "confidence": "single_source"
@@ -1086,15 +804,19 @@
         "siteId": "site-freight-depot",
         "contributorId": "c-ines",
         "sourceRecordId": "rec-fd-04",
-        "evidenceRecordIds": [],
+        "evidence": [],
+        "target": {
+          "sourceType": "record",
+          "sourceId": "rec-fd-04",
+          "window": {
+            "start": 18,
+            "end": 70
+          }
+        },
         "text": "My grandfather worked on the dock. For us the depot was a workplace, not a station.",
         "sourceLanguage": "fr",
         "sourceLanguageText": "Mon grand-père travaillait au quai. Pour nous, le dépôt était un lieu de travail, pas une gare.",
-        "sourceWindow": {
-          "start": 18,
-          "end": 70
-        },
-        "details": [],
+        "references": [],
         "sourceType": "family_oral",
         "createdAt": "2026-02-10T19:20:00Z",
         "awaitingTranslation": false
@@ -1141,10 +863,24 @@
       "translations": [
         {
           "id": "tl-fd-01",
-          "claimId": "cl-fd-ines",
+          "siteId": "site-freight-depot",
           "contributorId": "c-mara",
-          "targetLanguage": "en",
           "text": "My grandfather worked on the dock. For us the depot was a workplace, not a station.",
+          "language": "en",
+          "media": [],
+          "parent": {
+            "role": "translation",
+            "claimId": "cl-fd-ines"
+          },
+          "submission": "published",
+          "choices": {
+            "rightToShare": true,
+            "studentAccess": true,
+            "public": "yes",
+            "location": "keep",
+            "mentionsPeople": "not_sure"
+          },
+          "termsVersion": "fixture-terms-0.1",
           "createdAt": "2026-03-02T17:15:00Z"
         }
       ],
@@ -1352,7 +1088,10 @@
       "media": [],
       "link": {
         "url": "https://example.org/archive/depot-office-notice",
-        "title": "Depot office opens (invented)",
+        "preview": {
+          "title": "Depot office opens (invented)",
+          "summary": "A short notice that the depot office is opening, naming the first clerks hired."
+        },
         "seenAt": "2026-03-08T20:05:00Z"
       },
       "choices": {
@@ -1364,6 +1103,55 @@
       },
       "termsVersion": "fixture-terms-0.1",
       "createdAt": "2026-03-08T20:10:00Z"
+    },
+    {
+      "id": "ts-fd-01",
+      "siteId": "site-freight-depot",
+      "contributorId": "c-ines",
+      "text": "Mon grand-père travaillait au quai. Pour nous, le dépôt était un lieu de travail, pas une gare.",
+      "language": "fr",
+      "media": [],
+      "parent": {
+        "role": "transcript",
+        "recordId": "rec-fd-04",
+        "window": {
+          "start": 18,
+          "end": 70
+        },
+        "method": "human"
+      },
+      "submission": "published",
+      "choices": {
+        "rightToShare": true,
+        "studentAccess": true,
+        "public": "yes",
+        "location": "keep",
+        "mentionsPeople": "not_sure"
+      },
+      "termsVersion": "fixture-terms-0.1",
+      "createdAt": "2026-03-04T18:00:00Z"
+    },
+    {
+      "id": "tl-fd-01",
+      "siteId": "site-freight-depot",
+      "contributorId": "c-mara",
+      "text": "My grandfather worked on the dock. For us the depot was a workplace, not a station.",
+      "language": "en",
+      "media": [],
+      "parent": {
+        "role": "translation",
+        "claimId": "cl-fd-ines"
+      },
+      "submission": "published",
+      "choices": {
+        "rightToShare": true,
+        "studentAccess": true,
+        "public": "yes",
+        "location": "keep",
+        "mentionsPeople": "not_sure"
+      },
+      "termsVersion": "fixture-terms-0.1",
+      "createdAt": "2026-03-02T17:15:00Z"
     }
   ],
   "collections": [
@@ -1454,30 +1242,15 @@
       "flagsRaised": 0
     }
   ],
-  "transcripts": [
-    {
-      "id": "ts-fd-01",
-      "recordId": "rec-fd-04",
-      "contributorId": "c-ines",
-      "language": "fr",
-      "text": "Mon grand-père travaillait au quai. Pour nous, le dépôt était un lieu de travail, pas une gare.",
-      "method": "human",
-      "window": {
-        "start": 18,
-        "end": 70
-      },
-      "createdAt": "2026-03-04T18:00:00Z"
-    }
-  ],
   "flags": [],
   "integrity": {
     "totalClaims": 7,
     "independentContributors": 4,
     "corroborationDepth": 0.14285714285714285,
     "activeDisputes": 1,
-    "datedClaims": 3,
+    "datedClaims": 2,
     "awaitingTranslation": 0,
-    "overall": 61
+    "overall": 57
   },
   "sections": [],
   "compositions": [],

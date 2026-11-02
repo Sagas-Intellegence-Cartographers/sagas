@@ -25,21 +25,23 @@
         "siteId": "site-freight-depot",
         "contributorId": "c-ana",
         "sourceRecordId": "rec-fd-01",
-        "evidenceRecordIds": [],
+        "evidence": [],
+        "target": {
+          "sourceType": "record",
+          "sourceId": "rec-fd-01"
+        },
         "text": "The depot office opened in 1931, and my grandfather was a clerk there from the start.",
         "sourceLanguage": "en",
-        "details": [
+        "references": [
           {
-            "id": "cl-fd-office-year",
             "kind": "date",
-            "value": "1931",
-            "excerpt": "opened in 1931"
+            "excerpt": "opened in 1931",
+            "status": "confirmed"
           },
           {
-            "id": "cl-fd-office-person",
             "kind": "person",
-            "value": "grandfather, clerk",
-            "excerpt": "my grandfather was a clerk"
+            "excerpt": "my grandfather was a clerk",
+            "status": "confirmed"
           }
         ],
         "sourceType": "family_oral",
@@ -81,48 +83,7 @@
         "dont_know": 0,
         "dont_care": 0
       },
-      "detailStatuses": [
-        {
-          "detail": {
-            "id": "cl-fd-office-year",
-            "kind": "date",
-            "value": "1931",
-            "excerpt": "opened in 1931"
-          },
-          "disputes": [],
-          "extensions": [],
-          "competingValues": [
-            {
-              "value": "1931",
-              "count": 1,
-              "contributorIds": [
-                "c-ana"
-              ]
-            }
-          ],
-          "weight": 1
-        },
-        {
-          "detail": {
-            "id": "cl-fd-office-person",
-            "kind": "person",
-            "value": "grandfather, clerk",
-            "excerpt": "my grandfather was a clerk"
-          },
-          "disputes": [],
-          "extensions": [],
-          "competingValues": [
-            {
-              "value": "grandfather, clerk",
-              "count": 1,
-              "contributorIds": [
-                "c-ana"
-              ]
-            }
-          ],
-          "weight": 1
-        }
-      ],
+      "detailStatuses": [],
       "score": {
         "claimId": "cl-fd-office",
         "score": 1,
@@ -158,50 +119,7 @@
             "value": 0
           }
         ],
-        "details": [
-          {
-            "detailId": "cl-fd-office-year",
-            "score": 1,
-            "terms": [
-              {
-                "family": "content",
-                "name": "base",
-                "value": 1
-              },
-              {
-                "family": "content",
-                "name": "extensions",
-                "value": 0
-              },
-              {
-                "family": "content",
-                "name": "disputes",
-                "value": 0
-              }
-            ]
-          },
-          {
-            "detailId": "cl-fd-office-person",
-            "score": 1,
-            "terms": [
-              {
-                "family": "content",
-                "name": "base",
-                "value": 1
-              },
-              {
-                "family": "content",
-                "name": "extensions",
-                "value": 0
-              },
-              {
-                "family": "content",
-                "name": "disputes",
-                "value": 0
-              }
-            ]
-          }
-        ]
+        "details": []
       },
       "weight": 1,
       "confidence": "single_source"
@@ -212,21 +130,18 @@
         "siteId": "site-freight-depot",
         "contributorId": "c-ana",
         "sourceRecordId": "rec-fd-01",
-        "evidenceRecordIds": [],
+        "evidence": [],
+        "target": {
+          "sourceType": "record",
+          "sourceId": "rec-fd-01"
+        },
         "text": "The loading dock ran the length of the tracks, and in winter they kept a stove going on it.",
         "sourceLanguage": "en",
-        "details": [
+        "references": [
           {
-            "id": "cl-fd-dock-place",
             "kind": "place",
-            "value": "along the tracks",
-            "excerpt": "ran the length of the tracks"
-          },
-          {
-            "id": "cl-fd-dock-season",
-            "kind": "event",
-            "value": "stove in winter",
-            "excerpt": "in winter they kept a stove going"
+            "excerpt": "ran the length of the tracks",
+            "status": "confirmed"
           }
         ],
         "sourceType": "family_oral",
@@ -268,48 +183,7 @@
         "dont_know": 0,
         "dont_care": 0
       },
-      "detailStatuses": [
-        {
-          "detail": {
-            "id": "cl-fd-dock-place",
-            "kind": "place",
-            "value": "along the tracks",
-            "excerpt": "ran the length of the tracks"
-          },
-          "disputes": [],
-          "extensions": [],
-          "competingValues": [
-            {
-              "value": "along the tracks",
-              "count": 1,
-              "contributorIds": [
-                "c-ana"
-              ]
-            }
-          ],
-          "weight": 1
-        },
-        {
-          "detail": {
-            "id": "cl-fd-dock-season",
-            "kind": "event",
-            "value": "stove in winter",
-            "excerpt": "in winter they kept a stove going"
-          },
-          "disputes": [],
-          "extensions": [],
-          "competingValues": [
-            {
-              "value": "stove in winter",
-              "count": 1,
-              "contributorIds": [
-                "c-ana"
-              ]
-            }
-          ],
-          "weight": 1
-        }
-      ],
+      "detailStatuses": [],
       "score": {
         "claimId": "cl-fd-dock",
         "score": 1,
@@ -345,50 +219,7 @@
             "value": 0
           }
         ],
-        "details": [
-          {
-            "detailId": "cl-fd-dock-place",
-            "score": 1,
-            "terms": [
-              {
-                "family": "content",
-                "name": "base",
-                "value": 1
-              },
-              {
-                "family": "content",
-                "name": "extensions",
-                "value": 0
-              },
-              {
-                "family": "content",
-                "name": "disputes",
-                "value": 0
-              }
-            ]
-          },
-          {
-            "detailId": "cl-fd-dock-season",
-            "score": 1,
-            "terms": [
-              {
-                "family": "content",
-                "name": "base",
-                "value": 1
-              },
-              {
-                "family": "content",
-                "name": "extensions",
-                "value": 0
-              },
-              {
-                "family": "content",
-                "name": "disputes",
-                "value": 0
-              }
-            ]
-          }
-        ]
+        "details": []
       },
       "weight": 1,
       "confidence": "single_source"
@@ -399,17 +230,14 @@
         "siteId": "site-freight-depot",
         "contributorId": "c-ana",
         "sourceRecordId": "rec-fd-02",
-        "evidenceRecordIds": [],
+        "evidence": [],
+        "target": {
+          "sourceType": "record",
+          "sourceId": "rec-fd-02"
+        },
         "text": "Before the depot there was a lumber yard on that lot, or so I was told.",
         "sourceLanguage": "en",
-        "details": [
-          {
-            "id": "cl-fd-prelot-use",
-            "kind": "event",
-            "value": "lumber yard",
-            "excerpt": "a lumber yard on that lot"
-          }
-        ],
+        "references": [],
         "sourceType": "family_oral",
         "createdAt": "2026-01-07T02:05:00Z",
         "awaitingTranslation": false
@@ -449,28 +277,7 @@
         "dont_know": 0,
         "dont_care": 0
       },
-      "detailStatuses": [
-        {
-          "detail": {
-            "id": "cl-fd-prelot-use",
-            "kind": "event",
-            "value": "lumber yard",
-            "excerpt": "a lumber yard on that lot"
-          },
-          "disputes": [],
-          "extensions": [],
-          "competingValues": [
-            {
-              "value": "lumber yard",
-              "count": 1,
-              "contributorIds": [
-                "c-ana"
-              ]
-            }
-          ],
-          "weight": 1
-        }
-      ],
+      "detailStatuses": [],
       "score": {
         "claimId": "cl-fd-prelot",
         "score": 1,
@@ -506,29 +313,7 @@
             "value": 0
           }
         ],
-        "details": [
-          {
-            "detailId": "cl-fd-prelot-use",
-            "score": 1,
-            "terms": [
-              {
-                "family": "content",
-                "name": "base",
-                "value": 1
-              },
-              {
-                "family": "content",
-                "name": "extensions",
-                "value": 0
-              },
-              {
-                "family": "content",
-                "name": "disputes",
-                "value": 0
-              }
-            ]
-          }
-        ]
+        "details": []
       },
       "weight": 1,
       "confidence": "single_source"
@@ -599,7 +384,6 @@
       "flagsRaised": 0
     }
   ],
-  "transcripts": [],
   "flags": [],
   "integrity": {
     "totalClaims": 3,

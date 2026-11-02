@@ -10,8 +10,8 @@
  *
  *   - t0 has no sections. A photograph with nothing claimed about it has no
  *     passage to write. The page shows the record on its own.
- *   - From t1, a passage whose phrases lead back to the claim and to the detail
- *     each phrase is about.
+ *   - From t1, a passage whose phrases lead back to the claim. Once something
+ *     points at an excerpt, from t2, a phrase can lead to that detail too.
  *   - At t2 the year is disputed, and the passage says "sometime in the 1950s",
  *     which both readings fit. Selecting it leads to the date detail, where
  *     both readings sit side by side. The passage does not pick one.
@@ -21,6 +21,7 @@
  *     claim with no detail, so both forms of span appear.
  */
 
+import { detailId } from '@sagas/contracts';
 import { span } from '../../src/narrative';
 import type { SiteNarrative } from '../../src/narrative';
 
@@ -44,10 +45,10 @@ const t2Shop = {
   sectionId: shopSection.id,
   text: t2Text,
   spans: [
-    span(t2Text, 'the corner of Fourth and Main', ['cl-cs-shop'], ['dt-cs-place']),
-    span(t2Text, 'Mr. Ferris', ['cl-cs-shop', 'cl-cs-uncle'], ['dt-cs-owner']),
-    span(t2Text, 'until the sixties', ['cl-cs-uncle'], ['dt-cs-uncle-until']),
-    span(t2Text, 'sometime in the 1950s', ['cl-cs-shop'], ['dt-cs-year']),
+    span(t2Text, 'the corner of Fourth and Main', ['cl-cs-shop']),
+    span(t2Text, 'Mr. Ferris', ['cl-cs-shop', 'cl-cs-uncle'], [detailId('cl-cs-shop', 'the owner, Mr. Ferris')]),
+    span(t2Text, 'until the sixties', ['cl-cs-uncle']),
+    span(t2Text, 'sometime in the 1950s', ['cl-cs-shop'], [detailId('cl-cs-shop', 'around 1950')]),
   ],
 };
 
@@ -60,9 +61,9 @@ export const narrative: SiteNarrative = {
         sectionId: shopSection.id,
         text: t1Text,
         spans: [
-          span(t1Text, 'the corner of Fourth and Main', ['cl-cs-shop'], ['dt-cs-place']),
-          span(t1Text, 'Mr. Ferris', ['cl-cs-shop'], ['dt-cs-owner']),
-          span(t1Text, 'around 1950', ['cl-cs-shop'], ['dt-cs-year']),
+          span(t1Text, 'the corner of Fourth and Main', ['cl-cs-shop']),
+          span(t1Text, 'Mr. Ferris', ['cl-cs-shop']),
+          span(t1Text, 'around 1950', ['cl-cs-shop']),
         ],
       },
     ],
@@ -80,7 +81,7 @@ export const narrative: SiteNarrative = {
         sectionId: signSection.id,
         text: signText,
         spans: [
-          span(signText, 'FERRIS GROCERY', ['cl-cs-sign'], ['dt-cs-sign-owner']),
+          span(signText, 'FERRIS GROCERY', ['cl-cs-sign']),
           span(signText, 'came down when the shop closed', ['cl-cs-sign']),
         ],
       },

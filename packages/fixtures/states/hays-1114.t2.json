@@ -25,21 +25,18 @@
         "siteId": "site-hays-1114",
         "contributorId": "c-tomas",
         "sourceRecordId": "rec-hays-shoes",
-        "evidenceRecordIds": [],
+        "evidence": [],
+        "target": {
+          "sourceType": "record",
+          "sourceId": "rec-hays-shoes"
+        },
         "text": "The shoe repair at 1114 was there from the late fifties until it shut. The family lived above the shop.",
         "sourceLanguage": "en",
-        "details": [
+        "references": [
           {
-            "id": "el-ha-trade",
-            "kind": "event",
-            "value": "shoe repair",
-            "excerpt": "The shoe repair at 1114"
-          },
-          {
-            "id": "el-ha-from",
             "kind": "date",
-            "value": "late 1950s",
-            "excerpt": "from the late fifties"
+            "excerpt": "from the late fifties",
+            "status": "confirmed"
           }
         ],
         "sourceType": "community_oral",
@@ -81,48 +78,7 @@
         "dont_know": 0,
         "dont_care": 0
       },
-      "detailStatuses": [
-        {
-          "detail": {
-            "id": "el-ha-trade",
-            "kind": "event",
-            "value": "shoe repair",
-            "excerpt": "The shoe repair at 1114"
-          },
-          "disputes": [],
-          "extensions": [],
-          "competingValues": [
-            {
-              "value": "shoe repair",
-              "count": 1,
-              "contributorIds": [
-                "c-tomas"
-              ]
-            }
-          ],
-          "weight": 1
-        },
-        {
-          "detail": {
-            "id": "el-ha-from",
-            "kind": "date",
-            "value": "late 1950s",
-            "excerpt": "from the late fifties"
-          },
-          "disputes": [],
-          "extensions": [],
-          "competingValues": [
-            {
-              "value": "late 1950s",
-              "count": 1,
-              "contributorIds": [
-                "c-tomas"
-              ]
-            }
-          ],
-          "weight": 1
-        }
-      ],
+      "detailStatuses": [],
       "score": {
         "claimId": "cl-hays-shoes",
         "score": 1.05,
@@ -158,50 +114,7 @@
             "value": 0
           }
         ],
-        "details": [
-          {
-            "detailId": "el-ha-trade",
-            "score": 1,
-            "terms": [
-              {
-                "family": "content",
-                "name": "base",
-                "value": 1
-              },
-              {
-                "family": "content",
-                "name": "extensions",
-                "value": 0
-              },
-              {
-                "family": "content",
-                "name": "disputes",
-                "value": 0
-              }
-            ]
-          },
-          {
-            "detailId": "el-ha-from",
-            "score": 1,
-            "terms": [
-              {
-                "family": "content",
-                "name": "base",
-                "value": 1
-              },
-              {
-                "family": "content",
-                "name": "extensions",
-                "value": 0
-              },
-              {
-                "family": "content",
-                "name": "disputes",
-                "value": 0
-              }
-            ]
-          }
-        ]
+        "details": []
       },
       "weight": 1.05,
       "confidence": "single_source"
@@ -276,7 +189,6 @@
       "flagsRaised": 0
     }
   ],
-  "transcripts": [],
   "flags": [],
   "integrity": {
     "totalClaims": 1,

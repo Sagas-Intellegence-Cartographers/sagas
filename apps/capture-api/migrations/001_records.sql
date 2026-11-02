@@ -1,8 +1,8 @@
 -- The first table, and the only one the scaffold ships.
 --
 -- It covers a record that is written text with no files attached, which is
--- enough for the first endpoint. Everything else is yours: media, transcripts,
--- translations, flags. Add them as numbered files alongside this one.
+-- enough for the first endpoint. Everything else is yours: media and flags, for
+-- a start. Add them as numbered files alongside this one.
 --
 -- The columns come from `sourceRecord` in packages/contracts/src/model.ts.
 -- When the contract and this table disagree, the contract is right.
