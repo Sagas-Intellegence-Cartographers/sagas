@@ -142,7 +142,7 @@ export const events: ContributionEvent[] = [
     kind: 'claim_extended',
     claimId: 'cl-mother-worked',
     sourceRecordId: 'rec-menu-photo',
-    parentClaimId: 'cl-shift-workers',
+    targetClaimId: 'cl-shift-workers',
     siteId: SITE,
     text: 'That is right, and my mother was one of them. She was on the early shift at the laundry two streets over and she ate here before work most days.',
     sourceLanguage: 'en',
@@ -231,13 +231,11 @@ export const events: ContributionEvent[] = [
   {
     id: 'gk-015', at: '2026-06-02T13:51:00Z', actorId: 'c-arlen',
     kind: 'claim_disputed',
-    edgeId: 'de-gk-year',
     // A dispute is a claim of its own (contract 2.3.0).
     claimId: 'cl-de-gk-year',
     targetClaimId: 'cl-closed-1979',
-    targetExcerpt: 'it closed in 1979',
+    details: [{ at: 'it closed in 1979', to: '1981' }],
     reasoning: 'The 1981 city directory still lists the business at this address. A directory is compiled the year before it is printed, so the business was trading in 1980 at the latest. It did not close in 1979.',
-    proposedValue: '1981',
   },
 
   {

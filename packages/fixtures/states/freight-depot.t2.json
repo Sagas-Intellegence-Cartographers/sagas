@@ -26,21 +26,30 @@
         "contributorId": "c-ana",
         "sourceRecordId": "rec-fd-01",
         "evidence": [],
+        "relation": "extension",
         "target": {
-          "sourceType": "record",
-          "sourceId": "rec-fd-01"
+          "recordId": "rec-fd-01",
+          "details": []
         },
         "text": "The depot office opened in 1931, and my grandfather was a clerk there from the start.",
         "sourceLanguage": "en",
         "references": [
           {
             "kind": "date",
-            "excerpt": "opened in 1931",
+            "excerpt": {
+              "start": 17,
+              "end": 31,
+              "text": "opened in 1931"
+            },
             "status": "confirmed"
           },
           {
             "kind": "person",
-            "excerpt": "my grandfather was a clerk",
+            "excerpt": {
+              "start": 37,
+              "end": 63,
+              "text": "my grandfather was a clerk"
+            },
             "status": "confirmed"
           }
         ],
@@ -77,6 +86,14 @@
       "translations": [],
       "translationDisputes": [],
       "independentRecordCount": 1,
+      "disputes": [
+        {
+          "claimId": "cl-dsp-fd-office-year",
+          "contributorId": "c-luis",
+          "reasoning": "My uncle always said the office opened in 1934, the year he started, and he was one of the first.",
+          "createdAt": "2026-02-05T18:00:00Z"
+        }
+      ],
       "extensions": [
         "cl-fd-office-notice"
       ],
@@ -88,19 +105,23 @@
       "detailStatuses": [
         {
           "detail": {
-            "id": "cl-fd-office#opened in 1931",
-            "excerpt": "opened in 1931"
+            "id": "cl-fd-office#17-31",
+            "excerpt": {
+              "start": 17,
+              "end": 31,
+              "text": "opened in 1931"
+            }
           },
           "disputes": [
             {
-              "id": "dsp-fd-office-year",
-              "type": "dispute",
-              "fromClaimId": "cl-dsp-fd-office-year",
-              "targetClaimId": "cl-fd-office",
-              "targetExcerpt": "opened in 1931",
-              "reasoning": "My uncle always said the office opened in 1934, the year he started, and he was one of the first.",
-              "proposedValue": "1934",
+              "claimId": "cl-dsp-fd-office-year",
               "contributorId": "c-luis",
+              "reasoning": "My uncle always said the office opened in 1934, the year he started, and he was one of the first.",
+              "to": {
+                "start": 42,
+                "end": 46,
+                "text": "1934"
+              },
               "createdAt": "2026-02-05T18:00:00Z"
             }
           ],
@@ -125,20 +146,16 @@
         },
         {
           "detail": {
-            "id": "cl-fd-office#my grandfather was a clerk",
-            "excerpt": "my grandfather was a clerk"
+            "id": "cl-fd-office#37-63",
+            "excerpt": {
+              "start": 37,
+              "end": 63,
+              "text": "my grandfather was a clerk"
+            }
           },
           "disputes": [],
           "extensions": [
-            {
-              "id": "ext-fd-025",
-              "type": "extension",
-              "parentClaimId": "cl-fd-office",
-              "childClaimId": "cl-fd-office-notice",
-              "targetExcerpt": "my grandfather was a clerk",
-              "contributorId": "c-pau",
-              "createdAt": "2026-03-08T20:20:00Z"
-            }
+            "cl-fd-office-notice"
           ],
           "competingValues": [
             {
@@ -172,7 +189,7 @@
             "value": 2
           },
           {
-            "family": "behaviour",
+            "family": "behavior",
             "name": "sounds right",
             "value": 0
           },
@@ -189,8 +206,12 @@
         ],
         "details": [
           {
-            "detailId": "cl-fd-office#opened in 1931",
-            "excerpt": "opened in 1931",
+            "detailId": "cl-fd-office#17-31",
+            "excerpt": {
+              "start": 17,
+              "end": 31,
+              "text": "opened in 1931"
+            },
             "score": 0.5,
             "terms": [
               {
@@ -216,8 +237,12 @@
             "evidenceRecordIds": []
           },
           {
-            "detailId": "cl-fd-office#my grandfather was a clerk",
-            "excerpt": "my grandfather was a clerk",
+            "detailId": "cl-fd-office#37-63",
+            "excerpt": {
+              "start": 37,
+              "end": 63,
+              "text": "my grandfather was a clerk"
+            },
             "score": 1.75,
             "terms": [
               {
@@ -261,22 +286,33 @@
           }
         ],
         "target": {
-          "sourceType": "claim",
-          "sourceId": "cl-fd-office",
-          "excerpt": "my grandfather was a clerk"
+          "claimId": "cl-fd-office",
+          "details": [
+            {
+              "at": {
+                "start": 37,
+                "end": 63,
+                "text": "my grandfather was a clerk"
+              }
+            }
+          ]
         },
+        "relation": "extension",
         "text": "The notice lists the first clerks hired for the office.",
         "sourceLanguage": "en",
         "references": [
           {
             "kind": "person",
-            "excerpt": "lists the first clerks",
+            "excerpt": {
+              "start": 11,
+              "end": 33,
+              "text": "lists the first clerks"
+            },
             "status": "confirmed"
           }
         ],
         "sourceType": "documentary",
         "createdAt": "2026-03-08T20:20:00Z",
-        "parentClaimId": "cl-fd-office",
         "awaitingTranslation": false
       },
       "contributor": {
@@ -334,6 +370,7 @@
       "translations": [],
       "translationDisputes": [],
       "independentRecordCount": 0,
+      "disputes": [],
       "extensions": [],
       "passover": {
         "sounds_right": 0,
@@ -361,7 +398,7 @@
             "value": 0
           },
           {
-            "family": "behaviour",
+            "family": "behavior",
             "name": "sounds right",
             "value": 0
           },
@@ -388,21 +425,30 @@
         "contributorId": "c-luis",
         "sourceRecordId": "rec-fd-03",
         "evidence": [],
+        "relation": "extension",
         "target": {
-          "sourceType": "record",
-          "sourceId": "rec-fd-03"
+          "recordId": "rec-fd-03",
+          "details": []
         },
         "text": "This photo shows the depot office in 1935, with my uncle standing by the door.",
         "sourceLanguage": "en",
         "references": [
           {
             "kind": "date",
-            "excerpt": "in 1935",
+            "excerpt": {
+              "start": 34,
+              "end": 41,
+              "text": "in 1935"
+            },
             "status": "confirmed"
           },
           {
             "kind": "person",
-            "excerpt": "my uncle standing by the door",
+            "excerpt": {
+              "start": 48,
+              "end": 77,
+              "text": "my uncle standing by the door"
+            },
             "status": "confirmed"
           }
         ],
@@ -428,7 +474,7 @@
             43.6145
           ],
           "method": "embedded",
-          "accuracyMetres": 65
+          "accuracyMeters": 65
         },
         "submission": "published",
         "media": [
@@ -461,6 +507,7 @@
       "translations": [],
       "translationDisputes": [],
       "independentRecordCount": 0,
+      "disputes": [],
       "extensions": [],
       "passover": {
         "sounds_right": 1,
@@ -488,7 +535,7 @@
             "value": 0
           },
           {
-            "family": "behaviour",
+            "family": "behavior",
             "name": "sounds right",
             "value": 0.05
           },
@@ -515,16 +562,21 @@
         "contributorId": "c-ana",
         "sourceRecordId": "rec-fd-01",
         "evidence": [],
+        "relation": "extension",
         "target": {
-          "sourceType": "record",
-          "sourceId": "rec-fd-01"
+          "recordId": "rec-fd-01",
+          "details": []
         },
         "text": "The loading dock ran the length of the tracks, and in winter they kept a stove going on it.",
         "sourceLanguage": "en",
         "references": [
           {
             "kind": "place",
-            "excerpt": "ran the length of the tracks",
+            "excerpt": {
+              "start": 17,
+              "end": 45,
+              "text": "ran the length of the tracks"
+            },
             "status": "confirmed"
           }
         ],
@@ -561,6 +613,7 @@
       "translations": [],
       "translationDisputes": [],
       "independentRecordCount": 0,
+      "disputes": [],
       "extensions": [],
       "passover": {
         "sounds_right": 0,
@@ -588,7 +641,7 @@
             "value": 0
           },
           {
-            "family": "behaviour",
+            "family": "behavior",
             "name": "sounds right",
             "value": 0
           },
@@ -615,9 +668,10 @@
         "contributorId": "c-ana",
         "sourceRecordId": "rec-fd-02",
         "evidence": [],
+        "relation": "extension",
         "target": {
-          "sourceType": "record",
-          "sourceId": "rec-fd-02"
+          "recordId": "rec-fd-02",
+          "details": []
         },
         "text": "Before the depot there was a lumber yard on that lot, or so I was told.",
         "sourceLanguage": "en",
@@ -655,6 +709,7 @@
       "translations": [],
       "translationDisputes": [],
       "independentRecordCount": 0,
+      "disputes": [],
       "extensions": [],
       "passover": {
         "sounds_right": 0,
@@ -682,7 +737,7 @@
             "value": 0
           },
           {
-            "family": "behaviour",
+            "family": "behavior",
             "name": "sounds right",
             "value": 0
           },
@@ -710,16 +765,29 @@
         "sourceRecordId": "rec-fd-01",
         "evidence": [],
         "target": {
-          "sourceType": "claim",
-          "sourceId": "cl-fd-office",
-          "excerpt": "opened in 1931"
+          "claimId": "cl-fd-office",
+          "details": [
+            {
+              "at": {
+                "start": 17,
+                "end": 31,
+                "text": "opened in 1931"
+              },
+              "to": {
+                "start": 42,
+                "end": 46,
+                "text": "1934"
+              }
+            }
+          ]
         },
+        "relation": "dispute",
+        "reasoning": "My uncle always said the office opened in 1934, the year he started, and he was one of the first.",
         "text": "My uncle always said the office opened in 1934, the year he started, and he was one of the first.",
         "sourceLanguage": "en",
         "references": [],
         "sourceType": "family_oral",
         "createdAt": "2026-02-05T18:00:00Z",
-        "disputedClaimId": "cl-fd-office",
         "awaitingTranslation": false
       },
       "contributor": {
@@ -751,6 +819,7 @@
       "translations": [],
       "translationDisputes": [],
       "independentRecordCount": 0,
+      "disputes": [],
       "extensions": [],
       "passover": {
         "sounds_right": 0,
@@ -778,7 +847,7 @@
             "value": 0
           },
           {
-            "family": "behaviour",
+            "family": "behavior",
             "name": "sounds right",
             "value": 0
           },
@@ -805,13 +874,17 @@
         "contributorId": "c-ines",
         "sourceRecordId": "rec-fd-04",
         "evidence": [],
+        "relation": "extension",
         "target": {
-          "sourceType": "record",
-          "sourceId": "rec-fd-04",
-          "window": {
-            "start": 18,
-            "end": 70
-          }
+          "recordId": "rec-fd-04",
+          "details": [
+            {
+              "at": {
+                "start": 18,
+                "end": 70
+              }
+            }
+          ]
         },
         "text": "My grandfather worked on the dock. For us the depot was a workplace, not a station.",
         "sourceLanguage": "fr",
@@ -886,6 +959,7 @@
       ],
       "translationDisputes": [],
       "independentRecordCount": 0,
+      "disputes": [],
       "extensions": [],
       "passover": {
         "sounds_right": 0,
@@ -913,7 +987,7 @@
             "value": 0
           },
           {
-            "family": "behaviour",
+            "family": "behavior",
             "name": "sounds right",
             "value": 0
           },
@@ -1019,7 +1093,7 @@
           43.6145
         ],
         "method": "embedded",
-        "accuracyMetres": 65
+        "accuracyMeters": 65
       },
       "submission": "published",
       "media": [

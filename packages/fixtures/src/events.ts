@@ -14,6 +14,23 @@ import type {
   TranslationId,
 } from '@sagas/contracts';
 
+/**
+ * A reference as a fixture writes it, with the words instead of their positions.
+ * The reducer finds the positions, so nobody counts characters by hand.
+ */
+export type EventReference = Omit<ClaimReference, 'excerpt'> & { excerpt: string };
+
+/**
+ * A detail a dispute points at, as a fixture writes it. `at` is words in the claim it
+ * targets, and `to` is the words in this claim's own text that replace them. `occurrence`
+ * picks a repeat of `at`, counting from 1.
+ */
+export interface EventDetail {
+  at: string;
+  to: string;
+  occurrence?: number;
+}
+
 /** Every contribution has an id, a time, and someone who made it. */
 interface BaseEvent {
   id: EventId;
@@ -60,9 +77,7 @@ export interface ClaimSubmitted extends BaseEvent {
   awaitingTranslation?: boolean;
   /** The stretch of a recording the claim points at. */
   window?: TimeWindow;
-  /** The words of its source record the claim points at, when it isn't all of it. */
-  excerpt?: string;
-  references?: ClaimReference[];
+  references?: EventReference[];
   sourceType: SourceType;
 }
 
@@ -72,26 +87,24 @@ export interface ClaimExtended extends BaseEvent {
   /** The conversation's source record. The extension's own record, if it has one, is evidence. */
   sourceRecordId: RecordId;
   evidence?: ClaimEvidence[];
-  parentClaimId: ClaimId;
-  /** The words of the parent it adds to. Omitted when it's about the whole claim. */
-  targetExcerpt?: string;
+  targetClaimId: ClaimId;
+  /** The details it adds to. Omitted when it's about the whole claim. */
+  details?: { at: string; occurrence?: number }[];
   siteId: SiteId;
   text: string;
   sourceLanguage: LanguageCode;
   sourceLanguageText?: string;
-  references?: ClaimReference[];
+  references?: EventReference[];
   sourceType: SourceType;
 }
 
 /**
- * Somebody disputes one detail of a claim. A dispute is a claim of its own, so
- * this makes a claim and the edge that points it at the excerpt. What the claim
- * says and its source record default from the dispute itself and the claim it
- * targets, so a fixture only spells them out when they differ.
+ * Somebody disputes a claim, or some of its details. A dispute is a claim of its
+ * own. What the claim says and its source record default from the dispute itself and
+ * the claim it targets, so a fixture only spells them out when they differ.
  */
 export interface ClaimDisputed extends BaseEvent {
   kind: 'claim_disputed';
-  edgeId: string;
   /** The dispute's own claim. */
   claimId: ClaimId;
   /** Defaults to the disputed claim's source record: the same conversation. */
@@ -99,13 +112,13 @@ export interface ClaimDisputed extends BaseEvent {
   evidence?: ClaimEvidence[];
   /** Defaults to the reasoning. */
   text?: string;
-  references?: ClaimReference[];
+  references?: EventReference[];
   /** Defaults to the disputed claim's. */
   sourceType?: SourceType;
   targetClaimId: ClaimId;
-  targetExcerpt: string;
+  /** The details it disputes. Omitted when it disputes the whole claim. */
+  details?: EventDetail[];
   reasoning: string;
-  proposedValue?: string;
 }
 
 export interface PassoverRecorded extends BaseEvent {

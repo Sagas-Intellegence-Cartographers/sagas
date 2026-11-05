@@ -164,15 +164,14 @@ export const events: ContributionEvent[] = [
   {
     id: 'cs-010', at: '2026-04-06T18:20:00Z', actorId: 'c-owen',
     kind: 'claim_disputed',
-    edgeId: 'dsp-cs-year',
     // A dispute is a claim of its own, so it can carry evidence like any claim:
     // here, the directory page its reasoning cites.
     claimId: 'cl-dsp-cs-year',
     evidence: [{ recordId: 'rec-cs-directory' }],
     targetClaimId: 'cl-cs-shop',
-    targetExcerpt: 'around 1950',
+    details: [{ at: 'around 1950', to: '1956 or later' }],
+    text: 'It was 1956 or later.',
     reasoning: "It can't be 1950. The awning in the photo went up in 1956. The directory page I uploaded shows the change.",
-    proposedValue: '1956 or later',
   },
 
   {
@@ -207,9 +206,9 @@ export const events: ContributionEvent[] = [
     claimId: 'cl-cs-uncle',
     sourceRecordId: 'rec-cs-photo',
     evidence: [{ recordId: 'rec-cs-audio' }],
-    parentClaimId: 'cl-cs-shop',
+    targetClaimId: 'cl-cs-shop',
     // It adds to who the owner was, so it targets that detail.
-    targetExcerpt: 'the owner, Mr. Ferris',
+    details: [{ at: 'the owner, Mr. Ferris' }],
     siteId: SITE,
     text: 'Mr. Ferris was my uncle. He ran that shop until the sixties.',
     sourceLanguage: 'en',

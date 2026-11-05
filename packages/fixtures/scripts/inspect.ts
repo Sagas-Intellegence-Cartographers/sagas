@@ -39,7 +39,7 @@ function one(c: ClaimState) {
   }
   console.log('\n  DETAILS');
   for (const d of c.score.details) {
-    console.log(`    ${d.excerpt.padEnd(32)} ${d.score.toFixed(2)}`);
+    console.log(`    ${d.excerpt.text.padEnd(32)} ${d.score.toFixed(2)}`);
   }
 
   const contested = c.detailStatuses.filter((e) => e.disputes.length > 0);
@@ -49,7 +49,7 @@ function one(c: ClaimState) {
       const readings = e.competingValues
         .map((v) => `"${v.value}" (${v.count} contributor${v.count === 1 ? '' : 's'})`)
         .join('  vs  ');
-      console.log(`    "${e.detail.excerpt}": ${readings}`);
+      console.log(`    "${e.detail.excerpt.text}": ${readings}`);
     }
   }
 }

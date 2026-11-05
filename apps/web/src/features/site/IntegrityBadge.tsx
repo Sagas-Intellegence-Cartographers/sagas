@@ -12,7 +12,7 @@
  * component takes props and fetches nothing. And there is an explicit decision
  * about what the hardest case should look like.
  *
- * What NOT to copy: the styling. Grey boxes and system fonts are a placeholder.
+ * What NOT to copy: the styling. Gray boxes and system fonts are a placeholder.
  * The design system is your deliverable and nothing here is a suggestion about
  * what it should be. Replace all of it.
  *
@@ -25,7 +25,7 @@
  * the state this project expects most places to be in for a long time.
  *
  * So there is no red, and no empty progress bar sitting next to a full one.
- * A colour scale from red to green would tell a contributor that what their
+ * A color scale from red to green would tell a contributor that what their
  * family just added is failing, when the record is only early.
  *
  * Acceptance criterion: sparse-site-is-not-empty-site.
@@ -103,7 +103,7 @@ export function IntegrityBadge({ integrity }: { integrity: IntegrityScore }) {
       {/*
         role="img" with a label, because the bar means something and a screen
         reader would otherwise announce two empty divs. Not a progressbar role:
-        this is not tracking progress towards a goal, and saying so would imply
+        this is not tracking progress toward a goal, and saying so would imply
         the goal exists.
       */}
       <div

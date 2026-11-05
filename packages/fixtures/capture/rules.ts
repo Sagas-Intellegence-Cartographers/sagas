@@ -271,7 +271,7 @@ export function runCaptureRules(name: string, base: string): void {
       );
 
       // Prompted by: `mediaRef.checksum`. The same file handed over twice
-      // should be recognised as the same file. sha256 of the original bytes,
+      // should be recognized as the same file. sha256 of the original bytes,
       // in hex (Node's `crypto.createHash`).
       it.todo("records a sha256 checksum for every file");
 
@@ -350,6 +350,19 @@ export function runCaptureRules(name: string, base: string): void {
       // Open: a lock with two separate tracks, quality and the terms.
       it.todo(
         "keeps a locked record visible and marked, with no new references to it",
+      );
+
+      // Prompted by: "Who can make a home's location exact?"
+      // in docs/DESIGN-QUESTIONS.md.
+      // Open: who can opt in. A residential place is at neighborhood level by default.
+      it.todo("keeps a home at neighborhood level until the people it affects opt in");
+
+      // Prompted by: "How do audio and video records hold their text?"
+      // in docs/DESIGN-QUESTIONS.md.
+      // Open: timestamped transcripts, so words in one map to a window of the recording,
+      // and whether the API returns a record together with its texts.
+      it.todo(
+        "maps words in a transcript to the window of the recording they came from",
       );
 
       // Prompted by: "How are machine-made drafts treated?"

@@ -6,7 +6,7 @@
  *
  * It reads a graph file and writes `graph-view.html` beside it, with no dependencies.
  * Each column is a thread, and each claim sits under what it points at. The words
- * something points at are highlighted, because those are the claim's details. Once
+ * other claims point at are highlighted, because those are the claim's details. Once
  * your `score` returns something, the scores and matches show too.
  */
 import { readFileSync, writeFileSync } from "node:fs";
@@ -18,7 +18,8 @@ import type {
   ScoringGraph,
   ScoringResult,
 } from "@sagas/fixtures/scoring";
-import { detailsOf, scoringGraph } from "@sagas/fixtures/scoring";
+import { detailsOf, isExcerpt, repliesTo, scoringGraph, toOf } from "@sagas/fixtures/scoring";
+import type { TargetDetail } from "@sagas/contracts";
 
 import { scorer } from "./scorer";
 
@@ -32,21 +33,20 @@ const esc = (s: string): string =>
 const number = (n: number): string =>
   Number.isInteger(n) ? `${n}` : n.toFixed(2);
 
-/** The claim's text, with each excerpt something points at highlighted. */
+/** The claim's text, with each excerpt another claim points at highlighted. */
 function highlighted(graph: ScoringGraph, claim: ClaimNode): string {
   const excerpts = detailsOf(graph, claim.id)
     .map((d) => d.excerpt)
-    .sort((a, b) => b.length - a.length);
-  if (excerpts.length === 0) return esc(claim.text);
-  const pattern = new RegExp(
-    excerpts.map((e) => e.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|"),
-    "g",
-  );
+    .sort((a, b) => a.start - b.start || b.end - a.end);
   let out = "";
   let last = 0;
-  for (const m of claim.text.matchAll(pattern)) {
-    out += `${esc(claim.text.slice(last, m.index))}<mark>${esc(m[0])}</mark>`;
-    last = m.index + m[0].length;
+  for (const e of excerpts) {
+    // Details can overlap. The wider one is already highlighted, so a part of it
+    // only needs its leftover words.
+    if (e.end <= last) continue;
+    const start = Math.max(e.start, last);
+    out += `${esc(claim.text.slice(last, start))}<mark>${esc(claim.text.slice(start, e.end))}</mark>`;
+    last = e.end;
   }
   return out + esc(claim.text.slice(last));
 }
@@ -56,19 +56,30 @@ function claimCard(
   claim: ClaimNode,
   result: ScoringResult | null,
 ): string {
-  const edge = graph.edges.find((e) => e.fromClaimId === claim.id);
   const score = result?.claims.find((c) => c.claimId === claim.id);
-  const pointsAt = edge
-    ? `<p class="edge ${edge.type}">${edge.type === "dispute" ? "disputes" : "extends"} ${
-        edge.excerpt ? `&ldquo;${esc(edge.excerpt)}&rdquo;` : "the whole claim"
-      }${edge.type === "dispute" ? ` because ${esc(edge.reason)}` : ""}</p>`
-    : claim.target.window
-      ? `<p class="edge">points at ${claim.target.window.start}s to ${claim.target.window.end}s of its record</p>`
+  const targetDetails: TargetDetail[] = claim.target.details;
+  const words = targetDetails
+    .flatMap((d) => {
+      const to = toOf(d);
+      return isExcerpt(d.at)
+        ? [
+            `&ldquo;${esc(d.at.text)}&rdquo;${to ? ` with &ldquo;${esc(to.text)}&rdquo;` : ""}`,
+          ]
+        : [];
+    })
+    .join(" and ");
+  const window = targetDetails.map((d) => d.at).find((at) => !isExcerpt(at));
+  const pointsAt = claim.target.claimId !== undefined || claim.relation === "dispute"
+    ? `<p class="edge ${claim.relation}">${claim.relation === "dispute" ? "disputes" : "extends"} ${
+        words || "the whole claim"
+      }${claim.reasoning ? ` because ${esc(claim.reasoning)}` : ""}</p>`
+    : window && !isExcerpt(window)
+      ? `<p class="edge">points at ${window.start}s to ${window.end}s of its record</p>`
       : "";
   const evidence = claim.evidence
     .map(
       (e) =>
-        `<span class="chip">evidence: ${esc(e.recordId)}${e.excerpt ? ` for &ldquo;${esc(e.excerpt)}&rdquo;` : ""}</span>`,
+        `<span class="chip">evidence: ${esc(e.recordId)}</span>`,
     )
     .join("");
   const passovers = graph.passovers.filter(
@@ -77,15 +88,12 @@ function claimCard(
   const details = (score?.details ?? [])
     .map(
       (d) =>
-        `<li>&ldquo;${esc(d.excerpt)}&rdquo; scores ${number(d.score)}${d.contested ? ", contested" : ""}<small>${d.terms
+        `<li>&ldquo;${esc(d.excerpt.text)}&rdquo; scores ${number(d.score)}${d.contested ? ", contested" : ""}<small>${d.terms
           .map((t) => `${esc(t.name)} ${number(t.value)}`)
           .join(", ")}</small></li>`,
     )
     .join("");
-  const replies = graph.claims
-    .filter(
-      (c) => c.target.sourceType === "claim" && c.target.sourceId === claim.id,
-    )
+  const replies = repliesTo(graph, claim.id)
     .map((c) => claimCard(graph, c, result))
     .join("");
   return `<article class="claim">
@@ -109,7 +117,7 @@ export function renderGraph(
     .filter((r) => graph.claims.some((c) => c.sourceRecordId === r.id))
     .map((r) => {
       const inThread = graph.claims.filter((c) => c.sourceRecordId === r.id);
-      const tops = inThread.filter((c) => c.target.sourceType === "record");
+      const tops = inThread.filter((c) => c.target.recordId !== undefined);
       return `<section class="thread">
   <h2>${esc(r.id)}</h2>
   <p class="record">${esc(r.kind)}, handed over by ${esc(r.contributorId)}</p>

@@ -12,7 +12,7 @@ worked out, then every other week once you know what you're building. Your
 programme's exact day is set with your team.
 
 **Office hours, 30 minutes, every week, right before the check-in.**
-It runs if there's an agenda and is cancelled if there isn't. It exists so
+It runs if there's an agenda and is canceled if there isn't. It exists so
 that "we're stuck" has somewhere to go that isn't an email at eleven at night.
 
 **A short note before each check-in.** There is a template in

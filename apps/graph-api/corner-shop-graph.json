@@ -35,27 +35,40 @@
       "text": "That's the shop on the corner of Fourth and Main, around 1950. The man in the doorway is the owner, Mr. Ferris.",
       "sourceRecordId": "rec-cs-photo",
       "target": {
-        "sourceType": "record",
-        "sourceId": "rec-cs-photo"
+        "recordId": "rec-cs-photo",
+        "details": []
       },
       "references": [
         {
           "kind": "place",
-          "excerpt": "the corner of Fourth and Main",
+          "excerpt": {
+            "start": 19,
+            "end": 48,
+            "text": "the corner of Fourth and Main"
+          },
           "status": "confirmed"
         },
         {
           "kind": "date",
-          "excerpt": "around 1950",
+          "excerpt": {
+            "start": 50,
+            "end": 61,
+            "text": "around 1950"
+          },
           "status": "confirmed"
         },
         {
           "kind": "person",
-          "excerpt": "the owner, Mr. Ferris",
+          "excerpt": {
+            "start": 89,
+            "end": 110,
+            "text": "the owner, Mr. Ferris"
+          },
           "status": "confirmed"
         }
       ],
-      "evidence": []
+      "evidence": [],
+      "relation": "extension"
     },
     {
       "id": "cl-cs-uncle",
@@ -64,14 +77,26 @@
       "text": "Mr. Ferris was my uncle. He ran that shop until the sixties.",
       "sourceRecordId": "rec-cs-photo",
       "target": {
-        "sourceType": "claim",
-        "sourceId": "cl-cs-shop",
-        "excerpt": "the owner, Mr. Ferris"
+        "claimId": "cl-cs-shop",
+        "details": [
+          {
+            "at": {
+              "start": 89,
+              "end": 110,
+              "text": "the owner, Mr. Ferris"
+            }
+          }
+        ]
       },
+      "relation": "extension",
       "references": [
         {
           "kind": "date",
-          "excerpt": "until the sixties",
+          "excerpt": {
+            "start": 42,
+            "end": 59,
+            "text": "until the sixties"
+          },
           "status": "confirmed"
         }
       ],
@@ -85,13 +110,27 @@
       "id": "cl-dsp-cs-year",
       "contributorId": "c-owen",
       "createdAt": "2026-04-06T18:20:00.000Z",
-      "text": "It can't be 1950. The awning in the photo went up in 1956. The directory page I uploaded shows the change.",
+      "text": "It was 1956 or later.",
       "sourceRecordId": "rec-cs-photo",
       "target": {
-        "sourceType": "claim",
-        "sourceId": "cl-cs-shop",
-        "excerpt": "around 1950"
+        "claimId": "cl-cs-shop",
+        "details": [
+          {
+            "at": {
+              "start": 50,
+              "end": 61,
+              "text": "around 1950"
+            },
+            "to": {
+              "start": 7,
+              "end": 20,
+              "text": "1956 or later"
+            }
+          }
+        ]
       },
+      "relation": "dispute",
+      "reasoning": "It can't be 1950. The awning in the photo went up in 1956. The directory page I uploaded shows the change.",
       "references": [],
       "evidence": [
         {
@@ -106,32 +145,22 @@
       "text": "The sign reads FERRIS GROCERY. The previous owner of my house said it came down when the shop closed.",
       "sourceRecordId": "rec-cs-sign",
       "target": {
-        "sourceType": "record",
-        "sourceId": "rec-cs-sign"
+        "recordId": "rec-cs-sign",
+        "details": []
       },
       "references": [
         {
           "kind": "person",
-          "excerpt": "FERRIS GROCERY",
+          "excerpt": {
+            "start": 15,
+            "end": 29,
+            "text": "FERRIS GROCERY"
+          },
           "status": "confirmed"
         }
       ],
-      "evidence": []
-    }
-  ],
-  "edges": [
-    {
-      "type": "extension",
-      "fromClaimId": "cl-cs-uncle",
-      "toClaimId": "cl-cs-shop",
-      "excerpt": "the owner, Mr. Ferris"
-    },
-    {
-      "type": "dispute",
-      "fromClaimId": "cl-dsp-cs-year",
-      "toClaimId": "cl-cs-shop",
-      "excerpt": "around 1950",
-      "reason": "It can't be 1950. The awning in the photo went up in 1956. The directory page I uploaded shows the change."
+      "evidence": [],
+      "relation": "extension"
     }
   ],
   "passovers": [

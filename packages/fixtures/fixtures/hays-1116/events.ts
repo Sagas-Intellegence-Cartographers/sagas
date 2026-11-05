@@ -2,8 +2,8 @@
  * 1116 Hays Street — contribution event log
  * =========================================
  *
- * The other half of the pair. Its neighbour at 1114 is a separate site about
- * twelve metres away. See that file for what the pair is for.
+ * The other half of the pair. Its neighbor at 1114 is a separate site about
+ * twelve meters away. See that file for what the pair is for.
  *
  * THIS CONTENT IS INVENTED, including the business names. The street and the
  * coordinates are real. There were no such shops and there are no such people.
@@ -82,5 +82,5 @@ export const stateCuts = [
   { stateId: 't0', label: 'Created, one claim about the shop next door', asOf: '2026-04-30T23:59:59Z' },
   { stateId: 't1', label: 'Unchanged', asOf: '2026-05-31T23:59:59Z' },
   { stateId: 't2', label: 'Unchanged', asOf: '2026-06-30T23:59:59Z' },
-  { stateId: 't3', label: 'The neighbour cannot speak to the doorway', asOf: '2026-07-31T23:59:59Z' },
+  { stateId: 't3', label: 'The neighbor cannot speak to the doorway', asOf: '2026-07-31T23:59:59Z' },
 ];

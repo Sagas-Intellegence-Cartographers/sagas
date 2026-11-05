@@ -27,16 +27,21 @@
           "contributorId": "c-tomas",
           "sourceRecordId": "rec-hays-shoes",
           "evidence": [],
+          "relation": "extension",
           "target": {
-            "sourceType": "record",
-            "sourceId": "rec-hays-shoes"
+            "recordId": "rec-hays-shoes",
+            "details": []
           },
           "text": "The shoe repair at 1114 was there from the late fifties until it shut. The family lived above the shop.",
           "sourceLanguage": "en",
           "references": [
             {
               "kind": "date",
-              "excerpt": "from the late fifties",
+              "excerpt": {
+                "start": 34,
+                "end": 55,
+                "text": "from the late fifties"
+              },
               "status": "confirmed"
             }
           ],
@@ -73,6 +78,7 @@
         "translations": [],
         "translationDisputes": [],
         "independentRecordCount": 0,
+        "disputes": [],
         "extensions": [],
         "passover": {
           "sounds_right": 0,
@@ -100,7 +106,7 @@
               "value": 0
             },
             {
-              "family": "behaviour",
+              "family": "behavior",
               "name": "sounds right",
               "value": 0
             },
@@ -221,16 +227,21 @@
           "contributorId": "c-tomas",
           "sourceRecordId": "rec-hays-shoes",
           "evidence": [],
+          "relation": "extension",
           "target": {
-            "sourceType": "record",
-            "sourceId": "rec-hays-shoes"
+            "recordId": "rec-hays-shoes",
+            "details": []
           },
           "text": "The shoe repair at 1114 was there from the late fifties until it shut. The family lived above the shop.",
           "sourceLanguage": "en",
           "references": [
             {
               "kind": "date",
-              "excerpt": "from the late fifties",
+              "excerpt": {
+                "start": 34,
+                "end": 55,
+                "text": "from the late fifties"
+              },
               "status": "confirmed"
             }
           ],
@@ -267,6 +278,7 @@
         "translations": [],
         "translationDisputes": [],
         "independentRecordCount": 0,
+        "disputes": [],
         "extensions": [],
         "passover": {
           "sounds_right": 0,
@@ -294,7 +306,7 @@
               "value": 0
             },
             {
-              "family": "behaviour",
+              "family": "behavior",
               "name": "sounds right",
               "value": 0
             },
@@ -410,16 +422,21 @@
           "contributorId": "c-tomas",
           "sourceRecordId": "rec-hays-shoes",
           "evidence": [],
+          "relation": "extension",
           "target": {
-            "sourceType": "record",
-            "sourceId": "rec-hays-shoes"
+            "recordId": "rec-hays-shoes",
+            "details": []
           },
           "text": "The shoe repair at 1114 was there from the late fifties until it shut. The family lived above the shop.",
           "sourceLanguage": "en",
           "references": [
             {
               "kind": "date",
-              "excerpt": "from the late fifties",
+              "excerpt": {
+                "start": 34,
+                "end": 55,
+                "text": "from the late fifties"
+              },
               "status": "confirmed"
             }
           ],
@@ -456,6 +473,7 @@
         "translations": [],
         "translationDisputes": [],
         "independentRecordCount": 0,
+        "disputes": [],
         "extensions": [],
         "passover": {
           "sounds_right": 1,
@@ -483,7 +501,7 @@
               "value": 0
             },
             {
-              "family": "behaviour",
+              "family": "behavior",
               "name": "sounds right",
               "value": 0.05
             },
@@ -626,16 +644,21 @@
           "contributorId": "c-tomas",
           "sourceRecordId": "rec-hays-shoes",
           "evidence": [],
+          "relation": "extension",
           "target": {
-            "sourceType": "record",
-            "sourceId": "rec-hays-shoes"
+            "recordId": "rec-hays-shoes",
+            "details": []
           },
           "text": "The shoe repair at 1114 was there from the late fifties until it shut. The family lived above the shop.",
           "sourceLanguage": "en",
           "references": [
             {
               "kind": "date",
-              "excerpt": "from the late fifties",
+              "excerpt": {
+                "start": 34,
+                "end": 55,
+                "text": "from the late fifties"
+              },
               "status": "confirmed"
             }
           ],
@@ -672,6 +695,7 @@
         "translations": [],
         "translationDisputes": [],
         "independentRecordCount": 0,
+        "disputes": [],
         "extensions": [],
         "passover": {
           "sounds_right": 1,
@@ -699,7 +723,7 @@
               "value": 0
             },
             {
-              "family": "behaviour",
+              "family": "behavior",
               "name": "sounds right",
               "value": 0.05
             },

@@ -9,7 +9,7 @@ const shop = () =>
     .record("photo", { by: "ana", kind: "image" })
     .claim("A", { by: "ana", source: "photo", text: "It opened in <1950>." })
     .claim("D", { by: "omar", source: "photo", text: "It was 1956." })
-    .dispute("D", "A", "<1950>", "the road came later")
+    .dispute("D", "A", { at: "<1950>", to: "1956" }, "the road came later")
     .build();
 
 describe("renderGraph", () => {
@@ -20,7 +20,7 @@ describe("renderGraph", () => {
     expect(page).toContain("the road came later");
   });
 
-  it("highlights the words something points at, and escapes the text", () => {
+  it("highlights the words a reply points at, and escapes the text", () => {
     expect(renderGraph(shop(), null)).toContain("<mark>&lt;1950&gt;</mark>");
   });
 
@@ -37,8 +37,8 @@ describe("renderGraph", () => {
           terms: [],
           details: [
             {
-              detailId: "A#<1950>",
-              excerpt: "<1950>",
+              detailId: "A#13-19",
+              excerpt: { start: 13, end: 19, text: "<1950>" },
               score: 1.5,
               terms: [{ family: "content", name: "base", value: 1.5 }],
               contested: true,
@@ -51,7 +51,7 @@ describe("renderGraph", () => {
       matches: [
         {
           claimId: "A",
-          detailId: "A#1950",
+          detailId: "A#13-19",
           matchesClaimId: "F",
           similarity: 1,
         },

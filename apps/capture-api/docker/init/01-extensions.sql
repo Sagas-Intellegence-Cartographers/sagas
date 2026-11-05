@@ -14,7 +14,7 @@ CREATE EXTENSION IF NOT EXISTS pg_trgm;
 -- proving the server accepts connections.
 CREATE TABLE IF NOT EXISTS scaffold_init (
   id           integer PRIMARY KEY DEFAULT 1,
-  initialised  timestamptz NOT NULL DEFAULT now(),
+  initialized  timestamptz NOT NULL DEFAULT now(),
   note         text NOT NULL,
   CONSTRAINT scaffold_init_single_row CHECK (id = 1)
 );

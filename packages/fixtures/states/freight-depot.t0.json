@@ -26,21 +26,30 @@
         "contributorId": "c-ana",
         "sourceRecordId": "rec-fd-01",
         "evidence": [],
+        "relation": "extension",
         "target": {
-          "sourceType": "record",
-          "sourceId": "rec-fd-01"
+          "recordId": "rec-fd-01",
+          "details": []
         },
         "text": "The depot office opened in 1931, and my grandfather was a clerk there from the start.",
         "sourceLanguage": "en",
         "references": [
           {
             "kind": "date",
-            "excerpt": "opened in 1931",
+            "excerpt": {
+              "start": 17,
+              "end": 31,
+              "text": "opened in 1931"
+            },
             "status": "confirmed"
           },
           {
             "kind": "person",
-            "excerpt": "my grandfather was a clerk",
+            "excerpt": {
+              "start": 37,
+              "end": 63,
+              "text": "my grandfather was a clerk"
+            },
             "status": "confirmed"
           }
         ],
@@ -77,6 +86,7 @@
       "translations": [],
       "translationDisputes": [],
       "independentRecordCount": 0,
+      "disputes": [],
       "extensions": [],
       "passover": {
         "sounds_right": 0,
@@ -104,7 +114,7 @@
             "value": 0
           },
           {
-            "family": "behaviour",
+            "family": "behavior",
             "name": "sounds right",
             "value": 0
           },
@@ -131,16 +141,21 @@
         "contributorId": "c-ana",
         "sourceRecordId": "rec-fd-01",
         "evidence": [],
+        "relation": "extension",
         "target": {
-          "sourceType": "record",
-          "sourceId": "rec-fd-01"
+          "recordId": "rec-fd-01",
+          "details": []
         },
         "text": "The loading dock ran the length of the tracks, and in winter they kept a stove going on it.",
         "sourceLanguage": "en",
         "references": [
           {
             "kind": "place",
-            "excerpt": "ran the length of the tracks",
+            "excerpt": {
+              "start": 17,
+              "end": 45,
+              "text": "ran the length of the tracks"
+            },
             "status": "confirmed"
           }
         ],
@@ -177,6 +192,7 @@
       "translations": [],
       "translationDisputes": [],
       "independentRecordCount": 0,
+      "disputes": [],
       "extensions": [],
       "passover": {
         "sounds_right": 0,
@@ -204,7 +220,7 @@
             "value": 0
           },
           {
-            "family": "behaviour",
+            "family": "behavior",
             "name": "sounds right",
             "value": 0
           },
@@ -231,9 +247,10 @@
         "contributorId": "c-ana",
         "sourceRecordId": "rec-fd-02",
         "evidence": [],
+        "relation": "extension",
         "target": {
-          "sourceType": "record",
-          "sourceId": "rec-fd-02"
+          "recordId": "rec-fd-02",
+          "details": []
         },
         "text": "Before the depot there was a lumber yard on that lot, or so I was told.",
         "sourceLanguage": "en",
@@ -271,6 +288,7 @@
       "translations": [],
       "translationDisputes": [],
       "independentRecordCount": 0,
+      "disputes": [],
       "extensions": [],
       "passover": {
         "sounds_right": 0,
@@ -298,7 +316,7 @@
             "value": 0
           },
           {
-            "family": "behaviour",
+            "family": "behavior",
             "name": "sounds right",
             "value": 0
           },

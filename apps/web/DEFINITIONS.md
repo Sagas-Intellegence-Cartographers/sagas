@@ -7,7 +7,7 @@ for the data itself (site, record, claim, detail, rendering, profile) are in
 
 ## Narrative page
 
-The page for one site. It is what a reader comes for, and it is the centre of
+The page for one site. It is what a reader comes for, and it is the center of
 this layer.
 
 It is made of **sections**. Each section has a heading and a passage, and the
@@ -51,7 +51,7 @@ something is pointed at where they could add it.
 Suggestions go where attention is needed. Popularity plays no part. Attention
 is needed at a long chain of disputes, a claim with many disputes, an extension many people have
 passed over with "don't know", a question nobody has picked up. They differ
-from person to person. The intelligence layer works out the signals. This layer
+from person to person. This layer works out the signals and
 designs what the reader sees, and builds it first against invented signals.
 Nothing in a suggestion is shown as a score or a count.
 

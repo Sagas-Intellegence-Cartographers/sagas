@@ -39,7 +39,7 @@ A few things are fixed for every scorer:
 - nobody's contributions are used to train AI models.
 
 Everything else is yours: whether a conversation becomes its own thing, how
-similarity works, which behaviour counts and how much, the arithmetic of a
+similarity works, which behavior counts and how much, the arithmetic of a
 score, and how references like dates and places get suggested. If something on
 the fixed list looks wrong, say so in a meeting.
 
@@ -83,7 +83,7 @@ after this phase gets its own list when we get there.
 | Independence | Same person, same source, copies | Complete. I've offered the counting as S5 |
 | Swarm damping | Many similar claims landing together count close to once | Later |
 | Evidence extraction | What can be drawn from a record: its kind, its metadata, where it was made | Partial |
-| Profile behaviour | What a track record is made of | Later |
+| Profile behavior | What a track record is made of | Later |
 | Resolution | What a resolution points at, and what it does to the disagreement | Later |
 | Periods | How time divides activity at a place, and what that does to late disputes | Design only |
 | Propagation | How support travels along the graph, and depth | Design only |
@@ -252,8 +252,10 @@ The tables are yours to design.
 ## The model as it stands
 
 A few words first. A **thread** is a source record and the claims built on
-it, which earlier emails called a conversation. A **branch** is one line of claims inside it. An **edge** is a link one
-claim draws to another: a dispute or an extension. A **passover** is the light
+it, which earlier emails called a conversation. A **branch** is one line of claims inside it. An **edge** is the link one
+claim draws to another: a dispute or an extension. A reply's `target` and `relation` are
+its edge, and nothing stores it a second time, so your own tables don't
+need an edges table unless you want one. A **passover** is the light
 signal a reader leaves on a claim: "sounds right", "don't know" or "don't
 care".
 
@@ -262,25 +264,35 @@ care".
 The relationships between claims aren't hidden in the text. People state them
 when they write a claim, and they become the edges of the graph:
 
-- **A dispute is a claim that targets one detail of another claim,** like the
-  year, and always gives a reason. It never targets a whole claim.
-- **An extension is a claim that adds to another claim.** It usually targets
-  a detail, or the whole claim when it's about all of it, and it replaces
-  nothing.
+- **A dispute is a claim with `relation: 'dispute'`,** and it always gives a reason and says
+  what it asserts instead. It usually points at one detail, like the year, and it can
+  point at several: "Sally bought a pink hat" disputed as "Brandon bought a blue hat"
+  points at "Sally" and at "pink". With no details it disputes the whole claim, its own text is what it says
+  instead, and that contests every detail inside it. Each entry in `target.details` has `at`, the words or the
+  window in the target, and `to`, the words in the dispute's own text that replace them.
+- **An extension is a claim with `relation: 'extension'`.** It adds to its target. It
+  usually points at a detail, or at the whole claim when it's about all of it, and it
+  replaces nothing.
 - **Every claim names its source record,** the record it was read out of, and
   can attach other records as evidence.
 
 So the scorer reads edges before it reads words. The shared contract and the
-graph in `packages/fixtures/scoring` both store them this way.
+graph in `packages/fixtures/scoring` both store them on the claim, and `repliesTo` reads
+the replies to a claim off the list of claims.
 
 ### Details aren't keywords
 
-A detail is an excerpt of a claim that something points at. It exists so people can
+A detail is an excerpt of a claim that another claim points at. A detail exists so people can
 disagree about the year without disagreeing about the building. Nobody lists a
 claim's details in advance: they're worked out from what targets it, and `detailsOf`
 in `@sagas/fixtures/scoring` does that for you. A date or a place inside a claim's
 text is a reference, which is a separate thing. Don't extract keywords from claim
 text to stand in for details.
+
+An excerpt is an object: `start` and `end` are its character positions, and `text` is a
+copy of the words, so the two "1950"s in "built in 1950, rebuilt after the 1950 fire" can be
+two details. `target.details` and `detailsOf` are different lists. `A.target.details` says where A
+points in its target, and `detailsOf(graph, "A")` says what others point at in A.
 
 ### Where text matching belongs
 
@@ -306,11 +318,11 @@ support. For this semester it counts straight away, and that's a temporary choic
   to a score. In `score = 2·evidence + 0.5·log(1 + agreements) − disputes`,
   each of the three pieces is a term. Your formula will look different.
 - Terms come in two families: **content** (what the claim and its records
-  carry) and **behaviour** (what the people involved have done). You name the
+  carry) and **behavior** (what the people involved have done). You name the
   terms and decide how they combine.
 - The terms come from several places: the claim's details, its place in the
   graph, the evidence attached, independent support from other branches, and
-  behaviour. Only some of that lives on details.
+  behavior. Only some of that lives on details.
 - No score is absolute. Any input can be outweighed by enough of the others.
 - No one term should keep dominating the rest. If one does across lots of
   scores, this project treats that as a sign something's broken or being
@@ -359,7 +371,7 @@ from the same origin isn't support:
 
 ### Disputes
 
-- A dispute lands on one detail and leaves the claim's other details alone.
+- A dispute of one detail leaves the claim's other details alone.
 - One dispute without evidence shouldn't knock over a detail that has
   independent support.
 - A reason backed by a record can be checked. A reason about who someone is
@@ -377,8 +389,8 @@ input. It's kept apart from evidence.
 ### People
 
 The scorer reads what a profile has done, never who they are. A track record
-and the groups someone has joined are behaviour. A name, a credential or a
-family isn't. Most profiles are guests, and that's normal. Which behaviour
+and the groups someone has joined are behavior. A name, a credential or a
+family isn't. Most profiles are guests, and that's normal. Which behavior
 shows that someone knows a subject is one of your design questions. The
 `profiles` block in the rules lists some ideas to test, and they're only
 ideas.
@@ -401,12 +413,12 @@ shared words, claim 2 would come out strongest.
 The cat example, from the 7 October email, shows how claims, details and
 disputes fit together, and claim F is the clearest picture of independence.
 
-Start with a record. Record R is a recorded interview with a neighbour of the
+Start with a record. Record R is a recorded interview with a neighbor of the
 site, and its transcript says: "There was a cat out front every morning."
 
 - **Claim A** takes R as its source record and says "The cat crossed the
-  road." Replies make "The cat", "crossed" and "the road" its details. Every claim after A
-  targets one of these, or a detail in a claim built on A.
+  road." Replies make "The cat", "crossed" and "the road" its details. Every reply in A's thread
+  points at one of these, or at a detail in a claim built on A.
 - **Claim B** is an extension. It targets "The cat" and adds "it was a calico". It
   replaces nothing, and its target makes "The cat" a detail of A.
 - **Claim C** is an extension. It targets "crossed" and adds "to catch a
@@ -444,15 +456,14 @@ record, so it carries less until someone brings evidence.
   scores each detail (`claimScore` is now the contract's own shape).
 - **A claim can cite a time window of a recording,** and until that window has
   a transcript, the part of its score that comes from the claim itself waits.
-  The graph carries `target.window` on a claim and `transcribedWindows` on a
+  The graph carries the window in `target.details` and `transcribedWindows` on a
   record, and there's a rule for it.
 - **Links are records.** A web page is evidence like any other record, weighed
   by independent people relying on it, never by its domain.
-- **Details come from what points at a claim** (contract 2.5.0). A claim has a
-  `target`, the excerpt or stretch it points at in a record or a claim, and
-  `references`, typed links in its own text. A claim's details are the excerpts
-  something points at, and each result in `claimScore.details` lists the claims and
-  evidence behind that detail.
+- **Details come from what points at a claim** (contracts 2.5.0 and 2.6.0). A claim has a
+  `target`, the claim or record it points into with `details` saying where, and `references`, typed links in its own text. A claim's details
+  are the excerpts other claims point at, and each result in `claimScore.details` lists
+  the claims and evidence behind that detail.
 - **Supporting records** (contract 2.5.0). A transcript or a translation is a
   record with `parent` set. Your graph still tells you which windows of a
   recording have a transcript, through `transcribedWindows`.
@@ -461,7 +472,10 @@ record, so it carries less until someone brings evidence.
 
 These are for later, and they're outside this semester's minimum.
 
-- **Resolution is its own kind of edge,** beside dispute and extension: a
+- **A challenge opens a task on the detail.** Someone who only has "not X" isn't disputing,
+  because a dispute says what replaces it. How a challenge works is open, so nothing here
+  needs it yet.
+- **Resolution is its own kind of relation,** beside dispute and extension: a
   claim that reconciles a disagreement, with weight like any other claim, and
   more than one allowed. What it points at is still open (below), so it isn't
   in your graph yet.
@@ -482,7 +496,7 @@ named by their heading there.
 - **"How do claims compare across languages?"** Matching details that weren't
   written in the same language.
 - **"What happens when one detail turns out to be two people?"**
-- **Which behaviour shows competence:** what a profile's track record should
+- **Which behavior shows competence:** what a profile's track record should
   be made of. Also a placeholder in the rules, with ideas to test.
 - **How passovers arrive.** Today they come in the graph with everything
   else. They're frequent and light, so they may fit better as a stream to

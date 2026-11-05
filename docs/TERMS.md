@@ -1,6 +1,6 @@
 # Sagas: provisional terms for contributors
 
-Version `provisional-0.1`. Last updated 25 October 2026. Not reviewed by a
+Version `provisional-0.1`. Last updated 1 November 2026. Not reviewed by a
 lawyer.
 
 These are provisional terms for a small research pilot. They cover only the
@@ -60,7 +60,7 @@ contributions to train AI models, and we won't.
 If we start using AI tools to help translate or transcribe, we'll update this
 section before we do, say which outside provider your contribution would be sent
 to, and ask you first, record by record. A machine translation or transcript
-will always be labelled as one, the original stays the record, and a person can
+will always be labeled as one, the original stays the record, and a person can
 correct it. We'll only use a provider whose terms don't let it train on what we
 send.
 

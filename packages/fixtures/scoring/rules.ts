@@ -32,7 +32,7 @@ import type {
   ScoringResult,
 } from "./graph";
 import { graph } from "./build";
-import { detailId, detailsOf, scoringResult } from "./graph";
+import { detailsOf, scoringResult } from "./graph";
 
 const claimOf = (r: ScoringResult, id: string): ClaimScore => {
   const c = r.claims.find((x) => x.claimId === id);
@@ -41,14 +41,14 @@ const claimOf = (r: ScoringResult, id: string): ClaimScore => {
 };
 const claimScore = (r: ScoringResult, id: string): number =>
   claimOf(r, id).score;
-/** A detail is named by its claim and its excerpt, the same words the reply chose. */
+/** A detail is found by its claim and its words, the same words the reply chose. */
 const detailResult = (
   r: ScoringResult,
   claimId: string,
   excerpt: string,
 ): DetailScore => {
   const d = claimOf(r, claimId).details.find(
-    (x) => x.detailId === detailId(claimId, excerpt),
+    (x) => x.excerpt.text === excerpt,
   );
   if (!d)
     throw new Error(
@@ -67,7 +67,7 @@ const EPSILON = 1e-9;
 
 /**
  * The claim most rules start from: one person, one recording. A detail only exists
- * once something points at it, so two plain replies make "1950" and "Mill Road"
+ * once another claim points at it, so two plain replies make "1950" and "Mill Road"
  * details of A.
  */
 const base = (): GraphBuilder =>
@@ -99,10 +99,10 @@ export function runScoringRules(name: string, scorer: Scorer): void {
             `claim ${c.id} scored ${cs.score}`,
           ).toBe(true);
           for (const d of detailsOf(g, c.id)) {
-            const s = detailScore(r, c.id, d.excerpt);
+            const s = detailScore(r, c.id, d.excerpt.text);
             expect(
               Number.isFinite(s),
-              `detail "${d.excerpt}" of ${c.id} scored ${s}`,
+              `detail "${d.excerpt.text}" of ${c.id} scored ${s}`,
             ).toBe(true);
           }
         }
@@ -250,12 +250,11 @@ export function runScoringRules(name: string, scorer: Scorer): void {
 
     describe("targets", () => {
       // Every claim points at something, and the person writing it chose
-      // what. A dispute lands on one detail, never the whole claim. Prompted
-      // by: the sponsor's emails of 7 and 12 October.
+      // what. Prompted by: the sponsor's emails of 7 and 12 October.
       const disputed = (): GraphBuilder =>
         base()
           .claim("C", { by: "p3", source: "r1", text: "It was 1960." })
-          .dispute("C", "A", "1950", "Mill Road wasn't built until 1958");
+          .dispute("C", "A", { at: "1950", to: "1960" }, "Mill Road wasn't built until 1958");
 
       it("leaves the other details alone when one detail is disputed", () => {
         const before = detailScore(score(base().build()), "A", "Mill Road");
@@ -297,7 +296,7 @@ export function runScoringRules(name: string, scorer: Scorer): void {
       });
 
       // Prompted by: the sponsor, 1 November. A claim can point at part of a
-      // record or part of a claim, and with no excerpt it points at all of it.
+      // record or part of a claim, and with no details it points at all of it.
       it("treats an extension about the whole claim as making no new detail", () => {
         const g = base()
           .claim("B", {
@@ -309,6 +308,81 @@ export function runScoringRules(name: string, scorer: Scorer): void {
           .build();
         expect(claimOf(score(g), "A").details).toHaveLength(2);
       });
+
+      // Prompted by: the sponsor, 3 November. Sometimes the whole claim is wrong,
+      // and a dispute can say so. It makes no new detail, and no detail inside the
+      // claim reads as settled while the claim it sits in is disputed in full.
+      it("reports every detail as contested when the whole claim is disputed", () => {
+        const g = base()
+          .claim("W", { by: "p3", source: "r1", text: "None of that happened." })
+          .dispute("W", "A", undefined, "I lived there and it never did")
+          .build();
+        const r = score(g);
+        expect(claimOf(r, "A").details).toHaveLength(2);
+        expect(detailResult(r, "A", "1950").contested).toBe(true);
+        expect(detailResult(r, "A", "Mill Road").contested).toBe(true);
+      });
+
+      // Prompted by: the sponsor, 3 November. "Sally bought a pink hat" disputed as
+      // "Brandon bought a blue hat" is one claim pointing at two details.
+      it("contests each detail one dispute points at, and leaves the rest alone", () => {
+        const hat = graph()
+          .record("r1", { by: "p1" })
+          .record("receipt", { by: "p3", kind: "document" })
+          .claim("A", { by: "p1", source: "r1", text: "Sally bought a pink hat" })
+          .claim("ask", { by: "p2", source: "r1", text: "Which store?" })
+          .extend("ask", "A", "bought")
+          .claim("D", {
+            by: "p3",
+            source: "r1",
+            text: "Brandon bought a blue hat",
+            evidence: ["receipt"],
+          })
+          .dispute(
+            "D",
+            "A",
+            [
+              { at: "Sally", to: "Brandon" },
+              { at: "pink", to: "blue" },
+            ],
+            "I have the receipt",
+          )
+          .build();
+        const r = score(hat);
+        expect(detailResult(r, "A", "Sally").contested).toBe(true);
+        expect(detailResult(r, "A", "pink").contested).toBe(true);
+        expect(detailResult(r, "A", "bought").contested).toBe(false);
+      });
+
+      // Prompted by: the sponsor, 3 November. Words repeat, so a detail is where the
+      // words are as well as what they are.
+      it("keeps the same words in two places as two details", () => {
+        const g = graph()
+          .record("r1", { by: "p1" })
+          .claim("A", {
+            by: "p1",
+            source: "r1",
+            text: "Built in 1950, rebuilt after the 1950 fire",
+          })
+          .claim("B", { by: "p2", source: "r1", text: "It was 1951." })
+          .dispute("B", "A", { at: "1950", to: "1951", occurrence: 2 }, "the fire was in 1951")
+          .claim("C", { by: "p3", source: "r1", text: "Which month?" })
+          .extend("C", "A", "1950")
+          .build();
+        const details = detailsOf(g, "A");
+        expect(details.map((d) => d.excerpt.start)).toEqual([33, 9]);
+        const [second, first] = details;
+        const results = claimOf(score(g), "A").details;
+        const contested = (id: string | undefined) =>
+          results.find((d) => d.detailId === id)?.contested;
+        expect(contested(second?.id)).toBe(true);
+        expect(contested(first?.id)).toBe(false);
+      });
+
+      // Prompted by: "How do audio and video records hold their text?" in
+      // docs/DESIGN-QUESTIONS.md. Open: whether what a claim points at in a record
+      // counts the way a detail of a claim does.
+      it.todo("treats what a claim points at in a record like a detail of a claim, or doesn't");
     });
 
     describe("evidence and volume", () => {
@@ -413,24 +487,20 @@ export function runScoringRules(name: string, scorer: Scorer): void {
         }
       });
 
-      // Prompted by: the sponsor, 1 November. Evidence supports what the claim
-      // targets. It can also name particular words of the claim's own text, and
-      // then those words are a detail and it backs only them.
-      it("lets evidence naming an excerpt raise that detail and leave the others alone", () => {
+      // Prompted by: the sponsor, 1 and 3 November. Evidence backs what its claim
+      // targets, so a reply's evidence raises the detail the reply points at and
+      // leaves the others alone.
+      it("lets a reply's evidence raise the detail it targets and leave the others alone", () => {
         const withEvidence = score(
-          graph()
-            .record("r1", { by: "p1", kind: "audio", transcribed: true })
+          base()
             .record("photo", { by: "p2", kind: "image" })
-            .claim("A", {
-              by: "p1",
+            .claim("E", {
+              by: "p2",
               source: "r1",
-              text: "1950, Mill Road",
-              evidence: [{ record: "photo", excerpt: "1950" }],
+              text: "Here it is in a photo.",
+              evidence: ["photo"],
             })
-            .claim("askYear", { by: "pa", source: "r1", text: "Are you sure?" })
-            .extend("askYear", "A", "1950")
-            .claim("askRoad", { by: "pb", source: "r1", text: "Which end?" })
-            .extend("askRoad", "A", "Mill Road")
+            .extend("E", "A", "1950")
             .build(),
         );
         const without = score(base().build());
@@ -452,7 +522,7 @@ export function runScoringRules(name: string, scorer: Scorer): void {
       // Prompted by: "Recordings are cited and rendered by time window"
       // (decided 25 October). Until the window a claim targets has a transcript,
       // the part of its score that comes from the claim itself (its details and
-      // its relations to other claims) isn't counted. Evidence and behaviour
+      // its relations to other claims) isn't counted. Evidence and behavior
       // still are.
       it("counts a claim's relations only once the window it targets is transcribed", () => {
         const withWindow = (transcribed: boolean) =>
@@ -645,7 +715,7 @@ export function runScoringRules(name: string, scorer: Scorer): void {
 
       // Prompted by: independence being open to challenge. Different records count as
       // independent unless someone shows otherwise ("the 1962 newspaper
-      // quoted the same neighbour"). There is no shape for that challenge yet.
+      // quoted the same neighbor"). There is no shape for that challenge yet.
       it.todo(
         "a successful challenge to independence removes the support it was giving",
       );
@@ -673,7 +743,7 @@ export function runScoringRules(name: string, scorer: Scorer): void {
         const r = score(
           wellSupported()
             .claim("D", { by: "p9", source: "r1", text: "It was 1960." })
-            .dispute("D", "A", "1950", "I lived next door")
+            .dispute("D", "A", { at: "1950", to: "1960" }, "I lived next door")
             .claim("askD", { by: "pc", source: "r1", text: "Are you sure?" })
             .extend("askD", "D", "1960")
             .build(),
@@ -694,7 +764,7 @@ export function runScoringRules(name: string, scorer: Scorer): void {
                 source: "r1",
                 text: `It was 196${i}.`,
               })
-              .dispute(`D${i}`, "A", "1950", "that is wrong");
+              .dispute(`D${i}`, "A", { at: "1950", to: `196${i}` }, "that is wrong");
           }
           const s = detailScore(score(b.build()), "A", "1950");
           expect(
@@ -718,7 +788,7 @@ export function runScoringRules(name: string, scorer: Scorer): void {
               source: "r1",
               text: `It was 196${i}.`,
             })
-            .dispute(`D${i}`, "A", "1950", "that is wrong");
+            .dispute(`D${i}`, "A", { at: "1950", to: `196${i}` }, "that is wrong");
         }
         const r = score(b.build());
         expect(detailScore(r, "A", "1950")).toBeGreaterThan(
@@ -733,7 +803,7 @@ export function runScoringRules(name: string, scorer: Scorer): void {
         const reasonOnly = score(
           base()
             .claim("D", { by: "p9", source: "r1", text: "It was a fence." })
-            .dispute("D", "A", "Mill Road", "I lived next door")
+            .dispute("D", "A", { at: "Mill Road", to: "a fence" }, "I lived next door")
             .build(),
         );
         const withRecord = score(
@@ -748,7 +818,7 @@ export function runScoringRules(name: string, scorer: Scorer): void {
             .dispute(
               "D",
               "A",
-              "Mill Road",
+              { at: "Mill Road", to: "a fence" },
               "a letter addressed there in 1950 mentions the fence",
             )
             .build(),
@@ -836,9 +906,9 @@ export function runScoringRules(name: string, scorer: Scorer): void {
 
     describe("graph shape", () => {
       // Prompted by: the sponsor, 15 October. A claim's place in the graph
-      // isn't its number of edges. These come with the worked examples.
+      // isn't its number of replies. These come with the worked examples.
       it.todo(
-        "ranks two claims with the same number of edges by what those edges carry",
+        "ranks two claims with the same number of replies by what those replies carry",
       );
       it.todo(
         "lets support travel along extensions, and stops it going round a cycle",
@@ -887,7 +957,7 @@ export function runScoringRules(name: string, scorer: Scorer): void {
             source: "r1",
             text: "It was 1960. Mill Road wasn't built until 1958.",
           })
-          .dispute("c3", "c1", "1950", "Mill Road wasn't built until 1958");
+          .dispute("c3", "c1", { at: "1950", to: "1960" }, "Mill Road wasn't built until 1958");
       const four = (b: GraphBuilder): GraphBuilder =>
         b
           .record("photo", { by: "p4", kind: "image" })
@@ -945,7 +1015,7 @@ export function runScoringRules(name: string, scorer: Scorer): void {
       const withD = (g: GraphBuilder): GraphBuilder =>
         g
           .claim("D", { by: "p4", source: "R", text: "It was a fence." })
-          .dispute("D", "A", "the road", "I lived next door");
+          .dispute("D", "A", { at: "the road", to: "a fence" }, "I lived next door");
       const withE = (g: GraphBuilder): GraphBuilder =>
         g
           .record("photo", { by: "p5", kind: "image" })
@@ -1021,9 +1091,9 @@ export function runScoringRules(name: string, scorer: Scorer): void {
 
     describe("profiles", () => {
       // Prompted by: the changelog entry of 15 October.
-      // Behaviour is scored and identity is not. What a profile has done
-      // (its track record, the groups it has joined) is a behaviour term.
-      // Which behaviour shows competence is yours to design. Ideas to test,
+      // Behavior is scored and identity is not. What a profile has done
+      // (its track record, the groups it has joined) is a behavior term.
+      // Which behavior shows competence is yours to design. Ideas to test,
       // nothing more: records contributed that nobody challenged, claims
       // within a theme, how often their work is challenged or resolved, how
       // often their challenges turn up a real discrepancy, how well
@@ -1032,7 +1102,7 @@ export function runScoringRules(name: string, scorer: Scorer): void {
         "two profiles with the same history can be swapped without changing any score",
       );
       it.todo(
-        "a track record of claims that held up counts as a behaviour term",
+        "a track record of claims that held up counts as a behavior term",
       );
     });
 
@@ -1058,9 +1128,19 @@ export function runScoringRules(name: string, scorer: Scorer): void {
         "scores each assertion in a claim on its own, or treats the claim as one",
       );
 
+      // Prompted by: "What should happen when someone repeats what's already here?"
+      // in docs/DESIGN-QUESTIONS.md. Open: where a repeat goes, and whether matching
+      // can suggest the thread a person would have picked.
+      it.todo("suggests the existing thread when a new claim repeats one");
+
+      // Prompted by: "Is the unit of work a task?" in docs/DESIGN-QUESTIONS.md. Decided,
+      // and not in the contract yet: someone with only "not X" raises a challenge, and it
+      // opens a task on the detail. Open: what a challenge looks like, and who sees the task.
+      it.todo("opens a task on a detail when someone challenges it");
+
       // Prompted by: "How should a resolution be recorded?"
       // in docs/DESIGN-QUESTIONS.md.
-      // Decided: a resolution is its own edge. Open: what it points at.
+      // Decided: a resolution is its own relation. Open: what it points at.
       it.todo(
         "lets a resolution raise both branches it reconciles without settling either",
       );
@@ -1079,7 +1159,7 @@ export function runScoringRules(name: string, scorer: Scorer): void {
 
       // Prompted by: "How do claims compare across languages?"
       // in docs/DESIGN-QUESTIONS.md.
-      // Open: matching details across languages without penalising either.
+      // Open: matching details across languages without penalizing either.
       it.todo("finds the same detail in claims given in different languages");
 
       // Prompted by: "How to record disagreement about meaning"
@@ -1115,11 +1195,6 @@ export function runScoringRules(name: string, scorer: Scorer): void {
         "never lets one profile's standing pass to another by vouching alone",
       );
 
-      // Prompted by: "Is the unit of work a task?"
-      // in docs/DESIGN-QUESTIONS.md.
-      // Open: overlaps \"Is every ask in the system one kind of object?\".
-      it.todo("routes an open task to someone able to answer it");
-
       // Prompted by: "A person named in a claim versus a person with a profile"
       // in docs/DESIGN-QUESTIONS.md.
       // Open: a person mentioned in a claim is not a profile.
@@ -1132,11 +1207,11 @@ export function runScoringRules(name: string, scorer: Scorer): void {
         "splits a detail that turned out to be two things and keeps its history",
       );
 
-      // Prompted by: "Can a claim be edited?"
-      // in docs/DESIGN-QUESTIONS.md.
-      // Open: whether text can change, and what happens to edges aimed at the old version.
+      // Prompted by: "A claim's text doesn't change once it's saved"
+      // in docs/CLOSED-QUESTIONS.md.
+      // Decided: it can't. A correction is a new claim, and it's still one telling.
       it.todo(
-        "keeps disputes and extensions attached to the version they answered",
+        "gives a correction from the same person no independent weight",
       );
 
       // Prompted by: "Can a passover point at one detail?"

@@ -115,9 +115,9 @@ export const events: ContributionEvent[] = [
     recordId: 'rec-fd-03',
     siteId: SITE,
     note: 'The depot office, about 1935. My uncle is the one by the door.',
-    // The photo's GPS puts the camera across the street, 55 metres away and
+    // The photo's GPS puts the camera across the street, 55 meters away and
     // good to about 65. That is the camera's position, not what the photo is of.
-    capturedLocation: { coordinates: [-116.2094, 43.6145], method: 'embedded', accuracyMetres: 65 },
+    capturedLocation: { coordinates: [-116.2094, 43.6145], method: 'embedded', accuracyMeters: 65 },
     media: [{
       mediaId: 'med-fd-03', kind: 'image', storageKey: 'records/rec-fd-03/med-fd-03/office.jpg',
       contentType: 'image/jpeg', byteSize: 2_310_000, width: 3024, height: 2016, processing: 'ready',
@@ -144,12 +144,10 @@ export const events: ContributionEvent[] = [
   {
     id: 'fd-013', at: '2026-02-05T18:00:00Z', actorId: 'c-luis',
     kind: 'claim_disputed',
-    edgeId: 'dsp-fd-office-year',
     claimId: 'cl-dsp-fd-office-year',
     targetClaimId: 'cl-fd-office',
-    targetExcerpt: 'opened in 1931',
+    details: [{ at: 'opened in 1931', to: '1934' }],
     reasoning: 'My uncle always said the office opened in 1934, the year he started, and he was one of the first.',
-    proposedValue: '1934',
   },
   {
     id: 'fd-014', at: '2026-02-10T19:00:00Z', actorId: 'system',
@@ -250,8 +248,8 @@ export const events: ContributionEvent[] = [
     claimId: 'cl-fd-office-notice',
     sourceRecordId: 'rec-fd-01',
     evidence: [{ recordId: 'rec-fd-07' }],
-    parentClaimId: 'cl-fd-office',
-    targetExcerpt: 'my grandfather was a clerk',
+    targetClaimId: 'cl-fd-office',
+    details: [{ at: 'my grandfather was a clerk' }],
     siteId: SITE,
     sourceLanguage: 'en',
     text: 'The notice lists the first clerks hired for the office.',
@@ -348,22 +346,18 @@ export const events: ContributionEvent[] = [
   {
     id: 'fd-038', at: '2026-04-14T17:00:00Z', actorId: 'c-rob',
     kind: 'claim_disputed',
-    edgeId: 'dsp-fd-photo-year',
     claimId: 'cl-dsp-fd-photo-year',
     targetClaimId: 'cl-fd-photo',
-    targetExcerpt: 'in 1935',
+    details: [{ at: 'in 1935', to: '1938 or later' }],
     reasoning: 'The sign on the door in the photo is the one put up in 1938, so the photo is from 1938 or later.',
-    proposedValue: '1938 or later',
   },
   {
     id: 'fd-039', at: '2026-04-15T17:00:00Z', actorId: 'c-rob',
     kind: 'claim_disputed',
-    edgeId: 'dsp-fd-prelot',
     claimId: 'cl-dsp-fd-prelot',
     targetClaimId: 'cl-fd-prelot',
-    targetExcerpt: 'a lumber yard on that lot',
+    details: [{ at: 'a lumber yard on that lot', to: 'coal yard' }],
     reasoning: 'The lot was a coal yard, not a lumber yard. The coal chutes are still under the dock.',
-    proposedValue: 'coal yard',
   },
   {
     id: 'fd-040', at: '2026-04-16T15:00:00Z', actorId: 'c-rob',

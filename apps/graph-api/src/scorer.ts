@@ -8,7 +8,7 @@
  *
  * Start with `similarity`: it is the smallest piece and five rules check it.
  * Then `score`. The relationships between claims are already in the graph,
- * because the people who wrote them chose their targets. Read the edges
+ * because the people who wrote them chose their targets. Read those links
  * before you reach for the text.
  */
 import type {

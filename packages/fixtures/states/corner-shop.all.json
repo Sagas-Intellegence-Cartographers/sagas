@@ -132,26 +132,39 @@
           "contributorId": "c-ray",
           "sourceRecordId": "rec-cs-photo",
           "evidence": [],
+          "relation": "extension",
           "target": {
-            "sourceType": "record",
-            "sourceId": "rec-cs-photo"
+            "recordId": "rec-cs-photo",
+            "details": []
           },
           "text": "That's the shop on the corner of Fourth and Main, around 1950. The man in the doorway is the owner, Mr. Ferris.",
           "sourceLanguage": "en",
           "references": [
             {
               "kind": "place",
-              "excerpt": "the corner of Fourth and Main",
+              "excerpt": {
+                "start": 19,
+                "end": 48,
+                "text": "the corner of Fourth and Main"
+              },
               "status": "confirmed"
             },
             {
               "kind": "date",
-              "excerpt": "around 1950",
+              "excerpt": {
+                "start": 50,
+                "end": 61,
+                "text": "around 1950"
+              },
               "status": "confirmed"
             },
             {
               "kind": "person",
-              "excerpt": "the owner, Mr. Ferris",
+              "excerpt": {
+                "start": 89,
+                "end": 110,
+                "text": "the owner, Mr. Ferris"
+              },
               "status": "confirmed"
             }
           ],
@@ -202,6 +215,7 @@
         "translations": [],
         "translationDisputes": [],
         "independentRecordCount": 0,
+        "disputes": [],
         "extensions": [],
         "passover": {
           "sounds_right": 1,
@@ -229,7 +243,7 @@
               "value": 0
             },
             {
-              "family": "behaviour",
+              "family": "behavior",
               "name": "sounds right",
               "value": 0.05
             },
@@ -446,26 +460,39 @@
           "contributorId": "c-ray",
           "sourceRecordId": "rec-cs-photo",
           "evidence": [],
+          "relation": "extension",
           "target": {
-            "sourceType": "record",
-            "sourceId": "rec-cs-photo"
+            "recordId": "rec-cs-photo",
+            "details": []
           },
           "text": "That's the shop on the corner of Fourth and Main, around 1950. The man in the doorway is the owner, Mr. Ferris.",
           "sourceLanguage": "en",
           "references": [
             {
               "kind": "place",
-              "excerpt": "the corner of Fourth and Main",
+              "excerpt": {
+                "start": 19,
+                "end": 48,
+                "text": "the corner of Fourth and Main"
+              },
               "status": "confirmed"
             },
             {
               "kind": "date",
-              "excerpt": "around 1950",
+              "excerpt": {
+                "start": 50,
+                "end": 61,
+                "text": "around 1950"
+              },
               "status": "confirmed"
             },
             {
               "kind": "person",
-              "excerpt": "the owner, Mr. Ferris",
+              "excerpt": {
+                "start": 89,
+                "end": 110,
+                "text": "the owner, Mr. Ferris"
+              },
               "status": "confirmed"
             }
           ],
@@ -516,6 +543,14 @@
         "translations": [],
         "translationDisputes": [],
         "independentRecordCount": 1,
+        "disputes": [
+          {
+            "claimId": "cl-dsp-cs-year",
+            "contributorId": "c-owen",
+            "reasoning": "It can't be 1950. The awning in the photo went up in 1956. The directory page I uploaded shows the change.",
+            "createdAt": "2026-04-06T18:20:00Z"
+          }
+        ],
         "extensions": [
           "cl-cs-uncle"
         ],
@@ -527,19 +562,23 @@
         "detailStatuses": [
           {
             "detail": {
-              "id": "cl-cs-shop#around 1950",
-              "excerpt": "around 1950"
+              "id": "cl-cs-shop#50-61",
+              "excerpt": {
+                "start": 50,
+                "end": 61,
+                "text": "around 1950"
+              }
             },
             "disputes": [
               {
-                "id": "dsp-cs-year",
-                "type": "dispute",
-                "fromClaimId": "cl-dsp-cs-year",
-                "targetClaimId": "cl-cs-shop",
-                "targetExcerpt": "around 1950",
-                "reasoning": "It can't be 1950. The awning in the photo went up in 1956. The directory page I uploaded shows the change.",
-                "proposedValue": "1956 or later",
+                "claimId": "cl-dsp-cs-year",
                 "contributorId": "c-owen",
+                "reasoning": "It can't be 1950. The awning in the photo went up in 1956. The directory page I uploaded shows the change.",
+                "to": {
+                  "start": 7,
+                  "end": 20,
+                  "text": "1956 or later"
+                },
                 "createdAt": "2026-04-06T18:20:00Z"
               }
             ],
@@ -564,20 +603,16 @@
           },
           {
             "detail": {
-              "id": "cl-cs-shop#the owner, Mr. Ferris",
-              "excerpt": "the owner, Mr. Ferris"
+              "id": "cl-cs-shop#89-110",
+              "excerpt": {
+                "start": 89,
+                "end": 110,
+                "text": "the owner, Mr. Ferris"
+              }
             },
             "disputes": [],
             "extensions": [
-              {
-                "id": "ext-cs-013",
-                "type": "extension",
-                "parentClaimId": "cl-cs-shop",
-                "childClaimId": "cl-cs-uncle",
-                "targetExcerpt": "the owner, Mr. Ferris",
-                "contributorId": "c-mae",
-                "createdAt": "2026-04-19T20:51:00Z"
-              }
+              "cl-cs-uncle"
             ],
             "competingValues": [
               {
@@ -611,7 +646,7 @@
               "value": 2
             },
             {
-              "family": "behaviour",
+              "family": "behavior",
               "name": "sounds right",
               "value": 0.05
             },
@@ -628,8 +663,12 @@
           ],
           "details": [
             {
-              "detailId": "cl-cs-shop#around 1950",
-              "excerpt": "around 1950",
+              "detailId": "cl-cs-shop#50-61",
+              "excerpt": {
+                "start": 50,
+                "end": 61,
+                "text": "around 1950"
+              },
               "score": 0.5,
               "terms": [
                 {
@@ -657,8 +696,12 @@
               ]
             },
             {
-              "detailId": "cl-cs-shop#the owner, Mr. Ferris",
-              "excerpt": "the owner, Mr. Ferris",
+              "detailId": "cl-cs-shop#89-110",
+              "excerpt": {
+                "start": 89,
+                "end": 110,
+                "text": "the owner, Mr. Ferris"
+              },
               "score": 1.75,
               "terms": [
                 {
@@ -702,16 +745,29 @@
             }
           ],
           "target": {
-            "sourceType": "claim",
-            "sourceId": "cl-cs-shop",
-            "excerpt": "around 1950"
+            "claimId": "cl-cs-shop",
+            "details": [
+              {
+                "at": {
+                  "start": 50,
+                  "end": 61,
+                  "text": "around 1950"
+                },
+                "to": {
+                  "start": 7,
+                  "end": 20,
+                  "text": "1956 or later"
+                }
+              }
+            ]
           },
-          "text": "It can't be 1950. The awning in the photo went up in 1956. The directory page I uploaded shows the change.",
+          "relation": "dispute",
+          "reasoning": "It can't be 1950. The awning in the photo went up in 1956. The directory page I uploaded shows the change.",
+          "text": "It was 1956 or later.",
           "sourceLanguage": "en",
           "references": [],
           "sourceType": "firsthand",
           "createdAt": "2026-04-06T18:20:00Z",
-          "disputedClaimId": "cl-cs-shop",
           "awaitingTranslation": false
         },
         "contributor": {
@@ -788,6 +844,7 @@
         "translations": [],
         "translationDisputes": [],
         "independentRecordCount": 0,
+        "disputes": [],
         "extensions": [],
         "passover": {
           "sounds_right": 0,
@@ -815,7 +872,7 @@
               "value": 0
             },
             {
-              "family": "behaviour",
+              "family": "behavior",
               "name": "sounds right",
               "value": 0
             },
@@ -847,22 +904,33 @@
             }
           ],
           "target": {
-            "sourceType": "claim",
-            "sourceId": "cl-cs-shop",
-            "excerpt": "the owner, Mr. Ferris"
+            "claimId": "cl-cs-shop",
+            "details": [
+              {
+                "at": {
+                  "start": 89,
+                  "end": 110,
+                  "text": "the owner, Mr. Ferris"
+                }
+              }
+            ]
           },
+          "relation": "extension",
           "text": "Mr. Ferris was my uncle. He ran that shop until the sixties.",
           "sourceLanguage": "en",
           "references": [
             {
               "kind": "date",
-              "excerpt": "until the sixties",
+              "excerpt": {
+                "start": 42,
+                "end": 59,
+                "text": "until the sixties"
+              },
               "status": "confirmed"
             }
           ],
           "sourceType": "family_oral",
           "createdAt": "2026-04-19T20:51:00Z",
-          "parentClaimId": "cl-cs-shop",
           "awaitingTranslation": false
         },
         "contributor": {
@@ -939,6 +1007,7 @@
         "translations": [],
         "translationDisputes": [],
         "independentRecordCount": 0,
+        "disputes": [],
         "extensions": [],
         "passover": {
           "sounds_right": 0,
@@ -966,7 +1035,7 @@
               "value": 0
             },
             {
-              "family": "behaviour",
+              "family": "behavior",
               "name": "sounds right",
               "value": 0
             },
@@ -1234,7 +1303,7 @@
               "cl-cs-uncle"
             ],
             "detailIds": [
-              "cl-cs-shop#the owner, Mr. Ferris"
+              "cl-cs-shop#89-110"
             ]
           },
           {
@@ -1251,7 +1320,7 @@
               "cl-cs-shop"
             ],
             "detailIds": [
-              "cl-cs-shop#around 1950"
+              "cl-cs-shop#50-61"
             ]
           }
         ]
@@ -1309,26 +1378,39 @@
           "contributorId": "c-ray",
           "sourceRecordId": "rec-cs-photo",
           "evidence": [],
+          "relation": "extension",
           "target": {
-            "sourceType": "record",
-            "sourceId": "rec-cs-photo"
+            "recordId": "rec-cs-photo",
+            "details": []
           },
           "text": "That's the shop on the corner of Fourth and Main, around 1950. The man in the doorway is the owner, Mr. Ferris.",
           "sourceLanguage": "en",
           "references": [
             {
               "kind": "place",
-              "excerpt": "the corner of Fourth and Main",
+              "excerpt": {
+                "start": 19,
+                "end": 48,
+                "text": "the corner of Fourth and Main"
+              },
               "status": "confirmed"
             },
             {
               "kind": "date",
-              "excerpt": "around 1950",
+              "excerpt": {
+                "start": 50,
+                "end": 61,
+                "text": "around 1950"
+              },
               "status": "confirmed"
             },
             {
               "kind": "person",
-              "excerpt": "the owner, Mr. Ferris",
+              "excerpt": {
+                "start": 89,
+                "end": 110,
+                "text": "the owner, Mr. Ferris"
+              },
               "status": "confirmed"
             }
           ],
@@ -1379,6 +1461,14 @@
         "translations": [],
         "translationDisputes": [],
         "independentRecordCount": 1,
+        "disputes": [
+          {
+            "claimId": "cl-dsp-cs-year",
+            "contributorId": "c-owen",
+            "reasoning": "It can't be 1950. The awning in the photo went up in 1956. The directory page I uploaded shows the change.",
+            "createdAt": "2026-04-06T18:20:00Z"
+          }
+        ],
         "extensions": [
           "cl-cs-uncle"
         ],
@@ -1390,19 +1480,23 @@
         "detailStatuses": [
           {
             "detail": {
-              "id": "cl-cs-shop#around 1950",
-              "excerpt": "around 1950"
+              "id": "cl-cs-shop#50-61",
+              "excerpt": {
+                "start": 50,
+                "end": 61,
+                "text": "around 1950"
+              }
             },
             "disputes": [
               {
-                "id": "dsp-cs-year",
-                "type": "dispute",
-                "fromClaimId": "cl-dsp-cs-year",
-                "targetClaimId": "cl-cs-shop",
-                "targetExcerpt": "around 1950",
-                "reasoning": "It can't be 1950. The awning in the photo went up in 1956. The directory page I uploaded shows the change.",
-                "proposedValue": "1956 or later",
+                "claimId": "cl-dsp-cs-year",
                 "contributorId": "c-owen",
+                "reasoning": "It can't be 1950. The awning in the photo went up in 1956. The directory page I uploaded shows the change.",
+                "to": {
+                  "start": 7,
+                  "end": 20,
+                  "text": "1956 or later"
+                },
                 "createdAt": "2026-04-06T18:20:00Z"
               }
             ],
@@ -1427,20 +1521,16 @@
           },
           {
             "detail": {
-              "id": "cl-cs-shop#the owner, Mr. Ferris",
-              "excerpt": "the owner, Mr. Ferris"
+              "id": "cl-cs-shop#89-110",
+              "excerpt": {
+                "start": 89,
+                "end": 110,
+                "text": "the owner, Mr. Ferris"
+              }
             },
             "disputes": [],
             "extensions": [
-              {
-                "id": "ext-cs-013",
-                "type": "extension",
-                "parentClaimId": "cl-cs-shop",
-                "childClaimId": "cl-cs-uncle",
-                "targetExcerpt": "the owner, Mr. Ferris",
-                "contributorId": "c-mae",
-                "createdAt": "2026-04-19T20:51:00Z"
-              }
+              "cl-cs-uncle"
             ],
             "competingValues": [
               {
@@ -1474,7 +1564,7 @@
               "value": 2
             },
             {
-              "family": "behaviour",
+              "family": "behavior",
               "name": "sounds right",
               "value": 0.05
             },
@@ -1491,8 +1581,12 @@
           ],
           "details": [
             {
-              "detailId": "cl-cs-shop#around 1950",
-              "excerpt": "around 1950",
+              "detailId": "cl-cs-shop#50-61",
+              "excerpt": {
+                "start": 50,
+                "end": 61,
+                "text": "around 1950"
+              },
               "score": 0.5,
               "terms": [
                 {
@@ -1520,8 +1614,12 @@
               ]
             },
             {
-              "detailId": "cl-cs-shop#the owner, Mr. Ferris",
-              "excerpt": "the owner, Mr. Ferris",
+              "detailId": "cl-cs-shop#89-110",
+              "excerpt": {
+                "start": 89,
+                "end": 110,
+                "text": "the owner, Mr. Ferris"
+              },
               "score": 1.75,
               "terms": [
                 {
@@ -1565,22 +1663,33 @@
             }
           ],
           "target": {
-            "sourceType": "claim",
-            "sourceId": "cl-cs-shop",
-            "excerpt": "the owner, Mr. Ferris"
+            "claimId": "cl-cs-shop",
+            "details": [
+              {
+                "at": {
+                  "start": 89,
+                  "end": 110,
+                  "text": "the owner, Mr. Ferris"
+                }
+              }
+            ]
           },
+          "relation": "extension",
           "text": "Mr. Ferris was my uncle. He ran that shop until the sixties.",
           "sourceLanguage": "en",
           "references": [
             {
               "kind": "date",
-              "excerpt": "until the sixties",
+              "excerpt": {
+                "start": 42,
+                "end": 59,
+                "text": "until the sixties"
+              },
               "status": "confirmed"
             }
           ],
           "sourceType": "family_oral",
           "createdAt": "2026-04-19T20:51:00Z",
-          "parentClaimId": "cl-cs-shop",
           "awaitingTranslation": false
         },
         "contributor": {
@@ -1657,6 +1766,7 @@
         "translations": [],
         "translationDisputes": [],
         "independentRecordCount": 0,
+        "disputes": [],
         "extensions": [],
         "passover": {
           "sounds_right": 1,
@@ -1684,7 +1794,7 @@
               "value": 0
             },
             {
-              "family": "behaviour",
+              "family": "behavior",
               "name": "sounds right",
               "value": 0.05
             },
@@ -1716,16 +1826,29 @@
             }
           ],
           "target": {
-            "sourceType": "claim",
-            "sourceId": "cl-cs-shop",
-            "excerpt": "around 1950"
+            "claimId": "cl-cs-shop",
+            "details": [
+              {
+                "at": {
+                  "start": 50,
+                  "end": 61,
+                  "text": "around 1950"
+                },
+                "to": {
+                  "start": 7,
+                  "end": 20,
+                  "text": "1956 or later"
+                }
+              }
+            ]
           },
-          "text": "It can't be 1950. The awning in the photo went up in 1956. The directory page I uploaded shows the change.",
+          "relation": "dispute",
+          "reasoning": "It can't be 1950. The awning in the photo went up in 1956. The directory page I uploaded shows the change.",
+          "text": "It was 1956 or later.",
           "sourceLanguage": "en",
           "references": [],
           "sourceType": "firsthand",
           "createdAt": "2026-04-06T18:20:00Z",
-          "disputedClaimId": "cl-cs-shop",
           "awaitingTranslation": false
         },
         "contributor": {
@@ -1802,6 +1925,7 @@
         "translations": [],
         "translationDisputes": [],
         "independentRecordCount": 0,
+        "disputes": [],
         "extensions": [],
         "passover": {
           "sounds_right": 0,
@@ -1829,7 +1953,7 @@
               "value": 0
             },
             {
-              "family": "behaviour",
+              "family": "behavior",
               "name": "sounds right",
               "value": 0
             },
@@ -1856,16 +1980,21 @@
           "contributorId": "c-dev",
           "sourceRecordId": "rec-cs-sign",
           "evidence": [],
+          "relation": "extension",
           "target": {
-            "sourceType": "record",
-            "sourceId": "rec-cs-sign"
+            "recordId": "rec-cs-sign",
+            "details": []
           },
           "text": "The sign reads FERRIS GROCERY. The previous owner of my house said it came down when the shop closed.",
           "sourceLanguage": "en",
           "references": [
             {
               "kind": "person",
-              "excerpt": "FERRIS GROCERY",
+              "excerpt": {
+                "start": 15,
+                "end": 29,
+                "text": "FERRIS GROCERY"
+              },
               "status": "confirmed"
             }
           ],
@@ -1916,6 +2045,7 @@
         "translations": [],
         "translationDisputes": [],
         "independentRecordCount": 0,
+        "disputes": [],
         "extensions": [],
         "passover": {
           "sounds_right": 0,
@@ -1943,7 +2073,7 @@
               "value": 0
             },
             {
-              "family": "behaviour",
+              "family": "behavior",
               "name": "sounds right",
               "value": 0
             },
@@ -2270,7 +2400,7 @@
               "cl-cs-uncle"
             ],
             "detailIds": [
-              "cl-cs-shop#the owner, Mr. Ferris"
+              "cl-cs-shop#89-110"
             ]
           },
           {
@@ -2287,7 +2417,7 @@
               "cl-cs-shop"
             ],
             "detailIds": [
-              "cl-cs-shop#around 1950"
+              "cl-cs-shop#50-61"
             ]
           }
         ]

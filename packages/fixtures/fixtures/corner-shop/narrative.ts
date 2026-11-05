@@ -21,7 +21,7 @@
  *     claim with no detail, so both forms of span appear.
  */
 
-import { detailId } from '@sagas/contracts';
+import { detailId, findExcerpt } from '@sagas/contracts';
 import { span } from '../../src/narrative';
 import type { SiteNarrative } from '../../src/narrative';
 
@@ -29,6 +29,14 @@ const SITE = 'site-corner-shop';
 
 const shopSection = { id: 'sec-cs-shop', siteId: SITE, heading: 'The shop on the corner' };
 const signSection = { id: 'sec-cs-sign', siteId: SITE, heading: 'The sign' };
+
+const shopClaim =
+  "That's the shop on the corner of Fourth and Main, around 1950. The man in the doorway is the owner, Mr. Ferris.";
+const shopDetail = (words: string): string => {
+  const excerpt = findExcerpt(shopClaim, words);
+  if (!excerpt) throw new Error(`"${words}" isn't in the shop claim`);
+  return detailId('cl-cs-shop', excerpt);
+};
 
 const t1Text =
   'The shop stood on the corner of Fourth and Main, and its owner was Mr. Ferris. ' +
@@ -46,9 +54,9 @@ const t2Shop = {
   text: t2Text,
   spans: [
     span(t2Text, 'the corner of Fourth and Main', ['cl-cs-shop']),
-    span(t2Text, 'Mr. Ferris', ['cl-cs-shop', 'cl-cs-uncle'], [detailId('cl-cs-shop', 'the owner, Mr. Ferris')]),
+    span(t2Text, 'Mr. Ferris', ['cl-cs-shop', 'cl-cs-uncle'], [shopDetail('the owner, Mr. Ferris')]),
     span(t2Text, 'until the sixties', ['cl-cs-uncle']),
-    span(t2Text, 'sometime in the 1950s', ['cl-cs-shop'], [detailId('cl-cs-shop', 'around 1950')]),
+    span(t2Text, 'sometime in the 1950s', ['cl-cs-shop'], [shopDetail('around 1950')]),
   ],
 };
 

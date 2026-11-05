@@ -12,7 +12,7 @@ proposal from you is useful input even when it turns out to be wrong.
 
 ## The narrative page
 
-The page a person reads about a place. It is the centre of this layer.
+The page a person reads about a place. It is the center of this layer.
 
 ### What is decided
 
@@ -69,9 +69,9 @@ something is pointed at where they could add it.
 
 ### What is decided
 
-- **Scoring decides what gets suggested, and is never shown.** The intelligence
-  layer works out what a person should be pointed at. The interface shows the
-  suggestion. The reason behind it is never shown as a number.
+- **Routing decides what gets suggested, and it's never shown as a number.** This layer
+  works out what a person should be pointed at, as backlog work, and the interface shows the
+  suggestion.
 - **Passover is how a reader leaves a light signal.** `sounds_right`,
   `dont_know` and `dont_care` on a claim. None of them is a vote. They change
   how far a claim travels. They say nothing about whether it is true.
@@ -82,15 +82,15 @@ something is pointed at where they could add it.
 
 ### First steps
 
-Backlog item D1, a design exercise. The routing behind suggestions belongs to
-the intelligence layer and does not exist yet, so the interface gets designed
-first against invented signals, and the real ones slot in later.
+Backlog item D1, a design exercise. The routing behind suggestions sits with this layer
+and doesn't exist yet, so the interface gets designed first against invented signals, and
+the real ones slot in later.
 
 ### What is open
 
 - **What the signals are.** Which places need attention, which records have no
-  conversation yet, which claims are waiting for a translation. The intelligence
-  layer defines these, and your design helps decide which ones are worth having.
+  conversation yet, which claims are waiting for a translation. Your design helps decide which ones are worth
+  having.
 - **Question prompts.** A proposal is that whoever hands over a record can say
   what they want from it ("does anyone know the year?", "can someone translate
   this?"), and anybody can add prompts to a record with no conversation yet.

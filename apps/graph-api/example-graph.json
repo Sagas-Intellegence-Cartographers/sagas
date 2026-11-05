@@ -30,11 +30,12 @@
       "text": "The Hendersons' cat crossed Mill Road in 1950.",
       "sourceRecordId": "r1",
       "target": {
-        "sourceType": "record",
-        "sourceId": "r1"
+        "recordId": "r1",
+        "details": []
       },
       "references": [],
-      "evidence": []
+      "evidence": [],
+      "relation": "extension"
     },
     {
       "id": "c2",
@@ -43,11 +44,12 @@
       "text": "The Hendersons' cat crossed Mill Road in 1950.",
       "sourceRecordId": "r2",
       "target": {
-        "sourceType": "record",
-        "sourceId": "r2"
+        "recordId": "r2",
+        "details": []
       },
       "references": [],
-      "evidence": []
+      "evidence": [],
+      "relation": "extension"
     },
     {
       "id": "c3",
@@ -56,10 +58,24 @@
       "text": "It was 1960. Mill Road wasn't built until 1958.",
       "sourceRecordId": "r1",
       "target": {
-        "sourceType": "claim",
-        "sourceId": "c1",
-        "excerpt": "1950"
+        "claimId": "c1",
+        "details": [
+          {
+            "at": {
+              "start": 41,
+              "end": 45,
+              "text": "1950"
+            },
+            "to": {
+              "start": 7,
+              "end": 11,
+              "text": "1960"
+            }
+          }
+        ]
       },
+      "relation": "dispute",
+      "reasoning": "Mill Road wasn't built until 1958",
       "references": [],
       "evidence": []
     },
@@ -70,31 +86,24 @@
       "text": "Whiskers on Mill Road, in a photo.",
       "sourceRecordId": "r1",
       "target": {
-        "sourceType": "claim",
-        "sourceId": "c1",
-        "excerpt": "Mill Road"
+        "claimId": "c1",
+        "details": [
+          {
+            "at": {
+              "start": 28,
+              "end": 37,
+              "text": "Mill Road"
+            }
+          }
+        ]
       },
+      "relation": "extension",
       "references": [],
       "evidence": [
         {
           "recordId": "photo"
         }
       ]
-    }
-  ],
-  "edges": [
-    {
-      "type": "dispute",
-      "fromClaimId": "c3",
-      "toClaimId": "c1",
-      "excerpt": "1950",
-      "reason": "Mill Road wasn't built until 1958"
-    },
-    {
-      "type": "extension",
-      "fromClaimId": "c4",
-      "toClaimId": "c1",
-      "excerpt": "Mill Road"
     }
   ],
   "passovers": [],

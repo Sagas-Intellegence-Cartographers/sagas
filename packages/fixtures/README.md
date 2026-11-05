@@ -126,14 +126,15 @@ The model counts independent records. It never counts heads. Agreeing is not bri
 source, so a count of agreement on its own must never be presented as support.
 Five people saying "sounds right" is one source with five reactions to it.
 
-### Disagreement lands on one detail
+### Disagreement usually lands on one detail
 
 Somebody disputes the date. The address, the person and the event on the same
 claim are untouched and still corroborated.
 
-Marking the whole claim as contested throws away the thing that makes this
-useful, and it does something worse: it makes a person's account of their family
-look discredited when one detail is in question.
+Showing the whole claim as contested when only the date is in question throws away
+the thing that makes this useful, and it does something worse: it makes a person's
+account of their family look discredited. A dispute can cover a whole claim when
+somebody says so, and only then does every detail in it read as contested.
 
 ### Nothing gets adjudicated
 

@@ -27,21 +27,30 @@
           "contributorId": "c-nadia",
           "sourceRecordId": "rec-plaque",
           "evidence": [],
+          "relation": "extension",
           "target": {
-            "sourceType": "record",
-            "sourceId": "rec-plaque"
+            "recordId": "rec-plaque",
+            "details": []
           },
           "text": "My grandmother walked this stretch every morning for about thirty years. After she died the family put the bench here because it is the spot where she used to stop and look at the water. The plaque was my aunt's idea.",
           "sourceLanguage": "en",
           "references": [
             {
               "kind": "person",
-              "excerpt": "My grandmother",
+              "excerpt": {
+                "start": 0,
+                "end": 14,
+                "text": "My grandmother"
+              },
               "status": "confirmed"
             },
             {
               "kind": "place",
-              "excerpt": "this stretch",
+              "excerpt": {
+                "start": 22,
+                "end": 34,
+                "text": "this stretch"
+              },
               "status": "confirmed"
             }
           ],
@@ -92,6 +101,7 @@
         "translations": [],
         "translationDisputes": [],
         "independentRecordCount": 0,
+        "disputes": [],
         "extensions": [],
         "passover": {
           "sounds_right": 0,
@@ -119,7 +129,7 @@
               "value": 0
             },
             {
-              "family": "behaviour",
+              "family": "behavior",
               "name": "sounds right",
               "value": 0
             },
@@ -254,21 +264,30 @@
           "contributorId": "c-nadia",
           "sourceRecordId": "rec-plaque",
           "evidence": [],
+          "relation": "extension",
           "target": {
-            "sourceType": "record",
-            "sourceId": "rec-plaque"
+            "recordId": "rec-plaque",
+            "details": []
           },
           "text": "My grandmother walked this stretch every morning for about thirty years. After she died the family put the bench here because it is the spot where she used to stop and look at the water. The plaque was my aunt's idea.",
           "sourceLanguage": "en",
           "references": [
             {
               "kind": "person",
-              "excerpt": "My grandmother",
+              "excerpt": {
+                "start": 0,
+                "end": 14,
+                "text": "My grandmother"
+              },
               "status": "confirmed"
             },
             {
               "kind": "place",
-              "excerpt": "this stretch",
+              "excerpt": {
+                "start": 22,
+                "end": 34,
+                "text": "this stretch"
+              },
               "status": "confirmed"
             }
           ],
@@ -319,6 +338,7 @@
         "translations": [],
         "translationDisputes": [],
         "independentRecordCount": 0,
+        "disputes": [],
         "extensions": [],
         "passover": {
           "sounds_right": 0,
@@ -346,7 +366,7 @@
               "value": 0
             },
             {
-              "family": "behaviour",
+              "family": "behavior",
               "name": "sounds right",
               "value": 0
             },
@@ -476,21 +496,30 @@
           "contributorId": "c-nadia",
           "sourceRecordId": "rec-plaque",
           "evidence": [],
+          "relation": "extension",
           "target": {
-            "sourceType": "record",
-            "sourceId": "rec-plaque"
+            "recordId": "rec-plaque",
+            "details": []
           },
           "text": "My grandmother walked this stretch every morning for about thirty years. After she died the family put the bench here because it is the spot where she used to stop and look at the water. The plaque was my aunt's idea.",
           "sourceLanguage": "en",
           "references": [
             {
               "kind": "person",
-              "excerpt": "My grandmother",
+              "excerpt": {
+                "start": 0,
+                "end": 14,
+                "text": "My grandmother"
+              },
               "status": "confirmed"
             },
             {
               "kind": "place",
-              "excerpt": "this stretch",
+              "excerpt": {
+                "start": 22,
+                "end": 34,
+                "text": "this stretch"
+              },
               "status": "confirmed"
             }
           ],
@@ -541,6 +570,7 @@
         "translations": [],
         "translationDisputes": [],
         "independentRecordCount": 0,
+        "disputes": [],
         "extensions": [],
         "passover": {
           "sounds_right": 0,
@@ -568,7 +598,7 @@
               "value": 0
             },
             {
-              "family": "behaviour",
+              "family": "behavior",
               "name": "sounds right",
               "value": 0
             },
@@ -698,21 +728,30 @@
           "contributorId": "c-nadia",
           "sourceRecordId": "rec-plaque",
           "evidence": [],
+          "relation": "extension",
           "target": {
-            "sourceType": "record",
-            "sourceId": "rec-plaque"
+            "recordId": "rec-plaque",
+            "details": []
           },
           "text": "My grandmother walked this stretch every morning for about thirty years. After she died the family put the bench here because it is the spot where she used to stop and look at the water. The plaque was my aunt's idea.",
           "sourceLanguage": "en",
           "references": [
             {
               "kind": "person",
-              "excerpt": "My grandmother",
+              "excerpt": {
+                "start": 0,
+                "end": 14,
+                "text": "My grandmother"
+              },
               "status": "confirmed"
             },
             {
               "kind": "place",
-              "excerpt": "this stretch",
+              "excerpt": {
+                "start": 22,
+                "end": 34,
+                "text": "this stretch"
+              },
               "status": "confirmed"
             }
           ],
@@ -763,6 +802,7 @@
         "translations": [],
         "translationDisputes": [],
         "independentRecordCount": 0,
+        "disputes": [],
         "extensions": [],
         "passover": {
           "sounds_right": 0,
@@ -790,7 +830,7 @@
               "value": 0
             },
             {
-              "family": "behaviour",
+              "family": "behavior",
               "name": "sounds right",
               "value": 0
             },

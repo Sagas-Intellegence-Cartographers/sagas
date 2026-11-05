@@ -87,7 +87,7 @@ function dump(s: GraphState) {
       const readings = es.competingValues
         .map((v) => `"${v.value}" (${v.count} contributor${v.count === 1 ? '' : 's'})`)
         .join('  vs  ');
-      console.log(`  ⚡ "${es.detail.excerpt}" contested → ${readings}`);
+      console.log(`  ⚡ "${es.detail.excerpt.text}" contested → ${readings}`);
     }
     const pv = c.passover;
     if (pv.sounds_right + pv.dont_know + pv.dont_care > 0) {

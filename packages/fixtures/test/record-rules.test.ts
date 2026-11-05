@@ -7,7 +7,9 @@ import { describe, expect, it } from "vitest";
 
 import type { MediaRef } from "@sagas/contracts";
 import {
-  claimTarget,
+  claim,
+  excerpt,
+  findExcerpt,
   collection,
   linkSource,
   newSourceRecord,
@@ -141,18 +143,98 @@ describe("time windows and collections (2.4.0)", () => {
     expect(timeWindow.safeParse({ start: 70, end: 18 }).success).toBe(false);
   });
 
+  const aClaim = {
+    id: "cl-1",
+    siteId: "site-1",
+    contributorId: "guest-abc",
+    text: "It was 1956.",
+    sourceLanguage: "en",
+    references: [],
+    sourceType: "firsthand",
+    createdAt: "2026-10-16T16:00:00Z",
+    sourceRecordId: "rec-1",
+    evidence: [],
+    awaitingTranslation: false,
+    relation: "extension",
+    target: { recordId: "rec-1", details: [] },
+  };
+  const parses = (change: object) =>
+    claim.safeParse({ ...aClaim, ...change }).success;
+  const reply = { target: { claimId: "cl-2", details: [] } };
+
   it("a claim can target a window of a record, and only a record", () => {
-    const window = { start: 2100, end: 2230 };
-    const target = (sourceType: "record" | "claim") =>
-      claimTarget.safeParse({ sourceType, sourceId: "x", window }).success;
-    expect(target("record")).toBe(true);
-    expect(target("claim")).toBe(false);
+    const details = [{ at: { start: 2100, end: 2230 } }];
+    expect(parses({ target: { recordId: "rec-1", details } })).toBe(true);
+    expect(
+      parses({ target: { claimId: "cl-2", details }, relation: "extension" }),
+    ).toBe(false);
   });
 
   it("a claim can target the whole of something", () => {
+    expect(parses({})).toBe(true);
+    expect(parses({ ...reply, relation: "extension" })).toBe(true);
+    expect(parses({ ...reply, relation: "dispute", reasoning: "I was there" })).toBe(true);
+  });
+
+  it("a claim points into one claim or one record", () => {
+    expect(parses({ target: { details: [] } })).toBe(false);
     expect(
-      claimTarget.safeParse({ sourceType: "claim", sourceId: "x" }).success,
+      parses({
+        target: { claimId: "cl-2", recordId: "rec-1", details: [] },
+        relation: "extension",
+      }),
+    ).toBe(false);
+  });
+
+  it("every claim has a relation, and a first claim extends its record", () => {
+    expect(parses({ relation: undefined })).toBe(false);
+    expect(parses({ relation: "extension" })).toBe(true);
+  });
+
+  it("a dispute says what replaces the words, and an extension has no replacement", () => {
+    const at = { start: 0, end: 4, text: "1950" };
+    const to = { start: 7, end: 11, text: "1956" };
+    const dispute = { relation: "dispute", reasoning: "why" };
+    const target = (details: object[]) => ({ claimId: "cl-2", details });
+    expect(parses({ ...dispute, target: target([{ at, to }]) })).toBe(true);
+    expect(parses({ ...dispute, target: target([{ at }]) })).toBe(false);
+    expect(parses({ relation: "extension", target: target([{ at }]) })).toBe(true);
+    expect(parses({ relation: "extension", target: target([{ at, to }]) })).toBe(false);
+  });
+
+  it("a dispute has reasoning, and nothing else does", () => {
+    expect(parses({ ...reply, relation: "dispute" })).toBe(false);
+    expect(parses({ ...reply, relation: "dispute", reasoning: " " })).toBe(false);
+    expect(parses({ ...reply, relation: "extension", reasoning: "why" })).toBe(false);
+  });
+
+  it("an excerpt's positions land on its words", () => {
+    const at = { start: 0, end: 4, text: "1950" };
+    const dispute = { relation: "dispute", reasoning: "why" };
+    const pointing = (to: object) => ({
+      ...dispute,
+      target: { claimId: "cl-2", details: [{ at, to }] },
+    });
+    expect(excerpt.safeParse(at).success).toBe(true);
+    expect(excerpt.safeParse({ ...at, end: 5 }).success).toBe(false);
+    expect(
+      parses(pointing({ start: 7, end: 11, text: "1956" })),
     ).toBe(true);
+    expect(
+      parses(pointing({ start: 0, end: 4, text: "1956" })),
+    ).toBe(false);
+  });
+
+  it("doesn't let words with bad positions pass as a window of a recording", () => {
+    const at = { start: 0, end: 9, text: "1950" };
+    expect(parses({ target: { recordId: "rec-1", details: [{ at }] } })).toBe(false);
+  });
+
+  it("finds a repeat of the same words by its position", () => {
+    const text = "built in 1950, rebuilt after the 1950 fire";
+    expect(findExcerpt(text, "1950")?.start).toBe(9);
+    expect(findExcerpt(text, "1950", 2)?.start).toBe(33);
+    expect(findExcerpt(text, "1950", 3)).toBeUndefined();
   });
 
   it("a collection holds at least one record and belongs to a profile", () => {

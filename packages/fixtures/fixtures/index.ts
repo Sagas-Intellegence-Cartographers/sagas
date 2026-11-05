@@ -10,7 +10,7 @@
  * conversations about one place. `freight-depot` is the longest log and carries the
  * translation, rendering, transcript-by-window, link and collection cases. The others
  * exist so that the map has more than one pin, so that "everything within two
- * kilometres" has something to find, and so that a contributor can appear in
+ * kilometers" has something to find, and so that a contributor can appear in
  * more than one place.
  */
 

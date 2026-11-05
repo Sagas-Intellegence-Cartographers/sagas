@@ -27,16 +27,21 @@
           "contributorId": "c-esther",
           "sourceRecordId": "rec-hays-bakery",
           "evidence": [],
+          "relation": "extension",
           "target": {
-            "sourceType": "record",
-            "sourceId": "rec-hays-bakery"
+            "recordId": "rec-hays-bakery",
+            "details": []
           },
           "text": "There was a bakery at 1116 before it became a print shop. You could smell it from the end of the block on a Saturday. There was a doorway through to the shop next door, cut through the party wall, and the two of them used it as one premises for a while.",
           "sourceLanguage": "en",
           "references": [
             {
               "kind": "place",
-              "excerpt": "a doorway through to the shop next door",
+              "excerpt": {
+                "start": 128,
+                "end": 167,
+                "text": "a doorway through to the shop next door"
+              },
               "status": "confirmed"
             }
           ],
@@ -73,6 +78,7 @@
         "translations": [],
         "translationDisputes": [],
         "independentRecordCount": 0,
+        "disputes": [],
         "extensions": [],
         "passover": {
           "sounds_right": 0,
@@ -100,7 +106,7 @@
               "value": 0
             },
             {
-              "family": "behaviour",
+              "family": "behavior",
               "name": "sounds right",
               "value": 0
             },
@@ -221,16 +227,21 @@
           "contributorId": "c-esther",
           "sourceRecordId": "rec-hays-bakery",
           "evidence": [],
+          "relation": "extension",
           "target": {
-            "sourceType": "record",
-            "sourceId": "rec-hays-bakery"
+            "recordId": "rec-hays-bakery",
+            "details": []
           },
           "text": "There was a bakery at 1116 before it became a print shop. You could smell it from the end of the block on a Saturday. There was a doorway through to the shop next door, cut through the party wall, and the two of them used it as one premises for a while.",
           "sourceLanguage": "en",
           "references": [
             {
               "kind": "place",
-              "excerpt": "a doorway through to the shop next door",
+              "excerpt": {
+                "start": 128,
+                "end": 167,
+                "text": "a doorway through to the shop next door"
+              },
               "status": "confirmed"
             }
           ],
@@ -267,6 +278,7 @@
         "translations": [],
         "translationDisputes": [],
         "independentRecordCount": 0,
+        "disputes": [],
         "extensions": [],
         "passover": {
           "sounds_right": 0,
@@ -294,7 +306,7 @@
               "value": 0
             },
             {
-              "family": "behaviour",
+              "family": "behavior",
               "name": "sounds right",
               "value": 0
             },
@@ -410,16 +422,21 @@
           "contributorId": "c-esther",
           "sourceRecordId": "rec-hays-bakery",
           "evidence": [],
+          "relation": "extension",
           "target": {
-            "sourceType": "record",
-            "sourceId": "rec-hays-bakery"
+            "recordId": "rec-hays-bakery",
+            "details": []
           },
           "text": "There was a bakery at 1116 before it became a print shop. You could smell it from the end of the block on a Saturday. There was a doorway through to the shop next door, cut through the party wall, and the two of them used it as one premises for a while.",
           "sourceLanguage": "en",
           "references": [
             {
               "kind": "place",
-              "excerpt": "a doorway through to the shop next door",
+              "excerpt": {
+                "start": 128,
+                "end": 167,
+                "text": "a doorway through to the shop next door"
+              },
               "status": "confirmed"
             }
           ],
@@ -456,6 +473,7 @@
         "translations": [],
         "translationDisputes": [],
         "independentRecordCount": 0,
+        "disputes": [],
         "extensions": [],
         "passover": {
           "sounds_right": 0,
@@ -483,7 +501,7 @@
               "value": 0
             },
             {
-              "family": "behaviour",
+              "family": "behavior",
               "name": "sounds right",
               "value": 0
             },
@@ -573,7 +591,7 @@
   },
   {
     "stateId": "t3",
-    "label": "The neighbour cannot speak to the doorway",
+    "label": "The neighbor cannot speak to the doorway",
     "asOf": "2026-07-31T23:59:59Z",
     "site": {
       "id": "site-hays-1116",
@@ -599,16 +617,21 @@
           "contributorId": "c-esther",
           "sourceRecordId": "rec-hays-bakery",
           "evidence": [],
+          "relation": "extension",
           "target": {
-            "sourceType": "record",
-            "sourceId": "rec-hays-bakery"
+            "recordId": "rec-hays-bakery",
+            "details": []
           },
           "text": "There was a bakery at 1116 before it became a print shop. You could smell it from the end of the block on a Saturday. There was a doorway through to the shop next door, cut through the party wall, and the two of them used it as one premises for a while.",
           "sourceLanguage": "en",
           "references": [
             {
               "kind": "place",
-              "excerpt": "a doorway through to the shop next door",
+              "excerpt": {
+                "start": 128,
+                "end": 167,
+                "text": "a doorway through to the shop next door"
+              },
               "status": "confirmed"
             }
           ],
@@ -645,6 +668,7 @@
         "translations": [],
         "translationDisputes": [],
         "independentRecordCount": 0,
+        "disputes": [],
         "extensions": [],
         "passover": {
           "sounds_right": 0,
@@ -672,7 +696,7 @@
               "value": 0
             },
             {
-              "family": "behaviour",
+              "family": "behavior",
               "name": "sounds right",
               "value": 0
             },

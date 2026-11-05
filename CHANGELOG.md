@@ -41,6 +41,107 @@ it. This is the most useful field in the entry.
 
 ---
 
+## v2.6.0 — 2026-11-03
+
+**Affects:** intelligence layer · experience layer · content layer (one field name)
+
+**What:**
+- **A claim's edge lives on the claim.** Every claim now has a `relation` and a `target`, and
+  those two are its edge. `target` is `{ claimId | recordId, details }`: what a claim points
+  into, and where inside it. `relation` is `extension` or `dispute`, and a dispute also has
+  `reasoning`, required. A first claim about a photo extends the photo. `disputeEdge`,
+  `extensionEdge`, `edge`, `edgeType`, `parentClaimId`, `disputedClaimId` and the scoring
+  graph's `edges` are gone as stored objects, and `repliesTo(graph, claimId)` reads the edges
+  off the claims.
+- **`target.details` lists where a claim points.** Each entry has `at`, an object: `{ start,
+  end, text }` for words, with positions in characters, or `{ start, end }` for a window of a
+  recording, in seconds. An extension has only `at`. A dispute says "not X but Y", so on each
+  detail it points at it also has `to`, required: the words in its own text that replace that
+  detail. `to` replaces `proposedValue`. A dispute of the whole claim has no details, and its
+  own text is what it says instead. `A.target.details` says where A points. `detailsOf(graph,
+  "A")` says what others point at in A.
+- **A transcript or a translation is a record, and it can be disputed.** A claim about one has
+  `recordId`. A record that stands on its own can only be extended, because it stays true
+  as evidence that someone said something. A record with a `parent` is someone's rendering, so
+  it can be disputed too. The scoring graph checks this, and `recordNode` gains `parent`.
+- **One claim can point at several details,** so "Sally bought a pink hat" disputed as
+  "Brandon bought a blue hat" is one claim, and its evidence is cited once. No details
+  means all of the target, and that goes for a dispute too. A dispute of the whole claim
+  contests every detail inside it, and so does a dispute of a longer excerpt that contains
+  a detail.
+- **An excerpt is now an object,** `{ start, end, text }`, with character positions. `at`
+  counts into the target's text, and `to` and a reference count into the claim's own text.
+  `claimDetail.excerpt`, `detailScore.excerpt` and `claimReference.excerpt` all use it.
+  `findExcerpt(text, words, occurrence)` makes one. The same words in the same place are
+  one detail, so the two "1950"s in one sentence can be two details. `detailId` now takes an
+  excerpt, and an id looks like `claim#9-13`.
+- **A claim's text doesn't change once it's saved,** because the positions count into it.
+  A correction is a new claim. The one exception is a claim awaiting translation, whose first
+  rendering supplies its text.
+- **`claimEvidence` loses `excerpt`.** Evidence backs whatever its claim points at, and
+  marking your own words no longer makes a detail. Only another claim pointing at them does.
+- **`detailStatus.disputes` is now a list of `claimDispute`,** a summary worked out from the
+  dispute's own claim, and it includes disputes of the whole claim. `detailStatus.extensions`
+  is a list of claim ids, and `claimState` gains `disputes`.
+- **`scoreTerm.family` is now `'content' | 'behavior'`.** The repository moved to US spelling,
+  and this is the one place that reached a value your code can depend on.
+
+- **Routing moves to the experience layer.** Working out what to put in front of whom mostly
+  reads profiles and passovers, so it fits that layer's data, and the intelligence layer's
+  matching plugs in later. No shape changes. It's a backlog item, and no statement of work
+  changes.
+
+**Why:** the contract is the template teams build from, and 2.5.0 said where a reply points
+in several places: `claim.target`, an edge, `parentClaimId` and `disputedClaimId`. Nothing kept
+them in agreement. Plain-string excerpts also couldn't tell repeated words apart, and a
+dispute with two changes had nowhere to put the second. 2.5.0 was meant to be the last big
+change this semester and it turned out not to be. The sponsor decided it was better to change
+it now than to let anyone build on the old shape.
+
+**You need to:**
+- *experience layer* — pull upstream. If you're coming from 2.4.0, read the 2.5.0 lines
+  too, and skip what this entry undoes.
+  - Tell a dispute from an extension with `claim.relation`, in place of `disputedClaimId`.
+  - `claim.target.claimId` replaces `parentClaimId` when `relation` is `extension`, and
+    `disputedClaimId` when it's `dispute`. A first claim has `target.recordId` instead, and its
+    `relation` is `extension` too, so check `target.claimId` to tell a reply from a first claim.
+  - `claim.target.window` from 2.5.0 is now an entry in `target.details`, and `isExcerpt` tells
+    words from a window.
+  - An excerpt is an object, so read `.text` on `detail.excerpt`, `reference.excerpt` and
+    `score.details[].excerpt`.
+  - In `detailStatuses`, each entry in `disputes` now has `claimId`, `contributorId`,
+    `reasoning`, `to` and `createdAt`. `disputes[].claimId` replaces `fromClaimId`,
+    `disputes[].to?.text` replaces `proposedValue`, and `extensions` is claim ids.
+    `competingValues` keeps its shape.
+  - Detail ids now look like `cl-cs-shop#50-61`, so compare them with `detail.id` and don't
+    build them by hand. `spans[].detailIds` uses the new ids.
+  - The fixtures have the same counts of claims, details and disputes as 2.5.0. If you're coming
+    from 2.4.0 you'll see far fewer details, because a detail now exists only once a claim points
+    at it. None has a dispute of a whole claim yet. When one exists on a claim with no details, it shows only in
+    `claimState.disputes`. A dispute of a detail now always names its replacement, so
+    `disputes[].to` is only empty when the dispute covers more than that detail.
+- *intelligence layer* — pull upstream. If you're coming from 2.4.0, read the 2.5.0 lines
+  too, and skip what this entry undoes.
+  - Stop reading `graph.edges`. From `@sagas/fixtures/scoring`, `repliesTo` gives the replies to
+    a claim, `pointsAt` says whether a reply points at exactly these words, and `contests` says
+    whether a dispute covers them, which includes whole-claim disputes and longer excerpts. Use
+    `contests` for disputes.
+  - `target.sourceType` and `target.sourceId` are gone, and a target has `claimId` or `recordId`.
+    An edge's `reason` is `claim.reasoning`. `target.excerpt` and `target.window` are now entries
+    in `target.details`, and `isExcerpt` tells words from a window.
+  - Your scorer's results change. `detailScore.excerpt` is an object, your ids come from
+    `detailId(claimId, excerpt)`, and a `behaviour` term's family is now `'behavior'`.
+  - The builder still takes words, and finds the positions for you. `.extend("B", "A", "1950")`
+    reads the same. `.dispute` now takes `{ at, to }`, like `.dispute("C", "A", { at: "1950", to:
+    "1960" }, "why")`, or a list of them, or `undefined` for the whole claim. `to` has to be words
+    in the reply's own text.
+  - A claim's own evidence no longer names an excerpt, so the rule "lets evidence naming an excerpt raise that
+    detail and leave the others alone" is now "lets a reply's evidence raise the detail it targets
+    and leave the others alone", under "evidence and volume". "targets" has three new rules: a dispute of the whole claim, one dispute pointing at
+    several details, and repeated words. Those count toward S3 and S4 being done.
+- *content layer* — `capturedLocation.accuracyMeters` is now `accuracyMeters`, the one spelling
+  change in your fields. Nothing else, because `apps/capture-api` doesn't store claims.
+
 ## v2.5.0 — 2026-11-02
 
 **Affects:** content layer · experience layer · intelligence layer
@@ -360,7 +461,7 @@ The comment on `sourceRecord` that called a record a bundle is rewritten.
 `newSourceRecord` is new: a record as it arrives, without an `id`, so whoever
 stores it can generate the id.
 
-**Why:** The content layer's schema already modelled one record per artifact,
+**Why:** The content layer's schema already modeled one record per artifact,
 which turned out to be the model; the contract still described a bundle. And
 the contract required the client to send an id while a database that
 generates ids refuses one from outside, so every version of a record upload
@@ -725,7 +826,7 @@ prove it is theirs", and nobody should build linking until it has an answer.
 **Why:** `docs/START-CONTENT-LAYER.md` used "account" for a contribution on one
 line and for a login twenty lines later. It said "there are no user accounts and
 you should not build any" a few paragraphs before asking "what accounts are
-within two kilometres of this building". Anybody reading it carefully would come
+within two kilometers of this building". Anybody reading it carefully would come
 away with two meanings for the same word, and no way to tell which was intended.
 The word was also a leftover from an earlier framing of this project as an oral
 history archive, and it sits badly on a photograph or a deed.
@@ -761,7 +862,7 @@ history archive, and it sits badly on a photograph or a deed.
   disagreeing is a check-in conversation.
 
 **Why:** The suite was over-specified. It constrained the shape of the input as
-well as the behaviour of the output, which meant a team designing independence
+well as the behavior of the output, which meant a team designing independence
 differently would have been fighting the tests rather than the problem. The
 algorithm is the intelligence layer's deliverable and the rules should be a floor
 rather than a design.
@@ -856,7 +957,7 @@ not the interesting part. The parts that are interesting stay yours.
   for this project to answer". Four new entries on inherited trust, reference
   edges, the split between a person as record subject and as platform profile,
   and naming people who can't consent.
-- Root README notes the licence and how contributions are credited.
+- Root README notes the license and how contributions are credited.
 
 **Why:** The content team started, and the repo had a domain description without
 an ordering. Everything here is about making the first week smaller.

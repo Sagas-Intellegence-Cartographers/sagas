@@ -43,10 +43,10 @@ one degree of longitude is about 111km at the equator and about 80km in Boise,
 so "within 0.02 degrees" means something different depending on where you are.
 
 **`geography`** treats them as points on the globe. It is slower, and distances
-come out in metres everywhere.
+come out in meters everywhere.
 
 This project expects `geography` with SRID 4326, so that "2000" in a query means
-two kilometres. An SRID is the number that tells PostGIS which coordinate system
+two kilometers. An SRID is the number that tells PostGIS which coordinate system
 a value is in.
 
 ```sql
@@ -64,7 +64,7 @@ not for storing points.
 "Everything within 2km of here" is not a subtraction problem.
 
 ```sql
--- Wrong. Degrees are not metres, and this is a different distance
+-- Wrong. Degrees are not meters, and this is a different distance
 -- depending on how far north you are.
 WHERE abs(lng - $1) < 0.02 AND abs(lat - $2) < 0.02
 
@@ -105,13 +105,13 @@ between the column and what you passed in.
 
 ## Precision and accuracy are different things
 
-A photograph's embedded GPS is precise to a few metres and can still be wrong,
+A photograph's embedded GPS is precise to a few meters and can still be wrong,
 because the phone was indoors or across the street. A pin somebody drops by hand
 is imprecise and can still be right.
 
 The contract keeps both the coordinates and how they were arrived at, in
 `capturedLocation`: `placed`, `geocoded`, `embedded`, or `inherited`, plus an
-optional accuracy in metres.
+optional accuracy in meters.
 
 Do not average them. Do not silently prefer the more precise one. A record's
 location and the place it is attached to can disagree, and that disagreement is
@@ -132,7 +132,7 @@ almost certainly do not need a directions API.
 **Reprojection.** Everything is 4326. If you find yourself converting between
 coordinate systems, stop and check why.
 
-**Polygons.** Everything here is a point. Neighbourhood boundaries would be
+**Polygons.** Everything here is a point. Neighborhood boundaries would be
 polygons and they are not in the contract, so if you want them that is a
 conversation first.
 

@@ -26,26 +26,39 @@
         "contributorId": "c-ray",
         "sourceRecordId": "rec-cs-photo",
         "evidence": [],
+        "relation": "extension",
         "target": {
-          "sourceType": "record",
-          "sourceId": "rec-cs-photo"
+          "recordId": "rec-cs-photo",
+          "details": []
         },
         "text": "That's the shop on the corner of Fourth and Main, around 1950. The man in the doorway is the owner, Mr. Ferris.",
         "sourceLanguage": "en",
         "references": [
           {
             "kind": "place",
-            "excerpt": "the corner of Fourth and Main",
+            "excerpt": {
+              "start": 19,
+              "end": 48,
+              "text": "the corner of Fourth and Main"
+            },
             "status": "confirmed"
           },
           {
             "kind": "date",
-            "excerpt": "around 1950",
+            "excerpt": {
+              "start": 50,
+              "end": 61,
+              "text": "around 1950"
+            },
             "status": "confirmed"
           },
           {
             "kind": "person",
-            "excerpt": "the owner, Mr. Ferris",
+            "excerpt": {
+              "start": 89,
+              "end": 110,
+              "text": "the owner, Mr. Ferris"
+            },
             "status": "confirmed"
           }
         ],
@@ -96,6 +109,7 @@
       "translations": [],
       "translationDisputes": [],
       "independentRecordCount": 0,
+      "disputes": [],
       "extensions": [],
       "passover": {
         "sounds_right": 1,
@@ -123,7 +137,7 @@
             "value": 0
           },
           {
-            "family": "behaviour",
+            "family": "behavior",
             "name": "sounds right",
             "value": 0.05
           },

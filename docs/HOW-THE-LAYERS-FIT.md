@@ -10,7 +10,7 @@ The three layers:
   the transcripts and translations of them, and the contributor's choices for
   each one. It has a plain screen for handing things over.
 - **The intelligence layer** owns claims: the graph they form, and the scoring
-  that works out weight, independence and what needs attention. It has a plain
+  that works out weight and independence. It has a plain
   screen for writing claims, and later it composes the sections and passages a page
   shows.
 - **The experience layer** builds the map and the reading experience: what a
@@ -47,7 +47,7 @@ checked and resized.
 
 **Intelligence layer**, which takes claims in and models them.
 
-A second contributor recognises the shop and writes: "That's the shop on the
+A second contributor recognizes the shop and writes: "That's the shop on the
 corner of Fourth and Main, around 1950. The man in the doorway is the owner,
 Mr. Ferris."
 
@@ -63,8 +63,8 @@ points at the photograph, which is its **target**. Three phrases in its text are
 | "around 1950" | date |
 | "Mr. Ferris" | person |
 
-The claim has no **details** yet, because a detail is an excerpt that something
-points at, and nothing has.
+The claim has no **details** yet, because a detail is an excerpt that another claim
+points at, and none has.
 
 The person who handed over the photograph and the person who read a claim out of
 it are different people. That is normal, and it is part of what makes
@@ -77,9 +77,9 @@ Event: `claim_submitted`.
 
 **Intelligence layer.**
 
-A third contributor writes: "It can't be 1950. The awning in the photo went up in
-1956, and I have the city directory page showing the change." They attach a scan
-of the directory page.
+A third contributor writes: "It was 1956 or later." Their reasoning is: "It can't be
+1950. The awning in the photo went up in 1956. The directory page I uploaded shows the
+change." They attach a scan of the directory page.
 
 That is a **dispute**. It targets the words "around 1950", which makes them a
 detail of the claim, so the place and the owner's name stay undisputed. A dispute is a claim of its own, so it can carry
@@ -87,9 +87,9 @@ evidence like any other claim. It carries reasoning, which a
 dispute always has to. The directory scan is an **evidence record**, attached to
 the dispute to back it up.
 
-Event: `claim_disputed`. A dispute is a claim of its own, with a dispute edge
-pointing from it to the detail it disagrees with, so it can hold an evidence
-record, and the fixture attaches the directory page that way.
+Event: `claim_disputed`. A dispute is a claim of its own, so it can hold an evidence
+record, and the fixture attaches the directory page that way. It points at the detail
+it disagrees with.
 
 ## 4. A fourth person adds to another part
 
@@ -99,9 +99,9 @@ the content layer takes in.
 A fourth contributor records a short audio clip: "Mr. Ferris was my uncle. He ran
 that shop until the sixties."
 
-That is an **extension**. It targets the words "the owner, Mr. Ferris", which makes
+That is an **extension**. It points at the words "the owner, Mr. Ferris", which makes
 them a detail too, and it adds to them without contradicting anything. An extension
-leaves out its excerpt when it's about the whole claim. The new information lives in the extension's own record, the audio
+points at no details when it's about the whole claim. The new information lives in the extension's own record, the audio
 clip, which is its evidence. The conversation's source record is still the
 photograph.
 
@@ -138,9 +138,8 @@ The intelligence layer's main focus is claims. From the graph it can see:
   doorway?", has an answer, and the other, the year, is in dispute.
 
 From that it works out a **score** for each claim and each detail, made of
-named parts, which decides the order on the page, and what needs attention,
-which decides what gets suggested. Neither is ever shown to a person as a
-number.
+named parts, which decides the order on the page. The experience layer's routing
+decides what gets suggested. Neither is ever shown to a person as a number.
 
 How independence is worked out, and the exact weighting, is the intelligence
 layer's design work, apart from the counting in S5 of its backlog.
@@ -162,7 +161,7 @@ sections in the fixtures are invented. `apps/web/PAGE-MODEL.md` walks through
 them.
 
 The suggestion interface might also show this conversation to a reader who has
-contributed about the same neighbourhood before, because the year is still in
+contributed about the same neighborhood before, because the year is still in
 dispute. Which signals drive suggestions is open.
 
 ---

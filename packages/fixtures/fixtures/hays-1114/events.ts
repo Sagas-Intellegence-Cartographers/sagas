@@ -2,8 +2,8 @@
  * 1114 Hays Street — contribution event log
  * =========================================
  *
- * One half of a pair. Its neighbour at 1116 is a separate site about twelve
- * metres away, which is close enough that the two markers collide at most zoom
+ * One half of a pair. Its neighbor at 1116 is a separate site about twelve
+ * meters away, which is close enough that the two markers collide at most zoom
  * levels.
  *
  * THIS CONTENT IS INVENTED, including the business names. The street and the

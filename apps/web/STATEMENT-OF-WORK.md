@@ -113,7 +113,7 @@ something.
    database the sponsor sets up for the team. All data is invented or public
    record, and invented data is marked as invented. Real testimony and real
    personal data wait for the sponsor's own hosting.
-4. **No organisation is named** on anything public until it has agreed to be.
+4. **No organization is named** on anything public until it has agreed to be.
 5. **The shared contract changes by pull request.** The team's own schema, and
    any extra test data kept in its own apps, are free to extend. Changes to
    `packages/contracts` or `packages/fixtures` go upstream as a pull request
@@ -135,8 +135,8 @@ freedom is meant to be spent: sections as separate floating blocks, exploring
 regions of claims rather than one claim at a time, and clean transitions between
 the page and the claims behind it.
 
-A few things are fixed. The page works before it is polished. Colour contrast
-meets the level already set in story A1, colours and spacing are defined once as
+A few things are fixed. The page works before it is polished. Color contrast
+meets the level already set in story A1, colors and spacing are defined once as
 design tokens, and it works on a phone.
 
 ## What the sponsor provides
