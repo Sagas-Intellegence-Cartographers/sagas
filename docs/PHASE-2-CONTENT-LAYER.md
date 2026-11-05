@@ -23,11 +23,14 @@ Your next steps, from the 16 October meeting:
 3. Then move on to storing real text and getting it back, and after that,
    start on photos.
 
+Your backlog is in `apps/capture-api/BACKLOG.md`. Its stories come after these
+steps.
+
 Writing claims has moved to the intelligence layer. Your layer is records, and
 later the transcripts and translations attached to them. If you've started
 anything for claims, you can stop.
 
-## What a record is, after contract 2.4.0
+## What a record is, after contract 2.5.0
 
 Contract 2.2.0 settled two things you ran into:
 
@@ -46,18 +49,42 @@ Contract 2.4.0 added four things to every record:
   never, what happens to a photo's location, and whether it mentions other
   people. Each record keeps its own, and they can change later. A record also
   keeps the version of the terms it was made under (`termsVersion`).
-- **A web page as a record** (`link`): an address, with no files.
+- **A web page as a record** (`link`): an address, with no files. It's
+  decided as evidence for a claim. Whether a web page can be the record a
+  conversation starts from is open, so don't build a flow that starts one from
+  a link yet.
 - **Collections** (`collectionId`): records one profile hands over together
   stay together.
 - **Recordings published on submission.** There's no waiting for a transcript
-  any more. A transcript covers a time window of a recording (`window`), so
-  "transcribe 0:18 to 1:10" is a task of its own.
+  any more. A transcript covers a time window of a recording, so "transcribe
+  0:18 to 1:10" is a task of its own.
+
+Contract 2.5.0 added four more things:
+
+- **Ids are UUIDs the database generates, for every table.** A media reference
+  is its own row with its own UUID, linked to its record by a foreign key.
+  `migrations/012_uuid_ids.sql` shows the pattern, and its comment covers tables you
+  already have. Your GET handlers need to accept a UUID, and answer 404 for an id that
+  isn't one.
+- **`media` can be empty, null or missing** when a record arrives. A written
+  record has no files, and it comes out of validation as an empty list.
+
+- **A supporting record** (`parent`): a transcript, a translation, or a record
+  that describes another one, like a recording talking about a photograph. It
+  goes through the same endpoint and into the same table as any other record.
+  `parent` says what it supports and, for a recording, which time window. A
+  record with no `parent` is an ordinary record.
+- **A link's preview** (`link.preview`): a title and a sentence or two the
+  contributor types. Your API fetches nothing from the page. It replaces
+  `link.title`. A preview needs both parts, so an old title with no summary can't
+  move across on its own, and you can leave those links with no preview, which is
+  still valid.
 
 `apps/capture-api/migrations/010_record_choices.sql` adds the columns for the
-first three to the scaffold's `records` table, numbered 010 so it doesn't
-collide with your own files. The rest of `sourceRecord` and `mediaRef` in
-`packages/contracts/src/model.ts` is worth reading once. The comments say what
-each field is for.
+first three 2.4.0 changes to the scaffold's `records` table, numbered 010 so it
+doesn't collide with your own files. `011_supporting_records.sql` adds `parent`.
+The rest of `sourceRecord` and `mediaRef` in `packages/contracts/src/model.ts` is
+worth reading once. The comments say what each field is for.
 
 ## Running it
 

@@ -13,7 +13,7 @@ through upstream.
 ## How upstream and your fork relate
 
 There is one upstream repository, `Civum/sagas`. Each team forks it into its own
-GitHub organisation. All of your work happens in your fork, and your fork is
+GitHub organization. All of your work happens in your fork, and your fork is
 what gets graded.
 
 ```
@@ -96,8 +96,8 @@ If your team created a private repository instead of forking, nobody outside it
 can review anything. Add the sponsor as a collaborator in week one, before it is
 the reason a check-in is useless.
 
-Either way, add them to your organisation if you want them to see the automated check logs when a
-build fails, or for an approval on a pull request to count towards branch
+Either way, add them to your organization if you want them to see the automated check logs when a
+build fails, or for an approval on a pull request to count toward branch
 protection. Neither is required to read your code and leave comments; both are
 worth ten minutes.
 

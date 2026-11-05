@@ -26,21 +26,32 @@
           "siteId": "site-hoefer-bench",
           "contributorId": "c-nadia",
           "sourceRecordId": "rec-plaque",
-          "evidenceRecordIds": [],
+          "evidence": [],
+          "relation": "extension",
+          "target": {
+            "recordId": "rec-plaque",
+            "details": []
+          },
           "text": "My grandmother walked this stretch every morning for about thirty years. After she died the family put the bench here because it is the spot where she used to stop and look at the water. The plaque was my aunt's idea.",
           "sourceLanguage": "en",
-          "details": [
+          "references": [
             {
-              "id": "el-hb-person",
               "kind": "person",
-              "value": "Margarethe Hoefer",
-              "excerpt": "My grandmother"
+              "excerpt": {
+                "start": 0,
+                "end": 14,
+                "text": "My grandmother"
+              },
+              "status": "confirmed"
             },
             {
-              "id": "el-hb-place",
               "kind": "place",
-              "value": "Greenbelt near the Americana bridge",
-              "excerpt": "this stretch"
+              "excerpt": {
+                "start": 22,
+                "end": 34,
+                "text": "this stretch"
+              },
+              "status": "confirmed"
             }
           ],
           "sourceType": "family_oral",
@@ -90,54 +101,14 @@
         "translations": [],
         "translationDisputes": [],
         "independentRecordCount": 0,
+        "disputes": [],
         "extensions": [],
         "passover": {
           "sounds_right": 0,
           "dont_know": 0,
           "dont_care": 0
         },
-        "detailStatuses": [
-          {
-            "detail": {
-              "id": "el-hb-person",
-              "kind": "person",
-              "value": "Margarethe Hoefer",
-              "excerpt": "My grandmother"
-            },
-            "disputes": [],
-            "extensions": [],
-            "competingValues": [
-              {
-                "value": "Margarethe Hoefer",
-                "count": 1,
-                "contributorIds": [
-                  "c-nadia"
-                ]
-              }
-            ],
-            "weight": 1
-          },
-          {
-            "detail": {
-              "id": "el-hb-place",
-              "kind": "place",
-              "value": "Greenbelt near the Americana bridge",
-              "excerpt": "this stretch"
-            },
-            "disputes": [],
-            "extensions": [],
-            "competingValues": [
-              {
-                "value": "Greenbelt near the Americana bridge",
-                "count": 1,
-                "contributorIds": [
-                  "c-nadia"
-                ]
-              }
-            ],
-            "weight": 1
-          }
-        ],
+        "detailStatuses": [],
         "score": {
           "claimId": "cl-bench-grandmother",
           "score": 1,
@@ -158,7 +129,7 @@
               "value": 0
             },
             {
-              "family": "behaviour",
+              "family": "behavior",
               "name": "sounds right",
               "value": 0
             },
@@ -173,50 +144,7 @@
               "value": 0
             }
           ],
-          "details": [
-            {
-              "detailId": "el-hb-person",
-              "score": 1,
-              "terms": [
-                {
-                  "family": "content",
-                  "name": "base",
-                  "value": 1
-                },
-                {
-                  "family": "content",
-                  "name": "extensions",
-                  "value": 0
-                },
-                {
-                  "family": "content",
-                  "name": "disputes",
-                  "value": 0
-                }
-              ]
-            },
-            {
-              "detailId": "el-hb-place",
-              "score": 1,
-              "terms": [
-                {
-                  "family": "content",
-                  "name": "base",
-                  "value": 1
-                },
-                {
-                  "family": "content",
-                  "name": "extensions",
-                  "value": 0
-                },
-                {
-                  "family": "content",
-                  "name": "disputes",
-                  "value": 0
-                }
-              ]
-            }
-          ]
+          "details": []
         },
         "weight": 1,
         "confidence": "single_source"
@@ -283,7 +211,6 @@
         "flagsRaised": 0
       }
     ],
-    "transcripts": [],
     "flags": [],
     "integrity": {
       "totalClaims": 1,
@@ -336,21 +263,32 @@
           "siteId": "site-hoefer-bench",
           "contributorId": "c-nadia",
           "sourceRecordId": "rec-plaque",
-          "evidenceRecordIds": [],
+          "evidence": [],
+          "relation": "extension",
+          "target": {
+            "recordId": "rec-plaque",
+            "details": []
+          },
           "text": "My grandmother walked this stretch every morning for about thirty years. After she died the family put the bench here because it is the spot where she used to stop and look at the water. The plaque was my aunt's idea.",
           "sourceLanguage": "en",
-          "details": [
+          "references": [
             {
-              "id": "el-hb-person",
               "kind": "person",
-              "value": "Margarethe Hoefer",
-              "excerpt": "My grandmother"
+              "excerpt": {
+                "start": 0,
+                "end": 14,
+                "text": "My grandmother"
+              },
+              "status": "confirmed"
             },
             {
-              "id": "el-hb-place",
               "kind": "place",
-              "value": "Greenbelt near the Americana bridge",
-              "excerpt": "this stretch"
+              "excerpt": {
+                "start": 22,
+                "end": 34,
+                "text": "this stretch"
+              },
+              "status": "confirmed"
             }
           ],
           "sourceType": "family_oral",
@@ -400,54 +338,14 @@
         "translations": [],
         "translationDisputes": [],
         "independentRecordCount": 0,
+        "disputes": [],
         "extensions": [],
         "passover": {
           "sounds_right": 0,
           "dont_know": 0,
           "dont_care": 0
         },
-        "detailStatuses": [
-          {
-            "detail": {
-              "id": "el-hb-person",
-              "kind": "person",
-              "value": "Margarethe Hoefer",
-              "excerpt": "My grandmother"
-            },
-            "disputes": [],
-            "extensions": [],
-            "competingValues": [
-              {
-                "value": "Margarethe Hoefer",
-                "count": 1,
-                "contributorIds": [
-                  "c-nadia"
-                ]
-              }
-            ],
-            "weight": 1
-          },
-          {
-            "detail": {
-              "id": "el-hb-place",
-              "kind": "place",
-              "value": "Greenbelt near the Americana bridge",
-              "excerpt": "this stretch"
-            },
-            "disputes": [],
-            "extensions": [],
-            "competingValues": [
-              {
-                "value": "Greenbelt near the Americana bridge",
-                "count": 1,
-                "contributorIds": [
-                  "c-nadia"
-                ]
-              }
-            ],
-            "weight": 1
-          }
-        ],
+        "detailStatuses": [],
         "score": {
           "claimId": "cl-bench-grandmother",
           "score": 1,
@@ -468,7 +366,7 @@
               "value": 0
             },
             {
-              "family": "behaviour",
+              "family": "behavior",
               "name": "sounds right",
               "value": 0
             },
@@ -483,50 +381,7 @@
               "value": 0
             }
           ],
-          "details": [
-            {
-              "detailId": "el-hb-person",
-              "score": 1,
-              "terms": [
-                {
-                  "family": "content",
-                  "name": "base",
-                  "value": 1
-                },
-                {
-                  "family": "content",
-                  "name": "extensions",
-                  "value": 0
-                },
-                {
-                  "family": "content",
-                  "name": "disputes",
-                  "value": 0
-                }
-              ]
-            },
-            {
-              "detailId": "el-hb-place",
-              "score": 1,
-              "terms": [
-                {
-                  "family": "content",
-                  "name": "base",
-                  "value": 1
-                },
-                {
-                  "family": "content",
-                  "name": "extensions",
-                  "value": 0
-                },
-                {
-                  "family": "content",
-                  "name": "disputes",
-                  "value": 0
-                }
-              ]
-            }
-          ]
+          "details": []
         },
         "weight": 1,
         "confidence": "single_source"
@@ -593,7 +448,6 @@
         "flagsRaised": 0
       }
     ],
-    "transcripts": [],
     "flags": [],
     "integrity": {
       "totalClaims": 1,
@@ -641,21 +495,32 @@
           "siteId": "site-hoefer-bench",
           "contributorId": "c-nadia",
           "sourceRecordId": "rec-plaque",
-          "evidenceRecordIds": [],
+          "evidence": [],
+          "relation": "extension",
+          "target": {
+            "recordId": "rec-plaque",
+            "details": []
+          },
           "text": "My grandmother walked this stretch every morning for about thirty years. After she died the family put the bench here because it is the spot where she used to stop and look at the water. The plaque was my aunt's idea.",
           "sourceLanguage": "en",
-          "details": [
+          "references": [
             {
-              "id": "el-hb-person",
               "kind": "person",
-              "value": "Margarethe Hoefer",
-              "excerpt": "My grandmother"
+              "excerpt": {
+                "start": 0,
+                "end": 14,
+                "text": "My grandmother"
+              },
+              "status": "confirmed"
             },
             {
-              "id": "el-hb-place",
               "kind": "place",
-              "value": "Greenbelt near the Americana bridge",
-              "excerpt": "this stretch"
+              "excerpt": {
+                "start": 22,
+                "end": 34,
+                "text": "this stretch"
+              },
+              "status": "confirmed"
             }
           ],
           "sourceType": "family_oral",
@@ -705,54 +570,14 @@
         "translations": [],
         "translationDisputes": [],
         "independentRecordCount": 0,
+        "disputes": [],
         "extensions": [],
         "passover": {
           "sounds_right": 0,
           "dont_know": 0,
           "dont_care": 0
         },
-        "detailStatuses": [
-          {
-            "detail": {
-              "id": "el-hb-person",
-              "kind": "person",
-              "value": "Margarethe Hoefer",
-              "excerpt": "My grandmother"
-            },
-            "disputes": [],
-            "extensions": [],
-            "competingValues": [
-              {
-                "value": "Margarethe Hoefer",
-                "count": 1,
-                "contributorIds": [
-                  "c-nadia"
-                ]
-              }
-            ],
-            "weight": 1
-          },
-          {
-            "detail": {
-              "id": "el-hb-place",
-              "kind": "place",
-              "value": "Greenbelt near the Americana bridge",
-              "excerpt": "this stretch"
-            },
-            "disputes": [],
-            "extensions": [],
-            "competingValues": [
-              {
-                "value": "Greenbelt near the Americana bridge",
-                "count": 1,
-                "contributorIds": [
-                  "c-nadia"
-                ]
-              }
-            ],
-            "weight": 1
-          }
-        ],
+        "detailStatuses": [],
         "score": {
           "claimId": "cl-bench-grandmother",
           "score": 1,
@@ -773,7 +598,7 @@
               "value": 0
             },
             {
-              "family": "behaviour",
+              "family": "behavior",
               "name": "sounds right",
               "value": 0
             },
@@ -788,50 +613,7 @@
               "value": 0
             }
           ],
-          "details": [
-            {
-              "detailId": "el-hb-person",
-              "score": 1,
-              "terms": [
-                {
-                  "family": "content",
-                  "name": "base",
-                  "value": 1
-                },
-                {
-                  "family": "content",
-                  "name": "extensions",
-                  "value": 0
-                },
-                {
-                  "family": "content",
-                  "name": "disputes",
-                  "value": 0
-                }
-              ]
-            },
-            {
-              "detailId": "el-hb-place",
-              "score": 1,
-              "terms": [
-                {
-                  "family": "content",
-                  "name": "base",
-                  "value": 1
-                },
-                {
-                  "family": "content",
-                  "name": "extensions",
-                  "value": 0
-                },
-                {
-                  "family": "content",
-                  "name": "disputes",
-                  "value": 0
-                }
-              ]
-            }
-          ]
+          "details": []
         },
         "weight": 1,
         "confidence": "single_source"
@@ -898,7 +680,6 @@
         "flagsRaised": 0
       }
     ],
-    "transcripts": [],
     "flags": [],
     "integrity": {
       "totalClaims": 1,
@@ -946,21 +727,32 @@
           "siteId": "site-hoefer-bench",
           "contributorId": "c-nadia",
           "sourceRecordId": "rec-plaque",
-          "evidenceRecordIds": [],
+          "evidence": [],
+          "relation": "extension",
+          "target": {
+            "recordId": "rec-plaque",
+            "details": []
+          },
           "text": "My grandmother walked this stretch every morning for about thirty years. After she died the family put the bench here because it is the spot where she used to stop and look at the water. The plaque was my aunt's idea.",
           "sourceLanguage": "en",
-          "details": [
+          "references": [
             {
-              "id": "el-hb-person",
               "kind": "person",
-              "value": "Margarethe Hoefer",
-              "excerpt": "My grandmother"
+              "excerpt": {
+                "start": 0,
+                "end": 14,
+                "text": "My grandmother"
+              },
+              "status": "confirmed"
             },
             {
-              "id": "el-hb-place",
               "kind": "place",
-              "value": "Greenbelt near the Americana bridge",
-              "excerpt": "this stretch"
+              "excerpt": {
+                "start": 22,
+                "end": 34,
+                "text": "this stretch"
+              },
+              "status": "confirmed"
             }
           ],
           "sourceType": "family_oral",
@@ -1010,54 +802,14 @@
         "translations": [],
         "translationDisputes": [],
         "independentRecordCount": 0,
+        "disputes": [],
         "extensions": [],
         "passover": {
           "sounds_right": 0,
           "dont_know": 0,
           "dont_care": 0
         },
-        "detailStatuses": [
-          {
-            "detail": {
-              "id": "el-hb-person",
-              "kind": "person",
-              "value": "Margarethe Hoefer",
-              "excerpt": "My grandmother"
-            },
-            "disputes": [],
-            "extensions": [],
-            "competingValues": [
-              {
-                "value": "Margarethe Hoefer",
-                "count": 1,
-                "contributorIds": [
-                  "c-nadia"
-                ]
-              }
-            ],
-            "weight": 1
-          },
-          {
-            "detail": {
-              "id": "el-hb-place",
-              "kind": "place",
-              "value": "Greenbelt near the Americana bridge",
-              "excerpt": "this stretch"
-            },
-            "disputes": [],
-            "extensions": [],
-            "competingValues": [
-              {
-                "value": "Greenbelt near the Americana bridge",
-                "count": 1,
-                "contributorIds": [
-                  "c-nadia"
-                ]
-              }
-            ],
-            "weight": 1
-          }
-        ],
+        "detailStatuses": [],
         "score": {
           "claimId": "cl-bench-grandmother",
           "score": 1,
@@ -1078,7 +830,7 @@
               "value": 0
             },
             {
-              "family": "behaviour",
+              "family": "behavior",
               "name": "sounds right",
               "value": 0
             },
@@ -1093,50 +845,7 @@
               "value": 0
             }
           ],
-          "details": [
-            {
-              "detailId": "el-hb-person",
-              "score": 1,
-              "terms": [
-                {
-                  "family": "content",
-                  "name": "base",
-                  "value": 1
-                },
-                {
-                  "family": "content",
-                  "name": "extensions",
-                  "value": 0
-                },
-                {
-                  "family": "content",
-                  "name": "disputes",
-                  "value": 0
-                }
-              ]
-            },
-            {
-              "detailId": "el-hb-place",
-              "score": 1,
-              "terms": [
-                {
-                  "family": "content",
-                  "name": "base",
-                  "value": 1
-                },
-                {
-                  "family": "content",
-                  "name": "extensions",
-                  "value": 0
-                },
-                {
-                  "family": "content",
-                  "name": "disputes",
-                  "value": 0
-                }
-              ]
-            }
-          ]
+          "details": []
         },
         "weight": 1,
         "confidence": "single_source"
@@ -1203,7 +912,6 @@
         "flagsRaised": 0
       }
     ],
-    "transcripts": [],
     "flags": [],
     "integrity": {
       "totalClaims": 1,

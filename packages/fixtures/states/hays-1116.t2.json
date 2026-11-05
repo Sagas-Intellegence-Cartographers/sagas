@@ -25,21 +25,23 @@
         "siteId": "site-hays-1116",
         "contributorId": "c-esther",
         "sourceRecordId": "rec-hays-bakery",
-        "evidenceRecordIds": [],
+        "evidence": [],
+        "relation": "extension",
+        "target": {
+          "recordId": "rec-hays-bakery",
+          "details": []
+        },
         "text": "There was a bakery at 1116 before it became a print shop. You could smell it from the end of the block on a Saturday. There was a doorway through to the shop next door, cut through the party wall, and the two of them used it as one premises for a while.",
         "sourceLanguage": "en",
-        "details": [
+        "references": [
           {
-            "id": "el-hy-trade",
-            "kind": "event",
-            "value": "bakery",
-            "excerpt": "There was a bakery at 1116"
-          },
-          {
-            "id": "el-hy-door",
             "kind": "place",
-            "value": "doorway through the party wall",
-            "excerpt": "a doorway through to the shop next door"
+            "excerpt": {
+              "start": 128,
+              "end": 167,
+              "text": "a doorway through to the shop next door"
+            },
+            "status": "confirmed"
           }
         ],
         "sourceType": "community_oral",
@@ -75,54 +77,14 @@
       "translations": [],
       "translationDisputes": [],
       "independentRecordCount": 0,
+      "disputes": [],
       "extensions": [],
       "passover": {
         "sounds_right": 0,
         "dont_know": 0,
         "dont_care": 0
       },
-      "detailStatuses": [
-        {
-          "detail": {
-            "id": "el-hy-trade",
-            "kind": "event",
-            "value": "bakery",
-            "excerpt": "There was a bakery at 1116"
-          },
-          "disputes": [],
-          "extensions": [],
-          "competingValues": [
-            {
-              "value": "bakery",
-              "count": 1,
-              "contributorIds": [
-                "c-esther"
-              ]
-            }
-          ],
-          "weight": 1
-        },
-        {
-          "detail": {
-            "id": "el-hy-door",
-            "kind": "place",
-            "value": "doorway through the party wall",
-            "excerpt": "a doorway through to the shop next door"
-          },
-          "disputes": [],
-          "extensions": [],
-          "competingValues": [
-            {
-              "value": "doorway through the party wall",
-              "count": 1,
-              "contributorIds": [
-                "c-esther"
-              ]
-            }
-          ],
-          "weight": 1
-        }
-      ],
+      "detailStatuses": [],
       "score": {
         "claimId": "cl-hays-bakery",
         "score": 1,
@@ -143,7 +105,7 @@
             "value": 0
           },
           {
-            "family": "behaviour",
+            "family": "behavior",
             "name": "sounds right",
             "value": 0
           },
@@ -158,50 +120,7 @@
             "value": 0
           }
         ],
-        "details": [
-          {
-            "detailId": "el-hy-trade",
-            "score": 1,
-            "terms": [
-              {
-                "family": "content",
-                "name": "base",
-                "value": 1
-              },
-              {
-                "family": "content",
-                "name": "extensions",
-                "value": 0
-              },
-              {
-                "family": "content",
-                "name": "disputes",
-                "value": 0
-              }
-            ]
-          },
-          {
-            "detailId": "el-hy-door",
-            "score": 1,
-            "terms": [
-              {
-                "family": "content",
-                "name": "base",
-                "value": 1
-              },
-              {
-                "family": "content",
-                "name": "extensions",
-                "value": 0
-              },
-              {
-                "family": "content",
-                "name": "disputes",
-                "value": 0
-              }
-            ]
-          }
-        ]
+        "details": []
       },
       "weight": 1,
       "confidence": "single_source"
@@ -254,7 +173,6 @@
       "flagsRaised": 0
     }
   ],
-  "transcripts": [],
   "flags": [],
   "integrity": {
     "totalClaims": 1,

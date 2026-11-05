@@ -4,7 +4,8 @@
   "version": "0.1.0",
   "type": "module",
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./src/index.ts",
+    "./scorer": "./src/scorer.ts"
   },
   "scripts": {
     "clean": "git clean -xdf .cache .turbo node_modules",
@@ -13,6 +14,7 @@
     "test": "vitest run",
     "dev": "tsx watch src/index.ts",
     "start": "tsx src/index.ts",
+    "graph:view": "tsx src/graph-view.ts",
     "db:up": "docker compose up -d --wait postgres",
     "db:down": "docker compose stop postgres",
     "db:verify": "bash ../../scripts/verify-db.sh sagas-intelligence-db 5434 sagas_intelligence",

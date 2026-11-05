@@ -28,8 +28,9 @@ working endpoint:
 - **Site.** A place somebody has designated as meaningful. Records and claims
   attach to a site. A site does not attach to them.
 - **Record.** What somebody hands over. A recording, a video, a photograph, a
-  scanned document, or typed text. Nothing in the graph argues with a record.
-  Disagreement lands on claims instead.
+  scanned document, or typed text. Nothing in the graph argues with a record that
+  stands on its own. Disagreement lands on claims instead, and on a transcript or a translation,
+  which are someone's rendering of a record.
 - **Claim.** Somebody's reading of a record. This is where disagreement lands.
   One record can produce several claims.
 - **Rendering.** A transcript or a translation. One person's version of a
@@ -85,7 +86,7 @@ problems that look like real bugs.
 
 **One fork for the whole team.**
 
-1. **Create a GitHub organisation for the team** to hold the fork. If the
+1. **Create a GitHub organization for the team** to hold the fork. If the
    repository lives in one person's GitHub account and that person drops the
    class, the team loses everything, and your instructor needs access for grading.
 2. **One person forks `Civum/sagas` into it, once.**
@@ -192,7 +193,7 @@ TypeScript rather than the bundled one when it prompts.
    part, because your first task is a diagram of the whole thing. The media and
    processing fields on a record belong to another team and you can skim those.
 
-   `edgeType` has two values, dispute and extension.
+   `claimRelation` has two values, dispute and extension.
 3. `packages/fixtures/src/reduce.ts`, which calculates a snapshot in memory with
    no database at all. It recomputes everything from scratch every time, which
    is fine for the fixture data and useless at any real size. That gap is your
@@ -212,7 +213,7 @@ answers to the rules in `packages/fixtures/scoring`. No database work yet.
 problems under it, against the rules in `packages/fixtures/scoring`.
 `docs/PHASE-2-INTELLIGENCE-LAYER.md` is the guide.
 
-**When the foundation needs it, the schema.** Design the tables for claims, details, edges
+**When the foundation needs it, the schema.** Design the tables for claims
 and contributors, write the migrations, and move the graph out of memory and
 into Postgres. Spatial indexing lives here too.
 
@@ -226,12 +227,9 @@ passage is written are yours to work out. The fixtures carry invented sections
 for the corner shop in the meantime, and the open parts are in
 `docs/DESIGN-QUESTIONS.md` under "What groups claims together at a site?".
 
-Scoring is the bounded half of your layer. The other half is routing: working
-out which claim to put in front of which person, and why. That is spring work.
-This project does not have an answer for it, and it will need signals the
-contract does not record yet, such as what somebody tends to contribute and
-where they keep coming back to. Asking for those is expected rather than a sign
-something went wrong.
+Routing, working out which claim to put in front of which person, belongs to the
+experience layer, because it mostly reads profiles and passovers. Your matching plugs into
+it later as one more input, which is spring work.
 
 ## Your first task, and it is not code
 
@@ -243,12 +241,13 @@ and some things are missing entirely. Finding them is the assignment.
 
 Here are three gaps I know about. Where one has been decided, it says so.
 
-**Records and claims.** Your main focus is claims. How much your layer reads the
-records behind them is still being worked out. A record plays one
+**Records and claims.** Your main focus is claims. Your scorer never opens a record's
+file. It reads what the graph says about the record: who handed it over, its kind, its
+hash, and whether a recording has a transcript. A record plays one
 of two parts. As a *source record* it is where a conversation starts, and every
 claim in that conversation has it as `claim.sourceRecordId`. As an *evidence
 record* it is attached to a claim to back it up, through
-`claim.evidenceRecordIds`, which is optional. The same record can do both in
+`claim.evidence`, which is optional. The same record can do both in
 different conversations. Whether "conversation" becomes a named object is
 now in doubt. The argument against it is that the source record already groups
 the claims read from it. It is not decided, so build on the source record and
@@ -265,15 +264,15 @@ contract has a stand-in, `independentRecordCount`: the number of distinct record
 brought to back a claim. Agreement never counts.
 
 The stand-in cannot tell when two records share a source. Two cousins who heard
-one telling and each wrote it down look like two sources. Working out
-independence from the graph (the same record cited twice, the same branch,
-descent from the same root claim) is yours.
+one telling and each wrote it down look like two sources. I've built the
+counting part of independence from the graph myself. S5 in
+`apps/graph-api/BACKLOG.md` says what it covers and what's still yours.
 
 This project treats the edges as the strong signals. An extension pushes a claim up, a dispute
 pushes it down, and a resolution would lift both branches it reconciles, so a
 claim's weight moves in both directions over time. Passovers (`sounds_right`,
-`dont_know`, `dont_care`) are soft signals, and they matter most for routing:
-what gets suggested to whom.
+`dont_know`, `dont_care`) are soft signals, and they matter most for routing,
+which the experience layer owns: what gets suggested to whom.
 
 There are more gaps than those three. Bring the diagram and the reasoning. Where
 you diverge from what is in the repository, say why.
@@ -294,13 +293,13 @@ pnpm --filter @sagas/graph-api test
 The scorer reads the graph for one place and returns a score for every claim
 and every detail, each with the terms it's made of. A claim's score is a
 composite: its details, its place in the graph, the evidence it carries,
-independent support from other branches, and behaviour. How those combine is
-yours.
+independent support from other branches, and behavior (out of scope this
+semester, so it's a stretch goal). How those combine is yours.
 
-Every rule compares one graph with another, and none pins a number. Some are
+Almost every rule compares one graph with another, and none pins a score. Some are
 placeholders with their context written above them. The focus summary at the
-end of each run shows which areas are thin. Start with `similarity`, then
-independence, which is the area I've named as the focus.
+end of each run shows which areas are thin. Start with `similarity`. After
+that, `apps/graph-api/BACKLOG.md` puts the rest of the work in order.
 
 `apps/graph-api/src/index.ts` already serves `POST /score`, so you can run your
 scorer over HTTP from the start. `docs/PHASE-2-INTELLIGENCE-LAYER.md` has the
@@ -309,8 +308,8 @@ commands and the model.
 ## What the scorer reads about people
 
 The scorer reads what a profile has done, never who they are. A profile's
-track record and the groups it has joined are behaviour, and behaviour can be
-scored. A name, a credential or a family can't. Which behaviour shows that
+track record and the groups it has joined are behavior, and behavior can be
+scored. A name, a credential or a family can't. Which behavior shows that
 someone knows a subject is one of your design questions, and the `profiles`
 block in the rules has ideas to test.
 

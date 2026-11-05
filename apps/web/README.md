@@ -75,7 +75,7 @@ find yourself wanting to fetch narrative state from a service that does not
 exist, stop and bring it to a check-in. It means the contract is missing
 something, which is worth knowing early.
 
-## How the files are organised
+## How the files are organized
 
 ```
 src/app/          routes. Pages read data and hand it down.
@@ -123,7 +123,7 @@ is worth keeping.
 **Copy the data flow.** The page reads, components take props. That is what lets
 the same components render against four fixture states on `/dev`.
 
-**Do not copy the styling.** Grey text and system fonts are a placeholder. The
+**Do not copy the styling.** Gray text and system fonts are a placeholder. The
 design system is your deliverable, and nothing in there is a suggestion.
 
 The idea this project cares most about is in `ConfidenceIndicator`: agreement
@@ -173,7 +173,7 @@ version is below.
   for it.
 
 Keep the app portable. Nothing load-bearing should depend on one host's
-special behaviour, which is why putting the web app and the API in containers is
+special behavior, which is why putting the web app and the API in containers is
 on the backlog.
 
 Spatial queries are the expensive part of this layer, which is one of

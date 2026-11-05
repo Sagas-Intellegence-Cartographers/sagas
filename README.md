@@ -1,6 +1,7 @@
 # Sagas
 
-A map-based archive of what people know about places.
+A map-based archive of what people know about places. The landing page is at
+[sagasproject.org](https://sagasproject.org/).
 
 Someone contributes what they know about a place, in whatever language they'd
 tell it in. It stays attached to that place and attributed to them. Other people
@@ -52,8 +53,9 @@ here is who each of them is."
 - **Site.** A place somebody has designated as meaningful. Records and claims
   attach to a site. A site does not attach to them.
 - **Record.** What somebody hands over. A recording, a video, a photograph, a
-  scanned document, or typed text. Nothing in the graph argues with a record.
-  Disagreement lands on claims instead.
+  scanned document, or typed text. Nothing in the graph argues with a record that
+  stands on its own. Disagreement lands on claims instead, and on a transcript or a translation,
+  which are someone's rendering of a record.
 - **Claim.** Somebody's reading of a record, and the place disagreement lands. Each claim has one source record, the one its conversation started from, and can have evidence records attached. One record can be the source of several claims. "Conversation" is a working idea that may be dropped. The source record is what groups the claims read from it.
 - **Rendering.** A transcript or a translation. One person's version of a
   record or a claim, attributed, with more than one allowed to exist.
@@ -68,9 +70,10 @@ People make **claims** about records: assertions that can be compared across sou
 change the shape of that graph:
 
 - **Dispute.** "I disagree with this specific detail, because." Disputes
-  target a *detail* of a claim (a date, a place, a person). The rest of the
+  target a *detail* of a claim, the words they disagree with (a date, a place, a person). The rest of the
   claim stands, so a record can say "three disputes target the date; the location is
-  undisputed." A dispute is a claim of its own, so it can carry evidence too.
+  undisputed." Sometimes all of a claim is wrong, and a dispute can cover the whole of it.
+  A dispute is a claim of its own, so it can carry evidence too.
   Disputes without reasoning are rejected.
 - **Extension.** "I have more context." A new claim that adds to another without contradicting it. If it brings a new record, that record is attached as evidence. Like a dispute, an extension targets a detail, or the whole claim when it is about all of it.
 
@@ -96,8 +99,8 @@ correct one.
 
 | Layer | Scope |
 |---|---|
-| **Experience** | The map and the reading experience: narrative page, component library, map, suggestion interface, and references (how a page shows what each claim rests on). Builds against the fixtures now, and later on the other layers' APIs, replacing their plain screens where polish matters. Heritage trails come later. Milestones and score dashboards are cut this semester. |
-| **Intelligence** | Claims and the graph they form: scoring (weight and independence), exploration, and later a plain screen for writing claims and the sections and passages a page shows |
+| **Experience** | The map and the reading experience: narrative page, component library, map, suggestion interface and routing, and references (how a page shows what each claim rests on). Builds against the fixtures now, and later on the other layers' APIs, replacing their plain screens where polish matters. Heritage trails come later. Milestones and score dashboards are cut this semester. |
+| **Intelligence** | Claims and the graph they form: scoring (weight and independence), matching across threads, and later a plain screen for writing claims and the sections and passages a page shows |
 | **Content** | Records: media pipeline, record submission and the contributor's choices, transcription and translation by time window, moderation of records, and a plain screen for handing things over |
 | **Contracts & fixtures** | `packages/contracts`, `packages/fixtures`, maintained by the sponsor |
 

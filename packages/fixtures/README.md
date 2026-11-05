@@ -58,9 +58,9 @@ read first: it is the worked example in `docs/HOW-THE-LAYERS-FIT.md`, and
 | | integrity | claims | records | contributors | disputes | untranslated |
 |---|---|---|---|---|---|---|
 | **t0** sparse, single source | 19 | 3 | 2 | 1 | 0 | 0 |
-| **t1** a photo, an unrendered recording, a dispute | 48 | 6 | 4 | 3 | 1 | 1 |
-| **t2** a rendering arrives; a window is transcribed | 61 | 7 | 5 | 5 | 1 | 0 |
-| **t3** competing renderings, reconciliation candidate | 89 | 10 | 8 | 6 | 4 | 0 |
+| **t1** a photo, an unrendered recording, a dispute | 44 | 6 | 4 | 3 | 1 | 1 |
+| **t2** a rendering arrives; a window is transcribed | 57 | 7 | 7 | 5 | 1 | 0 |
+| **t3** competing renderings, reconciliation candidate | 81 | 10 | 11 | 6 | 4 | 0 |
 
 Counts come from the generated states. If you change the log, regenerate and
 update this table, because a stale table here is worse than no table.
@@ -126,14 +126,15 @@ The model counts independent records. It never counts heads. Agreeing is not bri
 source, so a count of agreement on its own must never be presented as support.
 Five people saying "sounds right" is one source with five reactions to it.
 
-### Disagreement lands on one detail
+### Disagreement usually lands on one detail
 
 Somebody disputes the date. The address, the person and the event on the same
 claim are untouched and still corroborated.
 
-Marking the whole claim as contested throws away the thing that makes this
-useful, and it does something worse: it makes a person's account of their family
-look discredited when one detail is in question.
+Showing the whole claim as contested when only the date is in question throws away
+the thing that makes this useful, and it does something worse: it makes a person's
+account of their family look discredited. A dispute can cover a whole claim when
+somebody says so, and only then does every detail in it read as contested.
 
 ### Nothing gets adjudicated
 
@@ -209,7 +210,6 @@ any of them is a useful pull request.
 
 - A place with only untranslated claims, so nothing is in the graph at all
 - A claim contested by a dozen people
-- A claim with no details that is not awaiting translation
 - A claim long enough to break a reading layout
 - A place with exactly one claim and no contributors beyond its author
 - Two places close enough together to collide as map markers
@@ -308,10 +308,9 @@ If you have an opinion on any of these, bring it to a check-in.
 - Whether coexisting attributed renderings is the right model for translation
   at all, or whether it encodes an engineer's assumption about how translation
   works.
-- Whether a dispute should keep targeting a typed detail (`targetDetailId`) or
-  a character span of the claim text. Typed details were chosen because they are
-  authorable by hand and give a renderer what it needs without offset math.
-  Spans remain reachable.
+- Whether a target should keep naming its excerpt in words or use a character span
+  of the claim text. Words were chosen because they are authorable by hand and give
+  a renderer what it needs without offset math. Spans remain reachable.
 - Parallel language trees with links across them, which this project leaves as
   a research question for a future cohort. The schema is built not to
   foreclose it: `language` on

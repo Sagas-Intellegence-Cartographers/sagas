@@ -62,9 +62,9 @@ export const events: ContributionEvent[] = [
     siteId: SITE,
     sourceLanguage: 'en',
     text: 'The depot office opened in 1931, and my grandfather was a clerk there from the start.',
-    details: [
-      { id: 'cl-fd-office-year', kind: 'date', value: '1931', excerpt: 'opened in 1931' },
-      { id: 'cl-fd-office-person', kind: 'person', value: 'grandfather, clerk', excerpt: 'my grandfather was a clerk' },
+    references: [
+      { kind: 'date', excerpt: 'opened in 1931', status: 'confirmed' },
+      { kind: 'person', excerpt: 'my grandfather was a clerk', status: 'confirmed' },
     ],
     sourceType: 'family_oral',
   },
@@ -76,9 +76,8 @@ export const events: ContributionEvent[] = [
     siteId: SITE,
     sourceLanguage: 'en',
     text: 'The loading dock ran the length of the tracks, and in winter they kept a stove going on it.',
-    details: [
-      { id: 'cl-fd-dock-place', kind: 'place', value: 'along the tracks', excerpt: 'ran the length of the tracks' },
-      { id: 'cl-fd-dock-season', kind: 'event', value: 'stove in winter', excerpt: 'in winter they kept a stove going' },
+    references: [
+      { kind: 'place', excerpt: 'ran the length of the tracks', status: 'confirmed' },
     ],
     sourceType: 'family_oral',
   },
@@ -99,9 +98,6 @@ export const events: ContributionEvent[] = [
     siteId: SITE,
     sourceLanguage: 'en',
     text: 'Before the depot there was a lumber yard on that lot, or so I was told.',
-    details: [
-      { id: 'cl-fd-prelot-use', kind: 'event', value: 'lumber yard', excerpt: 'a lumber yard on that lot' },
-    ],
     sourceType: 'family_oral',
   },
 
@@ -119,9 +115,9 @@ export const events: ContributionEvent[] = [
     recordId: 'rec-fd-03',
     siteId: SITE,
     note: 'The depot office, about 1935. My uncle is the one by the door.',
-    // The photo's GPS puts the camera across the street, 55 metres away and
+    // The photo's GPS puts the camera across the street, 55 meters away and
     // good to about 65. That is the camera's position, not what the photo is of.
-    capturedLocation: { coordinates: [-116.2094, 43.6145], method: 'embedded', accuracyMetres: 65 },
+    capturedLocation: { coordinates: [-116.2094, 43.6145], method: 'embedded', accuracyMeters: 65 },
     media: [{
       mediaId: 'med-fd-03', kind: 'image', storageKey: 'records/rec-fd-03/med-fd-03/office.jpg',
       contentType: 'image/jpeg', byteSize: 2_310_000, width: 3024, height: 2016, processing: 'ready',
@@ -139,21 +135,19 @@ export const events: ContributionEvent[] = [
     siteId: SITE,
     sourceLanguage: 'en',
     text: 'This photo shows the depot office in 1935, with my uncle standing by the door.',
-    details: [
-      { id: 'cl-fd-photo-year', kind: 'date', value: '1935', excerpt: 'in 1935' },
-      { id: 'cl-fd-photo-person', kind: 'person', value: 'uncle by the door', excerpt: 'my uncle standing by the door' },
+    references: [
+      { kind: 'date', excerpt: 'in 1935', status: 'confirmed' },
+      { kind: 'person', excerpt: 'my uncle standing by the door', status: 'confirmed' },
     ],
     sourceType: 'firsthand',
   },
   {
     id: 'fd-013', at: '2026-02-05T18:00:00Z', actorId: 'c-luis',
     kind: 'claim_disputed',
-    edgeId: 'dsp-fd-office-year',
     claimId: 'cl-dsp-fd-office-year',
     targetClaimId: 'cl-fd-office',
-    targetDetailId: 'cl-fd-office-year',
+    details: [{ at: 'opened in 1931', to: '1934' }],
     reasoning: 'My uncle always said the office opened in 1934, the year he started, and he was one of the first.',
-    proposedValue: '1934',
   },
   {
     id: 'fd-014', at: '2026-02-10T19:00:00Z', actorId: 'system',
@@ -185,8 +179,7 @@ export const events: ContributionEvent[] = [
     text: '',
     awaitingTranslation: true,
     // The claim comes from 0:18 to 1:10 of a thirty-minute recording.
-    sourceWindow: { start: 18, end: 70 },
-    details: [],
+    window: { start: 18, end: 70 },
     sourceType: 'family_oral',
   },
   {
@@ -237,9 +230,16 @@ export const events: ContributionEvent[] = [
     recordId: 'rec-fd-07',
     siteId: SITE,
     note: 'A newspaper notice about the depot office opening.',
-    // A web page handed over as a source. Its domain says nothing about whether
+    // A web page handed over as evidence. Its domain says nothing about whether
     // it supports the claim; independent people relying on it does.
-    link: { url: 'https://example.org/archive/depot-office-notice', title: 'Depot office opens (invented)', seenAt: '2026-03-08T20:05:00Z' },
+    link: {
+      url: 'https://example.org/archive/depot-office-notice',
+      preview: {
+        title: 'Depot office opens (invented)',
+        summary: 'A short notice that the depot office is opening, naming the first clerks hired.',
+      },
+      seenAt: '2026-03-08T20:05:00Z',
+    },
     submission: 'published',
   },
   {
@@ -247,14 +247,14 @@ export const events: ContributionEvent[] = [
     kind: 'claim_extended',
     claimId: 'cl-fd-office-notice',
     sourceRecordId: 'rec-fd-01',
-    evidenceRecordIds: ['rec-fd-07'],
-    parentClaimId: 'cl-fd-office',
-    targetDetailId: 'cl-fd-office-person',
+    evidence: [{ recordId: 'rec-fd-07' }],
+    targetClaimId: 'cl-fd-office',
+    details: [{ at: 'my grandfather was a clerk' }],
     siteId: SITE,
     sourceLanguage: 'en',
     text: 'The notice lists the first clerks hired for the office.',
-    details: [
-      { id: 'cl-fd-office-notice-list', kind: 'person', value: 'first clerks listed', excerpt: 'lists the first clerks' },
+    references: [
+      { kind: 'person', excerpt: 'lists the first clerks', status: 'confirmed' },
     ],
     sourceType: 'documentary',
   },
@@ -303,9 +303,9 @@ export const events: ContributionEvent[] = [
     // Suggests the competing readings were both true. The dispute still stands:
     // nothing here settles it.
     text: 'The office may have opened in 1931 in a back room and moved to the front in 1934.',
-    details: [
-      { id: 'cl-fd-both-first', kind: 'date', value: '1931', excerpt: 'opened in 1931 in a back room' },
-      { id: 'cl-fd-both-second', kind: 'date', value: '1934', excerpt: 'moved to the front in 1934' },
+    references: [
+      { kind: 'date', excerpt: 'opened in 1931 in a back room', status: 'confirmed' },
+      { kind: 'date', excerpt: 'moved to the front in 1934', status: 'confirmed' },
     ],
     sourceType: 'community_oral',
   },
@@ -346,22 +346,18 @@ export const events: ContributionEvent[] = [
   {
     id: 'fd-038', at: '2026-04-14T17:00:00Z', actorId: 'c-rob',
     kind: 'claim_disputed',
-    edgeId: 'dsp-fd-photo-year',
     claimId: 'cl-dsp-fd-photo-year',
     targetClaimId: 'cl-fd-photo',
-    targetDetailId: 'cl-fd-photo-year',
+    details: [{ at: 'in 1935', to: '1938 or later' }],
     reasoning: 'The sign on the door in the photo is the one put up in 1938, so the photo is from 1938 or later.',
-    proposedValue: '1938 or later',
   },
   {
     id: 'fd-039', at: '2026-04-15T17:00:00Z', actorId: 'c-rob',
     kind: 'claim_disputed',
-    edgeId: 'dsp-fd-prelot',
     claimId: 'cl-dsp-fd-prelot',
     targetClaimId: 'cl-fd-prelot',
-    targetDetailId: 'cl-fd-prelot-use',
+    details: [{ at: 'a lumber yard on that lot', to: 'coal yard' }],
     reasoning: 'The lot was a coal yard, not a lumber yard. The coal chutes are still under the dock.',
-    proposedValue: 'coal yard',
   },
   {
     id: 'fd-040', at: '2026-04-16T15:00:00Z', actorId: 'c-rob',

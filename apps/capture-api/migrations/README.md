@@ -2,7 +2,8 @@
 
 This folder holds numbered SQL files, applied in filename order by `scripts/migrate.ts`.
 
-`001_records.sql` ships with the scaffold. Every change after it goes in a new
+`001_records.sql` ships with the scaffold, along with `010` to `012`, which come
+with contract updates. Every change after it goes in a new
 numbered file, because the runner remembers each file by name and never runs
 it twice. The columns come from `sourceRecord` in
 `packages/contracts/src/model.ts`.

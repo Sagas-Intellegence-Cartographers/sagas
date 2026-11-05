@@ -20,7 +20,8 @@ more interesting.
 
 **You own your database.** Records, media, transcripts, translations,
 flags. The schema and the migrations are yours, they live in this app, and no
-other team touches them. The other two layers run their own databases shaped for
+other team touches them. The one shared rule is that ids are UUIDs the database
+generates (`migrations/012_uuid_ids.sql`). The other two layers run their own databases shaped for
 their own problems. The contract lines up between all three. The tables do not
 have to, which is why nobody here waits on anybody.
 
@@ -42,13 +43,13 @@ language other than English finishes, submits, and their record exists, pinned
 and attributed and on the map.
 `sourceRecord` has no language requirement. Only `claim` does, and that
 requirement never blocks the record. Machine translation proposes a draft, a
-person confirms or replaces it, and `transcriptMethod` already has
+person confirms or replaces it, and `renderingMethod` already has
 `machine_corrected` for exactly that.
 
-Which model to use is a real decision with a licence attached, and checking the
-licence yourself is part of the job. NLLB-200, Whisper and Helsinki-NLP's
+Which model to use is a real decision with a license attached, and checking the
+license yourself is part of the job. NLLB-200, Whisper and Helsinki-NLP's
 `opus-mt-*` models are places to start looking. Read each model card for its
-licence and language coverage before relying on it. The communities using this
+license and language coverage before relying on it. The communities using this
 decide which languages matter.
 
 ## What goes here, roughly
@@ -217,7 +218,7 @@ hit this.
 Many tutorials you find will be for Express 4, and almost all of it transfers
 unchanged. These are the changes that will catch you: `app.del()` is now `app.delete()`,
 `res.sendfile()` is now `res.sendFile()`, `res.json(obj, status)` is now
-`res.status(status).json(obj)`, and `req.param(name)` is gone in favour of
+`res.status(status).json(obj)`, and `req.param(name)` is gone in favor of
 reading `req.params`, `req.body` or `req.query` directly.
 
 **`pg`, with SQL written out.** No query builder and no object relational
@@ -228,7 +229,7 @@ the endpoints are the same subject rather than two.
 Two rules come with it. Use `$1`, `$2`, `$3` placeholders and pass values
 as the second argument, never string concatenation, so nothing somebody typed is
 ever read as SQL. And use the shared `Pool` from `src/db.ts` rather than making a
-`Client`, because a single client serialises every request behind the one before
+`Client`, because a single client serializes every request behind the one before
 it and you find out the first time two people submit at once.
 
 **Numbered SQL files for migrations**, applied by `scripts/migrate.ts`. There

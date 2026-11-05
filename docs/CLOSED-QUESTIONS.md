@@ -11,6 +11,72 @@ without raising it causes trouble.
 
 ---
 
+## Why `disputeEdge` and `extensionEdge` are gone
+
+Done in contract 2.6.0. The contract used to describe a reply several times:
+`claim.target` said where it pointed, a dispute edge or an extension edge said it again, and
+`parentClaimId` and `disputedClaimId` said it a third way. Every claim has one target, so
+every edge matched one claim, and nothing kept the two in agreement. So a reply's
+`target` and `relation` are now its edge, and nothing stores it again. Anything that wants
+a list of edges reads them off the claims. Older entries below name the edge objects as
+they were then, and `claim.details` for a claim's own details, a field that no longer
+exists.
+
+A target is `{ claimId | recordId, details }`. A transcript or a translation is a record, so
+a claim about one has `recordId`. `details` lists where a claim points inside its target,
+and no details means all of it. An extension's details are `{ at }`, and a dispute's are
+`{ at, to }` with `to` required. A dispute can point at several details, so "Sally bought a pink hat" disputed as
+"Brandon bought a blue hat" is one claim with one set of evidence. Each entry has `at`,
+the words or the window in the target, and `to`, the words in the dispute's own text
+that replace them. A dispute can also cover a whole claim, because sometimes all of it
+is wrong, and then every detail inside it reads as contested. The relation belongs to the claim, so a reply
+that corrects one thing and adds to another is two claims.
+
+## A claim's text doesn't change once it's saved
+
+Done in contract 2.6.0. A correction is a new claim. Editing in place would change what
+other people already responded to, and an excerpt's positions would no longer land on its
+words. The one exception is a claim awaiting translation, whose first rendering supplies
+its text. A correction from the same person still isn't independent support, because it
+comes from one telling.
+
+## An excerpt is an object with positions
+
+Done in contract 2.6.0. An excerpt is `{ start, end, text }`. Words repeat, so a plain
+string couldn't tell the two "1950"s in "built in 1950, rebuilt after the 1950 fire"
+apart. It also meant searching text to find which references sit inside a detail, which
+is now a comparison of positions. `to`, a reference, a detail, and `at` when it's words all
+use this one shape.
+
+## A detail is an excerpt that another claim points at
+
+Done in contract 2.6.0, and started in 2.5.0. Nobody lists a claim's details in advance,
+because asking someone to break what they said into assertions is too hard an ask, in
+the sponsor's view. `detailsOf` works out a claim's details from what other claims point
+at in it. Older entries below name `targetDetailId` as it was then.
+
+A date, a place or a person inside a claim's text is a different thing: a reference,
+in `claim.references`. Evidence is a record on the claim, and it backs what the claim
+targets. Contract 2.5.0 let evidence name an excerpt of its own claim, and 2.6.0
+removed that, because marking your own words would make a detail nobody else pointed
+at. A claim nothing points at has no details, so it has nothing for the scorer to check
+across threads yet.
+
+## A transcript and a translation are the same kind of thing
+
+Done in contract 2.5.0. Evidence records, transcripts and translations are all
+records. A transcript or a translation is a record with `parent` set, which says
+what it supports and, for a recording, which window. An evidence record has no
+parent, because the claim citing it says what it supports. `transcript` and
+`translation` are gone as separate shapes.
+
+The two shapes had the same job. Each was one person's interpretation, attributed,
+with more than one allowed and no slot for the correct one. They'd been added at
+different times for different layers. A recording describing a photograph needed
+the same link, and that's a record with files, which ruled out a separate
+text-only shape. `parent.method` covers the transcript that starts as machine
+output and gets corrected by a person.
+
 ## `affirmation` duplicates a passover tier
 
 Done in contract 2.3.0. The `affirmation` object is gone, and agreement is a

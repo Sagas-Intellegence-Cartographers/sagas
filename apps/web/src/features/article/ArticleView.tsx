@@ -20,7 +20,7 @@ export function ArticleView({ state }: { state: GraphState }) {
       <SiteHeader state={state} />
       <VersionTimeline state={state} />
       {/* Dispute claims show under the claim they dispute, not as entries of their own. */}
-      {state.claims.filter((c) => !c.claim.disputedClaimId).map((c) => (
+      {state.claims.filter((c) => c.claim.relation !== 'dispute').map((c) => (
         <ClaimView key={c.claim.id} claim={c} />
       ))}
     </main>

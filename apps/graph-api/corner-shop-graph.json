@@ -1,0 +1,206 @@
+{
+  "siteId": "corner-shop",
+  "asOf": "2026-06-30T23:59:59.000Z",
+  "records": [
+    {
+      "id": "rec-cs-photo",
+      "contributorId": "c-june",
+      "kind": "image",
+      "createdAt": "2026-01-12T17:14:00.000Z"
+    },
+    {
+      "id": "rec-cs-directory",
+      "contributorId": "c-owen",
+      "kind": "document",
+      "createdAt": "2026-04-06T18:12:00.000Z"
+    },
+    {
+      "id": "rec-cs-audio",
+      "contributorId": "c-mae",
+      "kind": "audio",
+      "createdAt": "2026-04-19T20:44:00.000Z"
+    },
+    {
+      "id": "rec-cs-sign",
+      "contributorId": "c-dev",
+      "kind": "image",
+      "createdAt": "2026-06-08T16:18:00.000Z"
+    }
+  ],
+  "claims": [
+    {
+      "id": "cl-cs-shop",
+      "contributorId": "c-ray",
+      "createdAt": "2026-02-03T19:31:00.000Z",
+      "text": "That's the shop on the corner of Fourth and Main, around 1950. The man in the doorway is the owner, Mr. Ferris.",
+      "sourceRecordId": "rec-cs-photo",
+      "target": {
+        "recordId": "rec-cs-photo",
+        "details": []
+      },
+      "references": [
+        {
+          "kind": "place",
+          "excerpt": {
+            "start": 19,
+            "end": 48,
+            "text": "the corner of Fourth and Main"
+          },
+          "status": "confirmed"
+        },
+        {
+          "kind": "date",
+          "excerpt": {
+            "start": 50,
+            "end": 61,
+            "text": "around 1950"
+          },
+          "status": "confirmed"
+        },
+        {
+          "kind": "person",
+          "excerpt": {
+            "start": 89,
+            "end": 110,
+            "text": "the owner, Mr. Ferris"
+          },
+          "status": "confirmed"
+        }
+      ],
+      "evidence": [],
+      "relation": "extension"
+    },
+    {
+      "id": "cl-cs-uncle",
+      "contributorId": "c-mae",
+      "createdAt": "2026-04-19T20:51:00.000Z",
+      "text": "Mr. Ferris was my uncle. He ran that shop until the sixties.",
+      "sourceRecordId": "rec-cs-photo",
+      "target": {
+        "claimId": "cl-cs-shop",
+        "details": [
+          {
+            "at": {
+              "start": 89,
+              "end": 110,
+              "text": "the owner, Mr. Ferris"
+            }
+          }
+        ]
+      },
+      "relation": "extension",
+      "references": [
+        {
+          "kind": "date",
+          "excerpt": {
+            "start": 42,
+            "end": 59,
+            "text": "until the sixties"
+          },
+          "status": "confirmed"
+        }
+      ],
+      "evidence": [
+        {
+          "recordId": "rec-cs-audio"
+        }
+      ]
+    },
+    {
+      "id": "cl-dsp-cs-year",
+      "contributorId": "c-owen",
+      "createdAt": "2026-04-06T18:20:00.000Z",
+      "text": "It was 1956 or later.",
+      "sourceRecordId": "rec-cs-photo",
+      "target": {
+        "claimId": "cl-cs-shop",
+        "details": [
+          {
+            "at": {
+              "start": 50,
+              "end": 61,
+              "text": "around 1950"
+            },
+            "to": {
+              "start": 7,
+              "end": 20,
+              "text": "1956 or later"
+            }
+          }
+        ]
+      },
+      "relation": "dispute",
+      "reasoning": "It can't be 1950. The awning in the photo went up in 1956. The directory page I uploaded shows the change.",
+      "references": [],
+      "evidence": [
+        {
+          "recordId": "rec-cs-directory"
+        }
+      ]
+    },
+    {
+      "id": "cl-cs-sign",
+      "contributorId": "c-dev",
+      "createdAt": "2026-06-08T16:26:00.000Z",
+      "text": "The sign reads FERRIS GROCERY. The previous owner of my house said it came down when the shop closed.",
+      "sourceRecordId": "rec-cs-sign",
+      "target": {
+        "recordId": "rec-cs-sign",
+        "details": []
+      },
+      "references": [
+        {
+          "kind": "person",
+          "excerpt": {
+            "start": 15,
+            "end": 29,
+            "text": "FERRIS GROCERY"
+          },
+          "status": "confirmed"
+        }
+      ],
+      "evidence": [],
+      "relation": "extension"
+    }
+  ],
+  "passovers": [
+    {
+      "claimId": "cl-cs-shop",
+      "contributorId": "reader-0",
+      "kind": "sounds_right",
+      "createdAt": "2026-06-30T23:59:59.000Z"
+    },
+    {
+      "claimId": "cl-cs-uncle",
+      "contributorId": "reader-0",
+      "kind": "sounds_right",
+      "createdAt": "2026-06-30T23:59:59.000Z"
+    }
+  ],
+  "profiles": [
+    {
+      "id": "c-june",
+      "guest": true
+    },
+    {
+      "id": "c-ray",
+      "guest": true
+    },
+    {
+      "id": "c-lena",
+      "guest": true
+    },
+    {
+      "id": "c-owen",
+      "guest": true
+    },
+    {
+      "id": "c-mae",
+      "guest": true
+    },
+    {
+      "id": "c-dev",
+      "guest": true
+    }
+  ]
+}

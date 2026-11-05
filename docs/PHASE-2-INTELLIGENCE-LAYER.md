@@ -22,30 +22,32 @@ input I expect your layer to have: what the rest of the system can give you
 about a place. How it plugs into your scorer is yours to work out. You might
 turn it into your own structures, keep your own tables, or work out extra
 things from it before you score. The rules only fix what goes in and what
-comes out. What happens in between is your design.
+comes out. What happens in between is your design. The one part I've built
+myself is the counting behind independence, as a function your scorer calls.
+It's S5 in `apps/graph-api/BACKLOG.md`, in a pull request to your fork, and
+if it goes in, it's yours to change too.
 
 A few things are fixed for every scorer:
 
-- claims and details, and the graph of what each claim targets, are the input;
+- claims, and the graph of what each claim targets, are the input;
 - weight comes mostly from evidence and independent support. Agreement adds
-  almost nothing and never counts as support, so a crowd can't outweigh one
-  independent record;
+  almost nothing and never counts as support, so one independent record
+  tends to outweigh a crowd;
 - a disputed detail is never shown as settled;
 - a claim never scores lower for being translated, or for where its
   contributor lives;
 - nobody's contributions are used to train AI models.
 
 Everything else is yours: whether a conversation becomes its own thing, how
-similarity works, which behaviour counts and how much, the arithmetic of a
-score, and how special words like dates and places get noticed. If something on
+similarity works, which behavior counts and how much, the arithmetic of a
+score, and how references like dates and places get suggested. If something on
 the fixed list looks wrong, say so in a meeting.
 
 The first milestone is a thin frame: `similarity` working, and a first
-`score` that runs on the example graph. In the rules, that's the three tests
-under "what comes back" and the five under "similarity between details". The
-rest can fail for now. The date is Wednesday 28 October. Expect
-the first week to go mostly to getting set up and finding your way around,
-which is normal for a first build.
+`score` that runs on the example graph. In the rules, that's the five tests under
+"what comes back" and the five under "similarity between details". The rest can
+fail for now. Expect it to take time to get set up and find your way around, which
+is normal for a first build.
 
 ### Step 0, optional: build the corner shop as a graph
 
@@ -76,13 +78,13 @@ after this phase gets its own list when we get there.
 
 | Subproblem | What it is | This phase |
 |---|---|---|
-| Similarity | Matching the same detail across branches | Complete |
-| Terms | Splitting a score into named terms, content and behaviour | Complete |
-| Independence | Same person, same source, copies | Complete |
-| Swarm damping | Many similar claims landing together count close to once | Complete, simple version |
+| Similarity | Finding where another thread says the same thing as a detail | Complete |
+| Terms | Splitting a score into named terms | Complete |
+| Independence | Same person, same source, copies | Complete. I've offered the counting as S5 |
+| Swarm damping | Many similar claims landing together count close to once | Later |
 | Evidence extraction | What can be drawn from a record: its kind, its metadata, where it was made | Partial |
-| Profile behaviour | What a track record is made of | Partial |
-| Resolution | What a resolution points at, and what it does to the disagreement | Partial |
+| Profile behavior | What a track record is made of | Later |
+| Resolution | What a resolution points at, and what it does to the disagreement | Later |
 | Periods | How time divides activity at a place, and what that does to late disputes | Design only |
 | Propagation | How support travels along the graph, and depth | Design only |
 | Task architecture | Turning a challenge into a task someone can check | Later |
@@ -91,9 +93,9 @@ after this phase gets its own list when we get there.
 You can split up from here and take subproblems. Tell me who has what, so I
 know who to ask.
 
-**Stretch goal: a small claims interface in React,** for submitting a claim
-and seeing what your scorer makes of it. It's there for anyone who wants it
-once their part of the foundation is working.
+**A plain claims screen,** for writing a claim and seeing what your scorer makes of
+it. Your layer owns claims, so this is part of this semester's work, along with
+the store behind it. It doesn't need to look good.
 
 When something works, show it in a meeting. When something's ready for me to
 look at, mention me on it (`@7ujh6` in an issue or pull request), because I
@@ -150,7 +152,7 @@ endpoint you write will have the same three steps:
 
 ## Adding an endpoint
 
-Say you want to check two pieces of detail text against each other over HTTP:
+Say you want to check two pieces of text against each other over HTTP:
 
 ```ts
 app.post('/similarity', (req, res) => {
@@ -184,8 +186,8 @@ A few habits that save time:
 
 ## Working without the database
 
-For the next few weeks, the graph arrives in the request. You don't need to
-store anything to score it, so the scorer can be a plain function: graph in,
+To start with, the graph arrives in the request. You don't need to store anything
+to score it, so the scorer can be a plain function: graph in,
 result out. That's the easiest kind of code to test, and every rule tests it
 that way.
 
@@ -196,7 +198,7 @@ import { graph } from '@sagas/fixtures/scoring';
 
 const g = graph()
   .record('r1', { by: 'p1', kind: 'audio', transcribed: true })
-  .claim('A', { by: 'p1', source: 'r1', details: { year: '1950', place: 'Mill Road' } })
+  .claim('A', { by: 'p1', source: 'r1', text: '1950, Mill Road' })
   .build();
 ```
 
@@ -250,8 +252,10 @@ The tables are yours to design.
 ## The model as it stands
 
 A few words first. A **thread** is a source record and the claims built on
-it, which earlier emails called a conversation. A **branch** is one line of claims inside it. An **edge** is a link one
-claim draws to another: a dispute or an extension. A **passover** is the light
+it, which earlier emails called a conversation. A **branch** is one line of claims inside it. An **edge** is the link one
+claim draws to another: a dispute or an extension. A reply's `target` and `relation` are
+its edge, and nothing stores it a second time, so your own tables don't
+need an edges table unless you want one. A **passover** is the light
 signal a reader leaves on a claim: "sounds right", "don't know" or "don't
 care".
 
@@ -260,40 +264,52 @@ care".
 The relationships between claims aren't hidden in the text. People state them
 when they write a claim, and they become the edges of the graph:
 
-- **A dispute is a claim that targets one detail of another claim,** like the
-  year, and always gives a reason. It never targets a whole claim.
-- **An extension is a claim that adds to another claim.** It usually targets
-  a detail, or the whole claim when it's about all of it, and it replaces
-  nothing.
+- **A dispute is a claim with `relation: 'dispute'`,** and it always gives a reason and says
+  what it asserts instead. It usually points at one detail, like the year, and it can
+  point at several: "Sally bought a pink hat" disputed as "Brandon bought a blue hat"
+  points at "Sally" and at "pink". With no details it disputes the whole claim, its own text is what it says
+  instead, and that contests every detail inside it. Each entry in `target.details` has `at`, the words or the
+  window in the target, and `to`, the words in the dispute's own text that replace them.
+- **An extension is a claim with `relation: 'extension'`.** It adds to its target. It
+  usually points at a detail, or at the whole claim when it's about all of it, and it
+  replaces nothing.
 - **Every claim names its source record,** the record it was read out of, and
   can attach other records as evidence.
 
 So the scorer reads edges before it reads words. The shared contract and the
-graph in `packages/fixtures/scoring` both store them this way.
+graph in `packages/fixtures/scoring` both store them on the claim, and `repliesTo` reads
+the replies to a claim off the list of claims.
 
 ### Details aren't keywords
 
-A detail is a part of a claim someone can point at: a date, a place, a person,
-an event, a quantity, an attribution. It exists so people can disagree about
-the year without disagreeing about the building. Don't extract keywords from
-claim text to stand in for details.
+A detail is an excerpt of a claim that another claim points at. A detail exists so people can
+disagree about the year without disagreeing about the building. Nobody lists a
+claim's details in advance: they're worked out from what targets it, and `detailsOf`
+in `@sagas/fixtures/scoring` does that for you. A date or a place inside a claim's
+text is a reference, which is a separate thing. Don't extract keywords from claim
+text to stand in for details.
+
+An excerpt is an object: `start` and `end` are its character positions, and `text` is a
+copy of the words, so the two "1950"s in "built in 1950, rebuilt after the 1950 fire" can be
+two details. `target.details` and `detailsOf` are different lists. `A.target.details` says where A
+points in its target, and `detailsOf(graph, "A")` says what others point at in A.
 
 ### Where text matching belongs
 
 Inside one thread, matching is free, because every claim already names its
 target. Across branches it isn't. If a claim from a different record says "a
 cat ran across Mill Road in 1950", nothing links it to the first claim, and
-the system has to notice it's about the same detail.
+the system has to notice it says the same thing as the detail "1950".
 
 That's what `similarity` is for. Start with the longest common subsequence
-over words: lowercase both, find the most words they share in the same order
-(other words can sit in between), and divide by the length of the shorter
-one. "crossed the
-road" and "crossed over the road" score 1. It misses synonyms, and that's fine
+over words: lowercase both, drop the punctuation, find the most words they share in
+the same order (other words can sit in between), and divide by the length of the
+shorter one. "crossed the road" and "crossed over the road" score 1. It misses synonyms, and that's fine
 for now.
 
-A match is a suggestion that two details are the same. It never adds weight on
-its own. What it can do is let independent support from another branch count.
+A match means a claim in another thread says the same thing as a detail. It adds
+nothing on its own, and it lets the records behind that claim count as independent
+support. For this semester it counts straight away, and that's a temporary choice.
 
 ### What a score is
 
@@ -302,11 +318,11 @@ its own. What it can do is let independent support from another branch count.
   to a score. In `score = 2·evidence + 0.5·log(1 + agreements) − disputes`,
   each of the three pieces is a term. Your formula will look different.
 - Terms come in two families: **content** (what the claim and its records
-  carry) and **behaviour** (what the people involved have done). You name the
+  carry) and **behavior** (what the people involved have done). You name the
   terms and decide how they combine.
 - The terms come from several places: the claim's details, its place in the
   graph, the evidence attached, independent support from other branches, and
-  behaviour. Only some of that lives on details.
+  behavior. Only some of that lives on details.
 - No score is absolute. Any input can be outweighed by enough of the others.
 - No one term should keep dominating the rest. If one does across lots of
   scores, this project treats that as a sign something's broken or being
@@ -336,7 +352,10 @@ on what it says. Which terms those are is yours to decide.
 
 ### Independence
 
-This is the area to focus on. Agreement from the same origin isn't support:
+I've built the counting part of this as S5 in the backlog: the same person,
+the same source, identical copies, and the same thing said in another thread.
+Timing, record kind and challenges to independence are still yours. Agreement
+from the same origin isn't support:
 
 - One person's claims never corroborate each other.
 - Claims read out of the same record count as one source.
@@ -352,7 +371,7 @@ This is the area to focus on. Agreement from the same origin isn't support:
 
 ### Disputes
 
-- A dispute lands on one detail and leaves the claim's other details alone.
+- A dispute of one detail leaves the claim's other details alone.
 - One dispute without evidence shouldn't knock over a detail that has
   independent support.
 - A reason backed by a record can be checked. A reason about who someone is
@@ -370,8 +389,8 @@ input. It's kept apart from evidence.
 ### People
 
 The scorer reads what a profile has done, never who they are. A track record
-and the groups someone has joined are behaviour. A name, a credential or a
-family isn't. Most profiles are guests, and that's normal. Which behaviour
+and the groups someone has joined are behavior. A name, a credential or a
+family isn't. Most profiles are guests, and that's normal. Which behavior
 shows that someone knows a subject is one of your design questions. The
 `profiles` block in the rules lists some ideas to test, and they're only
 ideas.
@@ -394,14 +413,14 @@ shared words, claim 2 would come out strongest.
 The cat example, from the 7 October email, shows how claims, details and
 disputes fit together, and claim F is the clearest picture of independence.
 
-Start with a record. Record R is a recorded interview with a neighbour of the
+Start with a record. Record R is a recorded interview with a neighbor of the
 site, and its transcript says: "There was a cat out front every morning."
 
 - **Claim A** takes R as its source record and says "The cat crossed the
-  road." Its details are the cat, crossed, and the road. Every claim after A
-  targets one of these, or a detail in a claim built on A.
-- **Claim B** is an extension. It targets "the cat" and adds "it was a
-  calico". It adds a detail and replaces nothing.
+  road." Replies make "The cat", "crossed" and "the road" its details. Every reply in A's thread
+  points at one of these, or at a detail in a claim built on A.
+- **Claim B** is an extension. It targets "The cat" and adds "it was a calico". It
+  replaces nothing, and its target makes "The cat" a detail of A.
 - **Claim C** is an extension. It targets "crossed" and adds "to catch a
   bird".
 - **Claim D** is a dispute. It targets "the road" and says "it was a fence".
@@ -419,42 +438,47 @@ site, and its transcript says: "There was a cat out front every morning."
 Agreement inside one thread all traces back to the same interview. F reaches
 "the road" from a separate record, by a separate route. That's independent
 support, and it's worth more than ten agreements inside A's thread. It's also
-why `similarity` exists: nobody linked F to A, so the system has to notice
-that "ran across the road" and "crossed the road" are the same detail. A
-word-matching first version only sees "the road" in common and scores them
-lower than it should. That's the known gap with synonyms, and it's fine for
-now.
+why `similarity` exists: nobody linked F to A, so the system has to notice that F
+says "the road" too. If someone had targeted "crossed the road" instead, a
+word-matching first version would miss "ran across the road". That's the known gap
+with synonyms, and it's fine for now.
 
 Where it ends up: "the road" is stable, with evidence from E and independent
-support from F, and one new dispute shouldn't knock it over. "Calico" and "to
-catch a bird" each come from a single claim, so they're still forming.
-"Fence" has a reason and no record, so it carries less until someone brings
-evidence.
+support from F, and one new dispute shouldn't knock it over. What B and C add comes
+from a single claim each, so it's still forming. D's "fence" has a reason and no
+record, so it carries less until someone brings evidence.
 
 ## Where the model is going
 
-### Decided, and in contract 2.4.0
+### Decided, and in the contract
 
 - **Weight lives on details,** as well as on whole claims. Your result already
   scores each detail (`claimScore` is now the contract's own shape).
 - **A claim can cite a time window of a recording,** and until that window has
   a transcript, the part of its score that comes from the claim itself waits.
-  The graph carries `sourceWindow` on a claim and `transcribedWindows` on a
+  The graph carries the window in `target.details` and `transcribedWindows` on a
   record, and there's a rule for it.
 - **Links are records.** A web page is evidence like any other record, weighed
   by independent people relying on it, never by its domain.
+- **Details come from what points at a claim** (contracts 2.5.0 and 2.6.0). A claim has a
+  `target`, the claim or record it points into with `details` saying where, and `references`, typed links in its own text. A claim's details
+  are the excerpts other claims point at, and each result in `claimScore.details` lists
+  the claims and evidence behind that detail.
+- **Supporting records** (contract 2.5.0). A transcript or a translation is a
+  record with `parent` set. Your graph still tells you which windows of a
+  recording have a transcript, through `transcribedWindows`.
 
 ### Decided, and not in the contract yet
 
-Build toward these.
+These are for later, and they're outside this semester's minimum.
 
-- **Resolution is its own kind of edge,** beside dispute and extension: a
+- **A challenge opens a task on the detail.** Someone who only has "not X" isn't disputing,
+  because a dispute says what replaces it. How a challenge works is open, so nothing here
+  needs it yet.
+- **Resolution is its own kind of relation,** beside dispute and extension: a
   claim that reconciles a disagreement, with weight like any other claim, and
   more than one allowed. What it points at is still open (below), so it isn't
   in your graph yet.
-- **Evidence records, transcriptions and translations become one kind of
-  supporting record,** scored by how they're used rather than by whether
-  anyone vouches for them.
 
 ### Open questions for this phase
 
@@ -472,10 +496,7 @@ named by their heading there.
 - **"How do claims compare across languages?"** Matching details that weren't
   written in the same language.
 - **"What happens when one detail turns out to be two people?"**
-- **Where evidence attaches:** to the whole claim, or to the detail it
-  supports. Not in the design questions yet; there's a placeholder in the
-  rules.
-- **Which behaviour shows competence:** what a profile's track record should
+- **Which behavior shows competence:** what a profile's track record should
   be made of. Also a placeholder in the rules, with ideas to test.
 - **How passovers arrive.** Today they come in the graph with everything
   else. They're frequent and light, so they may fit better as a stream to

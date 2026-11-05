@@ -7,13 +7,14 @@
  * version history in the interface is built from.
  */
 
-import type { ContributionEvent } from './events';
+import type { ContributionEvent, EventDetail, EventReference } from './events';
 import type {
-  Claim, ClaimState, Collection, Contributor, DisputeEdge, DetailStatus,
-  ContributorStanding, EventId, ExtensionEdge, Flag, GraphState, IntegrityScore,
+  Claim, ClaimDetail, ClaimDispute, DisputeDetail, ExtensionDetail, ClaimReference, ClaimState, Collection, Contributor,
+  DetailStatus, ContributorStanding, EventId, Excerpt, Flag, GraphState, IntegrityScore,
   MediaRef, Passover, PassoverKind, RecordChoices, Site, SourceRecord,
-  Transcript, Translation, TranslationDispute,
+  SupportingRecord, TargetDetail, TranslationDispute,
 } from '@sagas/contracts';
+import { contests, detailId, findExcerpt, isExcerpt, sameExcerpt, toOf } from '@sagas/contracts';
 import { classifyConfidence, standInScore } from './stand-in-score';
 
 /**
@@ -31,24 +32,56 @@ interface Accumulator {
   site?: Site;
   contributors: Map<string, Contributor>;
   claims: Map<string, Claim>;
-  disputes: DisputeEdge[];
-  extensions: ExtensionEdge[];
   passovers: Passover[];
-  translations: Translation[];
+  translations: SupportingRecord[];
   translationDisputes: TranslationDispute[];
   records: Map<string, SourceRecord>;
   collections: Map<string, Collection>;
-  transcripts: Transcript[];
+  transcripts: SupportingRecord[];
   flags: Flag[];
   applied: EventId[];
 }
 
 function empty(): Accumulator {
   return {
-    contributors: new Map(), claims: new Map(), disputes: [], extensions: [],
+    contributors: new Map(), claims: new Map(),
     passovers: [], translations: [],
     translationDisputes: [], records: new Map(), collections: new Map(), transcripts: [], flags: [],
     applied: [],
+  };
+}
+
+/** The positions of these words in this text, or a loud failure, since it's a bug in the fixture. */
+function excerptOf(claimId: string, text: string, words: string, occurrence = 1): Excerpt {
+  const e = findExcerpt(text, words, occurrence);
+  if (!e) throw new Error(`Claim ${claimId}: "${words}" isn't in "${text}".`);
+  return e;
+}
+
+function extensionDetailsIn(claimId: string, target: Claim, details: { at: string; occurrence?: number }[] = []): ExtensionDetail[] {
+  return details.map((d) => ({ at: excerptOf(claimId, target.text, d.at, d.occurrence) }));
+}
+
+function disputeDetailsIn(claimId: string, target: Claim, text: string, details: EventDetail[] = []): DisputeDetail[] {
+  return details.map((d) => ({
+    at: excerptOf(claimId, target.text, d.at, d.occurrence),
+    to: excerptOf(claimId, text, d.to),
+  }));
+}
+
+function referencesIn(claimId: string, text: string, references: EventReference[] = []): ClaimReference[] {
+  return references.map((r) => ({ ...r, excerpt: excerptOf(claimId, text, r.excerpt) }));
+}
+
+const targetDetails = (c: Claim): TargetDetail[] => c.target.details;
+
+/** A dispute's summary, with the words that replace `detail` when it names some. */
+function disputeOf(reply: Claim, detail?: Excerpt): ClaimDispute {
+  const pointed = detail && targetDetails(reply).find((d) => isExcerpt(d.at) && sameExcerpt(d.at, detail));
+  const to = pointed && toOf(pointed);
+  return {
+    claimId: reply.id, contributorId: reply.contributorId, reasoning: reply.reasoning ?? '',
+    ...(to && { to }), createdAt: reply.createdAt,
   };
 }
 
@@ -76,53 +109,48 @@ function apply(acc: Accumulator, ev: ContributionEvent): void {
     case 'claim_submitted':
       acc.claims.set(ev.claimId, {
         id: ev.claimId, siteId: ev.siteId, contributorId: ev.actorId,
-        sourceRecordId: ev.sourceRecordId, evidenceRecordIds: ev.evidenceRecordIds ?? [],
+        sourceRecordId: ev.sourceRecordId, evidence: ev.evidence ?? [],
+        relation: 'extension',
+        target: { recordId: ev.sourceRecordId, details: ev.window !== undefined ? [{ at: ev.window }] : [] },
         text: ev.text, sourceLanguage: ev.sourceLanguage,
-        sourceLanguageText: ev.sourceLanguageText, sourceWindow: ev.sourceWindow,
-        details: ev.details, sourceType: ev.sourceType,
+        sourceLanguageText: ev.sourceLanguageText,
+        references: referencesIn(ev.claimId, ev.text, ev.references), sourceType: ev.sourceType,
         createdAt: ev.at, awaitingTranslation: ev.awaitingTranslation ?? false,
       });
       return;
 
-    case 'claim_extended':
+    case 'claim_extended': {
+      const target = acc.claims.get(ev.targetClaimId);
+      if (!target) throw new Error(`Extension ${ev.claimId} targets ${ev.targetClaimId}, which does not exist.`);
       acc.claims.set(ev.claimId, {
         id: ev.claimId, siteId: ev.siteId, contributorId: ev.actorId,
-        sourceRecordId: ev.sourceRecordId, evidenceRecordIds: ev.evidenceRecordIds ?? [],
+        sourceRecordId: ev.sourceRecordId, evidence: ev.evidence ?? [],
+        target: { claimId: ev.targetClaimId, details: extensionDetailsIn(ev.claimId, target, ev.details) },
+        relation: 'extension',
         text: ev.text, sourceLanguage: ev.sourceLanguage,
-        sourceLanguageText: ev.sourceLanguageText, sourceWindow: ev.sourceWindow,
-        details: ev.details, sourceType: ev.sourceType,
-        createdAt: ev.at, parentClaimId: ev.parentClaimId,
+        sourceLanguageText: ev.sourceLanguageText,
+        references: referencesIn(ev.claimId, ev.text, ev.references), sourceType: ev.sourceType,
+        createdAt: ev.at,
         awaitingTranslation: false,
       });
-      acc.extensions.push({
-        id: `ext-${ev.id}`, type: 'extension', parentClaimId: ev.parentClaimId,
-        childClaimId: ev.claimId, targetDetailId: ev.targetDetailId,
-        contributorId: ev.actorId, createdAt: ev.at,
-      });
       return;
+    }
 
     case 'claim_disputed': {
       const target = acc.claims.get(ev.targetClaimId);
-      if (!target) throw new Error(`Dispute ${ev.edgeId} targets ${ev.targetClaimId}, which does not exist.`);
-      const targetDetail = target.details.find((d) => d.id === ev.targetDetailId);
-      if (!targetDetail) throw new Error(`Dispute ${ev.edgeId} targets detail ${ev.targetDetailId}, which ${ev.targetClaimId} does not have.`);
+      if (!target) throw new Error(`Dispute ${ev.claimId} targets ${ev.targetClaimId}, which does not exist.`);
+      const text = ev.text ?? ev.reasoning;
       acc.claims.set(ev.claimId, {
         id: ev.claimId, siteId: target.siteId, contributorId: ev.actorId,
         sourceRecordId: ev.sourceRecordId ?? target.sourceRecordId,
-        evidenceRecordIds: ev.evidenceRecordIds ?? [],
-        text: ev.text ?? ev.reasoning, sourceLanguage: 'en',
-        details: ev.details ?? (ev.proposedValue
-          ? [{ id: `${ev.claimId}-value`, kind: targetDetail.kind, value: ev.proposedValue, excerpt: ev.proposedValue }]
-          : []),
+        evidence: ev.evidence ?? [],
+        target: { claimId: ev.targetClaimId, details: disputeDetailsIn(ev.claimId, target, text, ev.details) },
+        relation: 'dispute', reasoning: ev.reasoning,
+        text, sourceLanguage: 'en',
+        references: referencesIn(ev.claimId, text, ev.references),
         sourceType: ev.sourceType ?? target.sourceType,
-        createdAt: ev.at, disputedClaimId: ev.targetClaimId,
-        awaitingTranslation: false,
-      });
-      acc.disputes.push({
-        id: ev.edgeId, type: 'dispute', fromClaimId: ev.claimId, targetClaimId: ev.targetClaimId,
-        targetDetailId: ev.targetDetailId, reasoning: ev.reasoning,
-        proposedValue: ev.proposedValue, contributorId: ev.actorId,
         createdAt: ev.at,
+        awaitingTranslation: false,
       });
       return;
     }
@@ -136,9 +164,11 @@ function apply(acc: Accumulator, ev: ContributionEvent): void {
 
     case 'translation_submitted': {
       acc.translations.push({
-        id: ev.translationId, claimId: ev.claimId,
-        contributorId: ev.actorId, targetLanguage: ev.targetLanguage,
-        text: ev.text, createdAt: ev.at,
+        id: ev.translationId, siteId: acc.site?.id ?? '', contributorId: ev.actorId,
+        text: ev.text, language: ev.targetLanguage, media: [],
+        parent: { role: 'translation', claimId: ev.claimId },
+        submission: 'published', choices: FIXTURE_CHOICES,
+        termsVersion: FIXTURE_TERMS_VERSION, createdAt: ev.at,
       });
       // A rendering exists, so the claim enters the graph. The original
       // is untouched; the first rendering supplies the reading text.
@@ -209,9 +239,11 @@ function apply(acc: Accumulator, ev: ContributionEvent): void {
 
     case 'transcript_submitted': {
       acc.transcripts.push({
-        id: ev.transcriptId, recordId: ev.recordId, contributorId: ev.actorId,
-        language: ev.language, text: ev.text, method: ev.method,
-        window: ev.window, createdAt: ev.at,
+        id: ev.transcriptId, siteId: acc.site?.id ?? '', contributorId: ev.actorId,
+        text: ev.text, language: ev.language, media: [],
+        parent: { role: 'transcript', recordId: ev.recordId, window: ev.window, method: ev.method },
+        submission: 'published', choices: FIXTURE_CHOICES,
+        termsVersion: FIXTURE_TERMS_VERSION, createdAt: ev.at,
       });
       const rec = acc.records.get(ev.recordId);
       if (rec && ev.submission) rec.submission = ev.submission;
@@ -241,9 +273,9 @@ function buildClaimState(
       `Claim ${claim.id} has source record ${claim.sourceRecordId}, which does not exist.`,
     );
   }
-  const evidenceRecords = claim.evidenceRecordIds.map((id) => {
-    const r = acc.records.get(id);
-    if (!r) throw new Error(`Claim ${claim.id} cites evidence ${id}, which does not exist.`);
+  const evidenceRecords = claim.evidence.map(({ recordId }) => {
+    const r = acc.records.get(recordId);
+    if (!r) throw new Error(`Claim ${claim.id} cites evidence ${recordId}, which does not exist.`);
     return r;
   });
   const contributor = acc.contributors.get(claim.contributorId);
@@ -254,10 +286,13 @@ function buildClaimState(
       `Claim ${claim.id} is attributed to ${claim.contributorId}, who was never registered.`,
     );
   }
-  const disputes = acc.disputes.filter((d) => d.targetClaimId === claim.id);
-  const extensionEdges = acc.extensions.filter((e) => e.parentClaimId === claim.id);
-  const extensions = extensionEdges.map((e) => e.childClaimId);
-  const translations = acc.translations.filter((t) => t.claimId === claim.id);
+  // A claim's target, relation and details are its edge, so its replies are read off
+  // the claims, in the order they arrived.
+  const replies = [...acc.claims.values()].filter((c) => c.target.claimId === claim.id);
+  const disputes = replies.filter((c) => c.relation === 'dispute');
+  const extensionClaims = replies.filter((c) => c.relation === 'extension');
+  const extensions = extensionClaims.map((c) => c.id);
+  const translations = acc.translations.filter((t) => t.parent.claimId === claim.id);
   const translationIds = new Set(translations.map((t) => t.id));
   const translationDisputes = acc.translationDisputes.filter((d) => translationIds.has(d.translationId));
 
@@ -265,28 +300,40 @@ function buildClaimState(
   // contributors bring to it, never by agreement. Today that means the evidence
   // on extensions of this claim by somebody other than its author. A record
   // this claim already rests on does not count twice.
-  const ownRecords = new Set([claim.sourceRecordId, ...claim.evidenceRecordIds]);
+  const ownRecords = new Set([claim.sourceRecordId, ...claim.evidence.map((e) => e.recordId)]);
   const independentRecords = new Set<string>();
   for (const id of extensions) {
     const ext = acc.claims.get(id);
     if (!ext || ext.contributorId === claim.contributorId) continue;
-    for (const r of ext.evidenceRecordIds) if (!ownRecords.has(r)) independentRecords.add(r);
+    for (const { recordId } of ext.evidence) if (!ownRecords.has(recordId)) independentRecords.add(recordId);
   }
   const independentRecordCount = independentRecords.size;
 
   const passover: Record<PassoverKind, number> = { sounds_right: 0, dont_know: 0, dont_care: 0 };
   for (const p of acc.passovers) if (p.claimId === claim.id) passover[p.kind]++;
 
-  const detailStatuses: DetailStatus[] = claim.details.map((detail) => {
-    const detailDisputes = disputes.filter((d) => d.targetDetailId === detail.id);
+  // A claim's details are whatever other claims point at in it. The same words in the
+  // same place are one detail.
+  const excerpts: Excerpt[] = [];
+  for (const reply of replies) {
+    for (const { at } of targetDetails(reply)) {
+      if (isExcerpt(at) && !excerpts.some((e) => sameExcerpt(e, at))) excerpts.push(at);
+    }
+  }
+  const details: ClaimDetail[] = excerpts.map((excerpt) => ({ id: detailId(claim.id, excerpt), excerpt }));
+
+  const detailStatuses: DetailStatus[] = details.map((detail) => {
+    const detailDisputes = disputes
+      .filter((d) => contests(d, detail.excerpt))
+      .map((d) => disputeOf(d, detail.excerpt));
     const byValue = new Map<string, string[]>();
-    // The claim's own asserted value is one of the competing readings.
-    byValue.set(detail.value, [claim.contributorId]);
+    // The claim's own words are one of the competing readings.
+    byValue.set(detail.excerpt.text, [claim.contributorId]);
     for (const d of detailDisputes) {
-      if (!d.proposedValue) continue;
-      const list = byValue.get(d.proposedValue) ?? [];
+      if (!d.to) continue;
+      const list = byValue.get(d.to.text) ?? [];
       list.push(d.contributorId);
-      byValue.set(d.proposedValue, list);
+      byValue.set(d.to.text, list);
     }
     const competingValues = [...byValue.entries()]
       .map(([value, contributorIds]) => ({
@@ -299,13 +346,17 @@ function buildClaimState(
       // dispute, and ordering by headcount would turn readings into a vote.
       // Nothing is marked accepted and nothing is hidden.
       ;
-    const detailExtensions = extensionEdges.filter((e) => e.targetDetailId === detail.id);
+    const detailExtensions = extensionClaims
+      .filter((c) => targetDetails(c).some((d) => isExcerpt(d.at) && sameExcerpt(d.at, detail.excerpt)))
+      .map((c) => c.id);
     return { detail, disputes: detailDisputes, extensions: detailExtensions, competingValues, weight: 0 };
   });
 
+  const evidenceOf = (claimId: string): string[] =>
+    (acc.claims.get(claimId)?.evidence ?? []).map((e) => e.recordId);
   const score = standInScore({
-    claim, sourceRecord, transcripts: acc.transcripts, disputes,
-    extensions: extensionEdges, independentRecordCount, soundsRight: passover.sounds_right,
+    claim, details, evidenceOf, sourceRecord, transcripts: acc.transcripts, disputes,
+    extensions: extensionClaims, independentRecordCount, soundsRight: passover.sounds_right,
   });
   for (const ds of detailStatuses) {
     ds.weight = score.details.find((d) => d.detailId === ds.detail.id)?.score ?? 0;
@@ -313,7 +364,7 @@ function buildClaimState(
 
   return {
     claim, contributor, sourceRecord, evidenceRecords, translations, translationDisputes,
-    independentRecordCount, extensions, passover, detailStatuses,
+    independentRecordCount, disputes: disputes.map((d) => disputeOf(d)), extensions, passover, detailStatuses,
     score, weight: score.score,
     confidence: classifyConfidence({ independentRecordCount, disputeCount: disputes.length }),
   };
@@ -327,13 +378,14 @@ function buildClaimState(
  * `contributorStanding` in the contract for why.
  */
 function buildStandings(claimStates: ClaimState[], acc: Accumulator): ContributorStanding[] {
+  const allDisputes = [...acc.claims.values()].filter((c) => c.relation === 'dispute');
   return [...acc.contributors.values()].map((c) => {
     // Dispute claims are counted under disputesRaised, so they're left out here
     // to avoid counting the same act twice.
     const theirClaims = claimStates.filter(
-      (cs) => cs.claim.contributorId === c.id && !cs.claim.disputedClaimId,
+      (cs) => cs.claim.contributorId === c.id && cs.claim.relation !== 'dispute',
     );
-    const theirDisputes = acc.disputes.filter((d) => d.contributorId === c.id);
+    const theirDisputes = allDisputes.filter((d) => d.contributorId === c.id);
 
     // Every timestamped thing this person did, so tenure is measured from
     // activity rather than from when their profile first appeared.
@@ -355,10 +407,10 @@ function buildStandings(claimStates: ClaimState[], acc: Accumulator): Contributo
       claimsAuthored: theirClaims.length,
       claimsCorroborated: theirClaims.filter((cs) => cs.independentRecordCount > 0).length,
       claimsDisputed: theirClaims.filter((cs) =>
-        acc.disputes.some((d) => d.targetClaimId === cs.claim.id),
+        allDisputes.some((d) => d.target.claimId === cs.claim.id),
       ).length,
       disputesRaised: theirDisputes.length,
-      disputesRaisedWithAlternative: theirDisputes.filter((d) => d.proposedValue).length,
+      disputesRaisedWithAlternative: theirDisputes.filter((d) => d.target.details.length > 0).length,
       soundsRightGiven: acc.passovers.filter((p) => p.contributorId === c.id && p.kind === 'sounds_right').length,
       translationsContributed: acc.translations.filter((t) => t.contributorId === c.id).length,
       transcriptsContributed: acc.transcripts.filter((t) => t.contributorId === c.id).length,
@@ -375,14 +427,14 @@ function buildIntegrity(claimStates: ClaimState[], acc: Accumulator): IntegrityS
   // How much of the record is anchored in time. Counted from claims that
   // actually name a date, not from a period somebody picked at entry time.
   const datedClaims = claimStates.filter((c) =>
-    c.claim.details.some((e) => e.kind === 'date'),
+    c.claim.references.some((r) => r.kind === 'date'),
   ).length;
 
   const score = {
     totalClaims: claimStates.length,
     independentContributors: contributorIds.size,
     corroborationDepth: inGraph.length ? corroborated / inGraph.length : 0,
-    activeDisputes: acc.disputes.length + acc.translationDisputes.length,
+    activeDisputes: [...acc.claims.values()].filter((c) => c.relation === 'dispute').length + acc.translationDisputes.length,
     datedClaims,
     awaitingTranslation: claimStates.filter((c) => c.claim.awaitingTranslation).length,
     overall: 0,
@@ -426,10 +478,9 @@ export function reduceToState(
     site: acc.site,
     claims: claimStates,
     contributors: [...acc.contributors.values()],
-    records: [...acc.records.values()],
+    records: [...acc.records.values(), ...acc.transcripts, ...acc.translations],
     collections: [...acc.collections.values()],
     standings: buildStandings(claimStates, acc),
-    transcripts: acc.transcripts,
     flags: acc.flags,
     integrity: buildIntegrity(claimStates, acc),
     sections: [],

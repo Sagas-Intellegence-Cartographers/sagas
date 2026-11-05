@@ -1,7 +1,7 @@
 <title>Corner Shop Page Model</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@400;500&display=swap">
 <style>
-/* Layout: a grey-box site page on the left, numbered annotations on the right; one column on phones. */
+/* Layout: a gray-box site page on the left, numbered annotations on the right; one column on phones. */
 :root{
   --bg:#f3f4f6; --paper:#ffffff; --ink:#1d2229; --muted:#5e6672; --line:#c9ced6; --box:#e3e6eb;
   --mark:#2f5fa8; --markbg:#e6eefb; --note:#fff8dc; --noteline:#d8c77a;
@@ -63,10 +63,12 @@ aside.notes{display:grid;gap:12px;min-width:0}
 .rules ul{margin:0;padding-left:1.1rem;display:grid;gap:4px}
 @media (prefers-reduced-motion:no-preference){.tree{animation:in .18s ease-out}@keyframes in{from{opacity:.4;transform:translateY(-3px)}to{opacity:1;transform:none}}}
 </style>
+<!-- Outdated since contract 2.5.0. This page has its own copy of the data, from before a detail became an excerpt another claim points at. Its layout still applies. For the data, use packages/fixtures/states and CHANGELOG.md. -->
+<p style="background:#fff3c4;color:#222;margin:0;padding:8px 16px;font:14px system-ui">Outdated data: this page was made before contract 2.5.0. Its layout still applies, but its details, ids and agreement counts are the old shape. Use <code>packages/fixtures/states</code> for the data.</p>
 <div class="wrap">
   <header class="top">
     <h1>Corner shop page model</h1>
-    <p>A grey-box wireframe of one site page, built from the corner shop fixture. It shows what each part of the page holds and which rule applies to it. It does not decide how anything looks. The place, the people and everything they say are invented. Pick a moment, then select a dotted phrase.</p>
+    <p>A gray-box wireframe of one site page, built from the corner shop fixture. It shows what each part of the page holds and which rule applies to it. It does not decide how anything looks. The place, the people and everything they say are invented. Pick a moment, then select a dotted phrase.</p>
   </header>
   <nav class="steps" id="steps" aria-label="Fixture state"></nav>
   <div class="cols">
@@ -76,7 +78,7 @@ aside.notes{display:grid;gap:12px;min-width:0}
       <div class="note"><h3><span class="pin">2</span>What people handed over</h3><p><code>records[]</code>. Whether a record is a source or evidence comes from the claims that use it (<code>sourceRecordId</code>, <code>evidenceRecordIds</code>). A record with nothing claimed about it is complete. Uploading is not part of this page.</p></div>
       <div class="note"><h3><span class="pin">3</span>Section heading</h3><p><code>sections[].heading</code>. Invented for now. What a heading is derived from is open, and it should not change every time a claim arrives.</p></div>
       <div class="note"><h3><span class="pin">4</span>The passage</h3><p><code>compositions[].text</code>, with <code>spans[]</code> marking the phrases that lead somewhere. When a detail is disputed the passage uses wording both readings fit. It never picks one.</p></div>
-      <div class="note"><h3><span class="pin">5</span>The claims behind a phrase</h3><p><code>spans[].claimIds</code>, and <code>detailIds</code> when the phrase is about one detail. Claims are ordered by <code>weight</code>, which is never shown. An extension sits under the claim it adds to (<code>parentClaimId</code>). The detail's <code>excerpt</code> is highlighted in the claim's own words.</p></div>
+      <div class="note"><h3><span class="pin">5</span>The claims behind a phrase</h3><p><code>spans[].claimIds</code>, and <code>detailIds</code> when the phrase is about one detail. Claims are ordered by <code>weight</code>, which is never shown. An extension sits under the claim it adds to (<code>claim.target.claimId</code>). The detail's <code>excerpt</code> is highlighted in the claim's own words.</p></div>
       <div class="note"><h3><span class="pin">6</span>Two readings of one detail</h3><p><code>detailStatuses[].competingValues</code>, in the order they arrived, side by side with the same weight, each with who gave it and the reasoning. No winner and no count.</p></div>
       <div class="note"><h3><span class="pin">7</span>Leaving a passover</h3><p>Sounds right, don't know, don't care. Three equal choices with no counts. How to offer them without nudging people toward what others chose is an open design question.</p></div>
       <div class="rules"><h3>The rules every design keeps</h3><ul>
@@ -86,7 +88,7 @@ aside.notes{display:grid;gap:12px;min-width:0}
         <li>A claim nobody has answered never looks rejected.</li>
         <li>Every claim leads back to its author and its records.</li>
       </ul></div>
-      <div class="rules"><h3>What this does not decide</h3><p style="margin:0">Layout, type, colour, motion and how deep the page can go are the designer's. This page fixes what information appears and where it comes from.</p></div>
+      <div class="rules"><h3>What this does not decide</h3><p style="margin:0">Layout, type, color, motion and how deep the page can go are the designer's. This page fixes what information appears and where it comes from.</p></div>
     </aside>
   </div>
 </div>

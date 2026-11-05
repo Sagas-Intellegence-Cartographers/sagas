@@ -7,12 +7,29 @@
  */
 
 import type {
-  CapturedLocation, ClaimDetail, ContributorId, ClaimId, DetailId, EventId,
+  CapturedLocation, ClaimEvidence, ClaimReference, ContributorId, ClaimId, EventId,
   FlagId, FlagReason, LanguageCode, MediaDerivative, MediaId, MediaKind,
   LinkSource, PassoverKind, ProcessingState, RecordChoices, RecordId, SiteId,
-  SourceType, SubmissionState, TimeWindow, TranscriptId, TranscriptMethod,
+  RenderingMethod, SourceType, SubmissionState, TimeWindow, TranscriptId,
   TranslationId,
 } from '@sagas/contracts';
+
+/**
+ * A reference as a fixture writes it, with the words instead of their positions.
+ * The reducer finds the positions, so nobody counts characters by hand.
+ */
+export type EventReference = Omit<ClaimReference, 'excerpt'> & { excerpt: string };
+
+/**
+ * A detail a dispute points at, as a fixture writes it. `at` is words in the claim it
+ * targets, and `to` is the words in this claim's own text that replace them. `occurrence`
+ * picks a repeat of `at`, counting from 1.
+ */
+export interface EventDetail {
+  at: string;
+  to: string;
+  occurrence?: number;
+}
 
 /** Every contribution has an id, a time, and someone who made it. */
 interface BaseEvent {
@@ -51,16 +68,16 @@ export interface ClaimSubmitted extends BaseEvent {
    */
   sourceRecordId: RecordId;
   /** Records attached as support. Optional. */
-  evidenceRecordIds?: RecordId[];
+  evidence?: ClaimEvidence[];
   siteId: SiteId;
   text: string;
   sourceLanguage: LanguageCode;
   sourceLanguageText?: string;
   /** True when submitted in a language other than English with no rendering yet. */
   awaitingTranslation?: boolean;
-  /** The part of a recording the claim comes from. */
-  sourceWindow?: TimeWindow;
-  details: ClaimDetail[];
+  /** The stretch of a recording the claim points at. */
+  window?: TimeWindow;
+  references?: EventReference[];
   sourceType: SourceType;
 }
 
@@ -69,43 +86,39 @@ export interface ClaimExtended extends BaseEvent {
   claimId: ClaimId;
   /** The conversation's source record. The extension's own record, if it has one, is evidence. */
   sourceRecordId: RecordId;
-  evidenceRecordIds?: RecordId[];
-  parentClaimId: ClaimId;
-  /** The detail of the parent it adds to. Omitted when it's about the whole claim. */
-  targetDetailId?: DetailId;
+  evidence?: ClaimEvidence[];
+  targetClaimId: ClaimId;
+  /** The details it adds to. Omitted when it's about the whole claim. */
+  details?: { at: string; occurrence?: number }[];
   siteId: SiteId;
   text: string;
   sourceLanguage: LanguageCode;
   sourceLanguageText?: string;
-  sourceWindow?: TimeWindow;
-  details: ClaimDetail[];
+  references?: EventReference[];
   sourceType: SourceType;
 }
 
 /**
- * Somebody disputes one detail of a claim. A dispute is a claim of its own, so
- * this makes a claim and the edge that points it at the detail. What the claim
- * says, its details and its source record default from the dispute itself and
+ * Somebody disputes a claim, or some of its details. A dispute is a claim of its
+ * own. What the claim says and its source record default from the dispute itself and
  * the claim it targets, so a fixture only spells them out when they differ.
  */
 export interface ClaimDisputed extends BaseEvent {
   kind: 'claim_disputed';
-  edgeId: string;
   /** The dispute's own claim. */
   claimId: ClaimId;
   /** Defaults to the disputed claim's source record: the same conversation. */
   sourceRecordId?: RecordId;
-  evidenceRecordIds?: RecordId[];
+  evidence?: ClaimEvidence[];
   /** Defaults to the reasoning. */
   text?: string;
-  /** Defaults to one detail holding the proposed value, when there is one. */
-  details?: ClaimDetail[];
+  references?: EventReference[];
   /** Defaults to the disputed claim's. */
   sourceType?: SourceType;
   targetClaimId: ClaimId;
-  targetDetailId: DetailId;
+  /** The details it disputes. Omitted when it disputes the whole claim. */
+  details?: EventDetail[];
   reasoning: string;
-  proposedValue?: string;
 }
 
 export interface PassoverRecorded extends BaseEvent {
@@ -204,7 +217,7 @@ export interface TranscriptSubmitted extends BaseEvent {
   recordId: RecordId;
   language: LanguageCode;
   text: string;
-  method: TranscriptMethod;
+  method: RenderingMethod;
   /** The part of the recording it covers. Omitted means all of it. */
   window?: TimeWindow;
   submission?: SubmissionState;

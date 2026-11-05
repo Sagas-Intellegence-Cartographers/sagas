@@ -13,7 +13,7 @@
  */
 
 import { describe, expect, it } from 'vitest';
-import { graphState } from '@sagas/contracts';
+import { contests, graphState } from '@sagas/contracts';
 import { ACCEPTANCE_CRITERIA, loadAllStates, loadSiteState } from './index';
 
 const states = loadAllStates();
@@ -46,14 +46,26 @@ describe('fixtures satisfy the contract', () => {
     }
   });
 
+  it('a detail is words that appear in the claim it belongs to', () => {
+    for (const state of states) {
+      for (const c of state.claims) {
+        for (const es of c.detailStatuses) {
+          const { start, end, text } = es.detail.excerpt;
+          expect(c.claim.text.slice(start, end), `"${text}" isn't in ${c.claim.id}`).toBe(text);
+        }
+      }
+    }
+  });
+
   it('a dispute targets a detail that exists on the claim it targets', () => {
     for (const state of states) {
       for (const c of state.claims) {
-        const detailIds = new Set(c.claim.details.map((e) => e.id));
         for (const es of c.detailStatuses) {
           for (const d of es.disputes) {
-            expect(d.targetClaimId).toBe(c.claim.id);
-            expect(detailIds.has(d.targetDetailId)).toBe(true);
+            const dispute = state.claims.find((x) => x.claim.id === d.claimId)?.claim;
+            expect(dispute?.target.claimId).toBe(c.claim.id);
+            expect(dispute?.relation).toBe('dispute');
+            expect(contests(dispute!, es.detail.excerpt)).toBe(true);
           }
         }
       }
@@ -66,7 +78,7 @@ describe('fixtures satisfy the contract', () => {
         expect(c.claim.sourceLanguageText).toBeTruthy();
         expect(c.claim.sourceLanguage).not.toBe('en');
         // What depends on the claim's own content isn't counted until it's
-        // rendered. What it gets from evidence and behaviour still counts.
+        // rendered. What it gets from evidence and behavior still counts.
         expect(c.score.terms.some((t) => t.name === 'extensions')).toBe(false);
       }
     }

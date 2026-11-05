@@ -22,7 +22,7 @@
  *
  * WHAT IS DELIBERATELY NOT HERE
  *
- * A design. Grey text on white with system fonts is a placeholder and the
+ * A design. Gray text on white with system fonts is a placeholder and the
  * visual identity is your deliverable. Replace all of it.
  *
  * The map. `MapView` is a stub. Integrating Mapbox is the centrepiece of this
@@ -77,7 +77,7 @@ export default function Page() {
         */}
         <ol className="space-y-6 border-t border-neutral-200 pt-5">
           {/* Dispute claims show under the claim they dispute, not as entries of their own. */}
-          {state.claims.filter((c) => !c.claim.disputedClaimId).map((claim) => (
+          {state.claims.filter((c) => c.claim.relation !== 'dispute').map((claim) => (
             <li key={claim.claim.id} className="space-y-1.5">
               <p className="text-sm leading-relaxed">
                 {claim.claim.awaitingTranslation

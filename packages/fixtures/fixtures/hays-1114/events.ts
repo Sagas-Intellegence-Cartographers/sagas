@@ -2,8 +2,8 @@
  * 1114 Hays Street — contribution event log
  * =========================================
  *
- * One half of a pair. Its neighbour at 1116 is a separate site about twelve
- * metres away, which is close enough that the two markers collide at most zoom
+ * One half of a pair. Its neighbor at 1116 is a separate site about twelve
+ * meters away, which is close enough that the two markers collide at most zoom
  * levels.
  *
  * THIS CONTENT IS INVENTED, including the business names. The street and the
@@ -68,9 +68,8 @@ export const events: ContributionEvent[] = [
     siteId: SITE,
     text: 'The shoe repair at 1114 was there from the late fifties until it shut. The family lived above the shop.',
     sourceLanguage: 'en',
-    details: [
-      { id: 'el-ha-trade', kind: 'event', value: 'shoe repair', excerpt: 'The shoe repair at 1114' },
-      { id: 'el-ha-from', kind: 'date', value: 'late 1950s', excerpt: 'from the late fifties' },
+    references: [
+      { kind: 'date', excerpt: 'from the late fifties', status: 'confirmed' },
     ],
     sourceType: 'community_oral',
   },

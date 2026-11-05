@@ -199,7 +199,7 @@ Once you set `MINIO_ROOT_USER` and `MINIO_ROOT_PASSWORD`, it uses the same ports
 **Second, tell us.** If neither route works, say so at the check-in rather than
 losing a week to it. We can arrange access to a real bucket through Civum. That
 is a slower path because it involves a person, so try the two above first, but it
-exists and it is not a favour.
+exists and it is not a favor.
 
 **What not to do:** do not write files to a local folder behind your own
 interface and plan to swap it later. This project expects presigned uploads from the start, because a browser uploading straight to storage and a browser sending the file through your API are built differently, and switching later means a rewrite.
@@ -261,7 +261,7 @@ Check these first:
   instead of generating one when it was asked for. See `apps/capture-api/README.md`.
 - **`ffprobe: command not found`.** ffmpeg isn't installed. See the object
   storage section above.
-- **The map renders grey.** Your Mapbox token is missing or malformed. Check
+- **The map renders gray.** Your Mapbox token is missing or malformed. Check
   `.env` has it, then restart the dev server. Next.js only reads `.env` at startup.
 - **A tool says everything passed and you don't believe it.** It may be
   replaying a cached result. [`docs/DEBUGGING.md`](./docs/DEBUGGING.md) covers

@@ -2,8 +2,8 @@
  * 1116 Hays Street — contribution event log
  * =========================================
  *
- * The other half of the pair. Its neighbour at 1114 is a separate site about
- * twelve metres away. See that file for what the pair is for.
+ * The other half of the pair. Its neighbor at 1114 is a separate site about
+ * twelve meters away. See that file for what the pair is for.
  *
  * THIS CONTENT IS INVENTED, including the business names. The street and the
  * coordinates are real. There were no such shops and there are no such people.
@@ -53,9 +53,8 @@ export const events: ContributionEvent[] = [
     siteId: SITE,
     text: 'There was a bakery at 1116 before it became a print shop. You could smell it from the end of the block on a Saturday. There was a doorway through to the shop next door, cut through the party wall, and the two of them used it as one premises for a while.',
     sourceLanguage: 'en',
-    details: [
-      { id: 'el-hy-trade', kind: 'event', value: 'bakery', excerpt: 'There was a bakery at 1116' },
-      { id: 'el-hy-door', kind: 'place', value: 'doorway through the party wall', excerpt: 'a doorway through to the shop next door' },
+    references: [
+      { kind: 'place', excerpt: 'a doorway through to the shop next door', status: 'confirmed' },
     ],
     sourceType: 'community_oral',
   },
@@ -83,5 +82,5 @@ export const stateCuts = [
   { stateId: 't0', label: 'Created, one claim about the shop next door', asOf: '2026-04-30T23:59:59Z' },
   { stateId: 't1', label: 'Unchanged', asOf: '2026-05-31T23:59:59Z' },
   { stateId: 't2', label: 'Unchanged', asOf: '2026-06-30T23:59:59Z' },
-  { stateId: 't3', label: 'The neighbour cannot speak to the doorway', asOf: '2026-07-31T23:59:59Z' },
+  { stateId: 't3', label: 'The neighbor cannot speak to the doorway', asOf: '2026-07-31T23:59:59Z' },
 ];
