@@ -41,6 +41,44 @@ it. This is the most useful field in the entry.
 
 ---
 
+## v2.7.0 — 2026-11-05
+
+**Affects:** experience layer
+
+**What:** `graphState` no longer has `stateId` or `label`. It keeps `asOf`, the time the state
+reflects. `reduceToState(events, asOf)` now takes a time where it took a fixture moment. The
+fixtures still have t0 to t3. Their state files and `reduceToStates` keep each moment's id and
+label on `FixtureState`, a fixtures-only type that isn't in the contract.
+
+**Why:** every claim, record and passover carries its own time, so a site as of a time can be
+worked out from them. The named moments are something the fixtures need for testing, and the
+model doesn't. The sponsor decided this on 5 November.
+
+**You need to:**
+- *experience layer* — pull upstream. `state.stateId` and `state.label` are gone, so use the moment
+  you asked for, or `state.asOf`. If your `ArticleView.tsx` keys sections on `state.stateId`, change
+  it to `state.asOf`, because the old key won't typecheck. Da11, in the backlog pull request #51,
+  moves the read model to answering by time.
+- *intelligence layer* — nothing. The scoring graph already uses `asOf`.
+- *content layer* — nothing.
+
+## 2026-11-05 — stories for references and the terms screen, and two placeholder rules
+
+**Affects:** intelligence layer · content layer
+
+**What:** The content layer's backlog gains C6, the terms screen, split out of C1 so it stands on
+its own. The intelligence layer's backlog gains S9, `findReferences(text)`, and
+`apps/graph-api/cases-graph.json` shows the newer cases as a graph you can open in `graph:view`. "matching across branches" and "targets"
+each gain a placeholder rule: a denial in another thread isn't support, and whether context
+about a longer excerpt supports the details inside it.
+
+**Why:** the sponsor's email of 3 November made references yours, and no story said what that
+means. Reviewing the independence pull request found the two refinements, and they're here so
+you can see them coming.
+
+**You need to:** nothing yet. Placeholders don't fail, S9 is further down the order, and C6 asks
+for what C1 already did.
+
 ## v2.6.0 — 2026-11-03
 
 **Affects:** intelligence layer · experience layer · content layer (one field name)

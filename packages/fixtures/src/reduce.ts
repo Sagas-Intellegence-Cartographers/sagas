@@ -451,19 +451,23 @@ function buildIntegrity(claimStates: ClaimState[], acc: Accumulator): IntegrityS
   return score;
 }
 
+/**
+ * The place as of a time, from its contributions. Everything with a time up to and
+ * including `asOf` counts.
+ */
 export function reduceToState(
   events: ContributionEvent[],
-  cut: { stateId: string; label: string; asOf: string },
+  asOf: string,
   previousEventIds: EventId[] = [],
 ): GraphState {
   const acc = empty();
   const ordered = [...events].sort((a, b) => a.at.localeCompare(b.at));
   for (const ev of ordered) {
-    if (ev.at > cut.asOf) break;
+    if (ev.at > asOf) break;
     apply(acc, ev);
   }
 
-  if (!acc.site) throw new Error(`No site exists at ${cut.asOf}`);
+  if (!acc.site) throw new Error(`No site exists at ${asOf}`);
 
   const claimStates = [...acc.claims.values()]
     .map((claim) => buildClaimState(claim, acc))
@@ -472,9 +476,7 @@ export function reduceToState(
   const prev = new Set(previousEventIds);
 
   return {
-    stateId: cut.stateId,
-    label: cut.label,
-    asOf: cut.asOf,
+    asOf,
     site: acc.site,
     claims: claimStates,
     contributors: [...acc.contributors.values()],
@@ -490,15 +492,25 @@ export function reduceToState(
   };
 }
 
+/**
+ * A fixture moment: the place as of one of the fixture's test times, with that moment's id
+ * and label. The id and label are only for the fixtures. The contract's state has neither.
+ */
+export type FixtureState = GraphState & { stateId: string; label: string };
+
 export function reduceToStates(
   events: ContributionEvent[],
   cuts: { stateId: string; label: string; asOf: string }[],
   narrative: SiteNarrative = {},
-): GraphState[] {
-  const states: GraphState[] = [];
+): FixtureState[] {
+  const states: FixtureState[] = [];
   let previous: EventId[] = [];
   for (const cut of cuts) {
-    const state = reduceToState(events, cut, previous);
+    const state: FixtureState = {
+      stateId: cut.stateId,
+      label: cut.label,
+      ...reduceToState(events, cut.asOf, previous),
+    };
     // Sections are not derived from events. They stand in for output the
     // intelligence layer will produce, so they are merged in after the fold.
     const stand = narrative[cut.stateId];

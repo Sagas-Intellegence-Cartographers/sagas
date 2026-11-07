@@ -838,6 +838,11 @@ agrees, disagrees or adds something.
 - Relevance is checked one link at a time, a reply against the detail it
   targets. Whether support should weaken as it passes through more links in a
   chain is open.
+- How matching tells a denial from support. A claim in another thread saying "it was not
+  1950" shares words with the detail "1950", and it shouldn't make that detail look stronger.
+- Whether context about a longer excerpt supports the details inside it. A dispute of "Sally
+  bought a pink hat" contests the detail "pink" inside it, while an extension of that sentence
+  doesn't count toward "pink" today.
 - Where talk that isn't about any detail goes. One option is a conversation
   layer around a record that carries no weight. That's the same open question
   as whether a conversation becomes a named object.
