@@ -3,6 +3,7 @@
  *
  *   pnpm --filter @sagas/graph-api graph:view
  *   pnpm --filter @sagas/graph-api graph:view cat-graph.json
+ *   pnpm --filter @sagas/graph-api graph:view cases-graph.json
  *
  * It reads a graph file and writes `graph-view.html` beside it, with no dependencies.
  * Each column is a thread, and each claim sits under what it points at. The words

@@ -27,7 +27,7 @@ const state: GraphState = loadSiteState(siteKey, stateId);
 
 function one(c: ClaimState) {
   console.log('\n' + '='.repeat(72));
-  console.log(`${c.claim.id}   ${state.stateId}`);
+  console.log(`${c.claim.id}   ${stateId}`);
   console.log('='.repeat(72));
   console.log(`  ${c.contributor.displayName}${c.contributor.fictional ? '  (invented)' : ''}`);
   const text = c.claim.awaitingTranslation ? c.claim.sourceLanguageText : c.claim.text;
@@ -63,7 +63,7 @@ if (claimId) {
   }
   one(c);
 } else {
-  console.log(`\n${state.stateId}  ${state.label}\n`);
+  console.log(`\n${stateId}  as of ${state.asOf}\n`);
   console.log('  score  independent  disputes  confidence          claim');
   for (const c of state.claims) {
     const disputes = c.detailStatuses.reduce((n, e) => n + e.disputes.length, 0);

@@ -13,18 +13,14 @@ them.
 
 ---
 
-### C1 · A contributor can record at a site, and sees the terms first
+### C1 · A contributor can record at a site
 
 **Status:** Later, after the new record fields from contract 2.4.0.
 
 **Goal.** Someone standing at a place opens the capture app on their phone,
-records what they know about it, and hands it over. The first time they
-contribute, they see the terms and accept them before anything is submitted.
+records what they know about it, and hands it over. The terms come first, in C6.
 
 **Done when:**
-- A guest sees `docs/TERMS.md` before their first record, and again when the
-  version changes. Accepting stores the version on their profile
-  (`termsAcceptedVersion`).
 - They can record audio in the browser, play it back, and then submit it.
 - The record is attached to a site, and stores the terms version it was made
   under (`termsVersion`) and the contributor's choices (`choices`).
@@ -34,6 +30,21 @@ contribute, they see the terms and accept them before anything is submitted.
 
 **Not in this story.** Recording anybody else's story. Test it with your own
 voice, because recordings of other people stay out of the app for now.
+
+### C6 · Show the terms before a first record
+
+**Status:** Later, after the new record fields from contract 2.4.0.
+
+**Goal.** The first time someone contributes, they see the terms and accept them before
+they submit anything, and they see them again when the terms change.
+
+**Done when:**
+- A guest sees `docs/TERMS.md`, read from that file, before their first record.
+- Accepting stores the version on their profile (`termsAcceptedVersion`).
+- When the version changes, they see the terms again before their next record.
+- The API saves no record for someone who hasn't accepted the current version.
+
+**Not in this story.** The wording, which is the sponsor's.
 
 ### C2 · Black out personal details before saving
 

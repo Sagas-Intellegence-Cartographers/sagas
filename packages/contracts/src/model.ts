@@ -1302,11 +1302,16 @@ export const composition = z
   });
 export type Composition = z.infer<typeof composition>;
 
-/** Everything known about one place, as of one moment. */
+/**
+ * Everything known about one place, as of a time.
+ *
+ * Every claim, record and passover carries its own time, so "the place as of a time" is
+ * worked out from them, and nothing stores one snapshot per named moment. The fixtures'
+ * t0 to t3 are moments to test against. Their files carry each moment's id and label
+ * beside the state, and those aren't part of the contract.
+ */
 export const graphState = z.object({
-  stateId: z.string(),
-  label: z.string(),
-  /** Every contribution up to and including this moment is reflected here. */
+  /** Every contribution up to and including this time is reflected here. */
   asOf: z.string(),
   site,
   claims: z.array(claimState),
