@@ -1,0 +1,297 @@
+{
+  "siteId": "site-cases",
+  "asOf": "2026-11-05T00:00:00Z",
+  "records": [
+    {
+      "id": "note",
+      "contributorId": "p1",
+      "kind": "text",
+      "createdAt": "2026-01-01T00:01:00.000Z"
+    },
+    {
+      "id": "receipt",
+      "contributorId": "p3",
+      "kind": "document",
+      "createdAt": "2026-01-01T00:02:00.000Z"
+    },
+    {
+      "id": "plaque",
+      "contributorId": "p4",
+      "kind": "image",
+      "createdAt": "2026-01-01T00:06:00.000Z"
+    },
+    {
+      "id": "story",
+      "contributorId": "p7",
+      "kind": "text",
+      "createdAt": "2026-01-01T00:10:00.000Z"
+    },
+    {
+      "id": "interview",
+      "contributorId": "p9",
+      "kind": "audio",
+      "createdAt": "2026-01-01T00:13:00.000Z",
+      "transcribed": true
+    },
+    {
+      "id": "transcript",
+      "contributorId": "p10",
+      "kind": "text",
+      "createdAt": "2026-01-01T00:14:00.000Z",
+      "parent": {
+        "role": "transcript",
+        "recordId": "interview"
+      }
+    }
+  ],
+  "claims": [
+    {
+      "id": "hat",
+      "contributorId": "p1",
+      "createdAt": "2026-01-01T00:03:00.000Z",
+      "text": "Sally bought a pink hat at the corner shop.",
+      "sourceRecordId": "note",
+      "references": [],
+      "evidence": [],
+      "relation": "extension",
+      "target": {
+        "recordId": "note",
+        "details": []
+      }
+    },
+    {
+      "id": "which",
+      "contributorId": "p2",
+      "createdAt": "2026-01-01T00:04:00.000Z",
+      "text": "Which corner shop?",
+      "sourceRecordId": "note",
+      "references": [],
+      "evidence": [],
+      "relation": "extension",
+      "target": {
+        "claimId": "hat",
+        "details": [
+          {
+            "at": {
+              "start": 27,
+              "end": 42,
+              "text": "the corner shop"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "brandon",
+      "contributorId": "p3",
+      "createdAt": "2026-01-01T00:05:00.000Z",
+      "text": "Brandon bought a blue hat.",
+      "sourceRecordId": "note",
+      "references": [],
+      "evidence": [
+        {
+          "recordId": "receipt"
+        }
+      ],
+      "relation": "dispute",
+      "reasoning": "I have the receipt with his name on it",
+      "target": {
+        "claimId": "hat",
+        "details": [
+          {
+            "at": {
+              "start": 0,
+              "end": 5,
+              "text": "Sally"
+            },
+            "to": {
+              "start": 0,
+              "end": 7,
+              "text": "Brandon"
+            }
+          },
+          {
+            "at": {
+              "start": 15,
+              "end": 19,
+              "text": "pink"
+            },
+            "to": {
+              "start": 17,
+              "end": 21,
+              "text": "blue"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "built",
+      "contributorId": "p4",
+      "createdAt": "2026-01-01T00:07:00.000Z",
+      "text": "Built in 1950, rebuilt after the 1950 fire.",
+      "sourceRecordId": "plaque",
+      "references": [],
+      "evidence": [],
+      "relation": "extension",
+      "target": {
+        "recordId": "plaque",
+        "details": []
+      }
+    },
+    {
+      "id": "fire",
+      "contributorId": "p5",
+      "createdAt": "2026-01-01T00:08:00.000Z",
+      "text": "The fire was in 1951.",
+      "sourceRecordId": "plaque",
+      "references": [],
+      "evidence": [],
+      "relation": "dispute",
+      "reasoning": "the fire department's log says 1951",
+      "target": {
+        "claimId": "built",
+        "details": [
+          {
+            "at": {
+              "start": 33,
+              "end": 37,
+              "text": "1950"
+            },
+            "to": {
+              "start": 16,
+              "end": 20,
+              "text": "1951"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "month",
+      "contributorId": "p6",
+      "createdAt": "2026-01-01T00:09:00.000Z",
+      "text": "Which month was it built?",
+      "sourceRecordId": "plaque",
+      "references": [],
+      "evidence": [],
+      "relation": "extension",
+      "target": {
+        "claimId": "built",
+        "details": [
+          {
+            "at": {
+              "start": 9,
+              "end": 13,
+              "text": "1950"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "baseball",
+      "contributorId": "p7",
+      "createdAt": "2026-01-01T00:11:00.000Z",
+      "text": "A girl played baseball in this lot every summer.",
+      "sourceRecordId": "story",
+      "references": [],
+      "evidence": [],
+      "relation": "extension",
+      "target": {
+        "recordId": "story",
+        "details": []
+      }
+    },
+    {
+      "id": "soccer",
+      "contributorId": "p8",
+      "createdAt": "2026-01-01T00:12:00.000Z",
+      "text": "It was a boy, and he played soccer until he quit.",
+      "sourceRecordId": "story",
+      "references": [],
+      "evidence": [],
+      "relation": "dispute",
+      "reasoning": "that was my brother, and I watched every game",
+      "target": {
+        "claimId": "baseball",
+        "details": []
+      }
+    },
+    {
+      "id": "heard",
+      "contributorId": "p11",
+      "createdAt": "2026-01-01T00:15:00.000Z",
+      "text": "She says Hays, not Hayes.",
+      "sourceRecordId": "interview",
+      "references": [],
+      "evidence": [],
+      "relation": "dispute",
+      "reasoning": "the name is misheard in the transcript",
+      "target": {
+        "recordId": "transcript",
+        "details": [
+          {
+            "at": {
+              "start": 4,
+              "end": 9,
+              "text": "Hayes"
+            },
+            "to": {
+              "start": 9,
+              "end": 13,
+              "text": "Hays"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "passovers": [],
+  "profiles": [
+    {
+      "id": "p1",
+      "guest": true
+    },
+    {
+      "id": "p3",
+      "guest": true
+    },
+    {
+      "id": "p2",
+      "guest": true
+    },
+    {
+      "id": "p4",
+      "guest": true
+    },
+    {
+      "id": "p5",
+      "guest": true
+    },
+    {
+      "id": "p6",
+      "guest": true
+    },
+    {
+      "id": "p7",
+      "guest": true
+    },
+    {
+      "id": "p8",
+      "guest": true
+    },
+    {
+      "id": "p9",
+      "guest": true
+    },
+    {
+      "id": "p10",
+      "guest": true
+    },
+    {
+      "id": "p11",
+      "guest": true
+    }
+  ]
+}

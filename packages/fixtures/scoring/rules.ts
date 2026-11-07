@@ -379,6 +379,11 @@ export function runScoringRules(name: string, scorer: Scorer): void {
         expect(contested(first?.id)).toBe(false);
       });
 
+      // Prompted by: "How do you tell whether a reply is about what it targets?" in
+      // docs/DESIGN-QUESTIONS.md. Open: a dispute of a longer excerpt contests the details
+      // inside it, and an extension of one doesn't count toward them today.
+      it.todo("decides whether context about a longer excerpt supports the details inside it");
+
       // Prompted by: "How do audio and video records hold their text?" in
       // docs/DESIGN-QUESTIONS.md. Open: whether what a claim points at in a record
       // counts the way a detail of a claim does.
@@ -861,6 +866,11 @@ export function runScoringRules(name: string, scorer: Scorer): void {
         );
         expect(found(r, "A", "U")).toBe(false);
       });
+
+      // Prompted by: "How do you tell whether a reply is about what it targets?" in
+      // docs/DESIGN-QUESTIONS.md. A refinement for you to get to. Open: a claim saying "it
+      // was not 1950" shares words with the detail, and it shouldn't make the detail stronger.
+      it.todo("a denial in another thread isn't support");
 
       // Prompted by: the sponsor, 29 October. Independent accounts are worded
       // differently, so a match that only works on identical text misses them.

@@ -19,7 +19,7 @@ import { ACCEPTANCE_CRITERIA, loadAllStates, loadSiteState } from './index';
 const states = loadAllStates();
 
 describe('fixtures satisfy the contract', () => {
-  it.each(states.map((s) => [`${s.site.slug} ${s.stateId}`, s] as const))('%s parses', (_id, state) => {
+  it.each(states.map((s) => [`${s.site.slug} ${s.asOf}`, s] as const))('%s parses', (_id, state) => {
     expect(() => graphState.parse(state)).not.toThrow();
   });
 

@@ -68,7 +68,7 @@ the match, and the match itself adds nothing.
 | A builder for test graphs | `packages/fixtures/scoring/build.ts`, and `build.test.ts` beside it shows how to use it |
 | A worked example of walking the graph | `apps/graph-api/src/walk.ts` |
 | Example places, as event logs | `packages/fixtures/fixtures/` (`docs/HOW-THE-LAYERS-FIT.md` walks through the corner shop) |
-| Whole graphs as JSON | `apps/graph-api/example-graph.json`, `cat-graph.json` and `corner-shop-graph.json` |
+| Whole graphs as JSON | `apps/graph-api/example-graph.json`, `cat-graph.json`, `cases-graph.json` (the newer cases: one dispute with two changes, a whole-claim dispute, the same words twice, and a disputed transcript) and `corner-shop-graph.json` |
 | A page for seeing a graph, with scores once your scorer returns them | `pnpm --filter @sagas/graph-api graph:view`, written up in `apps/graph-api/src/graph-view.ts` |
 | The guide, with the list of what's fixed for every scorer | `docs/PHASE-2-INTELLIGENCE-LAYER.md` |
 
@@ -173,3 +173,23 @@ detail, so independent support from that thread can count.
 
 **Done when** the rules under "worked example: four claims" and "worked example:
 the cat" pass.
+
+### S9 · Suggest the references in a claim's text
+
+**Status:** Later
+
+**Goal.** A reference is a date, a place, a person or a record named in a claim's own text.
+It looks close to the `Keyword` object in your `docs/Pseudo_Code_Model.md`. Given a claim's text,
+your code suggests the references it finds, so the person who wrote it can confirm them.
+
+**Done when:**
+- `findReferences(text)` in `apps/graph-api/src` returns a list in the contract's
+  `claimReference` shape, each with its `kind`, its `excerpt` from `findExcerpt`, and
+  `status: "suggested"`.
+- Tests read as scenarios: given this text, these references. "It opened in 1948 on Mill Road"
+  suggests the date "1948" and the place "Mill Road". The same words twice give two references,
+  each at its own position. Text with nothing to find returns an empty list.
+
+**Not in this story.** Scoring references, because nothing scores them yet. Reference objects,
+where "A House" and "Alison's Ale House" are one thing, which are spring work. The screen where
+someone confirms a suggestion.
