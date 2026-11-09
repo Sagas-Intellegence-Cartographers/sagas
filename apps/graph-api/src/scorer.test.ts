@@ -17,6 +17,10 @@ import { scorer } from "./scorer";
 
 // Delete `.skip` once `similarity` exists. It's here so a red build means something is
 // broken rather than something is unwritten.
-describe.skip("until the scorer exists", () => {
+
+describe("until the scorer exists", () => {
   runScoringRules("graph-api", scorer);
 });
+
+
+

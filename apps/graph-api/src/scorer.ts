@@ -11,6 +11,7 @@
  * because the people who wrote them chose their targets. Read those links
  * before you reach for the text.
  */
+
 import type {
   Scorer,
   ScoringGraph,
@@ -19,10 +20,55 @@ import type {
 
 export const scorer: Scorer = {
   similarity(_a: string, _b: string): number {
-    throw new Error("not implemented");
+  
+    _a = _a.toLowerCase();
+    _b = _b.toLowerCase();
+
+    const _aArray = _a.split(" ");
+    const _bArray = _b.split(" ");
+
+    let sequenceCount = commonSequence(_aArray, _bArray, _aArray.length, _bArray.length)
+    return sequenceCount / Math.min(_aArray.length, _bArray.length);
+    //throw new Error("not implemented");
   },
 
   score(_graph: ScoringGraph): ScoringResult {
-    throw new Error("not implemented");
+    //throw new Error("not implemented");
+    const _recordCount = _graph.records.length;
+    const _claimCount = _graph.claims.length;
+
+    const claims = _graph.claims;
+
+    const result: ScoringResult = {
+      claims: [],
+      matches: []
+    };
+
+
+
+    for(let i = 0; i < _claimCount; i++){
+
+    }
+
+    return result;
+
+
   },
 };
+
+
+ // Longest Common Sequence - comparing similar strings. Next step: character by character processing. Can give similarity points a boost if two
+ // words are close enough (crossed / crosses) "crosses the roads" and "crossed the road." How can we determine they're the same? - use stemmer (what we'll do for now) / make own stemmer 
+function commonSequence(_a: string [], _b: string [], _aLen: number, _bLen: number) : number {
+  if(_aLen === 0 || _bLen === 0){
+    return 0; // no similarity between empty strings ykyky
+  }
+
+  if(_a[_aLen -1] === _b[_bLen-1]){
+    return 1 + commonSequence(_a, _b, _aLen-1, _bLen-1);
+  }
+  else {
+    return Math.max(commonSequence(_a, _b, _aLen, _bLen-1), commonSequence(_a, _b, _aLen-1, _bLen));
+  }
+
+}
