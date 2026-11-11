@@ -1,6 +1,6 @@
 # Sagas: provisional terms for contributors
 
-Version `provisional-0.1`. Last updated 1 November 2026. Not reviewed by a
+Version `provisional-0.2`. Last updated 9 November 2026. Not reviewed by a
 lawyer.
 
 These are provisional terms for a small research pilot. They cover only the
@@ -100,8 +100,11 @@ info@civum.io. We may hide a reported contribution while we look at it.
 ## What we keep about you
 
 A profile is a way back to your own contributions. It doesn't need your name.
-We keep what you contribute and the choices you made for it. We don't track you
-across other sites, and we don't sell anything about you.
+We keep what you contribute and the choices you made for it. If you mark
+contributions as you read ("sounds right", "don't know" or "don't care"), we
+keep those choices with your profile, so Sagas can suggest what to show you
+next. We don't track you across other sites, and we don't sell anything about
+you.
 
 ## No guarantees
 

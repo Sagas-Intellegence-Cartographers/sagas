@@ -27,7 +27,7 @@ what they decide not to say. None of that is visible from a test suite.
 - The terms in `docs/TERMS.md`, shown to a profile before its first
   contribution and again whenever the version changes. The version accepted is
   stored on the profile (`termsAcceptedVersion`) and every record stores the
-  version it was made under (`termsVersion`, currently `provisional-0.1`)
+  version it was made under (`termsVersion`, currently `provisional-0.2`)
 - What the contributor chooses for each record: whether the student teams may
   see it, whether it's public now, later or never, what happens to a photo's
   location, and whether it mentions other people (`recordChoices` in the
