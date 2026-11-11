@@ -62,6 +62,48 @@ model doesn't. The sponsor decided this on 5 November.
 - *intelligence layer* — nothing. The scoring graph already uses `asOf`.
 - *content layer* — nothing.
 
+## 2026-11-09 — terms `provisional-0.2`
+
+**Affects:** content layer · experience layer
+
+**What:** `docs/TERMS.md` is now version `provisional-0.2`. "What we keep about you" says that
+if someone marks contributions as they read ("sounds right", "don't know" or "don't care"), Sagas
+keeps those choices with their profile, to suggest what to show them next.
+
+**Why:** passovers are kept with a profile, and the terms didn't say so.
+
+**You need to:**
+- *content layer* — show `provisional-0.2` where your terms screen shows a version, and store it
+  as `termsVersion` on new records. Records made under `provisional-0.1` keep that version.
+- *experience layer* — nothing beyond your terms page (De12) showing the current file.
+
+## 2026-11-08 — stories for the minimum scorer
+
+**Affects:** intelligence layer
+
+**What:** `apps/graph-api/BACKLOG.md` gains a table of the eight things the scorer does this
+semester, the stories for each and where each stands, and six new stories: S10 stores claims, S11 is a plain screen for writing
+them, S12 explains a score, S13 runs on the examples and the first real place, S14 scores live
+with `POST /score`, and S15 lets the experience layer call the scorer.
+
+**Why:** the minimum scorer was a list in an email. As stories, each of you can pick one and see
+what done looks like.
+
+**You need to:** nothing before Monday. We'll go through them together at the meeting.
+
+## 2026-11-08 — neighbourhood boundaries
+
+**Affects:** experience layer · content layer
+
+**What:** `packages/fixtures/geo/` holds the city's neighbourhood boundaries as GeoJSON, with a
+README saying where they come from, how to credit them, and how to refresh them. Every fixture
+site falls inside one of them.
+
+**Why:** the map's shapes (M6) need them, and so does anything that places a point within a
+neighbourhood. Keeping one copy upstream means every team works from the same boundaries.
+
+**You need to:** nothing yet. Pull upstream when a story needs the boundaries.
+
 ## 2026-11-05 — stories for references and the terms screen, and two placeholder rules
 
 **Affects:** intelligence layer · content layer
