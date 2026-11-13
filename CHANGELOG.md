@@ -62,6 +62,18 @@ model doesn't. The sponsor decided this on 5 November.
 - *intelligence layer* — nothing. The scoring graph already uses `asOf`.
 - *content layer* — nothing.
 
+## 2026-11-12 — a handoff story for every layer
+
+**Affects:** content layer · intelligence layer · experience layer
+
+**What:** each layer's backlog gains H1, a handoff note in your app's folder: what you finished,
+what you started and where it stopped, what nobody started, how to run it, and anything the next
+team should know.
+
+**Why:** whoever picks up your work in spring starts from your note instead of from scratch.
+
+**You need to:** nothing yet. It's for the end of the semester.
+
 ## 2026-11-09 — terms `provisional-0.2`
 
 **Affects:** content layer · experience layer
