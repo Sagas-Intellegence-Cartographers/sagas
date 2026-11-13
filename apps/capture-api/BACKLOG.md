@@ -120,3 +120,20 @@ right.
 
 **Not in this story.** Translating anything automatically, and disputes about a
 translation.
+
+### H1 · A handoff note for your work
+
+**Status:** Ready, for the end of the semester.
+
+**Goal.** Whoever picks up your work next, in spring or later, starts from your note instead of
+from scratch. Write it in your own words, in `apps/capture-api/HANDOFF.md`.
+
+**Done when** the note says:
+- which stories in this backlog you finished, and where the work for each one is;
+- which ones you started, and where each one stopped;
+- which ones nobody started;
+- how to run your app and its tests;
+- anything the next team should know that isn't written down anywhere else, like known problems,
+  or a choice you made and why.
+
+**Not in this story.** Finishing the stories that are left, or rewriting this backlog.
