@@ -1,7 +1,8 @@
 type Item = { createdAt: string; text: string };
 
 const WINDOW_MS = 10 * 60_000; // guess: 10 minutes
-const REPEAT_WEIGHT = 0.1;     // guess: a repeat counts a tenth
+const MIN_SIMILARITY = 0.8;
+const REPEAT_FACTOR = 0.1;
 
 /** Total agreement: a claim that repeats an earlier one nearby counts for little. */
 export function dampedCount(
@@ -13,12 +14,12 @@ export function dampedCount(
   );
   let total = 0;
   sorted.forEach((item, i) => {
-    const isRepeat = sorted.slice(0, i).some(
+    const matches = sorted.slice(0, i).filter(
       (earlier) =>
         Date.parse(item.createdAt) - Date.parse(earlier.createdAt) <= WINDOW_MS &&
-        similarity(item.text, earlier.text) >= 0.8,
-    );
-    total += isRepeat ? REPEAT_WEIGHT : 1;
+      similarity(item.text, earlier.text) >= MIN_SIMILARITY,
+          ).length;
+         total += REPEAT_FACTOR ** matches;
   });
   return total;
 }
