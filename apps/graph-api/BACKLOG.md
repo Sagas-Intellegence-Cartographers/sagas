@@ -34,6 +34,24 @@ extensions people attached. The people who write claims choose what each one
 points at, so each reply already carries its edge. Read those before you reach for the
 text.
 
+## The words in this backlog, in plain English
+
+A lot of this backlog uses project words. Here's what each one means, in one sentence.
+
+| Word | What it means |
+|---|---|
+| Record | Something a person hands over about a place: a photo, a recording, a document or some text. |
+| Claim | A sentence someone writes about a place, usually based on a record. |
+| Detail | A few words inside a claim that another claim points at. |
+| Extension | A claim that adds to another claim. |
+| Dispute | A claim that says part of another claim is wrong, and what it should say instead. |
+| Score | A number for how well supported a claim or a detail is. Readers never see it. |
+| Term | One part of a score, like "evidence" or "disputes". The score is made by adding terms up. |
+| Similarity | How much two pieces of text say the same thing, from 0 to 1. |
+| Independence | Whether two pieces of support really come from different people and different records. |
+| Passover | What a reader leaves when they move past a claim: "sounds right", "don't know" or "don't care". |
+| Rule | A test in `packages/fixtures/scoring/rules.ts` that a scorer has to pass. |
+
 ## What a detail and a reference are
 
 A detail is an excerpt of a claim that another claim points at. Nobody lists a
@@ -346,6 +364,24 @@ call your scorer.
 - `apps/graph-api/README.md` has a short section on how to call it, what comes back, and how your
   scorer works.
 - You open a pull request to upstream, because that's where the experience layer pulls from.
+
+### S16 · Check that every example graph is valid
+
+**Status:** Ready. A small, self-contained one, good for getting to know the graph.
+
+**Goal.** The example graphs are the files the scorer runs on. A test should prove each one is
+well formed, so a broken file is caught early with a clear message instead of a confusing scorer
+error later.
+
+**Done when:**
+- A test in `apps/graph-api/src` loads each example graph (`corner-shop-graph.json`,
+  `cat-graph.json`, `example-graph.json` and `cases-graph.json`) and checks it with `scoringGraph`
+  from `@sagas/fixtures/scoring`. If a file is broken, the test fails and says which file and why.
+- A second test checks what `scoringGraph` doesn't: every claim's `sourceRecordId`, and every
+  `recordId` in a claim's `evidence`, names a record that's in the same file.
+
+**Not in this story.** Scoring anything, or changing the example files. If a file turns out to be
+broken, tell me and I'll fix it upstream.
 
 ### H1 · A handoff note for your work
 
