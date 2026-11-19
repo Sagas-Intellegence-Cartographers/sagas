@@ -41,6 +41,43 @@ it. This is the most useful field in the entry.
 
 ---
 
+## 2026-11-15 — stories for places and requests, a glossary, and the brand
+
+**Affects:** content layer · intelligence layer · experience layer
+
+**What:**
+- `apps/capture-api/BACKLOG.md` gains C11 to C14 (dropping a pin to create a place, finding a
+  place or adding it, the sites API, and adding records to a place) and C7 to C10 (queues of
+  transcription and translation requests, a screen for working a request, and processing uploads
+  in the background).
+- `apps/graph-api/BACKLOG.md` gains a glossary of the project's words in plain English, and S16,
+  a test that the example graphs are valid.
+- `packages/brand/` holds the Sagas logo, colours and favicons, with a README on using them.
+
+**Why:** each layer needed its next work written down plainly, and the teams asked for a logo,
+colours and a font.
+
+**You need to:** nothing yet. Pull upstream when you start a new story, and use
+`packages/brand/` wherever you show the name.
+
+## v2.7.1 — 2026-11-15
+
+**Affects:** content layer
+
+**What:** the comment on `collection` in `model.ts` said a collection is the records one profile
+handed over together. That was wrong. A collection is a profile's records, kept together so every
+record can say where it came from. The shape doesn't change. The comment now also says what's
+coming and isn't in the contract yet: one collection per profile, copies marked as copies, and
+links between related media.
+
+**Why:** the old comment described the model wrongly, and the code is what you build from.
+
+**You need to:**
+- *content layer* — nothing now. If your code treats a collection as one upload session, keep it
+  working for now, and don't build further on that idea.
+- *intelligence layer* — nothing.
+- *experience layer* — nothing.
+
 ## v2.7.0 — 2026-11-05
 
 **Affects:** experience layer

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Sagas">
+  <title>Sagas</title>
+  <rect width="64" height="64" rx="12" fill="#141414"/>
+  <text x="32" y="43" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="40" fill="#FAF8F3">S</text>
+  <g fill="#E0303F"><circle cx="22" cy="53" r="2.6"/><circle cx="32" cy="53" r="2.6"/><circle cx="42" cy="53" r="2.6"/></g>
+</svg>
